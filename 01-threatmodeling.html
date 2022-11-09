@@ -46,8 +46,8 @@ Use: <!-- _class: lead --> */div#p>svg>foreignObject>section.lead{background-col
 /******************* lead2 *****************************/
 
 
-/* lead2 class (alternate version) first slide in a section. Use h1 as header.
-Use: <!-- _class: lead2 --> */div#p>svg>foreignObject>section.lead2{}div#p>svg>foreignObject>section.lead2 a,div#p>svg>foreignObject>section.lead2 h1,div#p>svg>foreignObject>section.lead2 h2{color:white;background-color:var(--darker-color);opacity:0.9;text-align:center;padding-bottom:0.3em;padding-top:0.3em}div#p>svg>foreignObject>section.lead2 footer,div#p>svg>foreignObject>section.lead2 header,div#p>svg>foreignObject>section.lead2:after{
+/* lead2 class (alternate version for lead) first slide in a section. Use h1 as header.
+Use: <!-- _class: lead2 --> */div#p>svg>foreignObject>section.lead2 a,div#p>svg>foreignObject>section.lead2 h1,div#p>svg>foreignObject>section.lead2 h2{color:white;background-color:var(--darker-color);opacity:0.9;text-align:center;padding-bottom:0.3em;padding-top:0.3em}div#p>svg>foreignObject>section.lead2 footer,div#p>svg>foreignObject>section.lead2 header,div#p>svg>foreignObject>section.lead2:after{
     /* hide footer and pagination */display:none}
 
 
@@ -167,60 +167,62 @@ Use: list must be ordered. Items must include an element: anchor, emphasis...
 /* Lists inside lists */div#p>svg>foreignObject>section.cool-list2 ol ol{margin:0 0 0 2em; /* Add some left margin for inner lists */font-size:75%;counter-reset:li2 /* Initiate a counter */}div#p>svg>foreignObject>section.cool-list2 ol ol>li>a:before,div#p>svg>foreignObject>section.cool-list2 ol ol>li>em:before{content:counter(li2);counter-increment:li2;background:lightgray}div#p>svg>foreignObject>section.cool-list2 ol ul{list-style-type:disc;margin:0 0 0 1em;font-size:75%}div#p>svg>foreignObject>section.cool-list2 ol ol em{background:#efefef}
 
 
-/******************* cool-list2 *****************************/
+/******************* logo management *****************************/
 
 /* A special class for a white logo */div#p>svg>foreignObject>section.white-logo:before{
     /* logo in white */filter:sepia(100%) brightness(2) saturate(0)!important}
 
 /* A special class for a black logo */div#p>svg>foreignObject>section.black-logo:before{
-    /* logo in white */filter:brightness(0)!important}div#p>svg>foreignObject>section svg[data-marp-fitting=svg]{display:block;height:auto;width:100%}@supports (-ms-ime-align:auto){div#p>svg>foreignObject>section svg[data-marp-fitting=svg]{position:static}}div#p>svg>foreignObject>section svg[data-marp-fitting=svg].__reflow__{content:""}@supports (-ms-ime-align:auto){div#p>svg>foreignObject>section svg[data-marp-fitting=svg].__reflow__{position:relative}}div#p>svg>foreignObject>section [data-marp-fitting-svg-content]{display:table;white-space:nowrap;width:-webkit-max-content;width:-moz-max-content;width:max-content}div#p>svg>foreignObject>section [data-marp-fitting-svg-content-wrap]{white-space:pre}div#p>svg>foreignObject>section img[data-marp-twemoji]{background:transparent;height:1em;margin:0 .05em 0 .1em;vertical-align:-.1em;width:1em}
+    /* logo in white */filter:brightness(0)!important}
+
+/* A special class to hide the logo */div#p>svg>foreignObject>section.no-logo:before{filter:opacity(0)!important}div#p>svg>foreignObject>section svg[data-marp-fitting=svg]{display:block;height:auto;width:100%}@supports (-ms-ime-align:auto){div#p>svg>foreignObject>section svg[data-marp-fitting=svg]{position:static}}div#p>svg>foreignObject>section svg[data-marp-fitting=svg].__reflow__{content:""}@supports (-ms-ime-align:auto){div#p>svg>foreignObject>section svg[data-marp-fitting=svg].__reflow__{position:relative}}div#p>svg>foreignObject>section [data-marp-fitting-svg-content]{display:table;white-space:nowrap;width:-webkit-max-content;width:-moz-max-content;width:max-content}div#p>svg>foreignObject>section [data-marp-fitting-svg-content-wrap]{white-space:pre}div#p>svg>foreignObject>section img[data-marp-twemoji]{background:transparent;height:1em;margin:0 .05em 0 .1em;vertical-align:-.1em;width:1em}
 
 /*
-@theme marp-upc
+@theme marp-viu
 */
 
-/* Tema UPC para MARP */
+/* Tema VIU para MARP */
 
-/******************* common styles *****************************/div#p>svg>foreignObject>section:not(a){--main-color:rgb(0,134,199);--darker-color:#246;--lighter-color:#87ceeb;--extra-back-color:rgb(175,172,172)}
+/******************* common styles *****************************/div#p>svg>foreignObject>section:not(a){--main-color:#e65014;--darker-color:#e65014;--lighter-color:#e26c3e;--extra-back-color:rgb(175,172,172)}
 
-/* Logo */div#p>svg>foreignObject>section:before{content:"";width:15%;height:10%;position:absolute;right:1%;top:0%;
-    /* background: url('themes/upc/logo-upc.png') no-repeat center/contain; */background:url('https://github.com/Juanvvc/markdown-slides/raw/master/slides/themes/upc/logo-upc.png') no-repeat center/contain}
+/* Logo */div#p>svg>foreignObject>section:before{content:"";width:9%;height:10%;position:absolute;right:2.5%;top:2%;
+    /*background: url('themes/viu/logo-viu.png') no-repeat center/contain;*/background:url('https://github.com/Juanvvc/markdown-slides/raw/master/slides/themes/viu/logo-viu.png') no-repeat center/contain}
+
 
 /******************* lead *****************************/
 
 /* lead class: first slide in a section. Use h1 as header.
-Use: <!-- _class: lead --> */div#p>svg>foreignObject>section.lead{background-color:white;text-align:center;padding-top:inherit}div#p>svg>foreignObject>section.lead h1,div#p>svg>foreignObject>section.lead h2,div#p>svg>foreignObject>section.lead p{margin-left:25%;background-color:white;color:var(--main-color);padding:inherit;margin-bottom:inherit}div#p>svg>foreignObject>section.lead h1:before{content:'';width:25%;height:100%;position:absolute;left:0;top:0;display:block;
-    /* background: url('themes/upc/lead2.png') no-repeat; */background:url('https://github.com/Juanvvc/markdown-slides/raw/master/slides/themes/upc/lead2.png') no-repeat}div#p>svg>foreignObject>section.lead footer,div#p>svg>foreignObject>section.lead header,div#p>svg>foreignObject>section.lead:after{
-    /* hide footer and pagination */display:none}div#p>svg>foreignObject>section.lead:before{
-    /* reset logo */filter:inherit}
+Use: <!-- _class: lead --> */div#p>svg>foreignObject>section.lead{background-color:var(--main-color);text-align:center;color:white;padding:inherit}div#p>svg>foreignObject>section.lead a,div#p>svg>foreignObject>section.lead h1,div#p>svg>foreignObject>section.lead h2,div#p>svg>foreignObject>section.lead p{color:white;padding:0.5em;background-color:inherit;margin-bottom:0}div#p>svg>foreignObject>section.lead footer,div#p>svg>foreignObject>section.lead header,div#p>svg>foreignObject>section.lead:after{
+    /* hide header, footer and pagination */display:none}div#p>svg>foreignObject>section.lead:before{
+    /* logo in white */filter:invert(100%) saturate(0) brightness(1.8)}
+
+
 
 /******************* first-slide *****************************/
 
-
-/* first-slide class
-Use: <!-- _class: first-slide --> */div#p>svg>foreignObject>section.first-slide{
-    /* background-image: url('themes/upc/foto-UPC-20-1000x520.jpg'); */background-image:url('https://github.com/Juanvvc/markdown-slides/raw/master/slides/themes/upc/foto-UPC-20-1000x520.jpg');background-size:cover;background-repeat:no-repeat;text-align:center}div#p>svg>foreignObject>section.first-slide h1,div#p>svg>foreignObject>section.first-slide h2{color:white;background-color:#2c3e50dd}div#p>svg>foreignObject>section.first-slide p{color:white;background-color:#2c3e5099;margin:0em;padding-top:0.2em;padding-bottom:0.2em}div#p>svg>foreignObject>section.first-slide a{color:white;background-color:transparent!important}div#p>svg>foreignObject>section.first-slide footer,div#p>svg>foreignObject>section.first-slide:after{
-    /* hide footer and pagination */display:none}div#p>svg>foreignObject>section.first-slide:before{
-    /* logo in white */filter:sepia(100%) brightness(2) saturate(0)}
+/* first slide (main title). Use h1 as header.
+Use: <!-- _class: first-slide --> */div#p>svg>foreignObject>section.first-slide{background-size:cover;background-repeat:no-repeat;
+    /*background-image: url('themes/viu/bg2.png');*/background-image:url('https://github.com/Juanvvc/markdown-slides/raw/master/slides/themes/viu/bg2.png');padding:inherit}div#p>svg>foreignObject>section.first-slide h1{color:#333;text-align:left;background-color:transparent;
+    /* top rigth bottom left */margin:35% auto 0 5%!important;font-size:200%;color:#111}div#p>svg>foreignObject>section.first-slide h2,div#p>svg>foreignObject>section.first-slide p{color:#111;text-align:left;margin:0.5em 0 0 5%!important}div#p>svg>foreignObject>section.first-slide a{color:#111;text-align:left}div#p>svg>foreignObject>section.first-slide footer,div#p>svg>foreignObject>section.first-slide:after{
+    /* hide footer and pagination */display:none}
 
 /******************* last-slide *****************************/
 
 
 /* last-slide class (Thanks)
-Use: <!-- _class: first-slide --> */div#p>svg>foreignObject>section.last-slide{
-    /*background-image: url('themes/upc/foto-UPC-20-1000x520.jpg');*/background-image:url('https://github.com/Juanvvc/markdown-slides/raw/master/slides/themes/upc/foto-UPC-20-1000x520.jpg');background-size:cover;background-repeat:no-repeat;text-align:center}div#p>svg>foreignObject>section.last-slide h1,div#p>svg>foreignObject>section.last-slide h2{color:white;background-color:#2c3e50dd}div#p>svg>foreignObject>section.last-slide p{color:white;background-color:#2c3e5099;margin:0;padding-top:0.15em;padding-bottom:0.15em}div#p>svg>foreignObject>section.last-slide a{color:white;background-color:transparent!important}div#p>svg>foreignObject>section.last-slide footer,div#p>svg>foreignObject>section.last-slide:after{
-    /* hide footer and pagination */display:none}div#p>svg>foreignObject>section.last-slide:before{
-    /* logo in white */filter:sepia(100%) brightness(2) saturate(0)}
+Use: <!-- _class: first-slide --> */div#p>svg>foreignObject>section.last-slide{background-size:cover;background-repeat:no-repeat;
+    /*background-image: url('themes/viu/bg1.png');*/background-image:url('https://github.com/Juanvvc/markdown-slides/raw/master/slides/themes/viu/bg1.png');justify-content:flex-start;align-items:center}div#p>svg>foreignObject>section.last-slide h1{color:#111;margin-bottom:8em}div#p>svg>foreignObject>section.last-slide h2,div#p>svg>foreignObject>section.last-slide p{color:#111}div#p>svg>foreignObject>section.last-slide footer,div#p>svg>foreignObject>section.last-slide:after{
+    /* hide footer and pagination */display:none}div#p>svg>foreignObject>section.last-slide a,div#p>svg>foreignObject>section.last-slide p{color:#111}
 /* You can add custom style here. VSCode supports this.
     Other editor might need these custom code in
-    the YAML header: section: | */div#p>svg>foreignObject>section[data-marpit-advanced-background=background]{columns:initial!important;display:block!important;padding:0!important}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]:after,div#p>svg>foreignObject>section[data-marpit-advanced-background=background]:before,div#p>svg>foreignObject>section[data-marpit-advanced-background=content]:after,div#p>svg>foreignObject>section[data-marpit-advanced-background=content]:before{display:none!important}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container]{all:initial;display:flex;flex-direction:row;height:100%;overflow:hidden;width:100%}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container][data-marpit-advanced-background-direction=vertical]{flex-direction:column}div#p>svg>foreignObject>section[data-marpit-advanced-background=background][data-marpit-advanced-background-split]>div[data-marpit-advanced-background-container]{width:var(--marpit-advanced-background-split,50%)}div#p>svg>foreignObject>section[data-marpit-advanced-background=background][data-marpit-advanced-background-split=right]>div[data-marpit-advanced-background-container]{margin-left:calc(100% - var(--marpit-advanced-background-split, 50%))}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container]>figure{all:initial;background-position:center;background-repeat:no-repeat;background-size:cover;flex:auto;margin:0}div#p>svg>foreignObject>section[data-marpit-advanced-background=content],div#p>svg>foreignObject>section[data-marpit-advanced-background=pseudo]{background:transparent!important}div#p>svg>foreignObject>section[data-marpit-advanced-background=pseudo],div#p>svg[data-marpit-svg]>foreignObject[data-marpit-advanced-background=pseudo]{pointer-events:none!important}div#p>svg>foreignObject>section[data-marpit-advanced-background-split]{width:100%;height:100%}</style></head><body><div class="bespoke-progress-parent"><div class="bespoke-progress-bar"></div></div><div class="bespoke-marp-osc"><button data-bespoke-marp-osc="prev" tabindex="-1" title="Previous slide">Previous slide</button><span data-bespoke-marp-osc="page"></span><button data-bespoke-marp-osc="next" tabindex="-1" title="Next slide">Next slide</button><button data-bespoke-marp-osc="fullscreen" tabindex="-1" title="Toggle fullscreen (f)">Toggle fullscreen</button><button data-bespoke-marp-osc="presenter" tabindex="-1" title="Open presenter view (p)">Open presenter view</button></div><div id="p"><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="1" data-paginate="true" data-footer="[Inicio](index.html)" data-class="first-slide" data-heading-divider="2" data-theme="marp-upc" class="first-slide" data-marpit-pagination="1" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--class:first-slide;--heading-divider:2;--theme:marp-upc;">
-<h1>Threat Modeling</h1>
+    the YAML header: section: | */div#p>svg>foreignObject>section[data-marpit-advanced-background=background]{columns:initial!important;display:block!important;padding:0!important}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]:after,div#p>svg>foreignObject>section[data-marpit-advanced-background=background]:before,div#p>svg>foreignObject>section[data-marpit-advanced-background=content]:after,div#p>svg>foreignObject>section[data-marpit-advanced-background=content]:before{display:none!important}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container]{all:initial;display:flex;flex-direction:row;height:100%;overflow:hidden;width:100%}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container][data-marpit-advanced-background-direction=vertical]{flex-direction:column}div#p>svg>foreignObject>section[data-marpit-advanced-background=background][data-marpit-advanced-background-split]>div[data-marpit-advanced-background-container]{width:var(--marpit-advanced-background-split,50%)}div#p>svg>foreignObject>section[data-marpit-advanced-background=background][data-marpit-advanced-background-split=right]>div[data-marpit-advanced-background-container]{margin-left:calc(100% - var(--marpit-advanced-background-split, 50%))}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container]>figure{all:initial;background-position:center;background-repeat:no-repeat;background-size:cover;flex:auto;margin:0}div#p>svg>foreignObject>section[data-marpit-advanced-background=content],div#p>svg>foreignObject>section[data-marpit-advanced-background=pseudo]{background:transparent!important}div#p>svg>foreignObject>section[data-marpit-advanced-background=pseudo],div#p>svg[data-marpit-svg]>foreignObject[data-marpit-advanced-background=pseudo]{pointer-events:none!important}div#p>svg>foreignObject>section[data-marpit-advanced-background-split]{width:100%;height:100%}</style></head><body><div class="bespoke-progress-parent"><div class="bespoke-progress-bar"></div></div><div class="bespoke-marp-osc"><button data-bespoke-marp-osc="prev" tabindex="-1" title="Previous slide">Previous slide</button><span data-bespoke-marp-osc="page"></span><button data-bespoke-marp-osc="next" tabindex="-1" title="Next slide">Next slide</button><button data-bespoke-marp-osc="fullscreen" tabindex="-1" title="Toggle fullscreen (f)">Toggle fullscreen</button><button data-bespoke-marp-osc="presenter" tabindex="-1" title="Open presenter view (p)">Open presenter view</button></div><div id="p"><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="1" data-paginate="true" data-footer="[Inicio](index.html)" data-class="first-slide" data-heading-divider="2" data-theme="marp-viu" class="first-slide" data-marpit-pagination="1" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--class:first-slide;--heading-divider:2;--theme:marp-viu;">
+<h1>Threat Modeling - Modelo de amenazas</h1>
 
 <p>Juan Vera del Campo</p>
 <p><a href="mailto:juan.vera@campusviu.es">juan.vera@campusviu.es</a></p>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-paginate="true" data-footer="[Inicio](index.html)" data-class="cool-list" data-heading-divider="2" data-theme="marp-upc" class="cool-list" data-marpit-pagination="2" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--class:cool-list;--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-paginate="true" data-footer="[Inicio](index.html)" data-class="cool-list" data-heading-divider="2" data-theme="marp-viu" class="cool-list" data-marpit-pagination="2" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--class:cool-list;--heading-divider:2;--theme:marp-viu;">
 <h1>Hoy hablamos de...</h1>
 
 <ol>
@@ -234,11 +236,11 @@ Use: <!-- _class: first-slide --> */div#p>svg>foreignObject>section.last-slide{
 </ol>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-paginate="true" data-footer="[Inicio](index.html)" data-class="lead" data-heading-divider="2" data-theme="marp-upc" class="lead" data-marpit-pagination="3" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--class:lead;--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-paginate="true" data-footer="[Inicio](index.html)" data-class="lead" data-heading-divider="2" data-theme="marp-viu" class="lead" data-marpit-pagination="3" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--class:lead;--heading-divider:2;--theme:marp-viu;">
 <h1>Modelado de Amenazas</h1>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="4" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="4" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>Modelado de Amenazas - Threat Modeling</h2>
 <ul>
 <li>
@@ -257,17 +259,18 @@ Use: <!-- _class: first-slide --> */div#p>svg>foreignObject>section.last-slide{
 <p><strong>Perspectiva general de la aplicación y su entorno desde el punto de vista de la seguridad</strong></p>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-footer="[Inicio](index.html)" data-class="smaller-font" data-heading-divider="2" data-theme="marp-upc" class="smaller-font" data-marpit-pagination="5" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--class:smaller-font;--heading-divider:2;--theme:marp-upc;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="left"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;images/ciclodevida.png&quot;);background-size:90% auto;"></figure></div></section></foreignObject><foreignObject width="50%" height="720" x="50%"><section id="5" data-paginate="true" data-footer="[Inicio](index.html)" data-class="smaller-font" data-heading-divider="2" data-theme="marp-upc" class="smaller-font" data-marpit-pagination="5" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--class:smaller-font;--heading-divider:2;--theme:marp-upc;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="left">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-footer="[Inicio](index.html)" data-class="smaller-font" data-heading-divider="2" data-theme="marp-viu" class="smaller-font" data-marpit-pagination="5" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--class:smaller-font;--heading-divider:2;--theme:marp-viu;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="left"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;images/ciclodevida.png&quot;);background-size:90% auto;"></figure></div></section></foreignObject><foreignObject width="50%" height="720" x="50%"><section id="5" data-paginate="true" data-footer="[Inicio](index.html)" data-class="smaller-font" data-heading-divider="2" data-theme="marp-viu" class="smaller-font" data-marpit-pagination="5" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--class:smaller-font;--heading-divider:2;--theme:marp-viu;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="left">
 <h2>Modelado de amenazas a través del ciclo de vida del desarrollo</h2>
 
 <ul>
 <li>Se tiene que aplicar de forma continua a través del ciclo de vida del desarrollo de software.</li>
-<li>Idealmente, el modelado inicial debería hacerse durante la fase de planificación y diseño para tener una vista general de lo que estamos construyendo. A medida que se avanza en el ciclo de vida, el modelado se va redefiniendo para capturar más detalles de nuestra apliacación.</li>
+<li>El modelado inicial tiene que hacerse durante la fase de planificación y diseño para tener una vista general de lo que estamos construyendo.</li>
+<li>A medida que se avanza en el ciclo de vida, el modelado se va redefiniendo para capturar más detalles de nuestra apliacación.</li>
 <li>A medidas que se avanza el proceso de modelado debería examinar, diagnosticar y tratar las amenazas encontradas.</li>
 </ul>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section class="smaller-font" style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="5" data-marpit-pagination-total="50"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="6" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section class="smaller-font" style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="5" data-marpit-pagination-total="51"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="6" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>Fases genéricas</h2>
 <ul>
 <li>¿En qué estamos trabajando?</li>
@@ -277,16 +280,16 @@ Use: <!-- _class: first-slide --> */div#p>svg>foreignObject>section.last-slide{
 </ul>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-footer="[Inicio](index.html)" data-class="lead" data-heading-divider="2" data-theme="marp-upc" class="lead" data-marpit-pagination="7" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--class:lead;--heading-divider:2;--theme:marp-upc;">
-<h1>¿Qué queremos modelar?</h1>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-footer="[Inicio](index.html)" data-class="lead" data-heading-divider="2" data-theme="marp-viu" class="lead" data-marpit-pagination="7" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--class:lead;--heading-divider:2;--theme:marp-viu;">
+<h1>¿En qué estamos trabajando?</h1>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="8" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="8" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h1>Paso 1: describe el sistema</h1>
-<p>AMPS es un dispositivo médico que se lleva por la noche por los pacientes en riesgo de padecer un infarto cuando están en su vivienda. Registra medidas que los médicos pueden después analizar, pero no emite alertas</p>
+<p>Ejemplo: AMPS es un dispositivo médico que se lleva por la noche por los pacientes en riesgo de padecer un infarto cuando están en su vivienda. Registra medidas que los médicos pueden después analizar, pero no emite alertas</p>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="9" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="9" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <p>Tecnología:</p>
 <ul>
 <li>Dispositivo Bluetooth BLE en el tobillo</li>
@@ -301,7 +304,7 @@ Use: <!-- _class: first-slide --> */div#p>svg>foreignObject>section.last-slide{
 </ul>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="10" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="10" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>Metodología</h2>
 <ul>
 <li>Brainstorming estructurado</li>
@@ -315,7 +318,7 @@ Use: <!-- _class: first-slide --> */div#p>svg>foreignObject>section.last-slide{
 </ul>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="11" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="11" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>Diagramas del sistema (DFD3)</h2>
 <p><img src="images/diagramaflujo.png" alt="center" style="width:30em;" /></p>
 <blockquote>
@@ -323,41 +326,41 @@ Use: <!-- _class: first-slide --> */div#p>svg>foreignObject>section.last-slide{
 </blockquote>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="12" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="12" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>Brainstorming</h2>
 <blockquote>
 <p>En blanco para poder dibujar</p>
 </blockquote>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="13" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="13" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>Brainstorming (ejemplo)</h2>
 <p><img src="images/brainstorming.png" alt="center" style="width:25em;" /></p>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="14" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="14" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>Flujos de datos</h2>
 <p><img src="images/flujosdedatosfig.png" alt="center" style="width:20em;" /></p>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="15" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="15" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Data_Flow_Diagram_-_Online_Banking_Application.jpg" alt="center" /></p>
 <blockquote>
 <p><a href="https://en.wikipedia.org/wiki/Threat_model">https://en.wikipedia.org/wiki/Threat_model</a></p>
 </blockquote>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="16" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="16" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>Diagrama funcional</h2>
 <p><img src="images/diagramafunciona.png" alt="center" style="width:25em;" /></p>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="17" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="17" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>Diagrama de estados</h2>
 <p><img src="images/diagramaestados.png" alt="center" style="width:25em;" /></p>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="18" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="18" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>Resumen</h2>
 <ul>
 <li>Dibuja los eventos que maneja el sistema</li>
@@ -371,11 +374,23 @@ Use: <!-- _class: first-slide --> */div#p>svg>foreignObject>section.last-slide{
 <p>¡Ojo a los datos sensibles!</p>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-paginate="true" data-footer="[Inicio](index.html)" data-class="lead" data-heading-divider="2" data-theme="marp-upc" class="lead" data-marpit-pagination="19" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--class:lead;--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-paginate="true" data-footer="[Inicio](index.html)" data-class="lead" data-heading-divider="2" data-theme="marp-viu" class="lead" data-marpit-pagination="19" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--class:lead;--heading-divider:2;--theme:marp-viu;">
 <h1>¿Qué puede salir mal?</h1>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="20" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-marpit-fragments="1" data-paginate="true" data-footer="[Inicio](index.html)" data-class="with-success" data-heading-divider="2" data-theme="marp-viu" class="with-success" data-marpit-pagination="20" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--class:with-success;--heading-divider:2;--theme:marp-viu;">
+<h2>¿Qué le preocupa al usuario?</h2>
+
+<ul>
+<li><strong>BIEN</strong>: Para añadir seguridad, implementaremos una pantalla de login</li>
+</ul>
+<ul>
+<li data-marpit-fragment="1"><strong>MEJOR</strong>: El usuario no quiere que otra persona acceda a sus fotos personales</li>
+</ul>
+<p>En vez de añadir características a tu producto, identifica qué quiere realmente el usuario, sus preocupaciones, y dale soluciones.</p>
+<footer><a href="index.html">Inicio</a></footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="21" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>Metodología</h2>
 <ul>
 <li>STRIDE</li>
@@ -392,7 +407,7 @@ Use: <!-- _class: first-slide --> */div#p>svg>foreignObject>section.last-slide{
 </ul>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-paginate="true" data-footer="[Inicio](index.html)" data-class="smallest-font" data-heading-divider="2" data-theme="marp-upc" class="smallest-font" data-marpit-pagination="21" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--class:smallest-font;--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-paginate="true" data-footer="[Inicio](index.html)" data-class="smallest-font" data-heading-divider="2" data-theme="marp-viu" class="smallest-font" data-marpit-pagination="22" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--class:smallest-font;--heading-divider:2;--theme:marp-viu;">
 <h2>STRIDE</h2>
 
 <table>
@@ -438,7 +453,7 @@ Use: <!-- _class: first-slide --> */div#p>svg>foreignObject>section.last-slide{
 </table>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="22" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="23" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>STRIDE - Spoofing</h2>
 <ul>
 <li>El atacante pretende ser algo o alguien que no es</li>
@@ -453,7 +468,7 @@ Use: <!-- _class: first-slide --> */div#p>svg>foreignObject>section.last-slide{
 </ul>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="23" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="24" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>STRIDE - Tampering</h2>
 <ul>
 <li>El atacante cambia datos sin autorización</li>
@@ -467,7 +482,7 @@ Use: <!-- _class: first-slide --> */div#p>svg>foreignObject>section.last-slide{
 </ul>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="24" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="25" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>STRIDE - Repudiation</h2>
 <ul>
 <li>El atacante asegura no haber hecho algo</li>
@@ -481,7 +496,7 @@ Use: <!-- _class: first-slide --> */div#p>svg>foreignObject>section.last-slide{
 </ul>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="25" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="26" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>STRIDE – Information Disclosure</h2>
 <ul>
 <li>El atacante ve datos que no debería</li>
@@ -495,7 +510,7 @@ Use: <!-- _class: first-slide --> */div#p>svg>foreignObject>section.last-slide{
 </ul>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="26" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="27" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>STRIDE – Denial of Service</h2>
 <ul>
 <li>El atacante tira el sistema abajo o lo pone en una situación de malfuncionamiento</li>
@@ -509,7 +524,7 @@ Use: <!-- _class: first-slide --> */div#p>svg>foreignObject>section.last-slide{
 </ul>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="27" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="28" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>STRIDE – Elevation of Privilege</h2>
 <ul>
 <li>El atacante gana más acceso al sistema del que debería</li>
@@ -522,13 +537,13 @@ Use: <!-- _class: first-slide --> */div#p>svg>foreignObject>section.last-slide{
 </ul>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="28" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="29" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>Magerit</h2>
 <p><a href="https://administracionelectronica.gob.es/pae_Home/pae_Documentacion/pae_Metodolog/pae_Magerit.html">https://administracionelectronica.gob.es/pae_Home/pae_Documentacion/pae_Metodolog/pae_Magerit.html</a></p>
 <p><img src="images/magerit.png" alt="center" /></p>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-paginate="true" data-footer="[Inicio](index.html)" data-class="center" data-heading-divider="2" data-theme="marp-upc" class="center" data-marpit-pagination="29" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--class:center;--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-paginate="true" data-footer="[Inicio](index.html)" data-class="center" data-heading-divider="2" data-theme="marp-viu" class="center" data-marpit-pagination="30" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--class:center;--heading-divider:2;--theme:marp-viu;">
 <h2>Elevation of Privilege</h2>
 
 <p><img src="images/eop1.png" alt="" style="width:12em;" /> <img src="images/eop2.png" alt="" style="width:12em;" /></p>
@@ -537,7 +552,7 @@ Use: <!-- _class: first-slide --> */div#p>svg>foreignObject>section.last-slide{
 </blockquote>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="30" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="31" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <ul>
 <li>Desarrollado por Microsoft</li>
 <li>Nada como aprender jugando</li>
@@ -547,7 +562,7 @@ Use: <!-- _class: first-slide --> */div#p>svg>foreignObject>section.last-slide{
 </ul>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="31" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="32" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <ul>
 <li>Crea el diagrama</li>
 <li>3-6 jugadores</li>
@@ -563,7 +578,7 @@ en el diagrama, y otro punto si ganan la mano</li>
 </ul>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="32" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="33" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>Cornucopia</h2>
 <p><img src="images/cornucopia.png" alt="center" style="width:25em;" /></p>
 <ul>
@@ -571,11 +586,11 @@ en el diagrama, y otro punto si ganan la mano</li>
 </ul>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-paginate="true" data-footer="[Inicio](index.html)" data-class="lead" data-heading-divider="2" data-theme="marp-upc" class="lead" data-marpit-pagination="33" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--class:lead;--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="34" data-paginate="true" data-footer="[Inicio](index.html)" data-class="lead" data-heading-divider="2" data-theme="marp-viu" class="lead" data-marpit-pagination="34" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--class:lead;--heading-divider:2;--theme:marp-viu;">
 <h1>¿Qué podemos hacer para arreglarlo?</h1>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="34" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="34" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="35" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="35" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>Alternativas</h2>
 <ul>
 <li>Ignorar el riesgo – No recomendable</li>
@@ -586,7 +601,7 @@ en el diagrama, y otro punto si ganan la mano</li>
 </ul>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="35" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;images/evaluacionderiesgos.png&quot;);background-size:90% auto;"></figure></div></section></foreignObject><foreignObject width="50%" height="720"><section id="35" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="35" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="36" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;images/evaluacionderiesgos.png&quot;);background-size:90% auto;"></figure></div></section></foreignObject><foreignObject width="50%" height="720"><section id="36" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="36" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
 <h2>Evaluación de riesgos</h2>
 <ul>
 <li>Un riesgo es alto si es fácil de atacar y produce un impacto alto</li>
@@ -599,7 +614,7 @@ en el diagrama, y otro punto si ganan la mano</li>
 </blockquote>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="35" data-marpit-pagination-total="50"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="36" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="36" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="36" data-marpit-pagination-total="51"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="37" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="37" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>Metodología</h2>
 <ul>
 <li>Kill Chain</li>
@@ -608,27 +623,27 @@ en el diagrama, y otro punto si ganan la mano</li>
 </ul>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="37" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="37" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="38" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="38" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>Inspiración: MITRE y la Kill Chain</h2>
 <p><img src="images/mitre-killchain.png" alt="" /></p>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="38" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="38" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="39" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="39" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>La Kill Chain unificada</h2>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/The_Unified_Kill_Chain.png" alt="center" /></p>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="39" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="39" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="40" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="40" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>Matriz de MITRE</h2>
 <p><a href="https://attack.mitre.org/">https://attack.mitre.org/</a></p>
 <p><img src="images/mitre.png" alt="center" style="width:20em;" /></p>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="40" data-paginate="true" data-footer="[Inicio](index.html)" data-class="lead" data-heading-divider="2" data-theme="marp-upc" class="lead" data-marpit-pagination="40" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--class:lead;--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="41" data-paginate="true" data-footer="[Inicio](index.html)" data-class="lead" data-heading-divider="2" data-theme="marp-viu" class="lead" data-marpit-pagination="41" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--class:lead;--heading-divider:2;--theme:marp-viu;">
 <h1>¿Hemos hecho un buen trabajo?</h1>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="41" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="41" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="42" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="42" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>Metodología</h2>
 <ul>
 <li>Revisiones constantes</li>
@@ -641,7 +656,7 @@ en el diagrama, y otro punto si ganan la mano</li>
 </ul>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="42" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="left"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;images/informe.png&quot;);background-size:90% auto;"></figure></div></section></foreignObject><foreignObject width="50%" height="720" x="50%"><section id="42" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="42" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="left">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="43" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="left"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;images/informe.png&quot;);background-size:90% auto;"></figure></div></section></foreignObject><foreignObject width="50%" height="720" x="50%"><section id="43" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="43" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="left">
 <h2>Informe</h2>
 <ul>
 <li>Título</li>
@@ -653,7 +668,7 @@ en el diagrama, y otro punto si ganan la mano</li>
 </ul>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="42" data-marpit-pagination-total="50"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="43" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="43" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="43" data-marpit-pagination-total="51"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="44" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="44" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>Propósito del informe</h2>
 <p>• Transparencia sobre amenazas existentes<br />
 • Habilita la inversión en seguridad vs funcionalidad<br />
@@ -662,30 +677,30 @@ en el diagrama, y otro punto si ganan la mano</li>
 • El informe debería tratarse como algo confidencial</p>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="44" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;https://raw.githubusercontent.com/izar/pytm/master/docs/pytm-logo.svg&quot;);background-size:90% auto;"></figure></div></section></foreignObject><foreignObject width="50%" height="720"><section id="44" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="44" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="45" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;https://raw.githubusercontent.com/izar/pytm/master/docs/pytm-logo.svg&quot;);background-size:90% auto;"></figure></div></section></foreignObject><foreignObject width="50%" height="720"><section id="45" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="45" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
 <h2>Threat Modelling como código</h2>
 <p><a href="https://github.com/izar/pytm">https://github.com/izar/pytm</a></p>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="44" data-marpit-pagination-total="50"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="45" data-paginate="true" data-footer="[Inicio](index.html)" data-class="lead" data-heading-divider="2" data-theme="marp-upc" class="lead" data-marpit-pagination="45" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--class:lead;--heading-divider:2;--theme:marp-upc;">
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="45" data-marpit-pagination-total="51"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="46" data-paginate="true" data-footer="[Inicio](index.html)" data-class="lead" data-heading-divider="2" data-theme="marp-viu" class="lead" data-marpit-pagination="46" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--class:lead;--heading-divider:2;--theme:marp-viu;">
 <h1>Ejemplo: drones</h1>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="46" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="46" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="47" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="47" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>Superficie de ataque</h2>
 <p><img src="images/drones-superficie.png" alt="center" style="width:25em;" /></p>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="47" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="47" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="48" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="48" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>STRIDE</h2>
 <p><img src="images/drones-stride.png" alt="center" style="width:25em;" /></p>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="48" data-paginate="true" data-footer="[Inicio](index.html)" data-class="lead" data-heading-divider="2" data-theme="marp-upc" class="lead" data-marpit-pagination="48" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--class:lead;--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="49" data-paginate="true" data-footer="[Inicio](index.html)" data-class="lead" data-heading-divider="2" data-theme="marp-viu" class="lead" data-marpit-pagination="49" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--class:lead;--heading-divider:2;--theme:marp-viu;">
 <h1>Referencias y ejercicios</h1>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="49" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="49" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="50" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="50" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>Referencias</h2>
 <ul>
 <li>Manual: <a href="https://www.mitre.org/sites/default/files/publications/Playbook-for-Threat-Modeling-Medical-Devices.pdf">https://www.mitre.org/sites/default/files/publications/Playbook-for-Threat-Modeling-Medical-Devices.pdf</a></li>
@@ -695,7 +710,7 @@ en el diagrama, y otro punto si ganan la mano</li>
 </ul>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="50" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-upc" data-marpit-pagination="50" data-marpit-pagination-total="50" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-upc;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="51" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="51" data-marpit-pagination-total="51" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>Ejercicio</h2>
 <ul>
 <li>Escoge una sistema cualquiera de tu interés: una aplicación web con interfaz móvil, redes de drones...</li>
