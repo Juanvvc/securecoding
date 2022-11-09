@@ -13,7 +13,7 @@ theme: marp-viu
     the YAML header: section: | */
 </style>
 
-# Threat Modeling
+# Threat Modeling - Modelo de amenazas
 <!-- _class: first-slide -->
 
 Juan Vera del Campo
@@ -49,7 +49,8 @@ Juan Vera del Campo
 <!-- _class: smaller-font -->
 
 - Se tiene que aplicar de forma continua a través del ciclo de vida del desarrollo de software.
-- Idealmente, el modelado inicial debería hacerse durante la fase de planificación y diseño para tener una vista general de lo que estamos construyendo. A medida que se avanza en el ciclo de vida, el modelado se va redefiniendo para capturar más detalles de nuestra apliacación.
+- El modelado inicial tiene que hacerse durante la fase de planificación y diseño para tener una vista general de lo que estamos construyendo.
+- A medida que se avanza en el ciclo de vida, el modelado se va redefiniendo para capturar más detalles de nuestra apliacación.
 - A medidas que se avanza el proceso de modelado debería examinar, diagnosticar y tratar las amenazas encontradas.
 
 ![bg left w:90%](images/ciclodevida.png)
@@ -62,12 +63,12 @@ Juan Vera del Campo
 - ¿Hemos hecho un buen trabajo? ¿Qué podemos mejorar?
 
 
-# ¿Qué queremos modelar?
+# ¿En qué estamos trabajando?
 <!-- _class: lead -->
 
 # Paso 1: describe el sistema
 
-AMPS es un dispositivo médico que se lleva por la noche por los pacientes en riesgo de padecer un infarto cuando están en su vivienda. Registra medidas que los médicos pueden después analizar, pero no emite alertas
+Ejemplo: AMPS es un dispositivo médico que se lleva por la noche por los pacientes en riesgo de padecer un infarto cuando están en su vivienda. Registra medidas que los médicos pueden después analizar, pero no emite alertas
 
 ---
 
@@ -135,6 +136,14 @@ Tecnología:
 
 # ¿Qué puede salir mal?
 <!-- _class: lead -->
+
+## ¿Qué le preocupa al usuario?
+<!-- _class: with-success -->
+
+- **BIEN**: Para añadir seguridad, implementaremos una pantalla de login
+* **MEJOR**: El usuario no quiere que otra persona acceda a sus fotos personales
+
+En vez de añadir características a tu producto, identifica qué quiere realmente el usuario, sus preocupaciones, y dale soluciones.
 
 ## Metodología
 
