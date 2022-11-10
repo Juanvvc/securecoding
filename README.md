@@ -1,24 +1,17 @@
-# Introducción a la criptografía
+# Código seguro
 
 Transparencias en
-[juanvvc.github.io/crypto/](https://juanvvc.github.io/crypto/index.html),
+[juanvvc.github.io/crypto/](https://juanvvc.github.io/securecoding/index.html),
 pero puedes acceder directamente a cada capítulo seleccionando los enlaces en
 el apartado "Contenido".
 
 ## Contenido
 
-- [Introducción](https://juanvvc.github.io/crypto/index.html)
-- [Principios básicos](https://juanvvc.github.io/crypto/01-conceptos.html)
-    - Anexo: [Glosario](https://juanvvc.github.io/crypto/A1-glosario.html) 
-- [Criptografía clásica](https://juanvvc.github.io/crypto/02-historia.html)
-- [Cifrado simétrico o de clave secreta: ChaCha y AES](https://juanvvc.github.io/crypto/slides/03-simetrica.html)
-    - Anexo: [RND y HSM](https://juanvvc.github.io/crypto/A2-rnd.html) 
-- [Teoría de la complejidad y Diffie-Hellman](https://juanvvc.github.io/crypto/slides/04-complejidad.html)
-- [Cifrado asimétrico o de clave pública: RSA](https://juanvvc.github.io/crypto/05-asimetrica.html)
-- [Funciones de hash y *blockchain*](https://juanvvc.github.io/crypto/06-hashes.html)
-- [TLS y *Public Key Infrastructure*](https://juanvvc.github.io/crypto/07-pki.html)
-- [Ransomware](https://juanvvc.github.io/crypto/08-ransomware.html)
-- [Esteganografía](https://juanvvc.github.io/crypto/09-esteganografia.html)
+1. *Modelado de amenazas*
+2. *Buenas prácticas en la esritura de código*
+3. *Open Web Application Security Project*
+4. *SecDevOps*
+5. *Docker*
 
 Recuerda: puedes "imprimir a PDF" para obtener las translarencias en PDF
 
@@ -38,7 +31,7 @@ O también, puedes clonar el proyecto en tu disco duro local (necesitas un
 cliente `git`):
 
 ```
-$ git clone git@github.com:juanvvc/crypto.git
+$ git clone git@github.com:juanvvc/securecoding.git
 ```
 
 De esta manera tienes una copia local que siempre puedes mantener al día con:
@@ -74,7 +67,4 @@ International (CC BY-SA 4.0) ](https://creativecommons.org/licenses/by-sa/4.0/)
 Commons](https://licensebuttons.net/l/by-sa/3.0/88x31.png)](https://creativecommons.org/licenses/by-sa/4.0/)
 
 Copyright © 2020-2022 [Juan Vera del Campo](https://github.com/juanvvc)
-
-Basado en transparencias Copyright © 2016-2017 [Jordi Íñigo Griera](https://github.com/jig/crypto)
-
 

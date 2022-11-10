@@ -26,10 +26,10 @@ Juan Vera del Campo
 <!-- _class: cool-list -->
 
 1. *Modelado de amenazas*
-1. *Open Web Application Security Project*
-1. *SecDevOps*
-1. *Docker*
-1. *Kubernetes*
+2. *Buenas prácticas en la esritura de código*
+3. *Open Web Application Security Project*
+4. *SecDevOps*
+5. *Docker*
 
 # Presentación
 <!-- _class: lead -->
@@ -86,8 +86,23 @@ Durante el estudio personal es muy recomendable seguir los enlaces que aparecen 
 - Algo de sistemas
 - Algo de gestión de sistemas operativos
 
+## Descripción del escenario
+
+Tecnología:
+
+- Dispositivo Bluetooth BLE en el tobillo
+- Aplicación en el teléfono móvil que envía datos al servidor
+- AMPSCS: servidor que recibe los datos
+    - API paa el móvil
+    - Backend
+- Frontend para doctores
+- Frontend para ATS
+- Compartición de datos para estudios
+
 ## Ejercicio de la sesión de hoy
 
 - Instalación de docker en vuestros PCs
 - Ejecución de imagen "Hola mundo": https://hub.docker.com/_/hello-world/
 - Entrega: pantallazo de que se ha ejecutado correctamente
+
+
