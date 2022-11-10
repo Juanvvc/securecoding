@@ -1,6 +1,6 @@
 ---
 marp: true
-title: Criptografía - Índice
+title: Código seguro - Índice
 paginate: true
 footer: '[Inicio](index.html)'
 headingDivider: 2
