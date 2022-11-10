@@ -46,8 +46,8 @@ Use: <!-- _class: lead --> */div#p>svg>foreignObject>section.lead{background-col
 /******************* lead2 *****************************/
 
 
-/* lead2 class (alternate version for lead) first slide in a section. Use h1 as header.
-Use: <!-- _class: lead2 --> */div#p>svg>foreignObject>section.lead2 a,div#p>svg>foreignObject>section.lead2 h1,div#p>svg>foreignObject>section.lead2 h2{color:white;background-color:var(--darker-color);opacity:0.9;text-align:center;padding-bottom:0.3em;padding-top:0.3em}div#p>svg>foreignObject>section.lead2 footer,div#p>svg>foreignObject>section.lead2 header,div#p>svg>foreignObject>section.lead2:after{
+/* lead2 class (alternate version) first slide in a section. Use h1 as header.
+Use: <!-- _class: lead2 --> */div#p>svg>foreignObject>section.lead2{}div#p>svg>foreignObject>section.lead2 a,div#p>svg>foreignObject>section.lead2 h1,div#p>svg>foreignObject>section.lead2 h2{color:white;background-color:var(--darker-color);opacity:0.9;text-align:center;padding-bottom:0.3em;padding-top:0.3em}div#p>svg>foreignObject>section.lead2 footer,div#p>svg>foreignObject>section.lead2 header,div#p>svg>foreignObject>section.lead2:after{
     /* hide footer and pagination */display:none}
 
 
@@ -167,15 +167,13 @@ Use: list must be ordered. Items must include an element: anchor, emphasis...
 /* Lists inside lists */div#p>svg>foreignObject>section.cool-list2 ol ol{margin:0 0 0 2em; /* Add some left margin for inner lists */font-size:75%;counter-reset:li2 /* Initiate a counter */}div#p>svg>foreignObject>section.cool-list2 ol ol>li>a:before,div#p>svg>foreignObject>section.cool-list2 ol ol>li>em:before{content:counter(li2);counter-increment:li2;background:lightgray}div#p>svg>foreignObject>section.cool-list2 ol ul{list-style-type:disc;margin:0 0 0 1em;font-size:75%}div#p>svg>foreignObject>section.cool-list2 ol ol em{background:#efefef}
 
 
-/******************* logo management *****************************/
+/******************* cool-list2 *****************************/
 
 /* A special class for a white logo */div#p>svg>foreignObject>section.white-logo:before{
     /* logo in white */filter:sepia(100%) brightness(2) saturate(0)!important}
 
 /* A special class for a black logo */div#p>svg>foreignObject>section.black-logo:before{
-    /* logo in white */filter:brightness(0)!important}
-
-/* A special class to hide the logo */div#p>svg>foreignObject>section.no-logo:before{filter:opacity(0)!important}div#p>svg>foreignObject>section svg[data-marp-fitting=svg]{display:block;height:auto;width:100%}@supports (-ms-ime-align:auto){div#p>svg>foreignObject>section svg[data-marp-fitting=svg]{position:static}}div#p>svg>foreignObject>section svg[data-marp-fitting=svg].__reflow__{content:""}@supports (-ms-ime-align:auto){div#p>svg>foreignObject>section svg[data-marp-fitting=svg].__reflow__{position:relative}}div#p>svg>foreignObject>section [data-marp-fitting-svg-content]{display:table;white-space:nowrap;width:-webkit-max-content;width:-moz-max-content;width:max-content}div#p>svg>foreignObject>section [data-marp-fitting-svg-content-wrap]{white-space:pre}div#p>svg>foreignObject>section img[data-marp-twemoji]{background:transparent;height:1em;margin:0 .05em 0 .1em;vertical-align:-.1em;width:1em}
+    /* logo in white */filter:brightness(0)!important}div#p>svg>foreignObject>section svg[data-marp-fitting=svg]{display:block;height:auto;width:100%}@supports (-ms-ime-align:auto){div#p>svg>foreignObject>section svg[data-marp-fitting=svg]{position:static}}div#p>svg>foreignObject>section svg[data-marp-fitting=svg].__reflow__{content:""}@supports (-ms-ime-align:auto){div#p>svg>foreignObject>section svg[data-marp-fitting=svg].__reflow__{position:relative}}div#p>svg>foreignObject>section [data-marp-fitting-svg-content]{display:table;white-space:nowrap;width:-webkit-max-content;width:-moz-max-content;width:max-content}div#p>svg>foreignObject>section [data-marp-fitting-svg-content-wrap]{white-space:pre}div#p>svg>foreignObject>section img[data-marp-twemoji]{background:transparent;height:1em;margin:0 .05em 0 .1em;vertical-align:-.1em;width:1em}
 
 /*
 @theme marp-viu
@@ -187,6 +185,14 @@ Use: list must be ordered. Items must include an element: anchor, emphasis...
 
 /* Logo */div#p>svg>foreignObject>section:before{content:"";width:9%;height:10%;position:absolute;right:2.5%;top:2%;
     /*background: url('themes/viu/logo-viu.png') no-repeat center/contain;*/background:url('https://github.com/Juanvvc/markdown-slides/raw/master/slides/themes/viu/logo-viu.png') no-repeat center/contain}
+
+
+/******************* lead2 *****************************/
+
+/* first slide (main title). Use h1 as header.
+Use: <!-- _class: first-slide --> */div#p>svg>foreignObject>section.lead2{background-size:cover;background-repeat:no-repeat;
+    /*background-image: url('themes/viu/bg2.png');*/background-image:url('https://github.com/Juanvvc/markdown-slides/raw/master/slides/themes/viu/bg2.png');text-align:left;padding:inherit}div#p>svg>foreignObject>section.lead2 h1,div#p>svg>foreignObject>section.lead2 h2{color:#333;text-align:center;background-color:transparent;margin-top:10em!important;margin-bottom:0}div#p>svg>foreignObject>section.lead2 footer,div#p>svg>foreignObject>section.lead2:after{
+    /* hide footer and pagination */display:none}
 
 
 /******************* lead *****************************/
@@ -202,9 +208,8 @@ Use: <!-- _class: lead --> */div#p>svg>foreignObject>section.lead{background-col
 
 /* first slide (main title). Use h1 as header.
 Use: <!-- _class: first-slide --> */div#p>svg>foreignObject>section.first-slide{background-size:cover;background-repeat:no-repeat;
-    /*background-image: url('themes/viu/bg2.png');*/background-image:url('https://github.com/Juanvvc/markdown-slides/raw/master/slides/themes/viu/bg2.png');padding:inherit}div#p>svg>foreignObject>section.first-slide h1{color:#333;text-align:left;background-color:transparent;
-    /* top rigth bottom left */margin:35% auto 0 5%!important;font-size:200%;color:#111}div#p>svg>foreignObject>section.first-slide h2,div#p>svg>foreignObject>section.first-slide p{color:#111;text-align:left;margin:0.5em 0 0 5%!important}div#p>svg>foreignObject>section.first-slide a{color:#111;text-align:left}div#p>svg>foreignObject>section.first-slide footer,div#p>svg>foreignObject>section.first-slide:after{
-    /* hide footer and pagination */display:none}
+    /*background-image: url('themes/viu/bg1.png');*/background-image:url('https://github.com/Juanvvc/markdown-slides/raw/master/slides/themes/viu/bg1.png');justify-content:flex-start;align-items:center}div#p>svg>foreignObject>section.first-slide h1{color:#111;margin-bottom:8em}div#p>svg>foreignObject>section.first-slide h2,div#p>svg>foreignObject>section.first-slide p{color:#111}div#p>svg>foreignObject>section.first-slide footer,div#p>svg>foreignObject>section.first-slide:after{
+    /* hide footer and pagination */display:none}div#p>svg>foreignObject>section.first-slide a,div#p>svg>foreignObject>section.first-slide p{color:#111}
 
 /******************* last-slide *****************************/
 
