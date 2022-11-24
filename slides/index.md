@@ -25,11 +25,11 @@ Juan Vera del Campo
 ## Temario
 <!-- _class: cool-list -->
 
-1. *Modelado de amenazas*
-2. *Buenas prácticas en la esritura de código*
-3. *Open Web Application Security Project*
-4. *SecDevOps*
-5. *Docker*
+1. [Modelado de amenazas](01-threadmodeling.html)
+2. [Buenas prácticas en la esc∫ritura de código](02-coding.html)
+3. [Open Web Application Security Project](03-quality.html)
+4. [SecDevOps](04-devsecops.pdf)
+5. [Docker](05-docker.pdf)
 
 # Presentación
 <!-- _class: lead -->

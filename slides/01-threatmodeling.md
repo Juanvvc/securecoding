@@ -366,6 +366,13 @@ https://github.com/izar/pytm
 - Escoge una sistema cualquiera de tu interés: una aplicación web con interfaz móvil, redes de drones...
 - Dibuja un diagrama de la aplicación, identificando las zonas de confianza y los flujos de datos (1 página)
 - Haz un análisis STRIDE (1 página)
-- Plantea mitigaciones para cada amenaza STRIDE que identifiques (1 página)
+- Plantea mitigaciones para cada amenaza STRIDE que identifiques (1 página)---
 
-<script src="whiteboard.js"></script>
+---
+
+<!-- _class: center -->
+
+Continúa en: [Buenas prácticas en la escritura de código](02-coding.html)
+
+# ¡Gracias!
+<!-- _class: last-slide --> 

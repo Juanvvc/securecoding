@@ -193,3 +193,12 @@ $output = exec($command);
 ## Ejercicio
 
 - Ejecuta WebGoat y encuentra al menos dos vulnerabilidades
+
+---
+
+<!-- _class: center -->
+
+Continúa en: [DevSecOps](04-devsecops.pdf)
+
+# ¡Gracias!
+<!-- _class: last-slide --> 

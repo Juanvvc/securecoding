@@ -7,11 +7,12 @@ el apartado "Contenido".
 
 ## Contenido
 
-1. *Modelado de amenazas*
-2. *Buenas prácticas en la esritura de código*
-3. *Open Web Application Security Project*
-4. *SecDevOps*
-5. *Docker*
+1. [Modelado de amenazas](https://juanvvc.github.io/securecoding/01-threatmodeling.html)
+2. [Buenas prácticas en la escritura de código](https://juanvvc.github.io/securecoding/02-coding.html)
+3. [Open Web Application Security Project](https://juanvvc.github.io/securecoding/03-quality.html)
+4. [SecDevOps](https://juanvvc.github.io/securecoding/03-devsecops.html)
+5. [Docker](https://juanvvc.github.io/securecoding/04-docker.pdf)
+6. (Opcional) [Kubernetes](https://juanvvc.github.io/securecoding/05-kubernetes.html)
 
 Recuerda: puedes "imprimir a PDF" para obtener las translarencias en PDF
 
