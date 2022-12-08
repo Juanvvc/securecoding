@@ -87,11 +87,12 @@ The Open Web Application Security Project® (OWASP) is a nonprofit foundation th
 
 ---
 
-![center](https://owasp.org/www-project-top-ten/assets/images/mapping.png)
+![center w:35em](https://owasp.org/www-project-top-ten/assets/images/mapping.png)
 
 ## Otros proyectos
 
-![bg left:40%](https://owasp.org/www-project-mobile-security-testing-guide/assets/images/masvs-mini-cover.png)
+![bg left:50% w:100%](images/owasp-projects.png)
+
 
 OWASP tiene otros proyectos
 
@@ -99,9 +100,11 @@ OWASP tiene otros proyectos
 - Checklist Mobile testing: https://owasp.org/www-project-mobile-security-testing-guide/
 - Top 10 en programación de dispositivos móviles <https://owasp.org/www-project-mobile-top-10/>
 
----
+## Ejemplo: Mobile Application Security
 
-![center](https://owasp.org/www-project-mobile-security-testing-guide/assets/images/checklist_en_filled.png)
+![center w:25em](https://mas.owasp.org/assets/checklist_en_filled.png)
+
+> https://mas.owasp.org/
 
 # Otras recomendaciones
 <!-- _class: lead -->
@@ -115,6 +118,8 @@ https://www.sans.org/top25-software-errors/
 ---
 <!-- _class: smallest-font -->
 
+https://cwe.mitre.org/index.html
+
 Rank|ID|Name|Score|2020 Rank Change
 --|--|--|--|--
 [1]|CWE-787|	Out-of-bounds Write|	65.93|+1
@@ -127,8 +132,6 @@ Rank|ID|Name|Score|2020 Rank Change
 [8]|CWE-22|	Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')|	14.69	|+4
 [9]|CWE-352|	Cross-Site Request Forgery (CSRF)|	14.46	|0
 [10]|CWE-434|	Unrestricted Upload of File with Dangerous Type|	8.45|	+5
-
-http://cwe.mitre.org/top25/archive/2021/2021_cwe_top25.html
 
 # Demos
 <!-- _class: lead -->
@@ -145,8 +148,45 @@ http://www.itsecgames.com/
 
 ---
 
-1. `docker run --rm -p 80:80 raesene/bwapp`
-1. Go to: <http://localhost/install.php> and click on "install"
+1. `docker run --rm -p 80:8080 raesene/bwapp`
+1. Go to: <http://localhost:8080/install.php> and click on "install"
+
+<!--
+Soluciones:
+
+- https://jaiguptanick.github.io/Blog/blog/Walkthrough_of_bWAPP_solutions_A1_injection_writeups/
+- https://dumbmaster.blogspot.com/2017/01/owasp-top-10-bwapp-walkthrough-for-a1_21.html
+-->
+
+## Ejemplo: SQL injection
+
+```
+txtUserId = getRequestString("UserId");
+txtSQL = "SELECT * FROM Users WHERE UserId = " + txtUserId;
+```
+
+Sim, por ejemplo, `UserId=5`, el comando devolverá los datos del usuario 5
+
+Si un atacante es capaz de asignar `UserId= "105 OR 1=1"`...
+
+Se ejecutará: `SELECT * FROM Users WHERE UserId = 105 OR 1=1;`
+
+¡Este comando devuelve toda la base de datos!
+
+> https://www.w3schools.com/sql/sql_injection.asp
+
+## Ejemplo: command injection
+<!-- _class: two-columns -->
+
+```php
+<?php
+
+$command = "ls ".$_GET['modifiers'];
+
+$output = exec($command);
+```
+
+![](images/commandinjection.png)
 
 ## WebGoat
 
@@ -160,25 +200,12 @@ https://owasp.org/www-project-webgoat/
 ---
 
 1. `docker run --rm -p 8080:8080 -p 9090:9090 -t -e TZ=Europe/Amsterdam webgoat/goatandwolf`
-1. Ve a <http://localhost/WebGoat> y registra un nuevo usuario
+1. Ve a <http://localhost:8080/WebGoat> y registra un nuevo usuario
 
 <!--
 Nota: no he sido capaz de ejecutar WebWolf desde el docker, quizá prefieras hacerlo en tu propio PC
 -->
 
-
-## Exampe: command injection
-<!-- _class: two-columns -->
-
-```php
-<?php
-
-$command = "ls ".$_GET['modifiers'];
-
-$output = exec($command);
-```
-
-![](images/commandinjection.png)
 
 # Referencias
 <!-- _class: lead -->

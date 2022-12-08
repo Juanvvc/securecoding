@@ -38,6 +38,53 @@ Juan Vera del Campo
 
 # Programación segura
 
+# Clean Code
+
+Recetas del libro "Clean Code" de Robert C. Martin. Nota que los ejemplos son Java y las *best practices* de Python son en ocaciones diferentes.
+
+## Nombres de variables
+
+- Usa nombres que tengan sentido: `gameBoard` mejor que `theList`.
+- Evita información incorrecta: no uses `accountList` si no es una lista `List`.
+- Distingue perfectamente el nombre de las variables. No uses: `getActiveAccount`, `getActiveAccounts` y `getActiveAccountInfo`.
+- Usa nombres que sean pronuncialbes
+- Usa nombres que puedan buscarse: `i`, `7` no pueden buscarse. `counter`, `MAX_NUMBER` sí.
+- Los nombres de clases son sustantivos
+- Las funciones son verbos: `get`, `set` and `is`.
+- Nomenclatura contante: fetch, retrieve or get? controller or manager?
+
+# Funciones
+
+- No más de 20 líneas
+- No más de uno o dos niveles de indentación
+- La función debe hacer solo una cosa
+- Usa nombres descriptivos
+- Evita parámetros "bandera"
+- Prefiere excepciones a devolver códigos de error
+
+# Comentarios
+
+- Los comentarios no compensan un mal código. Mejora el código antes que los comentarios
+- "Código autoexplicativo" (pero con cuidado)
+- Buenos comentarios:
+    - comentarios legales autor/licencia
+    - informativos sobre las intenciones
+    - clarificaciones sobre excepciones o por qué las cosas se hacen de una forma determinada que no es obvia
+    - TODO
+    - amplificación de la importancia de una línea (probablemente, por malas experiencias)
+    - **APIs**
+- Malos comentarios:
+    - Redundantes
+    - Falsos
+    - Sobre la historia del código
+    - Avisando de dónde acaba una sección: eso es que es demasiado larga
+    - Atribuciones: git blame!
+    - Código comentado
+
+## Linting
+
+![center](images/code-linting.png)
+
 # GIT
 
 # Referencias
