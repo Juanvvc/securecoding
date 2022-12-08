@@ -148,7 +148,7 @@ http://www.itsecgames.com/
 
 ---
 
-1. `docker run --rm -p 80:8080 raesene/bwapp`
+1. `docker run --rm -p 8080:80 raesene/bwapp`
 1. Go to: <http://localhost:8080/install.php> and click on "install"
 
 <!--
