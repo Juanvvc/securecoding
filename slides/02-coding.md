@@ -29,23 +29,41 @@ Juan Vera del Campo
 <!-- _class: cool-list toc -->
 
 1. [Clean Code](#4)
-1. [Programación segura](#11)
-1. [Librerías y dependencias](#19)
-1. [Ejemplos: proyectos JavaScript / Python](#22)
-1. [Ejemplo](#31)
+1. [Programación segura](#13)
+1. [Librerías y dependencias](#22)
+1. [Ejemplos: proyectos JavaScript / Python](#25)
+1. [Ejemplos](#33)
+1. [Referencias](#42)
 
 # Clean Code
 <!-- _class: lead -->
+
+## Bad example in C#
+
+https://www.codeproject.com/Articles/1083348/Csharp-Bad-Practices-Learn-How-to-Make-Good-Code-b
 
 ## Reglas de oro
 
 * Tienes que entender el código de otro para poder decidir si es seguro o no
 * En dos semanas, no entenderás tu propio código
 * Los lenguajes que dan mucha libertad pueden provocar que cada programador escriba de una manera
-* Todos los programadores del equipo deben seguir las mismas reglas: usa linters
+* Todos los programadores del equipo deben seguir las mismas reglas
 
-Recetas del libro "Clean Code" de Robert C. Martin.
+Siguen recetas del libro "Clean Code" de Robert C. Martin.
 
+## Guías de estilo
+
+Ejemplos:
+
+- https://pep8.org/
+- https://google.github.io/styleguide/pyguide.html
+- https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html
+
+<!--
+Para forzar las mismas reglas en toda la empresa, puedes utilizar linters: no permitirán que un código compile o se suba a git si no sigue las reglas de la empresa
+
+PEP8 es un ejemplo de reglas. Hay muchos más. Los linters los puedes encontrar para cada lenguaje. Ejemplos en Python: pylama, frake8. Ejemplos en Javascript: eslint
+-->
 
 ## Nombres de variables
 
@@ -226,6 +244,7 @@ os.unlink('borrame.temp')
 <!--
 Fíjate: en caso de error en el segundo ejemplo, el archivo no se borrará nunca. Además, el programa no puede ejecutarse en paralelo: dos ejecuciones concurrentes trabajarán sobre el mismo archivo.
 -->
+
 
 # Librerías y dependencias
 <!-- _class: lead -->
