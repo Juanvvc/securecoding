@@ -42,7 +42,7 @@ Juan Vera del Campo
 * Tienes que entender el código de otro para poder decidir si es seguro o no
 * En dos semanas, no entenderás tu propio código
 * Los lenguajes que dan mucha libertad pueden provocar que cada programador escriba de una manera
-* Todos los programadores del equipo deben seguir las mismas reglas
+* Todos los programadores del equipo deben seguir las mismas reglas: usa linters
 
 Recetas del libro "Clean Code" de Robert C. Martin.
 
@@ -96,6 +96,21 @@ Malos comentarios:
 
 # Programación segura
 <!-- _class: lead -->
+
+## Recomendaciones para Python
+
+- Always sanitize external data
+- Scan your code
+- Be careful when downloading packages
+- Review your dependency licenses
+- Do not use the system standard version of Python
+- Use Python’s capability for virtual environments
+- Set DEBUG = False in production
+- Be careful with string formatting
+- (De)serialize very cautiously
+- Use Python type annotations
+
+> https://snyk.io/blog/python-security-best-practices-cheat-sheet/
 
 ## No te fíes de nadie
 
@@ -289,11 +304,8 @@ Esta transparencia la veremos con comandos reales, está aquí solo para referen
 npm audit
 ```
 
----
 
-
-
-# Ejemplo
+# Ejemplos
 <!-- _class: lead -->
 
 ---
@@ -410,8 +422,6 @@ async def create_user(
 ![](images/server-autodocs.png)
 
 
-# Demos
-
 ---
 
 ![center w:40em](images/demos1.png)
@@ -420,8 +430,17 @@ async def create_user(
 
 ![center](images/demos2.png)
 
+## Referencias
+<!-- _class: lead -->
+
 ---
 
+- https://brightsec.com/blog/xss-attack/
+- https://www.securecoding.com/blog/best-python-open-source-security-tools/
+- https://snyk.io/blog/python-security-best-practices-cheat-sheet/
+
+
+---
 <!-- _class: center -->
 
 Continúa en: [Quality Assurance](03-quality.html)
