@@ -14,7 +14,7 @@ el apartado "Contenido".
 5. [Docker](https://juanvvc.github.io/securecoding/04-docker.pdf)
 6. (Opcional) [Kubernetes](https://juanvvc.github.io/securecoding/05-kubernetes.html)
 
-Recuerda: puedes "imprimir a PDF" para obtener las translarencias en PDF
+Recuerda: en Chrome y Edge, **puedes "imprimir a PDF" para obtener las transparencias en PDF**
 
 ## Descarga local
 

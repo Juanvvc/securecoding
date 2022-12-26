@@ -3,3 +3,4 @@ refs
 notes.md
 **.DS_Store
 push
+**/__pycache__

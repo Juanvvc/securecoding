@@ -7,6 +7,10 @@ headingDivider: 2
 theme: marp-viu
 ---
 
+<!--
+WARNING: está clase es interactiva. Las transparencias son solo una sugerencia
+-->
+
 <style>
     /* You can add custom style here. VSCode supports this.
     Other editor might need these custom code in
@@ -30,10 +34,10 @@ Juan Vera del Campo
 
 1. [Clean Code](#4)
 1. [Programación segura](#13)
-1. [Librerías y dependencias](#22)
-1. [Ejemplos: proyectos JavaScript / Python](#25)
-1. [Ejemplos](#33)
-1. [Referencias](#42)
+1. [Librerías y dependencias](#23)
+1. [Ejemplos: proyectos JavaScript / Python](#27)
+1. [Ejemplos](#35)
+1. [Referencias](#44)
 
 # Clean Code
 <!-- _class: lead -->
@@ -41,6 +45,10 @@ Juan Vera del Campo
 ## Bad example in C#
 
 https://www.codeproject.com/Articles/1083348/Csharp-Bad-Practices-Learn-How-to-Make-Good-Code-b
+
+<!--
+Los ejemplos de esta página son una buena introducción a las "reglas de oro" que se discuten en el resto de la sesión. Es muy recomendable visitar esa página durante la sesión, y los alumnos después de ella.
+-->
 
 ## Reglas de oro
 
@@ -194,6 +202,34 @@ yaml.load(input, Loader=yaml.UnsafeLoader)
 
 ¿Cuál es la salida de este comando?
 
+> https://theconversation.com/what-is-log4j-a-cybersecurity-expert-explains-the-latest-internet-vulnerability-how-bad-it-is-and-whats-at-stake-173896
+
+<!--
+Un ejemplo de esta vulnerabildad que nos tuvo varias semanas pegados a la pantalla en 2021 fue log4j
+-->
+
+## Loguea todo
+
+No uses `print()`, sino el módulo *logging* (Java: *log4j*)
+
+```python
+import logging
+
+logger = logging.getLogger()
+logger.warning('Esto es un mensaje de warning %d', 5)
+logger.info('Esto es un mensaje de info')
+logger.info('Esto es un mensaje de error')
+```
+
+Estas librerías especializadas permiten configurar la salida de log. Por ejemplo: errores consola y archivo, info solo a archivo, colores, incluir fechas...
+
+> https://www.geeksforgeeks.org/logging-in-python/
+
+
+<!--
+Y los logs de aplicación puedes fácilmente centralizarlos en un SIEM
+-->
+
 ## Pide permisos
 
 Prefiero perdir perdón que permiso:
@@ -241,6 +277,8 @@ with open('borrame.temp') as tmp:
 os.unlink('borrame.temp')
 ```
 
+> https://rules.sonarsource.com/python/type/Vulnerability/RSPEC-5445
+
 <!--
 Fíjate: en caso de error en el segundo ejemplo, el archivo no se borrará nunca. Además, el programa no puede ejecutarse en paralelo: dos ejecuciones concurrentes trabajarán sobre el mismo archivo.
 -->
@@ -264,6 +302,22 @@ Fíjate: en caso de error en el segundo ejemplo, el archivo no se borrará nunca
 - https://arstechnica.com/information-technology/2022/08/10-malicious-python-packages-exposed-in-latest-repository-attack/
 - https://portswigger.net/daily-swig/popular-node-js-package-vulnerable-to-command-injection-attacks
 - https://blog.sonatype.com/open-source-attacks-on-the-rise-top-8-malicious-packages-found-in-npm
+
+## Cuidado con la inteligengia artificial
+<!-- _class: with-warning -->
+
+Asistentes de código:
+
+- ChatGPT, escribe código a partir de lenguaje natural
+- CoPilot, propone código a partir de un esqueleto que escribimos nosotros
+
+![bg left:45% w:100%](images/coding/AI_2.jpg)
+
+
+ChatGPT propone código con SQL Injection y CoPilot mete vulnerabilidades
+
+> https://www.elladodelmal.com/2022/12/chatgpt-hace-codigo-con-sql-injection.html?m=1
+> https://www.elladodelmal.com/2022/09/copilot-y-su-codigo-inseguro-o-como-la.html
 
 # Ejemplos: proyectos JavaScript / Python
 <!-- _class: lead -->
@@ -298,7 +352,7 @@ Esta transparencia la veremos con comandos reales, está aquí solo para referen
 
 ---
 
-![](images/audotoria-librerias.png)
+![center](images/coding/auditoria-librerias.png)
 
 
 ## Archivo Package y Package.lock (Python)
@@ -315,7 +369,7 @@ Esta transparencia la veremos con comandos reales, está aquí solo para referen
 
 ---
 
-![](images/audotiria-librerias2.png)
+![center](images/coding/auditoria-librerias2.png)
 
 ## Auditoría de librerías
 
@@ -329,7 +383,7 @@ npm audit
 
 ---
 
-![center](images/code-linting.png)
+![center](images/coding/code-linting.png)
 
 ---
 
@@ -443,11 +497,11 @@ async def create_user(
 
 ---
 
-![center w:40em](images/demos1.png)
+![center w:40em](images/coding/demos1.png)
 
 ---
 
-![center](images/demos2.png)
+![center w:25em](images/coding/demos2.png)
 
 ## Referencias
 <!-- _class: lead -->
@@ -457,7 +511,10 @@ async def create_user(
 - https://brightsec.com/blog/xss-attack/
 - https://www.securecoding.com/blog/best-python-open-source-security-tools/
 - https://snyk.io/blog/python-security-best-practices-cheat-sheet/
-
+- [Do Users Write More Insecure Code with AI Assistants?](https://arxiv.org/pdf/2211.03622.pdf), Universidad de Stanford. 16 de diciembre 2022
+- [Asleep at the Keyboard? Assessing the
+Security of GitHub Copilot’s Code Contribution](https://arxiv.org/pdf/2108.09293.pdf), diciembre 2021
+- https://rules.sonarsource.com/
 
 ---
 <!-- _class: center -->
