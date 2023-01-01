@@ -298,6 +298,7 @@ Fíjate: en caso de error en el segundo ejemplo, el archivo no se borrará nunca
 
 ## Audita tus librerías / dependencias
 
+- https://www.bleepingcomputer.com/news/security/pytorch-discloses-malicious-dependency-chain-compromise-over-holidays/
 - https://blog.reversinglabs.com/blog/the-npm-package-that-walked-away-with-all-your-passwords
 - https://arstechnica.com/information-technology/2022/08/10-malicious-python-packages-exposed-in-latest-repository-attack/
 - https://portswigger.net/daily-swig/popular-node-js-package-vulnerable-to-command-injection-attacks
