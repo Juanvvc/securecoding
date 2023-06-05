@@ -26,13 +26,13 @@ Juan Vera del Campo
 - ¿Podemos seguir comprobando la seguridad en el momento de la ejecución?
 
 # Hoy hablamos de...
-<!-- _class: cool-list -->
+<!-- _class: cool-list toc -->
 
 1. [Quality Assurance](#4)
 1. [OWASP](#9)
 1. [Otras recomendaciones](#15)
-1. [Demos](#33)
-1. [Referencias y ejercicio](#22)
+1. [Demos](#18)
+1. [Referencias](#25)
 
 # Quality Assurance
 <!-- _class: lead -->

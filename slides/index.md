@@ -30,6 +30,7 @@ Juan Vera del Campo
 3. [Open Web Application Security Project](03-quality.html)
 4. [SecDevOps](04-devsecops.pdf)
 5. [Docker](05-docker.pdf)
+6. [Análisis de un ejemplo real](07-ejemplo.html)
 
 # Presentación
 <!-- _class: lead -->
@@ -101,8 +102,10 @@ Tecnología:
 
 ## Ejercicio de la sesión de hoy
 
+Utilizaremos docker en varias de las sesiones de la asignatura. Como ejercicio de hoy, instaladlo en vuestros PCs y probad que se ha instalado correctamente (Windows, Linux, Mac)
+
 - Instalación de docker en vuestros PCs
 - Ejecución de imagen "Hola mundo": https://hub.docker.com/_/hello-world/
-- Entrega: pantallazo de que se ha ejecutado correctamente
+- Entrega: "pantallazo" de que se todo ha ejecutado correctamente
 
 

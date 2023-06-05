@@ -21,11 +21,11 @@ Juan Vera del Campo
 <juan.vera@campusviu.es>
 
 # Hoy hablamos de...
-<!-- _class: cool-list -->
+<!-- _class: cool-list toc -->
 
 1. [De aplicaciones a contenedores](#3)
 1. [Kubernetes](#10)
-1. [Referencias](#28)
+1. [References](#28)
 
 # De aplicaciones a contenedores
 <!-- _class: lead -->

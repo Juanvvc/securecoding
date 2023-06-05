@@ -21,15 +21,15 @@ Juan Vera del Campo
 <juan.vera@campusviu.es>
 
 # Hoy hablamos de...
-<!-- _class: cool-list -->
+<!-- _class: cool-list toc -->
 
-1. [Modelado de amenazas](#3)
-1. [¿Qué queremos modelar?](#7)
-1. [¿Qué puede salir mal?](#18)
-1. [¿Qué podemos hacer para arreglarlo?](#33)
-1. [¿Hemos hecho un buen trabajo?](#40)
-1. [Ejemplo: drones](#45)
-1. [Referencias y ejercicio](#48)
+1. [Modelado de Amenazas](#3)
+1. [¿En qué estamos trabajando?](#7)
+1. [¿Qué puede salir mal?](#19)
+1. [¿Qué podemos hacer para arreglarlo?](#34)
+1. [¿Hemos hecho un buen trabajo?](#41)
+1. [Ejemplo: drones](#46)
+1. [Referencias y ejercicios](#49)
 
 # Modelado de Amenazas
 <!-- _class: lead -->
@@ -300,6 +300,8 @@ riesgo = impacto * facilidad de ataque
 ## Matriz de MITRE
 
 https://attack.mitre.org/
+
+https://mitre-attack.github.com/attack-navigator
 
 ![center w:20em](images/mitre.png)
 

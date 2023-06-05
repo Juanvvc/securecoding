@@ -10,9 +10,10 @@ el apartado "Contenido".
 1. [Modelado de amenazas](https://juanvvc.github.io/securecoding/01-threatmodeling.html)
 2. [Buenas prácticas en la escritura de código](https://juanvvc.github.io/securecoding/02-coding.html)
 3. [Open Web Application Security Project](https://juanvvc.github.io/securecoding/03-quality.html)
-4. [SecDevOps](https://juanvvc.github.io/securecoding/03-devsecops.html)
-5. [Docker](https://juanvvc.github.io/securecoding/04-docker.pdf)
-6. (Opcional) [Kubernetes](https://juanvvc.github.io/securecoding/05-kubernetes.html)
+4. [SecDevOps](https://juanvvc.github.io/securecoding/04-devsecops.html)
+5. [Docker](https://juanvvc.github.io/securecoding/05-docker.pdf)
+6. (Opcional) [Kubernetes](https://juanvvc.github.io/securecoding/06-kubernetes.html)
+7. [Ejemplo](https://juanvvc.github.io/securecoding/07-ejemplo.html)
 
 Recuerda: en Chrome y Edge, **puedes "imprimir a PDF" para obtener las transparencias en PDF**
 
@@ -45,7 +46,7 @@ Puedes crear las transparencias con:
  
 ```
 # Si no tienes marp instalado, ejecuta esto solo una vez
-npm install -g @marp-team/marp-cli
+npm install @marp-team/marp-cli
 
 # Para crear las transparencias en el directorio build
 make
@@ -67,5 +68,5 @@ International (CC BY-SA 4.0) ](https://creativecommons.org/licenses/by-sa/4.0/)
 [![Licencia de Creative
 Commons](https://licensebuttons.net/l/by-sa/3.0/88x31.png)](https://creativecommons.org/licenses/by-sa/4.0/)
 
-Copyright © 2020-2022 [Juan Vera del Campo](https://github.com/juanvvc)
+Copyright © 2020-2023 [Juan Vera del Campo](https://github.com/juanvvc)
 
