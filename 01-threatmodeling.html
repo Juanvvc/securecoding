@@ -273,13 +273,13 @@ Use: <!-- _class: first-slide --> */div#p>svg>foreignObject>section.last-slide{b
 </foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section class="smaller-font" style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="5" data-marpit-pagination-total="60"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="6" data-marpit-pagination-total="60" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
 <h2>Terminología</h2>
 <ul>
-<li><em>Thread</em>: cualquier circunstancia con el potencial de impactar una organización</li>
-<li><em>Vulnerabilidad</em>: debilidad que un agente puede usar durante un ataque
+<li><em>Thread</em> / Amenaza: cualquier circunstancia con el potencial de impactar una organización</li>
+<li><em>Vulnerability</em> / Vulnerabilidad: debilidad que un agente puede usar durante un ataque
 <ul>
 <li>A tener en cuenta: facilidad de descubrimiento, explotación, publicidad, ¿es detectable?</li>
 </ul>
 </li>
-<li><em>Agent</em>: individuo o grupo capaz de llevar a cabo una amenaza.
+<li><em>Agent</em> / Actor: individuo o grupo capaz de llevar a cabo una amenaza.
 <ul>
 <li>A tener en cuenta: conocimientos, motivos, oportunidad y recursos</li>
 </ul>
@@ -300,6 +300,7 @@ Use: <!-- _class: first-slide --> */div#p>svg>foreignObject>section.last-slide{b
 <ul>
 <li><em>Preventions</em>: controles que impiden totalmente un ataque</li>
 <li><em>Mitigations</em>: controles que reducen la probabilidad de que un ataque tenga impacto</li>
+<li><em>Traceability</em>: controles que permiten descubrir qué ha pasado: logs</li>
 </ul>
 </li>
 </ul>
@@ -316,7 +317,7 @@ Use: <!-- _class: first-slide --> */div#p>svg>foreignObject>section.last-slide{b
 <footer><a href="index.html">Inicio</a></footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-footer="[Inicio](index.html)" data-heading-divider="2" data-theme="marp-viu" data-marpit-pagination="9" data-marpit-pagination-total="60" style="--paginate:true;--footer:[Inicio](index.html);--heading-divider:2;--theme:marp-viu;">
-<h2>Fases genéricas</h2>
+<h2>Fases genéricas del análisis de amenazas</h2>
 <ul>
 <li>¿En qué estamos trabajando?</li>
 <li>¿Qué puede salir mal?</li>
@@ -833,7 +834,57 @@ en el diagrama, y otro punto si ganan la mano</li>
 <footer><a href="index.html">Inicio</a></footer>
 </section>
 <script>!function(){"use strict";const t="marpitSVGPolyfill:setZoomFactor,",e=Symbol();let r,o;function n(n){const i="object"==typeof n&&n.target||document,a="object"==typeof n?n.zoom:n;window[e]||(Object.defineProperty(window,e,{configurable:!0,value:!0}),window.addEventListener("message",(({data:e,origin:r})=>{if(r===window.origin)try{if(e&&"string"==typeof e&&e.startsWith(t)){const[,t]=e.split(","),r=Number.parseFloat(t);Number.isNaN(r)||(o=r)}}catch(t){console.error(t)}})));let l=!1;Array.from(i.querySelectorAll("svg[data-marpit-svg]"),(t=>{var e,n,i,s;t.style.transform||(t.style.transform="translateZ(0)");const c=a||o||t.currentScale||1;r!==c&&(r=c,l=c);const d=t.getBoundingClientRect(),{length:u}=t.children;for(let r=0;r<u;r+=1){const o=t.children[r],a=o.getScreenCTM();if(a){const t=null!==(n=null===(e=o.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==n?n:0,r=null!==(s=null===(i=o.y)||void 0===i?void 0:i.baseVal.value)&&void 0!==s?s:0,l=o.firstElementChild,{style:u}=l;u.transformOrigin||(u.transformOrigin=`${-t}px ${-r}px`),u.transform=`scale(${c}) matrix(${a.a}, ${a.b}, ${a.c}, ${a.d}, ${a.e-d.left}, ${a.f-d.top}) translateZ(0.0001px)`}}})),!1!==l&&Array.from(i.querySelectorAll("iframe"),(({contentWindow:e})=>{null==e||e.postMessage(`${t}${l}`,"null"===window.origin?"*":window.origin)}))}r=1,o=void 0;const i=(t,e,r)=>{if(t.getAttribute(e)!==r)return t.setAttribute(e,r),!0};function a({once:t=!1,target:e=document}={}){const r="Apple Computer, Inc."===navigator.vendor?[n]:[];let o=!t;const a=()=>{for(const t of r)t({target:e});!function(t=document){Array.from(t.querySelectorAll('svg[data-marp-fitting="svg"]'),(t=>{var e;const r=t.firstChild,o=r.firstChild,{scrollWidth:n,scrollHeight:a}=o;let l,s=1;if(t.hasAttribute("data-marp-fitting-code")&&(l=null===(e=t.parentElement)||void 0===e?void 0:e.parentElement),t.hasAttribute("data-marp-fitting-math")&&(l=t.parentElement),l){const t=getComputedStyle(l),e=Math.ceil(l.clientWidth-parseFloat(t.paddingLeft||"0")-parseFloat(t.paddingRight||"0"));e&&(s=e)}const c=Math.max(n,s),d=Math.max(a,1),u=`0 0 ${c} ${d}`;i(r,"width",`${c}`),i(r,"height",`${d}`),i(t,"preserveAspectRatio",getComputedStyle(t).getPropertyValue("--preserve-aspect-ratio")||"xMinYMin meet"),i(t,"viewBox",u)&&t.classList.toggle("__reflow__")}))}(e),o&&window.requestAnimationFrame(a)};return a(),()=>{o=!1}}const l=Symbol(),s=document.currentScript;((t=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(t[l])return t[l];const e=a({target:t}),r=()=>{e(),delete t[l]};Object.defineProperty(t,l,{configurable:!0,value:r})})(s?s.getRootNode():document)}();
-</script></foreignObject></svg></div><div class="bespoke-marp-note" data-index="39" tabindex="0"><p>Aunque hay otras metodologías, en esta clase nos vamos a centrar en el análisis de riesgos desde el punto de vista de amenanzas</p></div><div class="bespoke-marp-note" data-index="40" tabindex="0"><p>Fíjate: la probabilidad incluye que exista una agente y una vulnerabilidad explotable
+</script></foreignObject></svg></div><div class="bespoke-marp-note" data-index="5" tabindex="0"><p>Las amenazas existen por sí solas, pero tiene que haber un agente capaz de explotar una vulnerabilidad
+
+¿Existe una vulnerabilidad pero no es accesible desde el exterior? Entonces quizá no tiene prioridad
+
+¿Exista una vulnerabilidad menor y conocida accesible desde el exterior? máxima prioridad</p></div><div class="bespoke-marp-note" data-index="15" tabindex="0"><p>Ideas:
+
+- &quot;comuicaciones seguras&quot;. Ya, pero ¿cómo lo implementaremos?
+
+AMPS:
+
+- Actores:
+    - Pacientes
+    - Personal médico: decisiones
+    - Personal enfermería: acceso a medicamentos
+    - Personal de investigación: datos anonimizados
+    - Personal administrador del sistema
+- Trust boundaries
+    - PAN entre teléfono móvil y sensores
+    - Almacenamiento de información en el móvil
+    - Servidor de autenticación
+    - Equipo del hospital
+    - Equipos externos
+- Problemas
+    - Gestión de usuarios y autorizaciones para cada uno de ellos
+    - ¿Cómo y quién da de alta a un paciente? ¿Y la baja?
+    - Gestión de historiales médicos intra y extra hospitales
+    - Gestión de medidas ¿alarma cuando el usaurio no envía medidas?
+    - Trazabilidad en el acceso a los documentos
+
+CodiMD:
+
+- Actores:
+    - Trabajadores
+    - Administradores de sistemas
+    - Clientes
+- Gestión de certificados
+- Gestión de aplicaciones, vulnerabilidades y desarrollos internos
+- Gestión de errores de software: ¿cuántos usuarios concurrentes permite el sistema? ¿recuperación del sistema?
+- Control de versiones de documentos
+- Plan de copias de seguridad. ¿Quién las gestiona, quién tiene las claves?
+- Gestión de usuarios:
+    - Contraseñas, cómo se guardan en la base de datos, actualización, pérdida...
+    - Doble factor de autenticación
+    - Pérdida de equipos
+    - Baja de usuarios
+    - Acciones de los suuarios
+- Gestión de trust boundaries
+    - Gestión del endpoint de los trabajadores: ¿EDR?
+    - VPN
+    - Conexión entre apliación y base de datos
+    - Conexión entre base de datos y sistema documental</p></div><div class="bespoke-marp-note" data-index="39" tabindex="0"><p>Aunque hay otras metodologías, en esta clase nos vamos a centrar en el análisis de riesgos desde el punto de vista de amenanzas</p></div><div class="bespoke-marp-note" data-index="40" tabindex="0"><p>Fíjate: la probabilidad incluye que exista una agente y una vulnerabilidad explotable
 
 - ¿No hay agente? No hay riesgo
 - ¿La vulnerabilidad no es explotable desde el experior? El riesgo es menor
