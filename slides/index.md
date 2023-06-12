@@ -25,7 +25,7 @@ Juan Vera del Campo
 ## Temario
 <!-- _class: cool-list -->
 
-1. [Modelado de amenazas](01-threadmodeling.html)
+1. [Modelado de amenazas](01-threatmodeling.html)
 2. [Buenas prácticas en la esc∫ritura de código](02-coding.html)
 3. [Open Web Application Security Project](03-quality.html)
 4. [SecDevOps](04-devsecops.pdf)
