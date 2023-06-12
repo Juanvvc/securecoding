@@ -57,11 +57,19 @@ Juan Vera del Campo
 
 ## Terminología
 
-- *Thread*: cualquier circunstancia con el potencial de impactar una organización
-- *Vulnerabilidad*: debilidad que un agente puede usar durante un ataque
+- *Thread* / Amenaza: cualquier circunstancia con el potencial de impactar una organización
+- *Vulnerability* / Vulnerabilidad: debilidad que un agente puede usar durante un ataque
     - A tener en cuenta: facilidad de descubrimiento, explotación, publicidad, ¿es detectable?
-- *Agent*: individuo o grupo capaz de llevar a cabo una amenaza.
+- *Agent* / Actor: individuo o grupo capaz de llevar a cabo una amenaza.
     - A tener en cuenta: conocimientos, motivos, oportunidad y recursos
+
+<!--
+Las amenazas existen por sí solas, pero tiene que haber un agente capaz de explotar una vulnerabilidad
+
+¿Existe una vulnerabilidad pero no es accesible desde el exterior? Entonces quizá no tiene prioridad
+
+¿Exista una vulnerabilidad menor y conocida accesible desde el exterior? máxima prioridad
+-->
 
 ---
 
@@ -72,6 +80,7 @@ Juan Vera del Campo
 - *Controls*: seguridad instalada para impedir, detectar y minimizar amenazas
     - *Preventions*: controles que impiden totalmente un ataque
     - *Mitigations*: controles que reducen la probabilidad de que un ataque tenga impacto
+    - *Traceability*: controles que permiten descubrir qué ha pasado: logs
 
 > https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html
 
@@ -79,9 +88,10 @@ Juan Vera del Campo
 
 ![center](images/threadmod/risk-management.png)
 
+
 > https://csrc.nist.gov/publications/detail/sp/800-30/rev-1/final
 
-## Fases genéricas
+## Fases genéricas del análisis de amenazas
 
 - ¿En qué estamos trabajando?
 - ¿Qué puede salir mal?
@@ -143,6 +153,58 @@ Tecnología:
 ## Brainstorming
 
 > En blanco para poder dibujar
+
+<!--
+
+Ideas:
+
+- "comuicaciones seguras". Ya, pero ¿cómo lo implementaremos?
+
+AMPS:
+
+- Actores:
+    - Pacientes
+    - Personal médico: decisiones
+    - Personal enfermería: acceso a medicamentos
+    - Personal de investigación: datos anonimizados
+    - Personal administrador del sistema
+- Trust boundaries
+    - PAN entre teléfono móvil y sensores
+    - Almacenamiento de información en el móvil
+    - Servidor de autenticación
+    - Equipo del hospital
+    - Equipos externos
+- Problemas
+    - Gestión de usuarios y autorizaciones para cada uno de ellos
+    - ¿Cómo y quién da de alta a un paciente? ¿Y la baja?
+    - Gestión de historiales médicos intra y extra hospitales
+    - Gestión de medidas ¿alarma cuando el usaurio no envía medidas?
+    - Trazabilidad en el acceso a los documentos
+
+CodiMD:
+
+- Actores:
+    - Trabajadores
+    - Administradores de sistemas
+    - Clientes
+- Gestión de certificados
+- Gestión de aplicaciones, vulnerabilidades y desarrollos internos
+- Gestión de errores de software: ¿cuántos usuarios concurrentes permite el sistema? ¿recuperación del sistema?
+- Control de versiones de documentos
+- Plan de copias de seguridad. ¿Quién las gestiona, quién tiene las claves?
+- Gestión de usuarios:
+    - Contraseñas, cómo se guardan en la base de datos, actualización, pérdida...
+    - Doble factor de autenticación
+    - Pérdida de equipos
+    - Baja de usuarios
+    - Acciones de los suuarios
+- Gestión de trust boundaries
+    - Gestión del endpoint de los trabajadores: ¿EDR?
+    - VPN
+    - Conexión entre apliación y base de datos
+    - Conexión entre base de datos y sistema documental
+
+-->
 
 ## Brainstorming (ejemplo)
 
