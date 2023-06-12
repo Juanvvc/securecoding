@@ -31,7 +31,7 @@ Juan Vera del Campo
 1. [Ejemplo: drones](#46)
 1. [Referencias y ejercicios](#49)
 
-# Modelado de Amenazas
+# Análisis de riesgos y modelado de Amenazas
 <!-- _class: lead -->
 
 ## Modelado de Amenazas - Threat Modeling
@@ -45,41 +45,80 @@ Juan Vera del Campo
 
 **Perspectiva general de la aplicación y su entorno desde el punto de vista de la seguridad**
 
-## Modelado de amenazas a través del ciclo de vida del desarrollo
+## Modelado de amenazas durante ciclo de vida del desarrollo
 <!-- _class: smaller-font -->
 
-- Se tiene que aplicar de forma continua a través del ciclo de vida del desarrollo de software.
-- El modelado inicial tiene que hacerse durante la fase de planificación y diseño para tener una vista general de lo que estamos construyendo.
-- A medida que se avanza en el ciclo de vida, el modelado se va redefiniendo para capturar más detalles de nuestra apliacación.
+- Aplica de forma continua durante todo ciclo de vida del desarrollo de software.
+- Modelado inicial: fase de planificación y diseño para tener una vista general de lo que estamos construyendo.
+- A medida que se avanza en el ciclo de vida, el modelado se va detallando para capturar más detalles de nuestra apliacación.
 - A medidas que se avanza el proceso de modelado debería examinar, diagnosticar y tratar las amenazas encontradas.
 
-![bg left w:90%](images/ciclodevida.png)
+![bg left:40% w:90%](images/threadmod/ciclodevida.png)
+
+## Terminología
+
+- *Thread*: cualquier circunstancia con el potencial de impactar una organización
+- *Vulnerabilidad*: debilidad que un agente puede usar durante un ataque
+    - A tener en cuenta: facilidad de descubrimiento, explotación, publicidad, ¿es detectable?
+- *Agent*: individuo o grupo capaz de llevar a cabo una amenaza.
+    - A tener en cuenta: conocimientos, motivos, oportunidad y recursos
+
+---
+
+- *Impact*: daño potencial que puede producir una amenaza
+    - A tener en cuenta: confidencialidad, integridad, *availability*, *accountability*, existencia de logs...
+    - Tipos: económico, de imagen, *non-compliance*, privacidad
+- *Likelihood*: probabilidad de que una amenaza se realice
+- *Controls*: seguridad instalada para impedir, detectar y minimizar amenazas
+    - *Preventions*: controles que impiden totalmente un ataque
+    - *Mitigations*: controles que reducen la probabilidad de que un ataque tenga impacto
+
+> https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html
+
+---
+
+![center](images/threadmod/risk-management.png)
+
+> https://csrc.nist.gov/publications/detail/sp/800-30/rev-1/final
 
 ## Fases genéricas
 
 - ¿En qué estamos trabajando?
 - ¿Qué puede salir mal?
 - ¿Qué haremos al respecto?
-- ¿Hemos hecho un buen trabajo? ¿Qué podemos mejorar?
+- ¿Hemos hecho un buen trabajo? Es decir: ¿qué podemos mejorar?
 
+[![center w:90%](images/threadmod/tm-manifesto-large.svg)](https://www.threatmodelingmanifesto.org/)
+
+> https://www.threatmodelingmanifesto.org/
 
 # ¿En qué estamos trabajando?
 <!-- _class: lead -->
 
 # Paso 1: describe el sistema
 
-Ejemplo: AMPS es un dispositivo médico que se lleva por la noche por los pacientes en riesgo de padecer un infarto cuando están en su vivienda. Registra medidas que los médicos pueden después analizar, pero no emite alertas
+* **Ejemplo 1**: AMPS es un dispositivo médico que se lleva por la noche por los pacientes en riesgo de padecer un infarto cuando están en su vivienda. Registra medidas que los médicos pueden después analizar, pero no emite alertas
 
----
+* **Ejemplo 2**: CodiMD es un editor colaborativo de informes para un grupo pequeño de trabajadores. Los informes incluyen datos confidenciales que no deben salir de las instalaciones de la compañía.
+
+## Ejemplo 1: AMPS
 
 Tecnología:
 
 - Dispositivo Bluetooth BLE en el tobillo
 - Aplicación en el teléfono móvil que envía datos al servidor
 - AMPSCS: servidor que recibe los datos
-    - API paa el móvil
+    - API para el móvil
     - Backend
     - Frontend para doctores
+
+## Ejemplo 2: CodiMD
+
+Tecnología:
+
+- Trabajadores "en remoto" (*home office*)
+- Servidor central de informes en dependencias de la compañía
+- Sistema documental con informes finales que incluya búsquedasd
 
 ## Metodología
 
@@ -88,12 +127,18 @@ Tecnología:
     - Actores
     - Casos de uso
     - Flujo de datos
+    - Identificación de los "trust boundaries", puntos en los que los datos cambian de entorno
+
+![bg right w:90%](images/threadmod/4%2B1_Architectural_View_Model.svg)
+
+> https://en.wikipedia.org/wiki/4%2B1_architectural_view_model
 
 ## Diagramas del sistema (DFD3)
 
-![center w:30em](images/diagramaflujo.png)
+![center w:30em](images/threadmod/diagramaflujo.png)
 
 > https://github.com/adamshostack/DFD3/
+
 
 ## Brainstorming
 
@@ -101,11 +146,11 @@ Tecnología:
 
 ## Brainstorming (ejemplo)
 
-![center w:25em](images/brainstorming.png)
+![center w:30em](images/threadmod/brainstorming.png)
 
 ## Flujos de datos
 
-![center w:20em](images/flujosdedatosfig.png)
+![center w:20em](images/threadmod/flujosdedatosfig.png)
 
 ---
 
@@ -116,11 +161,15 @@ Tecnología:
 
 ## Diagrama funcional
 
-![center w:25em](images/diagramafunciona.png)
+![center w:25em](images/threadmod/diagramafunciona.png)
 
 ## Diagrama de estados
 
-![center w:25em](images/diagramaestados.png)
+![center w:25em](images/threadmod/diagramaestados.png)
+
+## Casos de uso
+
+![center w:20em](images/threadmod/Use_case_restaurant_model.svg)
 
 ## Resumen
 
@@ -264,20 +313,56 @@ en el diagrama, y otro punto si ganan la mano
 # ¿Qué podemos hacer para arreglarlo?
 <!-- _class: lead -->
 
-## Alternativas
+## Análisis de riesgos
 
-- Ignorar el riesgo – No recomendable
-- Evitar el riesgo – Rediseño en arquitectura
-- Aceptar el riesgo – Documentación sin acción
-- Transferir el riesgo – Transferencia a otro equipo
-- Afrontar el riesgo – Implementación del arreglo
+Se puede hacer un análisis desde el punto de vista de...
+
+- Amenazas. Inicio: identificamos amenazas
+- Impacto. Inicio: identificamos nuestros recursos más valiosos
+- Vulnerabilidades. Inicio: identificamos vulnerabilidades
+
+> https://csrc.nist.gov/publications/detail/sp/800-30/rev-1/final
+
+<!--
+Aunque hay otras metodologías, en esta clase nos vamos a centrar en el análisis de riesgos desde el punto de vista de amenanzas
+-->
+
+## OWASP: Risk Rating Methodology
+
+- Step 1: Identifying a Risk
+- Step 2: Factors for Estimating Likelihood: agents and vulnerabilities
+- Step 3: Factors for Estimating Impact: technical and business
+- Step 4: Determining Severity of the Risk
+- Step 5: Deciding What to Fix: priorities
+- Step 6: Customizing Your Risk Rating Model
+
+> https://owasp.org/www-community/OWASP_Risk_Rating_Methodology
+
+<!--
+Fíjate: la probabilidad incluye que exista una agente y una vulnerabilidad explotable
+
+- ¿No hay agente? No hay riesgo
+- ¿La vulnerabilidad no es explotable desde el experior? El riesgo es menor
+- ¿No tiene impacto? No hay riesgo
+
+El objetivo final de un análisis de riesgos es decidir qué priorizar, qué tenemos que arreglar primero: lo que más riesgo tenga. ¡Eso no significa necesariamente que sea lo que tenga más impacto!
+
+Por ejemplo: el impacto de que se haya un terremoto en la sede de la compañía es muy alto, pero... ¿cuál es el riesgo? Alto en Perú, muy pequeño en España.
+-->
+
+---
+
+![center](images/threadmod/risk-owasp.png)
+
+<!-- Ejemplo de prioridades -->
 
 ##  Evaluación de riesgos
+<!-- _class: with-success -->
 
 - Un riesgo es alto si es fácil de atacar y produce un impacto alto
 - Un riesgo es bajo cuando es complicado de atacar y el impacto es bajo
 
-riesgo = impacto * facilidad de ataque
+riesgo = impacto * probabilidad
 
 ![bg right w:90%](images/evaluacionderiesgos.png)
 
@@ -288,6 +373,8 @@ riesgo = impacto * facilidad de ataque
 - Kill Chain
 - Matriz de Mitre
 - Experiencia
+- OWASP: https://owasp.org/www-community/OWASP_Risk_Rating_Methodology
+- NIST: https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-30r1.pdf
 
 ## Inspiración: MITRE y la Kill Chain
 
@@ -347,11 +434,11 @@ https://github.com/izar/pytm
 
 ## Superficie de ataque
 
-![center w:25em](images/drones-superficie.png)
+![center w:30em](images/drones-superficie.png)
 
 ## STRIDE
 
-![center w:25em](images/drones-stride.png)
+![center w:35em](images/drones-stride.png)
 
 # Referencias y ejercicios
 <!-- _class: lead -->
@@ -359,6 +446,8 @@ https://github.com/izar/pytm
 ## Referencias
 
 - Manual: https://www.mitre.org/sites/default/files/publications/Playbook-for-Threat-Modeling-Medical-Devices.pdf
+- OWASP Thread Modelling: https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html
+- NIST: https://csrc.nist.gov/publications/detail/sp/800-30/rev-1/final
 - Elevation of Privilege: https://www.microsoft.com/en-gb/download/confirmation.aspx?id=20303
 - OWASP Cornucopia: https://owasp.org/www-project-cornucopia/
 - Magerit: https://administracionelectronica.gob.es/pae_Home/pae_Documentacion/pae_Metodolog/pae_Magerit.html
