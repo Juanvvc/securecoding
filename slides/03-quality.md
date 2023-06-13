@@ -22,7 +22,7 @@ Juan Vera del Campo
 
 # Como decíamos ayer...
 
-- El Thread Modeling permite planificar amenazas y tratarlas en el momento del diseño
+- El Threat Modeling permite planificar amenazas y tratarlas en el momento del diseño
 - ¿Podemos seguir comprobando la seguridad en el momento de la ejecución?
 
 # Hoy hablamos de...

@@ -23,13 +23,13 @@ Juan Vera del Campo
 # Hoy hablamos de...
 <!-- _class: cool-list toc -->
 
-1. [Modelado de Amenazas](#3)
-1. [¿En qué estamos trabajando?](#7)
-1. [¿Qué puede salir mal?](#19)
-1. [¿Qué podemos hacer para arreglarlo?](#34)
-1. [¿Hemos hecho un buen trabajo?](#41)
-1. [Ejemplo: drones](#46)
-1. [Referencias y ejercicios](#49)
+1. [Análisis de riesgos y modelado de Amenazas](#3)
+1. [¿En qué estamos trabajando?](#10)
+1. [¿Qué puede salir mal?](#24)
+1. [¿Qué podemos hacer para arreglarlo?](#39)
+1. [¿Hemos hecho un buen trabajo?](#48)
+1. [Ejemplo: drones](#53)
+1. [Referencias y ejercicios](#56)
 
 # Análisis de riesgos y modelado de Amenazas
 <!-- _class: lead -->
@@ -53,11 +53,11 @@ Juan Vera del Campo
 - A medida que se avanza en el ciclo de vida, el modelado se va detallando para capturar más detalles de nuestra apliacación.
 - A medidas que se avanza el proceso de modelado debería examinar, diagnosticar y tratar las amenazas encontradas.
 
-![bg left:40% w:90%](images/threadmod/ciclodevida.png)
+![bg left:40% w:90%](images/threatmod/ciclodevida.png)
 
 ## Terminología
 
-- *Thread* / Amenaza: cualquier circunstancia con el potencial de impactar una organización
+- *Threat* / Amenaza: cualquier circunstancia con el potencial de impactar una organización
 - *Vulnerability* / Vulnerabilidad: debilidad que un agente puede usar durante un ataque
     - A tener en cuenta: facilidad de descubrimiento, explotación, publicidad, ¿es detectable?
 - *Agent* / Actor: individuo o grupo capaz de llevar a cabo una amenaza.
@@ -86,7 +86,7 @@ Las amenazas existen por sí solas, pero tiene que haber un agente capaz de expl
 
 ---
 
-![center](images/threadmod/risk-management.png)
+![center](images/threatmod/risk-management.png)
 
 
 > https://csrc.nist.gov/publications/detail/sp/800-30/rev-1/final
@@ -98,7 +98,7 @@ Las amenazas existen por sí solas, pero tiene que haber un agente capaz de expl
 - ¿Qué haremos al respecto?
 - ¿Hemos hecho un buen trabajo? Es decir: ¿qué podemos mejorar?
 
-[![center w:90%](images/threadmod/tm-manifesto-large.svg)](https://www.threatmodelingmanifesto.org/)
+[![center w:90%](images/threatmod/tm-manifesto-large.svg)](https://www.threatmodelingmanifesto.org/)
 
 > https://www.threatmodelingmanifesto.org/
 
@@ -139,13 +139,13 @@ Tecnología:
     - Flujo de datos
     - Identificación de los "trust boundaries", puntos en los que los datos cambian de entorno
 
-![bg right w:90%](images/threadmod/4%2B1_Architectural_View_Model.svg)
+![bg right w:90%](images/threatmod/4%2B1_Architectural_View_Model.svg)
 
 > https://en.wikipedia.org/wiki/4%2B1_architectural_view_model
 
 ## Diagramas del sistema (DFD3)
 
-![center w:30em](images/threadmod/diagramaflujo.png)
+![center w:30em](images/threatmod/diagramaflujo.png)
 
 > https://github.com/adamshostack/DFD3/
 
@@ -208,11 +208,11 @@ CodiMD:
 
 ## Brainstorming (ejemplo)
 
-![center w:30em](images/threadmod/brainstorming.png)
+![center w:30em](images/threatmod/brainstorming.png)
 
 ## Flujos de datos
 
-![center w:20em](images/threadmod/flujosdedatosfig.png)
+![center w:20em](images/threatmod/flujosdedatosfig.png)
 
 ---
 
@@ -223,15 +223,15 @@ CodiMD:
 
 ## Diagrama funcional
 
-![center w:25em](images/threadmod/diagramafunciona.png)
+![center w:25em](images/threatmod/diagramafunciona.png)
 
 ## Diagrama de estados
 
-![center w:25em](images/threadmod/diagramaestados.png)
+![center w:25em](images/threatmod/diagramaestados.png)
 
 ## Casos de uso
 
-![center w:20em](images/threadmod/Use_case_restaurant_model.svg)
+![center w:20em](images/threatmod/Use_case_restaurant_model.svg)
 
 ## Resumen
 
@@ -414,7 +414,7 @@ Por ejemplo: el impacto de que se haya un terremoto en la sede de la compañía 
 
 ---
 
-![center](images/threadmod/risk-owasp.png)
+![center](images/threatmod/risk-owasp.png)
 
 <!-- Ejemplo de prioridades -->
 
@@ -508,7 +508,7 @@ https://github.com/izar/pytm
 ## Referencias
 
 - Manual: https://www.mitre.org/sites/default/files/publications/Playbook-for-Threat-Modeling-Medical-Devices.pdf
-- OWASP Thread Modelling: https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html
+- OWASP Threat Modelling: https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html
 - NIST: https://csrc.nist.gov/publications/detail/sp/800-30/rev-1/final
 - Elevation of Privilege: https://www.microsoft.com/en-gb/download/confirmation.aspx?id=20303
 - OWASP Cornucopia: https://owasp.org/www-project-cornucopia/
