@@ -433,7 +433,13 @@ Esta transparencia la veremos con comandos reales, está aquí solo para referen
 
 ![center](images/coding/auditoria-librerias.png)
 
-> https://medium.com/@alex.birsan/dependency-confusion-4a5d60fec610
+---
+
+Ejemplos:
+
+- https://medium.com/@alex.birsan/dependency-confusion-4a5d60fec610
+- https://www.theverge.com/2022/1/9/22874949/developer-corrupts-open-source-libraries-projects-affected
+- https://www.bleepingcomputer.com/news/security/dev-corrupts-npm-libs-colors-and-faker-breaking-thousands-of-apps/
 
 ## Archivo Package y Package.lock (Python)
 
@@ -595,11 +601,6 @@ async def create_user(
 - [Asleep at the Keyboard? Assessing the
 Security of GitHub Copilot’s Code Contribution](https://arxiv.org/pdf/2108.09293.pdf), diciembre 2021
 - https://rules.sonarsource.com/
-
----
-<!-- _class: center -->
-
-Continúa en: [Quality Assurance](03-quality.html)
 
 # ¡Gracias!
 <!-- _class: last-slide --> 
