@@ -39,6 +39,90 @@ Juan Vera del Campo
 1. [Ejemplos](#35)
 1. [Referencias](#44)
 
+# Mayores vulnerabilidades de código
+<!-- _class: lead -->
+
+
+---
+
+![center](https://owasp.org/assets/images/logo.png)
+
+The Open Web Application Security Project® (OWASP) is a nonprofit foundation that works to improve the security of software.
+
+- Tools and Resources
+- Community and Networking
+- Education & Training
+
+
+## OWASP: Top 10
+
+![center w:20em](https://owasp.org/assets/images/content/featured_project_t10.png)
+
+<https://owasp.org/www-project-top-ten/>
+
+---
+
+![center w:40em](https://owasp.org/www-project-top-ten/assets/images/mapping.png)
+
+https://www.horangi.com/blog/real-life-examples-of-web-vulnerabilities
+https://www.techtarget.com/searchsecurity/news/252494362/10-of-the-biggest-cyber-attacks
+
+## Otros proyectos
+
+![bg left:50% w:100%](images/owasp-projects.png)
+
+
+OWASP tiene otros proyectos
+
+- API Top 10: https://owasp.org/www-project-api-security/
+- Checklist Mobile testing: https://owasp.org/www-project-mobile-security-testing-guide/
+- Top 10 en programación de dispositivos móviles <https://owasp.org/www-project-mobile-top-10/>
+
+## Ejemplo: Mobile Application Security
+
+![center w:25em](https://mas.owasp.org/assets/mas_checklist.png)
+
+> https://mas.owasp.org/
+
+## Otras recomendaciones: SANS Top25
+
+![](images/sans-25.png)
+
+https://www.sans.org/top25-software-errors/
+
+## Otras recomendaciones: MITRE
+
+<!-- _class: smallest-font -->
+
+https://cwe.mitre.org/index.html
+
+Rank|ID|Name|Score|2020 Rank Change
+--|--|--|--|--
+[1]|CWE-787|	Out-of-bounds Write|	65.93|+1
+[2]|CWE-79|	Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')|	46.84|	-1
+[3]|CWE-125|	Out-of-bounds Read|	24.9|	+1
+[4]|CWE-20|	Improper Input Validation|	20.47|	-1
+[5]|CWE-78|	Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')|	19.55|	+5
+[6]|CWE-89|	Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')|	19.54	|0
+[7]|CWE-416|	Use After Free|	16.83|	+1
+[8]|CWE-22|	Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')|	14.69	|+4
+[9]|CWE-352|	Cross-Site Request Forgery (CSRF)|	14.46	|0
+[10]|CWE-434|	Unrestricted Upload of File with Dangerous Type|	8.45|	+5
+
+## Guías de estilo
+
+Ejemplos:
+
+- https://pep8.org/
+- https://google.github.io/styleguide/pyguide.html
+- https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html
+
+<!--
+Para forzar las mismas reglas en toda la empresa, puedes utilizar linters: no permitirán que un código compile o se suba a git si no sigue las reglas de la empresa
+
+PEP8 es un ejemplo de reglas. Hay muchos más. Los linters los puedes encontrar para cada lenguaje. Ejemplos en Python: pylama, frake8. Ejemplos en Javascript: eslint
+-->
+
 # Clean Code
 <!-- _class: lead -->
 
@@ -59,19 +143,7 @@ Los ejemplos de esta página son una buena introducción a las "reglas de oro" q
 
 Siguen recetas del libro "Clean Code" de Robert C. Martin.
 
-## Guías de estilo
-
-Ejemplos:
-
-- https://pep8.org/
-- https://google.github.io/styleguide/pyguide.html
-- https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html
-
-<!--
-Para forzar las mismas reglas en toda la empresa, puedes utilizar linters: no permitirán que un código compile o se suba a git si no sigue las reglas de la empresa
-
-PEP8 es un ejemplo de reglas. Hay muchos más. Los linters los puedes encontrar para cada lenguaje. Ejemplos en Python: pylama, frake8. Ejemplos en Javascript: eslint
--->
+![bg left:40%](images/cleancode/cleancode.jpg)
 
 ## Nombres de variables
 
@@ -119,6 +191,12 @@ Malos comentarios:
 - Avisando de dónde acaba una sección: eso es que es demasiado larga
 - Atribuciones: git blame!
 - Código comentado
+
+## Referencias y resúmenes
+
+- In Defense of Clean Code: 100+ pieces of timeless advice from Uncle Bob : https://dev.to/thawkin3/in-defense-of-clean-code-100-pieces-of-timeless-advice-from-uncle-bob-5flk
+
+- It's probably time to stop recommending Clean Code: https://qntm.org/clean
 
 # Programación segura
 <!-- _class: lead -->
@@ -355,6 +433,7 @@ Esta transparencia la veremos con comandos reales, está aquí solo para referen
 
 ![center](images/coding/auditoria-librerias.png)
 
+> https://medium.com/@alex.birsan/dependency-confusion-4a5d60fec610
 
 ## Archivo Package y Package.lock (Python)
 

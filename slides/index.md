@@ -94,7 +94,7 @@ Tecnología:
 - Dispositivo Bluetooth BLE en el tobillo
 - Aplicación en el teléfono móvil que envía datos al servidor
 - AMPSCS: servidor que recibe los datos
-    - API paa el móvil
+    - API para el móvil
     - Backend
 - Frontend para doctores
 - Frontend para ATS
