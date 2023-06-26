@@ -58,6 +58,12 @@ Es como una máquina virtual... pero no
 - Contenedor: un sistema ejecutándose
 - Volumen: "pendrive" o "carpeta compartida" entre sistemas. Se usa para persistencia y configuraciones
 
+## Ciclo de vida de un contenedor
+
+![center](images/containers/docker-lifecycle.png)
+
+> https://faun.pub/introduction-to-docker-life-cycle-3bf3aeba883
+
 ---
 
 Seguimos en: https://colab.research.google.com/github/Juanvvc/securecoding/blob/main/ejercicios/04-docker.ipynb
