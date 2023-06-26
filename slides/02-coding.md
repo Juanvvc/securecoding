@@ -32,12 +32,13 @@ Juan Vera del Campo
 # Hoy hablamos de...
 <!-- _class: cool-list toc -->
 
-1. [Clean Code](#4)
-1. [Programación segura](#13)
-1. [Librerías y dependencias](#23)
-1. [Ejemplos: proyectos JavaScript / Python](#27)
-1. [Ejemplos](#35)
-1. [Referencias](#44)
+1. [Mayores vulnerabilidades de código](#4)
+1. [Clean Code](#13)
+1. [Programación segura](#22)
+1. [Librerías y dependencias](#32)
+1. [Ejemplos: proyectos JavaScript / Python](#36)
+1. [Ejemplos](#45)
+1. [Referencias](#54)
 
 # Mayores vulnerabilidades de código
 <!-- _class: lead -->

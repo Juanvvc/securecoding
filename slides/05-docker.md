@@ -13,7 +13,7 @@ theme: marp-viu
     the YAML header: section: | */
 </style>
 
-# Quality Assurance
+# Contenedores y docker
 <!-- _class: first-slide -->
 
 Juan Vera del Campo
@@ -24,11 +24,7 @@ Juan Vera del Campo
 # Hoy hablamos de...
 <!-- _class: cool-list toc -->
 
-1. [Quality Assurance](#4)
-1. [OWASP](#9)
-1. [Otras recomendaciones](#15)
-1. [Demos](#18)
-1. [Referencias](#25)
+1. [Contenedores](#3)
 
 # Contenedores
 <!-- _class: lead -->
