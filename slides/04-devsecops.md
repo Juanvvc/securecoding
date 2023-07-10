@@ -23,13 +23,9 @@ Juan Vera del Campo
 # Hoy hablamos de...
 <!-- _class: cool-list toc -->
 
-1. [Análisis de riesgos y modelado de Amenazas](#3)
-1. [¿En qué estamos trabajando?](#10)
-1. [¿Qué puede salir mal?](#24)
-1. [¿Qué podemos hacer para arreglarlo?](#39)
-1. [¿Hemos hecho un buen trabajo?](#48)
-1. [Ejemplo: drones](#53)
-1. [Referencias y ejercicios](#56)
+1. [DevOps](#3)
+1. [Etapas](#13)
+1. [Resumen y referencias](#23)
 
 # DevOps
 <!-- _class: lead -->
@@ -105,7 +101,11 @@ Cada cambio en el código se testea y despliega en producción en minutos
 - Mejora los tests
 - No uses ramas de desarrollo enormes
 - Automatiza todo el deployment
-    - Incluila la creación de infraestructura: terraform, ansible, kubernetes...
+    - Incluida la creación de infraestructura: terraform, ansible, kubernetes...
+
+---
+
+![center](images/devops/etapas.png)
 
 # Etapas
 <!-- _class: lead -->
@@ -126,26 +126,83 @@ Cada cambio en el código se testea y despliega en producción en minutos
 
 ![center](images/devops/cicd-containers-1024x225.png)
 
-## DevOps
+## Tests
+<!-- _class: smallest-font -->
 
-Repositorios de código (Github, Gitlab, Bitbucket, etc)
-Infraestructura (Terraform, CloudFormation, etc)
-CI/CD (Jenkins, Bamboo, CircleCI, TravisCI, etc)
-Builds (Maven, Gradle, make, rake, etc)
-Test (*unit, cucumber, protractor, etc)
-Repositorio de artefactos (Nexus, Artifactory, Docker Hub,
+- ¿Cuál es tu input?
+  - ¿Qué pasa si algunos de los parámetros no esá presente, o tiene un tipo no esperado, o está fuera de rango?
+- ¿Cuál es la lógica?
+  - Modificación de la entrada por otros elementos
+  - Código esperando entrada del usaurio
+  - Salidas sin control, o nulas
+  - Timeouts para las salida
+  - ¿Están todos los posibles casos cubiertos?
+  - ¿Son relevantes todos los casos?
+- Interacciones con los datos: CRUD
+  - ¿Autorización para las acciones?
+  - ¿Puedes distinguir entre no autorizado, errores o datos que no existen?
+- Bucles
+  - ¿Siempre acaban?
+  - ¿Salen bien en caso de error?
+
+![bg right:40%](images/common/computer-code-text-programming.jpg)
+
+> [Hris Koleva en twitter](https://twitter.com/hrisKoleva)
+
+---
+
+![center](images/devops/Code-Based-Testing.png)
+
+---
+
+https://owasp.org/www-community/Source_Code_Analysis_Tools
+
+- Análisis estático: Brakeman (Ruby), SpotBugs+FindSecBugs (Java), Go AST (Go), Bandit (Python), Linters...
+- Test de contenedores: https://testcontainers.com/
+- Análisis dinámico: Nikto, sqlmap, namp, Gauntlt...
+
+## Application security testing (AST)
+
+Estática y dinámica
+
+https://about.gitlab.com/blog/2019/08/12/developer-intro-sast-dast/
+
+---
+
+![center w:35em](images/devops/sast-dast.png)
+
+> https://blog.51sec.org/2018/12/from-devops-to-devsecops-topics.html
+
+## Despliegue
+
+Manejo de secretos:
+
+- AWS Secret Management
+- Azure Key Vault
+- Secret Manager (GCP)
+
+## DevOps: herramientas
+
+- Repositorios de código (Github, Gitlab, Bitbucket, etc)
+- Infraestructura (Terraform, CloudFormation, etc)
+- CI/CD (Jenkins, Bamboo, CircleCI, TravisCI, etc)
+- Builds (Maven, Gradle, make, rake, etc)
+- Test (*unit, cucumber, protractor, etc)
+- Repositorio de artefactos (Nexus, Artifactory, Docker Hub,
 S3, etc)
-Despliegue (Ansible, Puppet, Chef, etc)
-Monitorización (NewRelic, AppDynamics, Sysdig, etc)
-Logging (Splunk, ELK, etc)
-Comunicación (Slack, HipChat, etc)
+- Despliegue (Ansible, Puppet, Chef, etc)
+- Monitorización (NewRelic, AppDynamics, Sysdig, etc)
+- Logging (Splunk, ELK, etc)
+- Comunicación (Slack, HipChat, etc)
 
 # Resumen y referencias
+<!-- _class: lead -->
 
 ## Referencias
 
 - https://semaphoreci.com/blog/cicd-pipeline
 - https://www.edureka.co/blog/devops-tutorial
+- Tools for testing: https://www.creativebloq.com/features/12-must-have-user-testing-tools
 
 ---
 <!-- _class: center -->
