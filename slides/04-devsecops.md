@@ -25,7 +25,7 @@ Juan Vera del Campo
 
 1. [DevOps](#3)
 1. [Etapas](#13)
-1. [Resumen y referencias](#23)
+1. [Resumen y referencias](#24)
 
 # DevOps
 <!-- _class: lead -->
@@ -122,9 +122,15 @@ Cada cambio en el código se testea y despliega en producción en minutos
 
 `npm audit`
 
- 
+ Dependabot
 
-![center](images/devops/cicd-containers-1024x225.png)
+Ejemplos:
+
+- https://socket.dev/npm/package/segment-bundle/files/6.6.9/package.json
+- https://socket.dev/npm/package/filebdecoder/files/1.0.0/package.json
+- https://socket.dev/npm/package/123rf-ui-core/files/9.849.9/index.js
+
+> https://twitter.com/feross/status/1672401333893365761
 
 ## Tests
 <!-- _class: smallest-font -->
@@ -161,11 +167,28 @@ https://owasp.org/www-community/Source_Code_Analysis_Tools
 - Test de contenedores: https://testcontainers.com/
 - Análisis dinámico: Nikto, sqlmap, namp, Gauntlt...
 
+---
+
+- https://docs.github.com/en/code-security/code-scanning
+- https://github.com/kaiiyer/awesome-vulnerable
+- https://github.com/appsecco/dvna
+- https://github.com/analysis-tools-dev/static-analysis#javascript
+- https://deepscan.io/pricing/
+- https://www.sonarsource.com/products/sonarlint/
+- https://github.com/designsecurity/progpilot
+- https://github.com/duo-labs/dlinto
+- https://snyk.io/learn/code-security-audit/
+- https://www.sonarsource.com/solutions/security/
+- https://www.codementor.io/learn-programming/performing-security-audit-for-your-code-the-basics
+- https://owasp.org/www-pdf-archive/OWASP_Code_Review_Guide_v2.pdf)
+
 ## Application security testing (AST)
 
 Estática y dinámica
 
 https://about.gitlab.com/blog/2019/08/12/developer-intro-sast-dast/
+
+https://realm3ter.medium.com/analyzing-javascript-files-to-find-bugs-820167476ffe
 
 ---
 
@@ -180,6 +203,9 @@ Manejo de secretos:
 - AWS Secret Management
 - Azure Key Vault
 - Secret Manager (GCP)
+- GitHub secret scanning
+
+https://gist.github.com/win3zz/0a1c70589fcbea64dba4588b93095855
 
 ## DevOps: herramientas
 
@@ -203,6 +229,7 @@ S3, etc)
 - https://semaphoreci.com/blog/cicd-pipeline
 - https://www.edureka.co/blog/devops-tutorial
 - Tools for testing: https://www.creativebloq.com/features/12-must-have-user-testing-tools
+- Courses: https://javarevisited.blogspot.com/2020/07/5-free-courses-to-learn-devops-in-2020.html
 
 ---
 <!-- _class: center -->
