@@ -97,7 +97,7 @@ Cada cambio en el código se testea y despliega en producción en minutos
 ## Buenas prácticas
 
 - Trata la rama "main" como si pudiese desplegarse en cualquier momento
-- Cada fallo de tests es un big
+- Cada fallo de tests es un bug
 - Mejora los tests
 - No uses ramas de desarrollo enormes
 - Automatiza todo el deployment
