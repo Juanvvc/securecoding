@@ -1,0 +1,51 @@
+version: "3"
+services:
+  database:
+    image: postgres:11.6-alpine
+    environment:
+      - POSTGRES_USER=hackmd
+      - POSTGRES_PASSWORD=c48iiabh48nfd
+      - POSTGRES_DB=codimd
+    volumes:
+      - database:/var/lib/postgresql/data
+    networks:
+      backend:
+    restart: always
+  codimd:
+    # Esta imagen es codimd, la versión opensource original de hackmd
+    image: nabo.codimd.dev/hackmdio/hackmd:2.4.1
+    # Esta imagen es HedgeDoc, un fork de codimd. CAMBIA TAMBIÉN LOS VOLÚMENES MÁS ABAJO
+    # Más información sobre esta historia: https://docs.hedgedoc.org/history/
+    # He comprobado que los datos de codimd:2.4.1 son totalmente compatible con hedgedoc:1.8.2, pero esto puede cambiar en el futuro
+    # image: quay.io/hedgedoc/hedgedoc:1.8.2 
+    environment:
+      - CMD_DB_URL=postgres://hackmd:c48iiabh48nfd@database:5432/codimd
+      - CMD_USECDN=true
+      - CMD_ALLOW_ANONYMOUS=false
+      - CMD_ALLOW_ANONYMOUS_EDITS=false
+      - CMD_ALLOW_ANONYMOUS_VIEWS=true
+      - CMD_SESSION_SECRET=6aj+3bes+az
+      - CMD_IMAGE_UPLOAD_TYPE=filesystem
+      # HTTPS using a proxy
+      #- CMD_DOMAIN=hackmd.mycompany.es
+      #- CMD_URL_ADDPORT=443
+      #- CMD_PROTOCOL_USESSL=true
+    depends_on:
+      - database
+    ports:
+      - "3000:3000"
+    networks:
+      backend:
+    volumes:
+      - ./uploads:/home/hackmd/app/public/uploads
+      - ./default.md:/home/hackmd/app/public/default.md
+      - ./features.md:/home/hackmd/app/public/docs/features.md
+      # Usa estas para hedgedoc
+      #- ./uploads:/hedgedoc/public/uploads
+      #- ./default.md:/hedgedoc/public/default.md
+      #- ./features.md:/hedgedoc/public/docs/features.md
+    restart: always
+volumes:
+  database: {}
+networks:
+  backend:
