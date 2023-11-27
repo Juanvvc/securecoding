@@ -20,9 +20,7 @@ WARNING: está clase es interactiva. Las transparencias son solo una sugerencia
 # Buenas Prácticas de Escritura de Código
 <!-- _class: first-slide -->
 
-Juan Vera del Campo
-
-<juan.vera@campusviu.es>
+Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 
 # Como decíamos ayer...
 

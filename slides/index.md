@@ -17,20 +17,16 @@ theme: marp-viu
 <!-- _class: first-slide -->
 
 **Presentación**
-Juan Vera del Campo
-
-<juan.vera@campusviu.es>
-
+Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 
 ## Temario
 <!-- _class: cool-list -->
 
 1. [Modelado de amenazas](01-threatmodeling.html)
 2. [Buenas prácticas en la escritura de código](02-coding.html)
-3. [Open Web Application Security Project](03-quality.html)
-4. [SecDevOps](04-devsecops.html)
-5. [Docker](05-docker.html)
-6. [Análisis de un ejemplo real](07-ejemplo.html)
+3. [Docker](03-docker.html)
+4. [DevSecOps](04-devsecops.html)
+5. [CI/CD](05-cicd.html)
 
 # Presentación
 <!-- _class: lead -->
@@ -53,7 +49,7 @@ En resumen: gestión de la seguridad durante todo el ciclo de vida de la aplicac
 
 Dr. Juan Vera (Juanvi)
 
-juan.vera@campusviu.es
+<juan.vera@professor.universidadviu.com>
 
 Intereses:
 
@@ -77,9 +73,18 @@ Durante el estudio personal es muy recomendable seguir los enlaces que aparecen 
 [![Licencia de Creative Commons](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/) Esta obra esta sujeta a una licencia de [Atribución 4.0 Internacional de Creative Commons](http://creativecommons.org/licenses/by/4.0/)
 
 ## Evaluación
+<!-- _class: smaller-font -->
 
-- Ejercicios, a entregar antes del examen final
-- 50% examen final "tipo test" de 20 preguntas
+- Puntuación. Dos partes:
+    - 50% examen
+    - 50% actividades
+- Son tres actividades en total, se recomienda realizarlas después de los temas 2, 3 y 5
+    - No es  necesario superar las actividades individuales, solo que **la media de todos las actividades sea superior a 5**
+    - Las actividades no presentados se puntúan como 0
+    - Se pueden presentar las actividades hasta el día del examen correspondiente
+    - **Presenta las actividades como PDF**
+- Es necesario superar con nota media de 5 **cada parte por separado**
+- En segunda convocatoria, se mantiene la nota de aquella parte que fue superada en primera convocatoria
 
 ## Conocimientos necesarios
 

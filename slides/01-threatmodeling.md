@@ -16,9 +16,7 @@ theme: marp-viu
 # Threat Modeling - Modelo de amenazas
 <!-- _class: first-slide -->
 
-Juan Vera del Campo
-
-<juan.vera@campusviu.es>
+Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 
 # Hoy hablamos de...
 <!-- _class: cool-list toc -->

@@ -16,7 +16,7 @@ theme: marp-viu
 # Orquestación
 <!-- _class: first-slide -->
 
-Juan Vera del Campo
+Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 
 <juan.vera@campusviu.es>
 
