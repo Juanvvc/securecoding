@@ -1,7 +1,7 @@
 # Código seguro
 
 Transparencias en
-[juanvvc.github.io/crypto/](https://juanvvc.github.io/securecoding/index.html),
+[juanvvc.github.io/securecoding/](https://juanvvc.github.io/securecoding/index.html),
 pero puedes acceder directamente a cada capítulo seleccionando los enlaces en
 el apartado "Contenido".
 
@@ -9,13 +9,11 @@ el apartado "Contenido".
 
 1. [Modelado de amenazas](https://juanvvc.github.io/securecoding/01-threatmodeling.html)
 2. [Buenas prácticas en la escritura de código](https://juanvvc.github.io/securecoding/02-coding.html)
-3. [Open Web Application Security Project](https://juanvvc.github.io/securecoding/03-quality.html)
-4. [SecDevOps](https://juanvvc.github.io/securecoding/04-devsecops.html)
-5. [Docker](https://juanvvc.github.io/securecoding/05-docker.html)
-6. (Opcional) [Kubernetes](https://juanvvc.github.io/securecoding/06-kubernetes.html)
-7. [Ejemplo](https://juanvvc.github.io/securecoding/07-ejemplo.html)
+3. [Docker](https://juanvvc.github.io/securecoding/03-docker.html)
+4. [DevSecOps](https://juanvvc.github.io/securecoding/04-devsecops.html)
+5. [CI/CD](https://juanvvc.github.io/securecoding/05-cicd.html)
 
-Recuerda: en Chrome y Edge, **puedes "imprimir a PDF" para obtener las transparencias en PDF**
+Recuerda: en Chrome o Edge (pero no en Firefox ni Safari), **puedes "imprimir a PDF" para obtener las transparencias en PDF**. 
 
 ## Descarga local
 
@@ -32,19 +30,19 @@ para cuando las necesites.
 O también, puedes clonar el proyecto en tu disco duro local (necesitas un
 cliente `git`):
 
-```
+```bash
 $ git clone git@github.com:juanvvc/securecoding.git
 ```
 
 De esta manera tienes una copia local que siempre puedes mantener al día con:
 
-```
+```bash
 $ git pull
 ```
 
 Puedes crear las transparencias con:
  
-```
+```bash
 # Si no tienes marp instalado, ejecuta esto solo una vez
 npm install @marp-team/marp-cli
 
