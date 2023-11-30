@@ -43,7 +43,7 @@ DevOps: metodología para que desarrollo, operaciones y seguridad colaboren desd
 
 ## Problemas de los modelos tradicionales
 
-![center width:40em](images/devops/WaterFall-Model-Challenges-DevOps-Tutorial-Edureka-4.png)
+![center width:100%em](images/devops/WaterFall-Model-Challenges-DevOps-Tutorial-Edureka-4.png)
 
 - Demasiado tiempo entre desarrollo y despliegue
 - Tareas manuales no automatizadas
