@@ -22,29 +22,36 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 <!-- _class: cool-list toc -->
 
 1. [Análisis de riesgos y modelado de Amenazas](#3)
-1. [¿En qué estamos trabajando?](#10)
-1. [¿Qué puede salir mal?](#24)
-1. [¿Qué podemos hacer para arreglarlo?](#39)
-1. [¿Hemos hecho un buen trabajo?](#48)
-1. [Ejemplo: drones](#53)
-1. [Referencias y ejercicios](#56)
+1. [¿En qué estamos trabajando?](#12)
+1. [¿Qué puede salir mal?](#26)
+1. [¿Qué podemos hacer para arreglarlo?](#42)
+1. [¿Hemos hecho un buen trabajo?](#52)
+1. [Referencias y ejercicios](#57)
 
-# Análisis de riesgos y modelado de Amenazas
+# Threat Modeling - Modelo de amenazas
 <!-- _class: lead -->
 
 ## Modelado de Amenazas - Threat Modeling
+<!-- _class: with-info -->
 
-- Representación estructurada de toda la información que afecta a la seguridad de una aplicación.
-- Proceso de capturar, organizar y analizar toda esta información.
+- Representación estructurada de toda la información que afecta a la seguridad de una aplicación
+- Proceso de capturar, organizar y analizar toda esta información
+- Lista ordenada por prioridad de mejoras, requisitos, diseño e implementación de la seguridad de la misma
+- Buscar puntos ciegos y plantearse las asunciones que hemos hecho del sistema
 
-- Permite la toma de decisiones fundamentadas sobre los riesgos de seguridad de la aplicación.
+*El modelado de amenazas es el brainstorming de un atacante*
 
-- Además de la creación del modelo, típicamente también se produce una lista ordenada por prioridad de mejoras, requisitos, diseño e implementación de la seguridad de la misma.
+¿Qué puede salir mal y qué hacemos para evitarlo?
 
-**Perspectiva general de la aplicación y su entorno desde el punto de vista de la seguridad**
+## Modelado de amenazas en una empresa
 
-## Modelado de amenazas durante ciclo de vida del desarrollo
-<!-- _class: smaller-font -->
+- Threat modeling: Servicio. Ingenieros y managers. 3 meses vista.
+- Risk management: Estrategia. Directores y VP. 1 año vista.
+- [Wardley Mapping](https://cynefin.io/wiki/Wardley_Mapping): Sistema. VP y niveles "C". 3 años vista.
+
+![bg right:50%](images/threatmod/threatmodelling-comic.png)
+
+## Ciclo de vida del desarrollo
 
 - Aplica de forma continua durante todo ciclo de vida del desarrollo de software.
 - Modelado inicial: fase de planificación y diseño para tener una vista general de lo que estamos construyendo.
@@ -53,13 +60,38 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 
 ![bg left:40% w:90%](images/threatmod/ciclodevida.png)
 
+## Diseño seguro
+
+- Identificación temprana de las amenazas
+- Prevención de vulnerabilidades
+- Análisis de código
+- Pruebas de seguridad
+
+![bg left:40%](images/threatmod/securedesign.png)
+
+## Workflow, the agile way
+
+- Escoge una "historia" de tu aplicación
+- Dibuja un digrama de datos/proceso
+- Aplica una metología de identificación de amenazas
+- Maneja las amenazas identificadas
+- Chequeo contínuo
+
+> https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html
+
 ## Terminología
 
-- *Threat* / Amenaza: cualquier circunstancia con el potencial de impactar una organización
-- *Vulnerability* / Vulnerabilidad: debilidad que un agente puede usar durante un ataque
+- *Threat* / **Amenaza**: cualquier circunstancia con el potencial de impactar una organización
+- *Vulnerability* / **Vulnerabilidad**: debilidad que un agente puede usar durante un ataque
     - A tener en cuenta: facilidad de descubrimiento, explotación, publicidad, ¿es detectable?
-- *Agent* / Actor: individuo o grupo capaz de llevar a cabo una amenaza.
+- *Asset* / **Recurso**: qué es lo que queremos proteger. Datos, prestigio...
+- *Agent* / **Actor**: individuo o grupo capaz de llevar a cabo una amenaza.
     - A tener en cuenta: conocimientos, motivos, oportunidad y recursos
+
+
+> https://www.g2.com/articles/threat-modeling
+
+![bg left:30%](images/threatmod/terminologia.png)
 
 <!--
 Las amenazas existen por sí solas, pero tiene que haber un agente capaz de explotar una vulnerabilidad
@@ -71,23 +103,16 @@ Las amenazas existen por sí solas, pero tiene que haber un agente capaz de expl
 
 ---
 
-- *Impact*: daño potencial que puede producir una amenaza
+- **Impacto** / *Impact*: daño potencial que puede producir una amenaza
     - A tener en cuenta: confidencialidad, integridad, *availability*, *accountability*, existencia de logs...
     - Tipos: económico, de imagen, *non-compliance*, privacidad
-- *Likelihood*: probabilidad de que una amenaza se realice
-- *Controls*: seguridad instalada para impedir, detectar y minimizar amenazas
-    - *Preventions*: controles que impiden totalmente un ataque
-    - *Mitigations*: controles que reducen la probabilidad de que un ataque tenga impacto
-    - *Traceability*: controles que permiten descubrir qué ha pasado: logs
+- **Probabilidad de ocurrencia** / *Likelihood*: probabilidad de que una amenaza se realice
+- **Controles**: seguridad instalada para impedir, detectar y minimizar amenazas
+    - **Prevenciones**: controles que impiden totalmente un ataque
+    - **Mitigaciones**: controles que reducen la probabilidad de que un ataque tenga impacto
+    - **Trazabilidad**: controles que permiten descubrir qué ha pasado: logs
 
 > https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html
-
----
-
-![center](images/threatmod/risk-management.png)
-
-
-> https://csrc.nist.gov/publications/detail/sp/800-30/rev-1/final
 
 ## Fases genéricas del análisis de amenazas
 
@@ -252,28 +277,46 @@ CodiMD:
 - **BIEN**: Para añadir seguridad, implementaremos una pantalla de login
 * **MEJOR**: El usuario no quiere que otra persona acceda a sus fotos personales
 
-En vez de añadir características a tu producto, identifica qué quiere realmente el usuario, sus preocupaciones, y dale soluciones.
+En vez de añadir características a tu producto, identifica qué quiere realmente el usuario, sus preocupaciones, y dale soluciones
 
 ## Metodología
 
-- STRIDE
-- Juegos de cargas
-- Matriz de Mitre
-- Experiencia
-- P.A.S.T.A.
-- Trike
-- VAST
-- Kill chains
-- CAPEC
-- Magerit
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
+- [STRIDE](https://www.microsoft.com/en-us/security/blog/2007/09/11/stride-chart/)
+- Juegos de cartas: Cornucopia, Elevation of privilege
+- [Matriz de Mitre](https://attack.mitre.org/matrices/enterprise/)
+- [P.A.S.T.A.](https://threat-modeling.com/pasta-threat-modeling/)
+- [Mitre CAPEC](https://capec.mitre.org/)
+- [Magerit](https://administracionelectronica.gob.es/pae_Home/pae_Documentacion/pae_Metodolog/pae_Magerit.html)
+- [STRIPED](https://dl.acm.org/doi/10.1145/3538969.3538970)
 - ...
 
+## Debilidad
+
+Un tipo de error (no solo un *bug*) que puede contrubuir a la introducción de vulnerabilidades en el sofware
+
+Ejemplos de debilidades en la base de datos [CWE, *Common Weakness Enumeration*](https://cwe.mitre.org)
+
+![bg right](images/threatmod/weakness-top2023.png)
+
+> Top weakness 2023: https://cwe.mitre.org/data/definitions/1425.html
+
+## Vulnerabilidad
+
+Una ocurrencia de una debilidad en el sofware que puede utilizar un atacante para acceder o modificar datos, interrumpir el servicio o realizar acciones incorrectas.
+
+Ejemplos en la base de adtos [CVE, *Common Vulnerabilities and Exposures*](https://cve.mitre.org/)
+
+![bg right](images/threatmod/cve-firefox.png)
+
 ## STRIDE
-<!-- _class: smallest-font -->
+<!-- _class: smaller-font -->
+
+Desarrollada en Microsoft en 2009
 
 Amenaza|Servicio de seguridad|Ejemplo
 --|--|--
-Spoofing|Autenticación|Credencialias robadas al doctor
+Spoofing|Autenticación|Credencilaes robadas al doctor
 Tampering|Integridad|Datos falseados
 Repudiation|No repudio, logs, registros|El doctor alega que no recetó un medicamento
 Information Disclosure|Confidencialidad|Las datos se envían por un canal no cifrado
@@ -285,14 +328,14 @@ Elevation of Priviledge|Authorization|Un paciente puede ver datos de otros pacie
 - El atacante pretende ser algo o alguien que no es
 - ¿Están ambos extremos de las comunicaciones autenticados?
     - Envío de emails desde cuentas que parecen ser reales
-    - Cambio de role
+    - Cambio de roles
     - Creación de ficheros
-    - ARP, IP, DNS
+    - ARP, IP, DNS...
 
 ## STRIDE - Tampering
 
 - El atacante cambia datos sin autorización
-- ¿Cómo puedo saber si un usuario no puede cambiar los datos en tránsito o en reposo (at-rest)
+- ¿Cómo puedo detectar si un usuariocambia los datos en tránsito o en reposo (at-rest)?
     - Modificación de la memoria
     - Modificación de registros de una base de datos que pertenecen a otro usuario
     - Actuar cómo proxy y modificar el tráfico (Man in the middle)
@@ -300,7 +343,7 @@ Elevation of Priviledge|Authorization|Un paciente puede ver datos de otros pacie
 ## STRIDE - Repudiation
 
 - El atacante asegura no haber hecho algo
-- ¿Están las acciones asociadas a su autor?
+- ¿Están las acciones registradas y asociadas a su autor?
     - Decir no haber borrado registros de una base de datos
     - Decir no haber recibido una notificación
     - Decir no haber usado la cuenta de otro
@@ -308,7 +351,7 @@ Elevation of Priviledge|Authorization|Un paciente puede ver datos de otros pacie
 ## STRIDE – Information Disclosure
 
 - El atacante ve datos que no debería
-- ¿Cómo puedo aseurar que los usuarios sólo puedan ver los datos a los que están autorizados? • Ejemplos:
+- ¿Cómo puedo aseurar que los usuarios sólo puedan ver los datos a los que están autorizados?
     - Acceso a registros de otro usuario
     - Acceso al tráfico de red
     - Acceso a ciertos logs
@@ -332,43 +375,33 @@ Elevation of Priviledge|Authorization|Un paciente puede ver datos de otros pacie
 
 <https://administracionelectronica.gob.es/pae_Home/pae_Documentacion/pae_Metodolog/pae_Magerit.html>
 
-![center](images/magerit.png)
+![center](images/threatmod/magerit.png)
 
 ## Elevation of Privilege
-<!-- _class: center -->
 
-![w:12em](images/eop1.png) ![w:12em](images/eop2.png)
+![w:10em](images/threatmod/eop1.png) ![w:10em](images/threatmod/eop2.png)
 
-> Elevation of Privilege: https://www.microsoft.com/en-gb/download/confirmation.aspx?id=20303
-
----
-
-- Desarrollado por Microsoft
-- Nada como aprender jugando
-- Diseñado para ser fácilmente adoptado por desarrolladores y arquitectos
-- Ayuda a examinar posibles amenazas
-- https://www.microsoft.com/en-us/download/details.aspx?id=20303
-
----
-
--  Crea el diagrama
--  3-6 jugadores
-- Reparte todas las cartas
-- 3 de Tampering empieza
-- Juega la mano
-- Los jugadores deben usar el mismo palo si es posible
-- La carta más alta gana la mano, a menos alguien juega una carta
-EoP
-- Los jugadores ganan un punto si pueden identificar una amenaza
-en el diagrama, y otro punto si ganan la mano
-- As es para amenazas que no están en otras cartas
-
+Elevation of Privilege: https://www.microsoft.com/en-gb/download/confirmation.aspx?id=20303
 
 ## Cornucopia
 
-![w:25em center](images/cornucopia.png)
+![w:25em center](images/threatmod/cornucopia.png)
 
-- OWASP Cornucopia: https://owasp.org/www-project-cornucopia/
+OWASP Cornucopia: https://owasp.org/www-project-cornucopia/
+
+## Brainstorming
+<!-- _class: two-columns -->
+
+![](images/threatmod/facebook.png)
+
+1. Spoofing
+2. Tampering
+3. Repudiation
+4. Information Disclosure
+5. Denial of service
+6. Elevation of privilege
+
+> https://bandaancha.eu/articulos/asi-han-robando-cuentas-whatsapp-10754
 
 # ¿Qué podemos hacer para arreglarlo?
 <!-- _class: lead -->
@@ -410,11 +443,25 @@ El objetivo final de un análisis de riesgos es decidir qué priorizar, qué ten
 Por ejemplo: el impacto de que se haya un terremoto en la sede de la compañía es muy alto, pero... ¿cuál es el riesgo? Alto en Perú, muy pequeño en España.
 -->
 
+## OWASP: Risk Rating Methodology
+<!-- _class: with-success two-columns-->
+
+
+![center w:20em](images/threatmod/risk-calculation.png)
+
+- **Probabilidad** de que un ataque se lleve a cabo. Tiene en cuenta habilidad necesaria, motivo, oportunidad, facilidad de explotación...
+- **Impacto**. Cómo de malo sería que un ataque tuviese éxito. Confidencialidad, impacto en negocio...
+- [Metodología de OWASP](https://owasp.org/www-community/OWASP_Risk_Rating_Methodology) y [Calculadora](https://www.owasp-risk-rating.com/)
+
+Riesgo = Probabilidad * Impacto
+
+
 ---
 
-![center](images/threatmod/risk-owasp.png)
+![center](images/threatmod/risk-management.png)
 
-<!-- Ejemplo de prioridades -->
+
+> https://csrc.nist.gov/publications/detail/sp/800-30/rev-1/final
 
 ##  Evaluación de riesgos
 <!-- _class: with-success -->
@@ -424,7 +471,7 @@ Por ejemplo: el impacto de que se haya un terremoto en la sede de la compañía 
 
 riesgo = impacto * probabilidad
 
-![bg right w:90%](images/evaluacionderiesgos.png)
+![bg right w:90%](images/threatmod/evaluacionderiesgos.png)
 
 > Magerit: https://administracionelectronica.gob.es/pae_Home/pae_Documentacion/pae_Metodolog/pae_Magerit.html
 
@@ -438,7 +485,7 @@ riesgo = impacto * probabilidad
 
 ## Inspiración: MITRE y la Kill Chain
 
-![](images/mitre-killchain.png)
+![](images/threatmod/mitre-killchain.png)
 
 ## La Kill Chain unificada
 
@@ -450,7 +497,7 @@ https://attack.mitre.org/
 
 https://mitre-attack.github.com/attack-navigator
 
-![center w:20em](images/mitre.png)
+![center w:20em](images/threatmod/mitre.png)
 
 # ¿Hemos hecho un buen trabajo?
 <!-- _class: lead -->
@@ -474,31 +521,23 @@ https://mitre-attack.github.com/attack-navigator
 - Validación y mitigación
 - Referencias externas (si es aplicable)
 
-![bg left w:90%](images/informe.png)
+![bg left w:90%](images/threatmod/informe.png)
 
 ## Propósito del informe
-• Transparencia sobre amenazas existentes
-• Habilita la inversión en seguridad vs funcionalidad
-• Captura el contexto del resultado de la sesión de Threat Modeling
-• Documenta el trabajo hecho
-• El informe debería tratarse como algo confidencial
+
+- Transparencia sobre amenazas existentes
+- Habilita la inversión en seguridad vs funcionalidad
+- Captura el contexto del resultado de la sesión de Threat Modeling
+- Documenta el trabajo hecho
+- El informe debería tratarse como algo confidencial
 
 ## Threat Modelling como código
+
+https://www.threatdragon.com/
 
 https://github.com/izar/pytm
 
 ![bg right w:90%](https://raw.githubusercontent.com/izar/pytm/master/docs/pytm-logo.svg)
-
-# Ejemplo: drones
-<!-- _class: lead -->
-
-## Superficie de ataque
-
-![center w:30em](images/drones-superficie.png)
-
-## STRIDE
-
-![center w:35em](images/drones-stride.png)
 
 # Referencias y ejercicios
 <!-- _class: lead -->
@@ -515,15 +554,9 @@ https://github.com/izar/pytm
 ## Ejercicio
 
 - Escoge una sistema cualquiera de tu interés: una aplicación web con interfaz móvil, redes de drones...
-- Dibuja un diagrama de la aplicación, identificando las zonas de confianza y los flujos de datos (1 página)
-- Haz un análisis STRIDE (1 página)
-- Plantea mitigaciones para cada amenaza STRIDE que identifiques (1 página)---
-
----
-
-<!-- _class: center -->
-
-Continúa en: [Buenas prácticas en la escritura de código](02-coding.html)
+- Dibuja un diagrama de la aplicación, identificando las zonas de confianza y los flujos de datos (1 páginas)
+- Haz un análisis STRIDE (1-2 páginas)
+- Plantea mitigaciones para cada amenaza STRIDE que identifiques (1 página)
 
 # ¡Gracias!
 <!-- _class: last-slide --> 
