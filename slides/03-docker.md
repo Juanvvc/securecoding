@@ -24,7 +24,7 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 
 1. [Contenedores](#3)
 
-# Contenedores
+# Contenedores Docker
 <!-- _class: lead -->
 
 ## ¿Qué es un contenedor?
@@ -37,20 +37,52 @@ Es como una máquina virtual... pero no
 
 ## Ventajas de los contenedores
 
-- Solo ven la parte del sistema que les dejas ver
-- Pueden conectarse entre ellos
-- Inicio rápido
-- Gestión de "snapshots"
-- Dependencias "autocontenidas"
-- Fácil instalación y compartición
-- Descritos en un archivo de texto que puede auditarse fácilmente
-- Gestión del ciclo de vida
+- Seguridad:
+    - Sistema aislado: solo ven la parte del sistema que les dejas ver
+    - Pueden conectarse entre ellos
+- Portabilidad: arregla "en mi PC funciona":
+    - Gestión de "snapshots"
+    - Dependencias "autocontenidas"
+    - Fácil instalación y compartición
+- Auditable:
+    - Inicio rápido y consistente
+    - Descritos en un archivo de texto que puede auditarse fácilmente
+    - Gestión del ciclo de vida
 
-## Docker. Terminología
+---
+<!-- _class: with-success -->
 
-- Imágenes: "snapshot" de un sistema. Es el "estado inicial" de un contenedor
-- Contenedor: un sistema ejecutándose
-- Volumen: "pendrive" o "carpeta compartida" entre sistemas. Se usa para persistencia y configuraciones
+- Escalabilidad:
+    - Pueden crearse y destruirse rápidamente
+    - PUeden conectarse entre ellos
+- Tolerancia a fallos:
+    - El gestor de contenedores detecta cuándo uno ha fallado y lo reinicia automáticamente
+
+Los contenedores son ideales para microservicios
+
+## Microservicios
+
+Uso de múltiples componentes de software independientes para crear una aplicación
+
+Ejemplo: contenedores para:
+
+- Base de datos
+- Proxy SSL
+- Balanceador
+- Frontend web
+- API
+
+---
+
+![center w:25em](images/kubernetes/microservices.png)
+
+> https://online.visual-paradigm.com/diagrams/templates/ibm-cloud-architecture-diagram/microservices-diagram/
+
+## Terminología
+
+- **Imágenes**: "snapshot" de un sistema. Es el "estado inicial" de un contenedor
+- **Contenedor**: un sistema ejecutándose
+- **Volumen**: "pendrive" o "carpeta compartida" entre sistemas. Se usa para persistencia y configuraciones
 
 ## Ciclo de vida de un contenedor
 
@@ -60,7 +92,10 @@ Es como una máquina virtual... pero no
 
 ---
 
-Seguimos en: https://colab.research.google.com/github/Juanvvc/securecoding/blob/main/ejercicios/04-docker.ipynb
+Seguimos en:
+
+- https://colab.research.google.com/github/Juanvvc/securecoding/blob/main/ejercicios/04-docker.ipynb
+- [Kubernetes](A2-kubernetes.html)
 
 # Referencias
 

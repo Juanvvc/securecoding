@@ -65,7 +65,7 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
     - Manejador de clúster
     - Frameworks (Marathon) para equiparar con Swarm y Kubernetes
 
-![bg right w:90%](images/Kubernetes-logo.png)
+![bg right w:90%](images/kubernetes/Kubernetes-logo.png)
 
 
 ---
@@ -92,21 +92,21 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 
 ---
 
-![](images/kubernetes-infra.png)
+![](images/kubernetes/kubernetes-infra.png)
 
 ---
 
-![](images/kubernetes-flow.png)
+![](images/kubernetes/kubernetes-flow.png)
 
 ---
 
-![](images/kubernetes-google.png)
+![](images/kubernetes/kubernetes-google.png)
 
 > https://www.youtube.com/watch?v=Rl5M1CzgEH4
 
 ## Docker and Kubernetes
 
-![](images/kubernetes-dockerconfig.png)
+![](images/kubernetes/kubernetes-dockerconfig.png)
 
 ## Interfaces
 <!-- _class: two-columns -->
@@ -150,11 +150,11 @@ spec:
 
 ---
 
-![center w:35em](images/kubernetes-dashboard.png)
+![center w:35em](images/kubernetes/kubernetes-dashboard.png)
 
 ## Control plane
 
-![bg left w:80%](images/kubernetes-controlpane.png)
+![bg left w:80%](images/kubernetes/kubernetes-controlpane.png)
 
 - kube-apiserver:
     - Punto de interactuación
@@ -178,7 +178,7 @@ maestro
     - Rkt (CoreOS)
     - y otros
 
-![bg left w:80%](images/kubernetes-node.png)
+![bg left w:80%](images/kubernetes/kubernetes-node.png)
 
 ## Pod
 
@@ -186,11 +186,11 @@ maestro
 - Puede contener uno o más contenedores
 - Similar a un solo docker-compose
 
-![bg left w:80%](images/kubernetes-pod.png)
+![bg left w:80%](images/kubernetes/kubernetes-pod.png)
 
 ---
 
-![](images/kubernetes-pod2.png)
+![](images/kubernetes/kubernetes-pod2.png)
 
 ## Health checks
 
@@ -211,7 +211,7 @@ Puedes asignar labels a los pods, para seleccionarlos desde otros pods
 - Basados en igualdad
 - Basados en expresiones
 
-![bg left w:80%](images/kubernetes-selector.png)
+![bg left w:80%](images/kubernetes/kubernetes-selector.png)
 
 ## Redes
 
@@ -243,7 +243,7 @@ Forma de acceder a los Pods desde el exterior
 
 ---
 
-![](images/kubernetes-balancer.png)
+![](images/kubernetes/kubernetes-balancer.png)
 
 # References
 <!-- _class: lead -->
