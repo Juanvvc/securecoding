@@ -24,19 +24,19 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 
 # Como decíamos ayer...
 
-- El Threat Modeling permite planificar amenazas y tratarlas en el momento del diseño
+- El Threat Modeling permite identificar amenazas y tratarlas en el momento del diseño
 - ¿Podemos mejorar la seguridad de una aplicación simplemente escribiendo buen código?
 
 # Hoy hablamos de...
 <!-- _class: cool-list toc -->
 
 1. [Mayores vulnerabilidades de código](#4)
-1. [Clean Code](#13)
-1. [Programación segura](#22)
-1. [Librerías y dependencias](#32)
-1. [Ejemplos: proyectos JavaScript / Python](#36)
-1. [Ejemplos](#45)
-1. [Referencias](#54)
+1. [Secure System Design Principles](#14)
+1. [Recomendaciones para Python](#25)
+1. [Librerías y dependencias](#35)
+1. [Proyectos JavaScript / Python](#39)
+1. [Ejemplos](#48)
+1. [Referencias](#58)
 
 # Mayores vulnerabilidades de código
 <!-- _class: lead -->
@@ -108,7 +108,41 @@ Rank|ID|Name|Score|2020 Rank Change
 [9]|CWE-352|	Cross-Site Request Forgery (CSRF)|	14.46	|0
 [10]|CWE-434|	Unrestricted Upload of File with Dangerous Type|	8.45|	+5
 
-## Guías de estilo
+## Recomendaciones
+<!-- _class: two-columns smaller-font -->
+
+1. **Input Validation**: nunca te fíes de tus entradas
+    - Tamaño de la entrada
+    - Caracteres válidos
+    - Formato, tipo (entero, cadena...) -> **Sanitizar**
+    - Dentro de valores permitidos (máximos, mínimos...)
+    - ¡Existente!
+2. **Manejo de secretos**
+    - Comprueba que los errores de autenticación no incluyen información
+    - Guarda las contraseñas de forma segura en todos los dispositivos
+    - Transmite las contraseñas de forma segura
+    - https://github.com/OWASP/wrongsecrets
+
+<!-- -->
+
+3. **Least privilege**
+    - Valida los permisos en cada petición
+    - Crea *tests* que validan permisos
+    - Mantén las autorizaciones en el nivel mínimo posible
+5. **Gestión de librerías** seguras y probadas
+6. **Usable**
+7. **Acceso denegado por defecto**
+10. **Control de calidad** (ver siguiente temas)
+
+
+> https://codesigningstore.com/secure-coding-practices-to-implement
+
+## Guías de estilo (linters)
+
+* Tienes que entender el código de otro para poder decidir si es seguro o no
+* En dos semanas, no entenderás tu propio código
+* Los lenguajes que dan mucha libertad pueden provocar que cada programador escriba de una manera
+* Todos los programadores del equipo deben seguir las mismas reglas
 
 Ejemplos:
 
@@ -122,74 +156,110 @@ Para forzar las mismas reglas en toda la empresa, puedes utilizar linters: no pe
 PEP8 es un ejemplo de reglas. Hay muchos más. Los linters los puedes encontrar para cada lenguaje. Ejemplos en Python: pylama, frake8. Ejemplos en Javascript: eslint
 -->
 
-# Clean Code
+# Secure System Design Principles
 <!-- _class: lead -->
+
+"The Protection of Information in Computer Systems", JEROME H. SALTZER and MICHAEL D. SCHROEDER, 1974
 
 ## Bad example in C#
 
 https://www.codeproject.com/Articles/1083348/Csharp-Bad-Practices-Learn-How-to-Make-Good-Code-b
 
+https://twitter.com/LiveOverflow/status/1729798452094128278
+
 <!--
 Los ejemplos de esta página son una buena introducción a las "reglas de oro" que se discuten en el resto de la sesión. Es muy recomendable visitar esa página durante la sesión, y los alumnos después de ella.
 -->
 
-## Reglas de oro
+## Sistemas simples
 
-* Tienes que entender el código de otro para poder decidir si es seguro o no
-* En dos semanas, no entenderás tu propio código
-* Los lenguajes que dan mucha libertad pueden provocar que cada programador escriba de una manera
-* Todos los programadores del equipo deben seguir las mismas reglas
+*As systems get more complex, security will get worse* (Bruce Schneier)
 
-Siguen recetas del libro "Clean Code" de Robert C. Martin.
+*Keeping it simple, stupid!* (simpler said than done)
 
-![bg left:40%](images/cleancode/cleancode.jpg)
+- Diseños lo más simples y pequeños posible (Principio KISS)
+- Reducir el número de componentes utilizados, conservando sólo aquellos que sean esenciales
+- Servicios y aplicaciones deshabilitados de forma predeterminada
 
-## Nombres de variables
+- CWE:
+    - https://cwe.mitre.org/data/definitions/561.html
+    - https://cwe.mitre.org/data/definitions/637.html
 
-- Usa nombres que tengan sentido: `gameBoard` mejor que `theList`.
-- Evita información incorrecta: no uses `accountList` si no es una lista `List`.
-- Distingue perfectamente el nombre de las variables. No uses: `getActiveAccount`, `getActiveAccounts` y `getActiveAccountInfo`.
-- Usa nombres que sean pronuncialbes
-- Usa nombres que puedan buscarse: `i`, `7` no pueden buscarse. `counter`, `MAX_NUMBER` sí.
-- Los nombres de clases son sustantivos
-- Las funciones son verbos: `get`, `set` and `is`.
-- Nomenclatura contante: fetch, retrieve or get? controller or manager?
+> https://es.wikipedia.org/wiki/Principio_KISS
 
-# Funciones
+## Best practices y linters
 
-- No más de 20 líneas
-- No más de uno o dos niveles de indentación
-- La función debe hacer solo una cosa
-- Usa nombres descriptivos
-- Evita parámetros "bandera"
-- Prefiere excepciones a devolver códigos de error
+- Verifica que todos los datos recibidos cumplan con las propiedades o tipos de datos esperados
+- Mucho cuidado con permitir entender las entras como código
+- Top 10 de OWASP y SANS
 
-# Comentarios
+- CWE:
+    - https://cwe.mitre.org/data/definitions/710.html
+    - https://cwe.mitre.org/data/definitions/1006.html
 
-- Los comentarios no compensan un mal código. Mejora el código antes que los comentarios
-- "Código autoexplicativo" (pero con cuidado)
+## Secure by default
 
---- 
+La situación por defecto tiene que ser "acceso prohibido"
 
-Buenos comentarios:
+Ejemplo:
 
-- comentarios legales autor/licencia
-- informativos sobre las intenciones
-- clarificaciones sobre excepciones o por qué las cosas se hacen de una forma determinada que no es obvia
-- TODO
-- amplificación de la importancia de una línea (probablemente, por malas experiencias)
-- **APIs**
+- No permitas acceso sin autenticación
+- No des información de tus usarios a personas no autenticadas
+- Gestión de contraseñas por defecto
+- Usa cifrado por defecto
+- Configuraciones seguras por defecto
 
----
+- CWE:
+    - https://cwe.mitre.org/data/definitions/276.html
+    - https://cwe.mitre.org/data/definitions/636.html
 
-Malos comentarios:
+## Complete Mediation
 
-- Redundantes
-- Falsos
-- Sobre la historia del código
-- Avisando de dónde acaba una sección: eso es que es demasiado larga
-- Atribuciones: git blame!
-- Código comentado
+- Para cada acceso a cada objeto verifica que el usuario tiene los permisos adecuado
+- Verificar los permisos implica que el usuario está autenticado en el sistema
+
+- CWE:
+    - https://cwe.mitre.org/data/definitions/862.html
+    - https://cwe.mitre.org/data/definitions/638.html
+
+## Open Design
+
+- La seguridad del sistema no debe depender de su secreto
+- Evita la "seguridad por oscuridad"
+- En software comercial: reviews internas del código
+
+- CWE:
+    - https://cwe.mitre.org/data/definitions/259.html
+    - https://cwe.mitre.org/data/definitions/656.html
+
+## Isolated compartments
+
+- Contenedores ue gestionen o impidan la comunicación entre componentes y la fuga de información y el control.
+- Restringe la comunicación autorizada entre componentes a rutas observables con interfaces definidas
+- Aislamiento de procesos y memoria, particiones de disco, virtualización, protecciones de software, zonas, puertas de enlace, firewalls, docker, kubernetes
+
+- CWE:
+    - https://cwe.mitre.org/data/definitions/901.html
+    - https://cwe.mitre.org/data/definitions/653.html
+
+## Least Privilege
+
+- Usa los privilegios mínimos necesarios para una tarea y durante el menor tiempo necesario
+- Usa revocación de privilegios cuando ya no sean necesarios
+- Los roles deben ser revisados, acordados y auditados periódicamente
+
+- CWE:
+    - https://cwe.mitre.org/data/definitions/269.html
+    - https://cwe.mitre.org/data/definitions/250.html
+
+## Evidence Production
+
+- Registra las actividades del sistema
+- Deben existir controles suficientes para que se pueda hacer cumplir la responsabilidad de los usuarios y sistemas
+
+- CWE:
+    - https://cwe.mitre.org/data/definitions/778.html
+    - https://cwe.mitre.org/data/definitions/693.html
 
 ## Referencias y resúmenes
 
@@ -197,7 +267,13 @@ Malos comentarios:
 
 - It's probably time to stop recommending Clean Code: https://qntm.org/clean
 
-# Programación segura
+- https://cwe.mitre.org/data/definitions/1006.html#:~:text=CWE%20CATEGORY%3A%20Bad%20Coding%20Practices&text=If%20a%20program%20is%20complex,are%20buried%20in%20the%20code
+
+- <https://www.redhat.com/en/blog/security-design-security-principles-and-threat-modeling>
+
+- https://github.com/OWASP/DevGuide/blob/master/02-Design/01-Principles%20of%20Security%20Engineering.md
+
+# Recomendaciones para Python
 <!-- _class: lead -->
 
 ## Recomendaciones para Python
@@ -397,7 +473,7 @@ ChatGPT propone código con SQL Injection y CoPilot mete vulnerabilidades
 > https://www.elladodelmal.com/2022/12/chatgpt-hace-codigo-con-sql-injection.html?m=1
 > https://www.elladodelmal.com/2022/09/copilot-y-su-codigo-inseguro-o-como-la.html
 
-# Ejemplos: proyectos JavaScript / Python
+# Proyectos JavaScript / Python
 <!-- _class: lead -->
 
 ---
@@ -574,11 +650,38 @@ async def create_user(
 
 - Ejecución: `uvicorn server05:app --reload`
 - Visita: `localhost:8000/help`
+- Problemas: cualquiera puede crear un nuevo usuario
 
 ---
 
 ![](images/server-autodocs.png)
 
+---
+
+```python
+def get_current_username(
+    credentials: Annotated[HTTPBasicCredentials, Depends(security)]
+):
+    current_username_bytes = credentials.username.encode("utf8")
+    correct_username_bytes = b"stanleyjobson"
+    is_correct_username = secrets.compare_digest(
+        current_username_bytes, correct_username_bytes
+    )
+    current_password_bytes = credentials.password.encode("utf8")
+    correct_password_bytes = b"swordfish"
+    is_correct_password = secrets.compare_digest(
+        current_password_bytes, correct_password_bytes
+    )
+    if not (is_correct_username and is_correct_password):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect email or password",
+            headers={"WWW-Authenticate": "Basic"},
+        )
+    return credentials.username
+```
+
+> https://fastapi.tiangolo.com/advanced/security/http-basic-auth/#__tabbed_3_1
 
 ---
 

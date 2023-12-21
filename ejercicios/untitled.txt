@@ -1,0 +1,16 @@
+docker run docker/getting-started
+docker container ls
+docker exec -ti CONTAINER sh
+docker stop CONTAINER
+docker container ls
+docker run -d docker/getting-started
+docker container ls
+docker exec -ti CONTAINER sh
+docker stop CONTAINER
+docker container ls
+docker run -d --rm --name test -p 80:80 -v `pwd`/datos:/datos docker/getting-started
+
+npm init vue@latest
+cd vue-project
+npm install
+npm run dev
