@@ -13,7 +13,7 @@ theme: marp-viu
     the YAML header: section: | */
 </style>
 
-# DevSecOps
+# DevSecOps 
 <!-- _class: first-slide -->
 
 Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
@@ -67,19 +67,6 @@ Cada cambio en el código se testea y despliega en producción en minutos
 
 > https://semaphoreci.com/blog/cicd-pipeline
 
----
-
-![center](images/devops/digiwiseacademy-devops.jpeg)
-
-## Fases
-
-- **Build**: en esta etapa se realiza la compilación de las unidades de código. Herramientas: Maven, Gradle...
-- **Tests**: la prueba de todas las unidades se realiza en esta etapa. Entonces, sabremos dónde exactamente el código tiene errores y, si se encuentran errores, no se continúa a las siguientes etapas. Herramientas: linters, Selenium, PYtest...
-- **Integrar**: en esta etapa, se integran todas las unidades de los códigos. Herramientas: Jenkins.
-- **Despliegue**: en esta etapa, el código se despliega en el entorno del cliente. AlEjemplos: AWS, Docker...
-- **Operar**: las operaciones se realizan en el código si es necesario.Herramienta: Kubernetes, OpenShift...
-- **Monitor**: en esta etapa, el monitoreo de la aplicación se realiza aquí en el entorno del cliente. Herramientas: Nagios, ELK, Splunk, Grafana...
-
 ## Exigencias
 
 - Diseña el sistema de manera que admita versiones iterativas.
@@ -105,24 +92,154 @@ Cada cambio en el código se testea y despliega en producción en minutos
 
 ![center](images/devops/etapas.png)
 
+## DevOps: herramientas
+
+- Repositorios de código (Github, Gitlab, Bitbucket, etc)
+- Infraestructura (Terraform, CloudFormation, etc)
+- CI/CD (Jenkins, Bamboo, CircleCI, TravisCI, etc)
+- Builds (Maven, Gradle, make, rake, etc)
+- Test (*unit, cucumber, protractor, etc)
+- Repositorio de artefactos (Nexus, Artifactory, Docker Hub,
+S3, etc)
+- Despliegue (Ansible, Puppet, Chef, etc)
+- Monitorización (NewRelic, AppDynamics, Sysdig, etc)
+- Logging (Splunk, ELK, etc)
+- Comunicación (Slack, HipChat, etc)
+
 # Etapas
 <!-- _class: lead -->
 
-## Build
+## Fases
 
-![center](images/devops/cicd-simple-1024x241.png)
+- **Build**: en esta etapa se realiza la compilación de las unidades de código. Herramientas: Maven, Gradle...
+- **Tests**: la prueba de todas las unidades se realiza en esta etapa. Entonces, sabremos dónde exactamente el código tiene errores y, si se encuentran errores, no se continúa a las siguientes etapas. Herramientas: linters, Selenium, PYtest...
+- **Integrar**: en esta etapa, se integran todas las unidades de los códigos. Herramientas: Jenkins.
+- **Despliegue**: en esta etapa, el código se despliega en el entorno del cliente. AlEjemplos: AWS, Docker...
+- **Operar**: las operaciones se realizan en el código si es necesario.Herramienta: Kubernetes, OpenShift...
+- **Monitor**: en esta etapa, el monitoreo de la aplicación se realiza aquí en el entorno del cliente. Herramientas: Nagios, ELK, Splunk, Grafana...
 
-- Compilación, y errores de compilación
+---
+
+![center](images/devops/digiwiseacademy-devops.jpeg)
+
+
+## Etapa 1: Build
+
+Análisis estático de código: Static application security testing (SAST)
+
 - Linters
-- Gestión de librerías, y auditoría de librerías
+- Compilación y gestión de errores de compilación
+- Detección de errores comunes de seguridad
+- Auditoría de librerías
+- Gestión de secretos
+- Herramientas: Brakeman (Ruby), SpotBugs+FindSecBugs (Java), Go AST (Go), Bandit (Python), Linters... 
 
-## Build - librerías
+> https://seguridad.prestigia.es/que-son-las-herramientas-sast-y-dast/
+> https://owasp.org/www-community/Source_Code_Analysis_Tools
 
-`npm audit`
+## Etapa 1: Build - linters
 
- Dependabot
+No corrigen errores, sino que usan formatos estandarizados para el código
 
-Ejemplos:
+Ejemplos: [black](https://black.readthedocs.io/en/stable/), [Pylama](https://klen.github.io/pylama/)
+
+```bash
+git clone https://github.com/NetSPI/django.nV
+python3 -m pip install black
+python3 -m black taskManager/views.py
+```
+
+![center](images/example-black.png)
+
+
+## Etapa 1: Build - Análisis de código
+
+Lenguaje|SAST tool
+--|--
+Python|[bandit](https://bandit.readthedocs.io/en/latest/)
+Ruby|Brakeman
+Comerciales|[SonarQube](https://www.sonarsource.com/products/sonarqube/downloads/)
+Secretos|Github secrets, Trufflehog, git-secrets, detect-secrets...
+
+---
+
+Ejemplo: [bandit](https://bandit.readthedocs.io/en/latest/) analiza errores comunes en Python
+
+```bash
+git clone https://github.com/NetSPI/django.nV ; cd django.nV
+python3 -m pip install bandit
+bandit -r .
+```
+
+![w:30em center](images/ejemplo-bandit.png)
+
+---
+
+Ejemplo: [SonarQube](https://www.sonarsource.com/products/sonarqube/downloads/)
+
+![w:25em center](images/ejemplo-sonarqube.png)
+
+## Etapa 1: Build - Auditoría de librerías
+
+Lenguaje|SAST tool
+--|--
+JS|[Retirejs](https://retirejs.github.io/retire.js/)/npm audit/AuditJS
+Python|[Safety](https://github.com/pyupio/safety)
+Ruby|Bundler audit/Chelsea
+PHP|Composer
+Java|OWASP dependency checker
+
+- Estas herramientas comprueban en una base de datos si la librería usada tiene alguna vulnerabilidad conocida
+- ¿Es posible actualizar la librería o asumimos el riesgo?
+- No detectan vulnerabilidades automáticamente: se tiene que analizar periódicamente con bases de datos actualizadas
+
+---
+
+Ejemplo: [Safety](https://github.com/pyupio/safety) analiza librerías Python
+
+```bash
+git clone https://github.com/NetSPI/django.nV ; cd django.nV
+python3 -m pip install safety
+python3 -m safety check -r requirements.txt --save-json safety-resuls.json
+```
+
+![center](images/ejemplo-safety.png)
+
+---
+
+Ejemplo: Pip audit
+
+```bash
+git clone https://github.com/NetSPI/django.nV
+python3 -m pip pip-audit
+pip-audit -r ./requirements.txt
+```
+
+![center](images/ejemplo-pipaudit.png)
+
+---
+
+Ejemplo: npm audit (ya incluido con node)
+
+```
+https://github.com/SasanLabs/VulnerableApp-facade
+cd VulnerableApp-facade/facade-app
+npm audit
+```
+
+![center](images/example-npmaudit.png)
+
+---
+
+Ejemplo: Github Dependabot
+
+![](images/ejemplo-dependabot.png)
+
+Dependabot es un servicio que puedes activar en la configuración de tu proyecto en GitHub
+
+---
+
+Ejemplos de librerías maliciosas:
 
 - https://socket.dev/npm/package/segment-bundle/files/6.6.9/package.json
 - https://socket.dev/npm/package/filebdecoder/files/1.0.0/package.json
@@ -130,7 +247,7 @@ Ejemplos:
 
 > https://twitter.com/feross/status/1672401333893365761
 
-## Tests
+## Etapa 2: Tests
 <!-- _class: smallest-font -->
 
 - ¿Cuál es tu input?
@@ -157,30 +274,7 @@ Ejemplos:
 
 ![center](images/devops/Code-Based-Testing.png)
 
----
-
-https://owasp.org/www-community/Source_Code_Analysis_Tools
-
-- Análisis estático: Brakeman (Ruby), SpotBugs+FindSecBugs (Java), Go AST (Go), Bandit (Python), Linters...
-- Test de contenedores: https://testcontainers.com/
-- Análisis dinámico: Nikto, sqlmap, namp, Gauntlt...
-
----
-
-- https://docs.github.com/en/code-security/code-scanning
-- https://github.com/kaiiyer/awesome-vulnerable
-- https://github.com/appsecco/dvna
-- https://github.com/analysis-tools-dev/static-analysis#javascript
-- https://deepscan.io/pricing/
-- https://www.sonarsource.com/products/sonarlint/
-- https://github.com/designsecurity/progpilot
-- https://github.com/duo-labs/dlinto
-- https://snyk.io/learn/code-security-audit/
-- https://www.sonarsource.com/solutions/security/
-- https://www.codementor.io/learn-programming/performing-security-audit-for-your-code-the-basics
-- https://owasp.org/www-pdf-archive/OWASP_Code_Review_Guide_v2.pdf)
-
-## Application security testing (AST)
+## Etapa 4: despliegue Application security testing (AST)
 
 Estática y dinámica
 
@@ -194,7 +288,7 @@ https://realm3ter.medium.com/analyzing-javascript-files-to-find-bugs-820167476ff
 
 > https://blog.51sec.org/2018/12/from-devops-to-devsecops-topics.html
 
-## Despliegue
+## Etapa 4: despliegue
 
 Manejo de secretos:
 
@@ -205,19 +299,25 @@ Manejo de secretos:
 
 https://gist.github.com/win3zz/0a1c70589fcbea64dba4588b93095855
 
-## DevOps: herramientas
+## Etapa 4: despliegue: análisis dinámico de código
 
-- Repositorios de código (Github, Gitlab, Bitbucket, etc)
-- Infraestructura (Terraform, CloudFormation, etc)
-- CI/CD (Jenkins, Bamboo, CircleCI, TravisCI, etc)
-- Builds (Maven, Gradle, make, rake, etc)
-- Test (*unit, cucumber, protractor, etc)
-- Repositorio de artefactos (Nexus, Artifactory, Docker Hub,
-S3, etc)
-- Despliegue (Ansible, Puppet, Chef, etc)
-- Monitorización (NewRelic, AppDynamics, Sysdig, etc)
-- Logging (Splunk, ELK, etc)
-- Comunicación (Slack, HipChat, etc)
+- Analiza vulnerabilidades de las aplicaciones en funcionamiento
+- Ejemplos: puertos cerrados, protocolos HTTPS para todo, configuraciones correctas...
+
+---
+
+Algunas herramientas:
+
+- NMAP
+- SSLyze
+- [Nikto](https://cirt.net/Nikto2)
+- [Zed Attack Proxy (ZAP)](https://www.zaproxy.org/): web vulnerability scanner, OWASP Top 10.
+- [Dastarly](https://portswigger.net/burp/dastardly) similar a ZAP, pero de la empresa Burp
+- [Nuclei](https://github.com/projectdiscovery/nuclei)
+- Infrastructura y compliance: [Inspec](https://github.com/inspec/inspec), [Ansible](https://www.ansible.com/), [checkov](https://github.com/bridgecrewio/checkov)
+  - Ejemplo: [Linux baseline en inspec](https://github.com/dev-sec/linux-baseline/blob/master/controls/os_spec.rb)
+- Bases de datos de vulnerabilidades a través de agentes: Qualys
+
 
 # Resumen y referencias
 <!-- _class: lead -->
@@ -229,10 +329,21 @@ S3, etc)
 - Tools for testing: https://www.creativebloq.com/features/12-must-have-user-testing-tools
 - Courses: https://javarevisited.blogspot.com/2020/07/5-free-courses-to-learn-devops-in-2020.html
 
----
-<!-- _class: center -->
+--- 
 
-Continúa en: [Ejemplo del curso](07-ejemplo.html)
+
+- https://docs.github.com/en/code-security/code-scanning
+- https://github.com/kaiiyer/awesome-vulnerable
+- https://github.com/appsecco/dvna
+- https://github.com/analysis-tools-dev/static-analysis#javascript
+- https://deepscan.io/pricing/
+- https://www.sonarsource.com/products/sonarlint/
+- https://github.com/designsecurity/progpilot
+- https://github.com/duo-labs/dlinto
+- https://snyk.io/learn/code-security-audit/
+- https://www.sonarsource.com/solutions/security/
+- https://www.codementor.io/learn-programming/performing-security-audit-for-your-code-the-basics
+- https://owasp.org/www-pdf-archive/OWASP_Code_Review_Guide_v2.pdf
 
 # ¡Gracias!
 <!-- _class: last-slide --> 
