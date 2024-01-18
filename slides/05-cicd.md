@@ -13,7 +13,7 @@ theme: marp-viu
     the YAML header: section: | */
 </style>
 
-# DevSecOps
+# CI/CD
 <!-- _class: first-slide -->
 
 Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
@@ -21,37 +21,12 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 # Hoy hablamos de...
 <!-- _class: cool-list toc -->
 
-1. [DevOps](#3)
-1. [Etapas](#13)
-1. [Resumen y referencias](#24)
+1. [CI/CD](#3)
+1. [Ejemplos](#17)
+1. [Resumen y referencias](#27)
 
-# DevOps
+# CI/CD
 <!-- _class: lead -->
-
-## El problema
-
-El código debe ser dinámico dinámico: los desarrolladores están constamentemente añadiendo funcionalidad y arreglando errores
-
-- ¿Cómo podemos automatizar el proceso de analizar la calidad del código?
-- ¿Cómo podemos reducir el tiempo de entrega de la nueva versión del código?
-- ¿Podemos hacer el código más seguro en esta etapa?
-
-DevOps: metodología para que desarrollo, operaciones y seguridad colaboren desde las primeras etapas para automatizar el proceso que lleva desde la programación hasta la entrega derl código
-
-> https://www.edureka.co/blog/devops-tutorial
-
-
-## Problemas de los modelos tradicionales
-
-![center width:40em](images/devops/WaterFall-Model-Challenges-DevOps-Tutorial-Edureka-4.png)
-
-- Demasiado tiempo entre desarrollo y despliegue
-- Tareas manuales no automatizadas
-- Varios equipos tienen que aceptas los cambios
-
-## Nuevo paradigma
-
-![center](images/devops/cicd-pipeline-introduction-1024x422-1.jpg)
 
 ## CI/CD Continuous Integration / Continous Development
 <!-- _class: with-success -->
@@ -69,9 +44,63 @@ Cada cambio en el código se testea y despliega en producción en minutos
 
 ---
 
+"La integración continua es una práctica de desarrollo de software en la que cada miembro de un equipo fusiona sus cambios en un código base junto con los cambios de sus colegas al menos diariamente. Cada una de estas integraciones se verifica mediante una compilación automatizada (incluida la prueba) para detectar errores de integración lo más rápido posible. Los equipos descubren que este enfoque reduce el riesgo de retrasos en la entrega, reduce el esfuerzo de integración y permite prácticas que fomentan una base de código saludable para una mejora rápida con nuevas funciones."
+
+> https://martinfowler.com/articles/continuousIntegration.html
+
+---
+
 ![center](images/devops/digiwiseacademy-devops.jpeg)
 
-## Fases
+## Pipeline de CI/CD
+
+Una *pipeline* de CI/CD es una serie de pasos que se deben realizar para poner en producción una nueva versión de software
+
+En la actualidad, se tiende a ejecutar una *pipeline* completa cada día
+
+![center](images/cicd-redhat.png)
+
+> https://www.redhat.com/en/topics/devops/what-cicd-pipeline
+
+---
+
+Podéis configurar el control de versiones (GitHub, GitLab...) para que ejecute una pipeline después de un evento de Git, especialmente *commit* y *merge*
+
+Ejemplo en estas mismas transparencias: https://github.com/Juanvvc/securecoding/tree/main/.github/workflows
+
+![bg left](images/git-branches.png)
+
+---
+
+1. Cada *commit* debería ejecutar todas las herramientas automáticas de detección de errores
+1. Repara inmediatamente los errores de compilación
+1. Repara los errores de seguridad
+1. La ejecución de todas estas pruebas debe ser rápida...
+1. ...y automática
+1. Automatiza también el despliegue de la aplicación
+
+--- 
+
+Ejemplos:
+
+- Merge Request: BUILD -> TEST -> INTEGRATION
+- Merge to master: BUILD -> TEST -> INTEGRATION -> DEPLOY TO STAGING
+- Tag for release: DOWNLOAD ARTIFACTS -> DEPLOY TO PRODUCTION
+
+## Terminología:
+
+- **Jobs**: comandos para ejecutar
+- **Stages**: pasos en los que se ejecutan los comandos. La pipeline puede intentar ejecutar todos los pasos, o parar si falla alguno
+- **Runners**: máquinas que ejecutan los *jobs*. Generalmente son un servidor *docker* que ejecuta una imagen determinada
+- **Artifacts**: archivos opcionales que se generan en un *stage*. En nuestro caso, son los reportes de las herramientas de seguridad
+
+<!--
+
+Los runners son máquinas virtuales que ejecutan los jobs. Gitlab/github ofrece algunos minutos al mes de runner gratuitos y también se pueden contratar más. También puedes tener el runner ejecutándose en cualquier sitio, incluso en tu casa
+
+-->
+
+## Stages comunes
 
 - **Build**: en esta etapa se realiza la compilación de las unidades de código. Herramientas: Maven, Gradle...
 - **Tests**: la prueba de todas las unidades se realiza en esta etapa. Entonces, sabremos dónde exactamente el código tiene errores y, si se encuentran errores, no se continúa a las siguientes etapas. Herramientas: linters, Selenium, PYtest...
@@ -80,159 +109,223 @@ Cada cambio en el código se testea y despliega en producción en minutos
 - **Operar**: las operaciones se realizan en el código si es necesario.Herramienta: Kubernetes, OpenShift...
 - **Monitor**: en esta etapa, el monitoreo de la aplicación se realiza aquí en el entorno del cliente. Herramientas: Nagios, ELK, Splunk, Grafana...
 
-## Exigencias
-
-- Diseña el sistema de manera que admita versiones iterativas.
-- Métricas que ayuden a detectar problemas en tiempo real.
-- Desarrollo basado en tests para mantener siempre el código en un estado desplegable.
-- Monitoreo, registro y tolerancia a fallas por diseño.
-- Trabaja en pequeñas iteraciones. Por ejemplo, si desarrolla en ramas de características, no deberían vivir más de un día.
-- Uso de entornos de prueba similares a los de producción
-- Si lo desarrollas, lo ejecutas. Los equipos de ingeniería autónomos deben ser responsables de la calidad y la estabilidad del software que construyen
-- Los clientes tienen que poder aceptar cambios contantes
-- El desarrollo Ci/CD puede ser más caro que el tradicional
-
-## Buenas prácticas
-
-- Trata la rama "main" como si pudiese desplegarse en cualquier momento
-- Cada fallo de tests es un bug
-- Mejora los tests
-- No uses ramas de desarrollo enormes
-- Automatiza todo el deployment
-    - Incluida la creación de infraestructura: terraform, ansible, kubernetes...
 
 ---
 
-![center](images/devops/etapas.png)
+![center w:35em](images/github-cicd.png)
 
-# Etapas
+> https://resources.github.com/ci-cd/
+
+---
+
+Ejemplo en GitLab:
+
+```yaml
+stages:   # Dictionary
+ - build   # this is build stage
+ - test    # this is test stage
+ - integration # this is an integration stage
+ - prod       # this is prod/production stage
+
+build:       # this is job named build, it can be anything, job1, job2, etc.,
+  stage: build    # this job belongs to the build stage. Here both job name and stage name is the same i.e., build
+  script:
+    - echo "This is a build step"  # We are running an echo command, but it can be any command.
+    - echo "{\"vulnerability\":\"SQL Injection\"}" > output.json
+  artifacts:      # notice a new tag artifacts
+    paths: [output.json]   # this is the path to the output.json file
+    when: always  # when the artifact is included: always|on_failure|on_success
+    expire_in: never # 2 hrs|3 weeks|6 mos
+
+test:
+  stage: test
+  script:
+    - echo "This is a test step."
+    - exit 1         # Non zero exit code, fails a job.
+  allow_failure: true   #<--- allow the build to fail but don't mark it as such
+
+integration:        # integration job under stage integration.
+  stage: integration
+  script:
+    - echo "This is an integration step."
+
+prod:
+  stage: prod
+  script:
+    - echo "This is a deploy step."
+  when: man
+```
+
+---
+
+![center](images/gitlab-example.png)
+
+![center](images/gitlab-example2.png)
+
+
+## La biblia del CI/CD
+
+1. Prueba los comandos localmente antes de subirlos a la *pipeline* usando una imagen docker
+1. Asegúrate de que la ejecución de una *pipeline* lleva menos de 10 minutos
+1. Guarda la salida para referencia futura y análisis
+1. Considera si las *pipelines* deben interrumpirse si fallan
+
+
+# Ejemplos
 <!-- _class: lead -->
 
-## Build
+Vamos a convertir [DevSecOps](04-devsecops.html) en comandos Docker
 
-![center](images/devops/cicd-simple-1024x241.png)
+## Ejemplo: bandit desde una imagen docker
 
-- Compilación, y errores de compilación
-- Linters
-- Gestión de librerías, y auditoría de librerías
+Ejemplo: [bandit](https://bandit.readthedocs.io/en/latest/) analiza errores comunes en Python
 
-## Build - librerías
+```bash
+git clone https://github.com/NetSPI/django.nV ; cd django.nV
+docker run --rm -v $(pwd):/src --user $(id -u):$(id -g) cytopia/bandit -r /src -f json -o /src/b
+andit-output.json
+```
 
-`npm audit`
+La salida se guarda en el archivo `bandit-output.json`
 
- Dependabot
+## Ejemplo: integrando bandit en CI/CD
 
-Ejemplos:
+![bg right w:100%](images/gitlab-ejemplo1.png)
 
-- https://socket.dev/npm/package/segment-bundle/files/6.6.9/package.json
-- https://socket.dev/npm/package/filebdecoder/files/1.0.0/package.json
-- https://socket.dev/npm/package/123rf-ui-core/files/9.849.9/index.js
-
-> https://twitter.com/feross/status/1672401333893365761
-
-## Tests
-<!-- _class: smallest-font -->
-
-- ¿Cuál es tu input?
-  - ¿Qué pasa si algunos de los parámetros no esá presente, o tiene un tipo no esperado, o está fuera de rango?
-- ¿Cuál es la lógica?
-  - Modificación de la entrada por otros elementos
-  - Código esperando entrada del usaurio
-  - Salidas sin control, o nulas
-  - Timeouts para las salida
-  - ¿Están todos los posibles casos cubiertos?
-  - ¿Son relevantes todos los casos?
-- Interacciones con los datos: CRUD
-  - ¿Autorización para las acciones?
-  - ¿Puedes distinguir entre no autorizado, errores o datos que no existen?
-- Bucles
-  - ¿Siempre acaban?
-  - ¿Salen bien en caso de error?
-
-![bg right:40%](images/common/computer-code-text-programming.jpg)
-
-> [Hris Koleva en twitter](https://twitter.com/hrisKoleva)
+1. Crea un nuevo proyecto en gitlab.com: New Project -> Import
+1. Importa desde URL: <https://gitlab.practical-devsecops.training/pdso/django.nv.git>
+1. Nombre: *securecoding-djangonv*
+1. Menú de la izquierda: Build -> Pipeline editor, o edita directamente el archivo `.gitlab-ci.yml`
 
 ---
 
-![center](images/devops/Code-Based-Testing.png)
+Añade un nuevo *job* y commit:
+
+```yaml
+sast:
+  stage: build
+  script:
+    - docker pull hysnsec/bandit
+    - docker run --user $(id -u):$(id -g) -v $(pwd):/src --rm
+    hysnsec/bandit -r /src -f json -o /src/bandit-output.json
+  artifacts:
+    paths: [bandit-output.json]
+    when: always
+  allow_failure: true
+```
+
+Busca la ejecución en el menú izquierdo, Build -> Pipelones
 
 ---
 
-https://owasp.org/www-community/Source_Code_Analysis_Tools
+Más ejemplos: comprueba si hay secretos
 
-- Análisis estático: Brakeman (Ruby), SpotBugs+FindSecBugs (Java), Go AST (Go), Bandit (Python), Linters...
-- Test de contenedores: https://testcontainers.com/
-- Análisis dinámico: Nikto, sqlmap, namp, Gauntlt...
-
----
-
-- https://docs.github.com/en/code-security/code-scanning
-- https://github.com/kaiiyer/awesome-vulnerable
-- https://github.com/appsecco/dvna
-- https://github.com/analysis-tools-dev/static-analysis#javascript
-- https://deepscan.io/pricing/
-- https://www.sonarsource.com/products/sonarlint/
-- https://github.com/designsecurity/progpilot
-- https://github.com/duo-labs/dlinto
-- https://snyk.io/learn/code-security-audit/
-- https://www.sonarsource.com/solutions/security/
-- https://www.codementor.io/learn-programming/performing-security-audit-for-your-code-the-basics
-- https://owasp.org/www-pdf-archive/OWASP_Code_Review_Guide_v2.pdf)
-
-## Application security testing (AST)
-
-Estática y dinámica
-
-https://about.gitlab.com/blog/2019/08/12/developer-intro-sast-dast/
-
-https://realm3ter.medium.com/analyzing-javascript-files-to-find-bugs-820167476ffe
+```yaml
+git-secrets:
+  stage: build
+  script:
+    - docker run --user $(id -u):$(id -g) -v $(pwd):/src --rm 
+    hysnsec/trufflehog --repo_path /src file:///src --json | tee trufflehog-output.json
+  artifacts:
+    paths: [trufflehog-output.json]
+    when: always
+    expire_in: one week
+  allow_failure: true
+```
 
 ---
 
-![center w:35em](images/devops/sast-dast.png)
+Más ejemplos: NMAP
 
-> https://blog.51sec.org/2018/12/from-devops-to-devsecops-topics.html
+```yaml
+# DAST using nmap, during integration stage
+dast-nmap:
+  stage: integration
+  script:
+    - docker pull hysnsec/nmap
+    - docker run --rm --user $(id -u):$(id -g) -v $(pwd):/tmp hysnsec/nmap $PROD_SERVER -oX /tmp/nmap-output.xml
+  artifacts:
+    paths: [nmap-output.xml]
+    when: always
+    expire_in: one week
+  allow_failure: true
+```
 
-## Despliegue
+## Gestión de secretos
 
-Manejo de secretos:
+En el ejemplo anterior, fíjate en la variable: PROD_SERVER
 
-- AWS Secret Management
-- Azure Key Vault
-- Secret Manager (GCP)
-- GitHub secret scanning
+Puedes gestionar variables en Settings -> CI/CD Variables
 
-https://gist.github.com/win3zz/0a1c70589fcbea64dba4588b93095855
+![](images/gitlab-secrets.png)
 
-## DevOps: herramientas
+---
 
-- Repositorios de código (Github, Gitlab, Bitbucket, etc)
-- Infraestructura (Terraform, CloudFormation, etc)
-- CI/CD (Jenkins, Bamboo, CircleCI, TravisCI, etc)
-- Builds (Maven, Gradle, make, rake, etc)
-- Test (*unit, cucumber, protractor, etc)
-- Repositorio de artefactos (Nexus, Artifactory, Docker Hub,
-S3, etc)
-- Despliegue (Ansible, Puppet, Chef, etc)
-- Monitorización (NewRelic, AppDynamics, Sysdig, etc)
-- Logging (Splunk, ELK, etc)
-- Comunicación (Slack, HipChat, etc)
+```yaml
+inspec:
+  stage: prod
+  only:
+    - main
+  environment: production
+  before_script:
+    - mkdir -p ~/.ssh
+    - echo "$DEPLOYMENT_SERVER_SSH_PRIVKEY" | tr -d '\r' > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - eval "$(ssh-agent -s)"
+    - ssh-add ~/.ssh/id_rsa
+    - ssh-keyscan -t rsa $DEPLOYMENT_SERVER >> ~/.ssh/known_hosts
+  script:
+    - docker run --rm -v ~/.ssh:/root/.ssh -v $(pwd):/share \\
+    hysnsec/inspec exec https://github.com/dev-sec/linux-baseline \\
+    -t ssh://root@$DEPLOYMENT_SERVER -i ~/.ssh/id_rsa \\
+    --chef-license accept --reporter json:/share/inspec-output.json
+  artifacts:
+    paths: [inspec-output.json]
+    when: always
+```
+
+##  Defect Dojo
+
+<https://www.defectdojo.org/>
+
+Gestión de vulnerabilidades e informes de CI/CD
+
+![center w:20em](images/defectdojo.png)
+
+---
+
+
+```yaml
+sast:
+  stage: build
+  before_script:
+    - apk add py-pip py-requests
+  script:
+    - docker pull hysnsec/bandit
+    - docker run --user $(id -u):$(id -g) -v $(pwd):/src --rm \\
+    hysnsec/bandit -r /src -f json -o /src/bandit-output.json
+  after_script:
+    - python3 upload-results.py --host $DOJO_HOST \\
+    --api_key $DOJO_API_TOKEN --engagement_id 1 \\
+    --product_id 1 --lead_id 1 --environment "Production" \\
+    --result_file bandit-output.json --scanner "Bandit Scan"
+  artifacts:
+    paths: [bandit-output.json]
+    when: always
+```
 
 # Resumen y referencias
 <!-- _class: lead -->
 
 ## Referencias
 
-- https://semaphoreci.com/blog/cicd-pipeline
-- https://www.edureka.co/blog/devops-tutorial
-- Tools for testing: https://www.creativebloq.com/features/12-must-have-user-testing-tools
-- Courses: https://javarevisited.blogspot.com/2020/07/5-free-courses-to-learn-devops-in-2020.html
-
----
-<!-- _class: center -->
-
-Continúa en: [Ejemplo del curso](07-ejemplo.html)
+- [Continuous Integration](https://martinfowler.com/articles/continuousIntegration.html), Martin Fowler
+- [CI/CD: The what, why, and how](https://resources.github.com/ci-cd/)
+- [What is CI/CD?](https://www.redhat.com/en/topics/devops/what-is-ci-cd)
+- [ Introducción a CI/CD con GitLab (video)](https://www.youtube.com/watch?v=I2qztG7vxPQ)
+- [CI/CD Pipeline: A Gentle Introduction](https://semaphoreci.com/blog/cicd-pipeline)
+- [CI/CD en Gitlab](https://docs.gitlab.com/ee/ci/)
+- [CI/CD en Github](https://github.blog/2022-02-02-build-ci-cd-pipeline-github-actions-four-steps/)
 
 # ¡Gracias!
 <!-- _class: last-slide --> 
