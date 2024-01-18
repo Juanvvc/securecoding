@@ -28,7 +28,7 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 # CI/CD
 <!-- _class: lead -->
 
-## CI/CD Continuous Integration / Continous Development
+## CI/CD Continuous Integration / Continous Delivery
 <!-- _class: with-success -->
 
 - Compila código
