@@ -60,10 +60,10 @@ Intereses:
 
 ## Intrucciones de uso de las transparencias
 
-- Acceso directo HTML: <http://juanvvc.github.io/crypto>
+- Acceso directo HTML: <http://juanvvc.github.io/securecoding>
     - Pulsa `p` para notas de presentación
     - Puedes "Imprimir a PDF" las presentaciones si usas Chrome o Edge, pero no en Firefox o Safari
-- Código Markdown: <https://github.com/juanvvc/crypto>
+- Código Markdown: <https://github.com/juanvvc/securecoding>
 
 Es muy recomendable seguir los enlaces que aparecen en la presentación
 
