@@ -22,7 +22,7 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 # Hoy hablamos de...
 <!-- _class: cool-list toc -->
 
-1. [Contenedores](#3)
+1. [Contenedores Docker](#3)
 
 # Contenedores Docker
 <!-- _class: lead -->

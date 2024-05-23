@@ -21,12 +21,12 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 # Hoy hablamos de...
 <!-- _class: cool-list toc -->
 
-1. [Análisis de riesgos y modelado de Amenazas](#3)
-1. [¿En qué estamos trabajando?](#12)
-1. [¿Qué puede salir mal?](#26)
-1. [¿Qué podemos hacer para arreglarlo?](#42)
-1. [¿Hemos hecho un buen trabajo?](#52)
-1. [Referencias y ejercicios](#57)
+1. [Threat Modeling - Modelo de amenazas](#3)
+1. [¿En qué estamos trabajando?](#13)
+1. [¿Qué puede salir mal?](#28)
+1. [¿Qué podemos hacer para arreglarlo?](#45)
+1. [¿Hemos hecho un buen trabajo?](#57)
+1. [Referencias y ejercicios](#63)
 
 # Threat Modeling - Modelo de amenazas
 <!-- _class: lead -->
@@ -113,6 +113,16 @@ Las amenazas existen por sí solas, pero tiene que haber un agente capaz de expl
     - **Trazabilidad**: controles que permiten descubrir qué ha pasado: logs
 
 > https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html
+
+## Tipos de errores
+
+Término|Definición|Detección
+--|--|--
+Defecto/Bugs|Imperfección en el desarrollo del software. Un *bug* es como informalmente nos referimos a los defectos|Durante el desarrollo y el testeo
+Errores|Defectos introducidos por los humanos al escribir el código|Durante el desarrollo, "fácil"
+Fallos|El sistema no se comporta como se espera debido a algún defecto|Durante el testeo, "difícil"
+
+> https://www.baeldung.com/cs/software-testing-defect-bug-error-and-failure
 
 ## Fases genéricas del análisis de amenazas
 
@@ -256,6 +266,12 @@ CodiMD:
 
 ![center w:20em](images/threatmod/Use_case_restaurant_model.svg)
 
+## Creación de historias
+
+"Como  **tipo-de-usario**, quiero **característica** para recibir **beneficio** pero también **indeseado**"
+
+Ejemplos de aplicación: https://github.com/OpenSecuritySummit/project-ASVS-User-Stories
+
 ## Resumen
 
 - Dibuja los eventos que maneja el sistema
@@ -279,7 +295,7 @@ CodiMD:
 
 En vez de añadir características a tu producto, identifica qué quiere realmente el usuario, sus preocupaciones, y dale soluciones
 
-## Metodología
+## Identificación
 
 - [OWASP Top 10](https://owasp.org/www-project-top-ten/)
 - [STRIDE](https://www.microsoft.com/en-us/security/blog/2007/09/11/stride-chart/)
@@ -289,7 +305,8 @@ En vez de añadir características a tu producto, identifica qué quiere realmen
 - [Mitre CAPEC](https://capec.mitre.org/)
 - [Magerit](https://administracionelectronica.gob.es/pae_Home/pae_Documentacion/pae_Metodolog/pae_Magerit.html)
 - [STRIPED](https://dl.acm.org/doi/10.1145/3538969.3538970)
-- ...
+- [VAST Visual Agile Simple Threat Modeleling](https://threatmodeler.com/)
+- [Hybrid Threat Modeling Method HTMM](https://insights.sei.cmu.edu/documents/2308/2018_004_001_516627.pdf)
 
 ## Debilidad
 
@@ -389,6 +406,20 @@ Elevation of Privilege: https://www.microsoft.com/en-gb/download/confirmation.as
 
 OWASP Cornucopia: https://owasp.org/www-project-cornucopia/
 
+## OWASP ASVS
+
+[OWASP Application Security Verification Standard (ASVS)](https://owasp.org/www-project-application-security-verification-standard/) es:
+
+- Base para des controles técnicos de seguridad de las aplicaciones web
+- Lista de requisitos para un desarrollo seguro de aplicaciones web
+
+Usos:
+
+- Como métrica: grado de confianza que se puede depositar en sus aplicaciones web
+- Como guía: qué incorporar a los controles de seguridad para satisfacer los requisitos
+- Como estándar: requisitos de verificación de seguridad de las aplicaciones en los contratos
+
+
 ## Brainstorming
 <!-- _class: two-columns -->
 
@@ -403,10 +434,12 @@ OWASP Cornucopia: https://owasp.org/www-project-cornucopia/
 
 > https://bandaancha.eu/articulos/asi-han-robando-cuentas-whatsapp-10754
 
+
 # ¿Qué podemos hacer para arreglarlo?
 <!-- _class: lead -->
 
 ## Análisis de riesgos
+<!-- _class: with-success -->
 
 Se puede hacer un análisis desde el punto de vista de...
 
@@ -416,18 +449,30 @@ Se puede hacer un análisis desde el punto de vista de...
 
 > https://csrc.nist.gov/publications/detail/sp/800-30/rev-1/final
 
+Objetivo: priorizar los defectos encontrados durante las fases anteriores
+
 <!--
 Aunque hay otras metodologías, en esta clase nos vamos a centrar en el análisis de riesgos desde el punto de vista de amenanzas
 -->
 
+## Risk Rating Methodologies
+
+- [Guide for Conducting Risk Assessments. NIST SP 800-30 Rev. 1](https://csrc.nist.gov/pubs/sp/800/30/r1/final)
+- [OWASP Risk Rating Methodology](https://owasp.org/www-community/OWASP_Risk_Rating_Methodology)
+- [DREAD](https://learn.microsoft.com/en-us/archive/blogs/david_leblanc/dreadful) Microsoft
+- [Rapid Risk Assessment](https://infosec.mozilla.org/guidelines/risk/rapid_risk_assessment.html) Mozilla
+- [Bug Bar](https://www.microsoft.com/en-us/securityengineering/sdl/practices) (Practice 3) Microsoft
+- [Common Vulnerability Scoring System SIG
+ CVSS](https://www.first.org/cvss/)
+
 ## OWASP: Risk Rating Methodology
 
-- Step 1: Identifying a Risk
-- Step 2: Factors for Estimating Likelihood: agents and vulnerabilities
-- Step 3: Factors for Estimating Impact: technical and business
-- Step 4: Determining Severity of the Risk
-- Step 5: Deciding What to Fix: priorities
-- Step 6: Customizing Your Risk Rating Model
+- Paso 1: Identificación del riesgo
+- Paso 2: Factores para estimar la Probabilidad: agentes y vulnerabilidades
+- Paso 3: Factores para estimar la Probabilidad: técnicos y negocio
+- Paso 4: Determinar la severidad del riesgo
+- Paso 5: ¿Qué hacemos?
+- Paso 6: Mejora el modelo de riesgos
 
 > https://owasp.org/www-community/OWASP_Risk_Rating_Methodology
 
@@ -443,7 +488,43 @@ El objetivo final de un análisis de riesgos es decidir qué priorizar, qué ten
 Por ejemplo: el impacto de que se haya un terremoto en la sede de la compañía es muy alto, pero... ¿cuál es el riesgo? Alto en Perú, muy pequeño en España.
 -->
 
-## OWASP: Risk Rating Methodology
+
+## Paso 1: Identificación del riesgo
+
+- Los que han aparecido durante las fases anteriores
+- Kill Chain
+- Matriz de Mitre
+- Experiencia
+
+---
+
+Inspiración: MITRE y la Kill Chain
+
+![](images/threatmod/mitre-killchain.png)
+
+---
+
+La Kill Chain unificada
+
+![center](https://upload.wikimedia.org/wikipedia/commons/c/c2/The_Unified_Kill_Chain.png)
+
+---
+
+Matriz de MITRE
+
+https://attack.mitre.org/
+
+https://mitre-attack.github.io/attack-navigator/
+
+https://top-attack-techniques.mitre-engenuity.org/
+
+https://top-attack-techniques.mitre-engenuity.org/calculator
+
+https://mitre-attack.github.io/attack-navigator/#layerURL=https://center-for-threat-informed-defense.github.io/insider-threat-ttp-kb/green_seen_v1_v2.json
+
+![bg right w:100%](images/threatmod/mitre.png)
+
+## Paso 4: Determinar la severidad del riesgo
 <!-- _class: with-success two-columns-->
 
 
@@ -463,41 +544,50 @@ Riesgo = Probabilidad * Impacto
 
 > https://csrc.nist.gov/publications/detail/sp/800-30/rev-1/final
 
-##  Evaluación de riesgos
+---
 <!-- _class: with-success -->
 
 - Un riesgo es alto si es fácil de atacar y produce un impacto alto
 - Un riesgo es bajo cuando es complicado de atacar y el impacto es bajo
 
-riesgo = impacto * probabilidad
+Riesgo = Probabilidad * Impacto
 
 ![bg right w:90%](images/threatmod/evaluacionderiesgos.png)
 
 > Magerit: https://administracionelectronica.gob.es/pae_Home/pae_Documentacion/pae_Metodolog/pae_Magerit.html
 
-## Metodología
+## Paso 5: ¿Qué hacemos con el riesgo?
+<!-- _class: with-info two-columns smaller-font -->
 
-- Kill Chain
-- Matriz de Mitre
-- Experiencia
-- OWASP: https://owasp.org/www-community/OWASP_Risk_Rating_Methodology
-- NIST: https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-30r1.pdf
+- **Evitar el riesgo**: dejar de hacer algo. Ejemplos:
+    - No permitas que se suban fotografías a un perfil
+    - Utiliza redes cableadas
+    - No utilizar librerías externas
+- **Mitigar el riesgo**. Ejemplos:
+    - Usar TLS para cifrar las comunicaciones
+    - Reducir cross-site-scripting implementando políticas
+    - Cifrar dispositivos con Birlocker
+    - Uso de cortafuegos
+    - Usar solo librerías auditadas
 
-## Inspiración: MITRE y la Kill Chain
+<!-- -->
 
-![](images/threatmod/mitre-killchain.png)
+- **Aceptar el riesgo**: probabilidad de impacto bajo. Siempre existe un riesgo resedual incluso después de evitar/mitigar riesgos. Ejemplos:
+    - Secretos gestionados por al menos tres personas
+    - Poner un tamaño máximo de XML para parsear
+    - trusted admins that go rogue?
+- **Transferir el riesgo**: que sean otros
+    - Uso de MFA: el riesgo se transfiere al usuario
+    - Uso de librerías comerciales
+    - Externalizar la seguridad
+- **Ignorar el riesgo**: ¡nunca lo hagas!
 
-## La Kill Chain unificada
+Los riesgos no pueden eliminarse totalmente, pero pueden llevarse hasta niveles aceptables
 
-![center](https://upload.wikimedia.org/wikipedia/commons/c/c2/The_Unified_Kill_Chain.png)
+<!--
+Aviso importante: los ejemplos de esta slide no son recomendaciones, son ejemplos de decisiones que puedes tomar o no para tu aplicación. Fíjate que algunos son contradictorios entre sí
+-->
 
-## Matriz de MITRE
-
-https://attack.mitre.org/
-
-https://mitre-attack.github.com/attack-navigator
-
-![center w:20em](images/threatmod/mitre.png)
 
 # ¿Hemos hecho un buen trabajo?
 <!-- _class: lead -->
@@ -531,13 +621,25 @@ https://mitre-attack.github.com/attack-navigator
 - Documenta el trabajo hecho
 - El informe debería tratarse como algo confidencial
 
-## Threat Modelling como código
+## Herramientas
 
-https://www.threatdragon.com/
+- [Diagrams.net](https://app.diagrams.net/) More Diagrams -> Data Flow
+- [OWASP Threat Dragon](https://owasp.org/www-project-threat-dragon/)
+- [pyTM](https://github.com/izar/pytm): Threat Modeling as code. It can generate DFDs, sequence diagrams and reveal threats to your system
 
-https://github.com/izar/pytm
+---
 
-![bg right w:90%](https://raw.githubusercontent.com/izar/pytm/master/docs/pytm-logo.svg)
+Threagile: <https://github.com/Threagile/threagile>
+
+```bash
+docker run --rm -it --user $(id -u):$(id -g) \\
+   -v "$(pwd)":/app/work threagile/threagile -create-example-model -output /app/work
+docker run --rm -it --user $(id -u):$(id -g) \\
+   -v $(pwd):/app/work threagile/threagile -verbose \\
+   -model /app/work/threagile-example-model.yaml -output /app/work
+```
+
+![w:20em center](images/threatmod/threagile.png)
 
 # Referencias y ejercicios
 <!-- _class: lead -->

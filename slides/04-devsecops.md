@@ -22,8 +22,8 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 <!-- _class: cool-list toc -->
 
 1. [DevOps](#3)
-1. [Etapas](#13)
-1. [Resumen y referencias](#24)
+1. [Etapas](#12)
+1. [Resumen y referencias](#33)
 
 # DevOps
 <!-- _class: lead -->
