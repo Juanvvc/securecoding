@@ -656,10 +656,17 @@ docker run --rm -it --user $(id -u):$(id -g) \\
 
 ## Ejercicio
 
-- Escoge una sistema cualquiera de tu interés: una aplicación web con interfaz móvil, redes de drones...
-- Dibuja un diagrama de la aplicación, identificando las zonas de confianza y los flujos de datos (1 páginas)
-- Haz un análisis STRIDE (1-2 páginas)
-- Plantea mitigaciones para cada amenaza STRIDE que identifiques (1 página)
+- Escoge una sistema cualquiera de tu interés: una aplicación web con interfaz móvil, redes de drones, sistema médico como el que hemos visto en la sesión...
+- Dibuja un modelo de la aplicación, identificando las zonas de confianza y los flujos de datos
+- Haz un análisis STRIDE de las amenazas que identifiques
+- Plantea mitigaciones para cada amenaza STRIDE que identifiques
+- Prioriza los riesgos encontrados
+
+El objetivo no es encontrar todos los problemas de seguridad de una aplicación, sinó aplicar los pasos modelado, análisis, mitigaciones, priorización.
+
+La extensión esperada del documento es unas 5 páginas
+
+Entrega en PDF
 
 # ¡Gracias!
 <!-- _class: last-slide --> 
