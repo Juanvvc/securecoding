@@ -31,12 +31,11 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 <!-- _class: cool-list toc -->
 
 1. [Mayores vulnerabilidades de código](#4)
-1. [Secure System Design Principles](#14)
-1. [Recomendaciones para Python](#25)
-1. [Librerías y dependencias](#35)
-1. [Proyectos JavaScript / Python](#39)
-1. [Ejemplos](#48)
-1. [Referencias](#58)
+1. [Secure System Design Principles](#11)
+1. [Recomendaciones y ejemplos](#23)
+1. [Proyectos, librerías y dependencias](#36)
+1. [Ejemplos](#51)
+1. [Referencias](#61)
 
 # Mayores vulnerabilidades de código
 <!-- _class: lead -->
