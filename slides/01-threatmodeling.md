@@ -53,10 +53,10 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 
 ## Ciclo de vida del desarrollo
 
-- Aplica de forma continua durante todo ciclo de vida del desarrollo de software.
+- Se modela de forma continua durante todo ciclo de vida del desarrollo de software.
 - Modelado inicial: fase de planificación y diseño para tener una vista general de lo que estamos construyendo.
-- A medida que se avanza en el ciclo de vida, el modelado se va detallando para capturar más detalles de nuestra apliacación.
-- A medidas que se avanza el proceso de modelado debería examinar, diagnosticar y tratar las amenazas encontradas.
+- Evolución: El modelo se va detallando para capturar más detalles de la aplicación
+- Aplicación: examinar, diagnosticar y tratar las amenazas encontradas.
 
 ![bg left:40% w:90%](images/threatmod/ciclodevida.png)
 
@@ -72,10 +72,10 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 ## Workflow, the agile way
 
 - Escoge una "historia" de tu aplicación
-- Dibuja un digrama de datos/proceso
+- Dibuja un diagrama de datos/proceso
 - Aplica una metología de identificación de amenazas
 - Maneja las amenazas identificadas
-- Chequeo contínuo
+- Chequeo continuo
 
 > https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html
 
@@ -152,8 +152,10 @@ Tecnología:
 - Aplicación en el teléfono móvil que envía datos al servidor
 - AMPSCS: servidor que recibe los datos
     - API para el móvil
-    - Backend
-    - Frontend para doctores
+    - *Backend*
+    - *Frontend* para doctores
+
+> https://www.mitre.org/sites/default/files/publications/Playbook-for-Threat-Modeling-Medical-Devices.pdf
 
 ## Ejemplo 2: CodiMD
 
@@ -165,7 +167,7 @@ Tecnología:
 
 ## Metodología
 
-- Brainstorming estructurado
+- *Brainstorming* estructurado
 - Diagramas del sistema
     - Actores
     - Casos de uso
@@ -181,7 +183,6 @@ Tecnología:
 ![center w:30em](images/threatmod/diagramaflujo.png)
 
 > https://github.com/adamshostack/DFD3/
-
 
 ## Brainstorming
 
@@ -566,7 +567,7 @@ Riesgo = Probabilidad * Impacto
 - **Mitigar el riesgo**. Ejemplos:
     - Usar TLS para cifrar las comunicaciones
     - Reducir cross-site-scripting implementando políticas
-    - Cifrar dispositivos con Birlocker
+    - Cifrar dispositivos con Bitlocker
     - Uso de cortafuegos
     - Usar solo librerías auditadas
 
@@ -655,10 +656,17 @@ docker run --rm -it --user $(id -u):$(id -g) \\
 
 ## Ejercicio
 
-- Escoge una sistema cualquiera de tu interés: una aplicación web con interfaz móvil, redes de drones...
-- Dibuja un diagrama de la aplicación, identificando las zonas de confianza y los flujos de datos (1 páginas)
-- Haz un análisis STRIDE (1-2 páginas)
-- Plantea mitigaciones para cada amenaza STRIDE que identifiques (1 página)
+- Escoge una sistema cualquiera de tu interés: una aplicación web con interfaz móvil, redes de drones, sistema médico como el que hemos visto en la sesión...
+- Dibuja un modelo de la aplicación, identificando las zonas de confianza y los flujos de datos
+- Haz un análisis STRIDE de las amenazas que identifiques
+- Plantea mitigaciones para cada amenaza STRIDE que identifiques
+- Prioriza los riesgos encontrados
+
+El objetivo no es encontrar todos los problemas de seguridad de una aplicación, sinó aplicar los pasos modelado, análisis, mitigaciones, priorización.
+
+La extensión esperada del documento es unas 5 páginas
+
+Entrega en PDF
 
 # ¡Gracias!
 <!-- _class: last-slide --> 
