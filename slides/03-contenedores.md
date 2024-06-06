@@ -1,6 +1,6 @@
 ---
 marp: true
-title: Código seguro - Kubernetes
+title: Código seguro - Contenedores
 paginate: true
 footer: '[Inicio](index.html)'
 headingDivider: 2
@@ -13,7 +13,7 @@ theme: marp-viu
     the YAML header: section: | */
 </style>
 
-# Orquestación
+# Distribución de aplicaciones: contenedores y microservicios
 <!-- _class: first-slide -->
 
 Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
@@ -24,11 +24,18 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 <!-- _class: cool-list toc -->
 
 1. [De aplicaciones a contenedores](#3)
-1. [Kubernetes](#10)
-1. [References](#28)
+1. [Contenedores Docker](#13)
+1. [Orquestadores](#17)
+1. [Kubernetes](#23)
+1. [Referencias](#41)
 
 # De aplicaciones a contenedores
 <!-- _class: lead -->
+
+---
+
+![center](images/devops/digiwiseacademy-devops.jpeg)
+
 
 ## Containers: máquinas de usar y tirar
 
@@ -37,13 +44,97 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 - Los datos persistentes se guardan en **volúmenes**
 - Puedes crear **networks** aisladas (o no) para comunicar los containers entre sí
 
-![bg right w:90%](images/docker-logo.png)
+![bg right w:90%](images/containers/docker-logo.png)
+
+
+## ¿Qué es un contenedor?
+
+Es como una máquina virtual... pero no
+
+![center w:40em](images/containers/vm-docker.png)
+
+> https://www.ubuntupit.com/everything-you-need-to-know-about-linux-containers-lxc/
+
+## Ventajas de los contenedores
+
+- Comparado con VMs: más rápidos de empezar y acabar
+- Seguridad:
+    - Sistema aislado: solo ven la parte del sistema que les dejas ver
+    - Pueden conectarse entre ellos
+- Portabilidad: arregla "en mi PC funciona":
+    - Gestión de "snapshots"
+    - Dependencias "autocontenidas"
+    - Fácil instalación y compartición
+---
+<!-- _class: with-success -->
+
+- Auditable:
+    - Inicio rápido y consistente
+    - Descritos en un archivo de texto que puede auditarse fácilmente
+    - Gestión del ciclo de vida
+- Escalabilidad:
+    - Pueden crearse y destruirse rápidamente
+    - PUeden conectarse entre ellos
+- Tolerancia a fallos:
+    - El gestor de contenedores detecta cuándo uno ha fallado y lo reinicia automáticamente
+
+Los contenedores son ideales para microservicios
+
+## Microservicios
+
+Uso de múltiples componentes de software independientes para crear una aplicación
+
+Ejemplo: contenedores para:
+
+- Base de datos
+- Proxy SSL
+- Balanceador
+- Frontend web
+- API
+
+---
+
+![center w:25em](images/containers/microservices.png)
+
+> https://online.visual-paradigm.com/diagrams/templates/ibm-cloud-architecture-diagram/microservices-diagram/
+
+## Desventajas de los contenedores
+
+- Un contenedor no es una máquina virtual: si un atacante "escapa", tiene acceso a todo el sistema
+- Un contenedor puede estar desactualizado
+- Puede tener sus propios problemas de seguridad
+
+## Terminología
+
+- **Imágenes**: "snapshot" de un sistema. Es el "estado inicial" de un contenedor
+- **Contenedor**: un sistema ejecutándose
+- **Volumen**: "pendrive" o "carpeta compartida" entre sistemas. Se usa para persistencia y configuraciones
+
+
+# Contenedores Docker
+<!-- _class: lead -->
+
+---
+
+Seguimos en:
+
+<https://github.com/Juanvvc/securecoding/blob/main/ejercicios/docker/04-docker.ipynb>
+
+## Ciclo de vida de un contenedor
+
+![center w:30em](images/containers/docker-lifecycle.png)
+
+> https://faun.pub/introduction-to-docker-life-cycle-3bf3aeba883
 
 ## ¿Cómo organizamos todo esto?
+
+![center w:15em](images/containers/microservices.png)
 
 - Aplicaciones simples: docker-compose
 - Aplicaciones complejas: Orquestadores
 
+# Orquestadores
+<!-- _class: lead -->
 
 ## Orquestadores
 
@@ -58,24 +149,32 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 ## Más populares
 
 - Kubernetes:
-    - “Núcleo Linux” para sistemas distribuidos
+    - "Núcleo Linux" para sistemas distribuidos
 - Docker Swarm:
     - Respuesta de Docker a la orquestación de contenedores
 - Mesos
     - Manejador de clúster
     - Frameworks (Marathon) para equiparar con Swarm y Kubernetes
 
-![bg right w:90%](images/kubernetes/Kubernetes-logo.png)
+![bg right w:90%](images/containers/Kubernetes-logo.png)
 
 
 ---
 
-![](images/docker-swamp.png)
-
+![](images/containers/docker-swamp.png)
 
 ---
 
-![](images/marathon.png)
+![](images/containers/marathon.png)
+
+## Seguridad
+
+- Los contenedores se crean muy rápido, y es posible cometer errores de configuración, bugs o librerías desactualizadas
+- Pérdida de visibilidad de dónde está cada recurso de la empresa
+- Monitorización de cientos de contenedores parar errors de seguridad
+- Tecnología cambiante y nueva que necesita de nuevas habilidades
+
+> https://www.veritas.com/blogs/the-10-biggest-challenges-of-deploying-containers
 
 # Kubernetes
 <!-- _class: lead -->
@@ -92,21 +191,21 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 
 ---
 
-![](images/kubernetes/kubernetes-infra.png)
+![](images/containers/kubernetes-infra.png)
 
 ---
 
-![](images/kubernetes/kubernetes-flow.png)
+![](images/containers/kubernetes-flow.png)
 
 ---
 
-![](images/kubernetes/kubernetes-google.png)
+![](images/containers/kubernetes-google.png)
 
 > https://www.youtube.com/watch?v=Rl5M1CzgEH4
 
 ## Docker and Kubernetes
 
-![](images/kubernetes/kubernetes-dockerconfig.png)
+![](images/containers/kubernetes-dockerconfig.png)
 
 ## Interfaces
 <!-- _class: two-columns -->
@@ -126,7 +225,7 @@ NAME                                  READY   STATUS    RESTARTS       AGE
 kubernetes-bootcamp-d9b4bdd78-trhhh   1/1     Running   1 (114s ago)   26h
 ```
 
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -150,11 +249,11 @@ spec:
 
 ---
 
-![center w:35em](images/kubernetes/kubernetes-dashboard.png)
+![center w:35em](images/containers/kubernetes-dashboard.png)
 
 ## Control plane
 
-![bg left w:80%](images/kubernetes/kubernetes-controlpane.png)
+![bg left w:80%](images/containers/kubernetes-controlpane.png)
 
 - kube-apiserver:
     - Punto de interactuación
@@ -178,7 +277,7 @@ maestro
     - Rkt (CoreOS)
     - y otros
 
-![bg left w:80%](images/kubernetes/kubernetes-node.png)
+![bg left w:80%](images/containers/kubernetes-node.png)
 
 ## Pod
 
@@ -186,11 +285,11 @@ maestro
 - Puede contener uno o más contenedores
 - Similar a un solo docker-compose
 
-![bg left w:80%](images/kubernetes/kubernetes-pod.png)
+![bg left w:80%](images/containers/kubernetes-pod.png)
 
 ---
 
-![](images/kubernetes/kubernetes-pod2.png)
+![](images/containers/kubernetes-pod2.png)
 
 ## Health checks
 
@@ -211,11 +310,11 @@ Puedes asignar labels a los pods, para seleccionarlos desde otros pods
 - Basados en igualdad
 - Basados en expresiones
 
-![bg left w:80%](images/kubernetes/kubernetes-selector.png)
+![bg left w:80%](images/containers/kubernetes-selector.png)
 
 ## Redes
 
-- Redes de “pods”
+- Redes de "pods"
     - Red dentro del clúster para la comunicación entre Pods
     - CNI (Container Network Interface) plugin
 - Redes de servicios
@@ -243,13 +342,16 @@ Forma de acceder a los Pods desde el exterior
 
 ---
 
-![](images/kubernetes/kubernetes-balancer.png)
+![](images/containers/kubernetes-balancer.png)
 
-# References
+# Referencias
 <!-- _class: lead -->
 
 ---
 
+
+- [Tutorial de Docker](https://docs.docker.com/get-started/)
+- [The evolution of containers: Docker, Kubernetes and the future](https://www.techtarget.com/searchitoperations/feature/Dive-into-the-decades-long-history-of-container-technology)
 - [Kubernetes Tutorial](https://kubernetes.io/es/docs/tutorials/), intereactivo y muy recomendable
 - [The Kubernetes Learning Slides](https://docs.google.com/presentation/d/13EQKZSQDounPC1I6EC4PmqaRmdCrpT3qswQJz9KRCyE/edit#slide=id.g7cd09fc403_101_0), con muchos recursos, explicaciones y sobre todo enlaces a documentación más extensa
 - [CI/CD Pipelines with Kubernetes | Best Practices and Tools](https://www.containiq.com/post/cicd-pipelines-with-kubernetes)

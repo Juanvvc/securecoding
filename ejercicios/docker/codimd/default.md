@@ -8,7 +8,7 @@ title: 000000 - Informe de resultados
 #NCDtlp: 1
 #NCDcliente: CLIENTE
 #header-includes: |-
-#   \title{\color{IncideColorOriginal} \Huge Informe de resultados}
+#   \title{\Huge Informe de resultados}
 #    \hypersetup{pdfinfo={
 #        Title={Informe de resultados},
 #        Keywords={\NCDcaso INCIDE},
