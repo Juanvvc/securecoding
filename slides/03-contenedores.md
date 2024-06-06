@@ -27,7 +27,7 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 1. [Contenedores Docker](#13)
 1. [Orquestadores](#17)
 1. [Kubernetes](#23)
-1. [Referencias](#41)
+1. [Referencias](#40)
 
 # De aplicaciones a contenedores
 <!-- _class: lead -->
@@ -195,15 +195,11 @@ Seguimos en:
 
 ---
 
-![](images/containers/kubernetes-flow.png)
-
----
-
 ![](images/containers/kubernetes-google.png)
 
 > https://www.youtube.com/watch?v=Rl5M1CzgEH4
 
-## Docker and Kubernetes
+## Docker y Kubernetes
 
 ![](images/containers/kubernetes-dockerconfig.png)
 
@@ -263,13 +259,13 @@ spec:
 - kube-control-manager
     - Director de orquesta
 - kube-scheduler
-    - Decide dónde se despliegan los “pods”
+    - Decide dónde se despliegan los "pods"
 
 ## Node
 
+- Máquina que ejecuta pods
 - kubelet
-    - Agente en cada nodo, incluído el
-maestro
+    - Agente en cada nodo, incluído el maestro
 - kube-proxy
     - Comuniaciones entre contenedores y sistema
 - Motor de contenedores
@@ -286,6 +282,8 @@ maestro
 - Similar a un solo docker-compose
 
 ![bg left w:80%](images/containers/kubernetes-pod.png)
+
+> https://kubernetes.io/docs/tutorials/kubernetes-basics/explore/explore-intro/
 
 ---
 
