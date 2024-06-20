@@ -62,7 +62,7 @@ Entre sus guías, incluye el top ten de vulnerabilidades que debemos evitar en n
 
 ## Otros proyectos
 
-![bg left:50% w:100%](images/owasp-projects.png)
+![bg left:50% w:100%](images/threadmod/owasp-projects.png)
 
 
 OWASP tiene otros proyectos
@@ -79,7 +79,7 @@ OWASP tiene otros proyectos
 
 ## Otras recomendaciones: SANS Top25
 
-![](images/sans-25.png)
+![](images/threadmod/sans-25.png)
 
 https://www.sans.org/top25-software-errors/
 
@@ -461,7 +461,7 @@ $command = "ls ".$_GET['modifiers'];
 $output = exec($command);
 ```
 
-![](images/commandinjection.png)
+![](images/coding/commandinjection.png)
 
 
 
@@ -717,7 +717,7 @@ async def create_user(
 
 ---
 
-![](images/server-autodocs.png)
+![](images/coding/server-autodocs.png)
 
 ---
 

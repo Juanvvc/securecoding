@@ -162,7 +162,7 @@ $ python3 -m black taskManager/views.py
 $ git diff
 ```
 
-![center](images/example-black.png)
+![center](images/devops/example-black.png)
 
 ---
 
@@ -224,13 +224,13 @@ python3 -m pip install bandit
 bandit -r .
 ```
 
-![w:30em center](images/ejemplo-bandit.png)
+![w:30em center](images/devops/ejemplo-bandit.png)
 
 ---
 
 Ejemplo: [SonarQube](https://www.sonarsource.com/products/sonarqube/downloads/)
 
-![w:25em center](images/ejemplo-sonarqube.png)
+![w:25em center](images/devops/ejemplo-sonarqube.png)
 
 ## Etapa 1: Build - Auditoría de librerías
 <!-- _class: smaller-font -->
@@ -258,7 +258,7 @@ python3 -m pip install safety
 python3 -m safety check -r requirements.txt --save-json safety-resuls.json
 ```
 
-![center](images/ejemplo-safety.png)
+![center](images/devops/ejemplo-safety.png)
 
 <!--
 Fíjate: el comando simplemente examina el archivo de requisitos, no el código
@@ -276,11 +276,11 @@ python3 -m pip pip-audit
 pip-audit -r ./requirements.txt
 ```
 
-![center](images/ejemplo-pipaudit.png)
+![center](images/devops/ejemplo-pipaudit.png)
 
 ---
 
-Ejemplo: npm audit (ya incluido con node)
+Ejemplo: `npm audit` (ya incluido con node)
 
 ```
 https://github.com/SasanLabs/VulnerableApp-facade
@@ -288,13 +288,13 @@ cd VulnerableApp-facade/facade-app
 npm audit
 ```
 
-![center](images/example-npmaudit.png)
+![center](images/devops/example-npmaudit.png)
 
 ---
 
 Ejemplo: Github Dependabot
 
-![](images/ejemplo-dependabot.png)
+![](images/devops/ejemplo-dependabot.png)
 
 Dependabot es un servicio que puedes activar en la configuración de tu proyecto en GitHub
 

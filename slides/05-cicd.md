@@ -36,7 +36,7 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 - Despliega nuevas versiones de la aplicación frecuentemente
 - Flexible y adaptable a cambios
 - Feedback constante de los usuarios finales
-- Todo de forma automática
+- **Todo de forma automática**
 
 Cada cambio en el código se testea y despliega en producción en minutos
 
@@ -52,13 +52,30 @@ Cada cambio en el código se testea y despliega en producción en minutos
 
 ![center](images/devops/digiwiseacademy-devops.jpeg)
 
+## Ejemplo: Gitlab
+
+![center](images/cicd/gitlab-cicd.png)
+
+Jenkins, GitHub u otros orquestadores funcionan similar
+
+> https://devopstales.github.io/home/introduction-to-gitlab-ci-cd/
+
+<!--
+Descrición:
+
+- Gitlab maneja el código fuente de tu aplicación o estructura
+- Cuando pasa algo (un commit, por ejemplo), entonces ejecuta una "pipeline", un conjunto de jobs
+- Estos jobs se ejecutan por los Runners en contenedores docker o máquinas virtuales
+- Puedes contratar runners en gitlab, o crear tu propio runner en tu empresa que ejecute los dockers en tu empresa
+-->
+
 ## Pipeline de CI/CD
 
 Una *pipeline* de CI/CD es una serie de pasos que se deben realizar para poner en producción una nueva versión de software
 
 En la actualidad, se tiende a ejecutar una *pipeline* completa cada día
 
-![center](images/cicd-redhat.png)
+![center](images/cicd/cicd-redhat.png)
 
 > https://www.redhat.com/en/topics/devops/what-cicd-pipeline
 
@@ -68,7 +85,7 @@ Podéis configurar el control de versiones (GitHub, GitLab...) para que ejecute 
 
 Ejemplo en estas mismas transparencias: https://github.com/Juanvvc/securecoding/tree/main/.github/workflows
 
-![bg left](images/git-branches.png)
+![bg left](images/cicd/git-branches.png)
 
 ---
 
@@ -112,7 +129,7 @@ Los runners son máquinas virtuales que ejecutan los jobs. Gitlab/github ofrece 
 
 ---
 
-![center w:35em](images/github-cicd.png)
+![center w:35em](images/cicd/github-cicd.png)
 
 > https://resources.github.com/ci-cd/
 
@@ -158,9 +175,9 @@ prod:
 
 ---
 
-![center](images/gitlab-example.png)
+![center](images/cicd/gitlab-example.png)
 
-![center](images/gitlab-example2.png)
+![center](images/cicd/gitlab-example2.png)
 
 
 ## La biblia del CI/CD
@@ -190,7 +207,7 @@ La salida se guarda en el archivo `bandit-output.json`
 
 ## Ejemplo: integrando bandit en CI/CD
 
-![bg right w:100%](images/gitlab-ejemplo1.png)
+![bg right w:100%](images/cicd/gitlab-ejemplo1.png)
 
 1. Crea un nuevo proyecto en gitlab.com: New Project -> Import
 1. Importa desde URL: <https://gitlab.practical-devsecops.training/pdso/django.nv.git>
@@ -253,7 +270,7 @@ dast-nmap:
 
 ## Gestión de secretos
 
-En el ejemplo anterior, fíjate en la variable: PROD_SERVER
+En el ejemplo anterior, fíjate en la variable: `PROD_SERVER`
 
 Puedes gestionar variables en Settings -> CI/CD Variables
 
@@ -290,7 +307,7 @@ inspec:
 
 Gestión de vulnerabilidades e informes de CI/CD
 
-![center w:20em](images/defectdojo.png)
+![center w:20em](images/cicd/defectdojo.png)
 
 ---
 
