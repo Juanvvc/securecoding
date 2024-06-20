@@ -1,6 +1,6 @@
 ---
 marp: true
-title: Código seguro - DevSecOps
+title: Código seguro - CI/CD
 paginate: true
 footer: '[Inicio](index.html)'
 headingDivider: 2
@@ -13,7 +13,7 @@ theme: marp-viu
     the YAML header: section: | */
 </style>
 
-# CI/CD
+# Continuous Integration / Continuous Delivery
 <!-- _class: first-slide -->
 
 Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
@@ -21,53 +21,67 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 # Hoy hablamos de...
 <!-- _class: cool-list toc -->
 
-1. [CI/CD](#3)
-1. [Ejemplos](#17)
-1. [Resumen y referencias](#27)
-
-# CI/CD
-<!-- _class: lead -->
-
-## CI/CD Continuous Integration / Continous Delivery
-<!-- _class: with-success -->
-
-- Compila código
-- Ejecuta tests
-- Despliega nuevas versiones de la aplicación frecuentemente
-- Flexible y adaptable a cambios
-- Feedback constante de los usuarios finales
-- **Todo de forma automática**
-
-Cada cambio en el código se testea y despliega en producción en minutos
-
-> https://semaphoreci.com/blog/cicd-pipeline
+1. [Continuous Integration / Continuous Delivery](#4)
+1. [Ejemplos de Pipelines](#15)
+1. [Resumen y referencias](#37)
 
 ---
 
-"La integración continua es una práctica de desarrollo de software en la que cada miembro de un equipo fusiona sus cambios en un código base junto con los cambios de sus colegas al menos diariamente. Cada una de estas integraciones se verifica mediante una compilación automatizada (incluida la prueba) para detectar errores de integración lo más rápido posible. Los equipos descubren que este enfoque reduce el riesgo de retrasos en la entrega, reduce el esfuerzo de integración y permite prácticas que fomentan una base de código saludable para una mejora rápida con nuevas funciones."
+![center w:35em](images/cicd/git-branches.png)
+
+> https://alibaba-cloud.medium.com/how-to-select-a-git-branch-mode-1f8774a8bd94
+
+<!--
+Así es como funciona un desarrollo típico cuando usamos ramas: tenemos ramas de profucto final (v1, v2...), ramas de features nuevas, ramas de pruebas...
+
+Integrar todo esto es un problema ¿va a funcionar todo bien? ¿hemos introducido errores en el sistema?
+
+Históricamente, este proceso ha llevado mucho tiempo. Ahora queremos automatizarlo
+-->
+
+
+# Continuous Integration / Continuous Delivery
+<!-- _class: lead -->
+
+---
+
+"La integración continua es una práctica de desarrollo de software en la que cada miembro de un equipo fusiona sus cambios en un código base junto con los cambios de sus colegas al menos diariamente. Cada una de estas integraciones se verifica mediante una compilación automatizada para detectar errores lo más rápido posible"
+
+![center w:20em](images/devops/digiwiseacademy-devops.jpeg)
+
 
 > https://martinfowler.com/articles/continuousIntegration.html
 
----
-
-![center](images/devops/digiwiseacademy-devops.jpeg)
-
-## Ejemplo: Gitlab
-
-![center](images/cicd/gitlab-cicd.png)
-
-Jenkins, GitHub u otros orquestadores funcionan similar
-
-> https://devopstales.github.io/home/introduction-to-gitlab-ci-cd/
-
 <!--
-Descrición:
-
-- Gitlab maneja el código fuente de tu aplicación o estructura
-- Cuando pasa algo (un commit, por ejemplo), entonces ejecuta una "pipeline", un conjunto de jobs
-- Estos jobs se ejecutan por los Runners en contenedores docker o máquinas virtuales
-- Puedes contratar runners en gitlab, o crear tu propio runner en tu empresa que ejecute los dockers en tu empresa
+Os recomiendo mucho la lectura completa de este enlace que incluye descripciones muy detalladas del proceso de desarrollo completo´
 -->
+
+## Continuous Integration / Continuous Delivery: CI/CD
+<!-- _class: with-success -->
+
+- Usa control de versiones para todo
+- Incluye herramientas de testeo estático y dinámico automático
+- "*git push*" constante a la rama de desarrollo "*main*"
+- Todos los "*git push*" deben generar un "*build*"
+- Arregla los "*builds*" sin éxito inmediatamente
+- Mantén el proceso rápido
+- No tengas "*work in progress*" en la rama principal
+- Testeos dinámicos en un "clon" del entorno de producción
+- Todos pueden ver lo que se está haciendo
+- Deployment **automático** a producción
+
+Cada cambio en el código se testea y despliega en producción en minutos
+
+## Ventajas del CI/CD
+<!-- _class: with-success -->
+
+- Reducir el tiempo de llevar una aplición en producción
+- No perder el tiempo en integración
+- Menos errors de código e integración
+- Mejor calidad general del sistema al permirir refactorización rápida
+- Llevar algo a producción es una deción de negocio y no técnica
+
+Estamos siempre preparados para ir a producción
 
 ## Pipeline de CI/CD
 
@@ -75,19 +89,40 @@ Una *pipeline* de CI/CD es una serie de pasos que se deben realizar para poner e
 
 En la actualidad, se tiende a ejecutar una *pipeline* completa cada día
 
+Podéis configurar el control de versiones (GitHub, GitLab...) para que ejecute una pipeline **después de un evento de Git**, especialmente *commit* y *merge*
+
+
 ![center](images/cicd/cicd-redhat.png)
 
 > https://www.redhat.com/en/topics/devops/what-cicd-pipeline
 
 ---
 
-Podéis configurar el control de versiones (GitHub, GitLab...) para que ejecute una pipeline después de un evento de Git, especialmente *commit* y *merge*
+El CI/CD se estructura en "pipelines": "jobs" autoáticos que se ejecutan uno después de otro
 
-Ejemplo en estas mismas transparencias: https://github.com/Juanvvc/securecoding/tree/main/.github/workflows
+![center](images/cicd/steps.png)
 
-![bg left](images/cicd/git-branches.png)
+> https://testrigor.com/blog/what-is-cicd/
 
----
+<!--
+
+La idea principal es que a partir de que el desarrollador hace un commit, el resto de los pasos hasta llegar a producción sean automáticos
+
+Pasos de CI:
+
+- quality assurance: linters, chequeo de librerías, análisis estático
+- compilación
+- tests de integración
+
+Pasos de CD:
+
+- fase beta "staging"
+- tests dinámicos
+- deployment final en producción
+
+-->
+
+## Responsabilidad de una pipeline
 
 1. Cada *commit* debería ejecutar todas las herramientas automáticas de detección de errores
 1. Repara inmediatamente los errores de compilación
@@ -100,11 +135,13 @@ Ejemplo en estas mismas transparencias: https://github.com/Juanvvc/securecoding/
 
 Ejemplos:
 
-- Merge Request: BUILD -> TEST -> INTEGRATION
-- Merge to master: BUILD -> TEST -> INTEGRATION -> DEPLOY TO STAGING
-- Tag for release: DOWNLOAD ARTIFACTS -> DEPLOY TO PRODUCTION
+Evento|Pipeline
+--|--
+Merge Request|BUILD -> TEST -> INTEGRATION
+Merge to master|BUILD -> TEST -> INTEGRATION -> DEPLOY TO STAGING
+Tag for release|DOWNLOAD ARTIFACTS -> DEPLOY TO PRODUCTION
 
-## Terminología:
+## Terminología
 
 - **Jobs**: comandos para ejecutar
 - **Stages**: pasos en los que se ejecutan los comandos. La pipeline puede intentar ejecutar todos los pasos, o parar si falla alguno
@@ -117,12 +154,13 @@ Los runners son máquinas virtuales que ejecutan los jobs. Gitlab/github ofrece 
 
 -->
 
-## Stages comunes
+## Etapas/Stages comunes
 
-- **Build**: en esta etapa se realiza la compilación de las unidades de código. Herramientas: Maven, Gradle...
+- **Build**: en esta etapa se realiza la compilación del código. Herramientas: Maven, Gradle...
 - **Tests**: la prueba de todas las unidades se realiza en esta etapa. Entonces, sabremos dónde exactamente el código tiene errores y, si se encuentran errores, no se continúa a las siguientes etapas. Herramientas: linters, Selenium, PYtest...
-- **Integrar**: en esta etapa, se integran todas las unidades de los códigos. Herramientas: Jenkins.
-- **Despliegue**: en esta etapa, el código se despliega en el entorno del cliente. AlEjemplos: AWS, Docker...
+- **Integrar**: en esta etapa, se juntan las piezas del código y librerías
+- **Staging**: en esta etapa, el código se despliega en un entorno de pruebas, para análisis dinámico.
+- **Despliegue**: en esta etapa, el código se despliega en el entorno del cliente. Ejemplos: AWS, Docker...
 - **Operar**: las operaciones se realizan en el código si es necesario.Herramienta: Kubernetes, OpenShift...
 - **Monitor**: en esta etapa, el monitoreo de la aplicación se realiza aquí en el entorno del cliente. Herramientas: Nagios, ELK, Splunk, Grafana...
 
@@ -133,9 +171,111 @@ Los runners son máquinas virtuales que ejecutan los jobs. Gitlab/github ofrece 
 
 > https://resources.github.com/ci-cd/
 
+# Ejemplos de Pipelines
+<!-- _class: lead -->
+
+## Pasos para crear una pipeline CI/CD
+<!-- _class: cool-list -->
+
+1. *Prueba los comandos localmente antes de subirlos a la *pipeline* usando una imagen docker*
+1. *Asegúrate de que la ejecución de una *pipeline* lleva menos de 10 minutos*
+1. *Guarda la salida para referencia futura y análisis*
+1. *Considera si las *pipelines* deben interrumpirse si falla algún paso*
+
+
+## Ejemplo: bandit desde una imagen docker
+<!-- _class: cool-list -->
+
+1. *Prueba los comandos localmente antes de subirlos a la *pipeline* usando una imagen docker*
+
+[Recuerda](04-devsecops.html): [bandit](https://bandit.readthedocs.io/en/latest/) analiza errores comunes en Python
+
+```bash
+git clone https://github.com/NetSPI/django.nV ; cd django.nV
+docker run --rm -v $(pwd):/src --user $(id -u):$(id -g) cytopia/bandit -r /src -f json -o /src/b
+andit-output.json
+```
+
+La salida se guarda en el archivo `bandit-output.json`
+
+## Ejemplo: trufflehog desde una imagen docker
+<!-- _class: cool-list -->
+
+1. *Prueba los comandos localmente antes de subirlos a la *pipeline* usando una imagen docker*
+
+[Recuerda](04-devsecops.html): trufflehog comprueba si te has dejado contraseñas o tokens de seguridad en el código
+
+```bash
+git clone https://github.com/NetSPI/django.nV ; cd django.nV
+docker run --user $(id -u):$(id -g) -v $(pwd):/src --rm \
+    hysnsec/trufflehog --repo_path /src file:///src --json \
+    | tee trufflehog-output.json
+```
+
+---
+<!-- _class: cool-list -->
+
+<style scoped>ol { counter-reset: li 1; }</style>
+
+
+Una vez que hemos probado que podemos ejecutar las herramientas de seguridad en un docker...
+
+1. *Asegúrate de que la ejecución de una *pipeline* lleva menos de 10 minutos*
+1. *Guarda la salida para referencia futura y análisis*
+1. *Considera si las *pipelines* deben interrumpirse si falla algún paso*
+
+## Orquestadores: Gitlab, GitHub, Jenkins...
+<!-- _class: two-columns -->
+
+![center](images/cicd/gitlab-cicd.png)
+
+- Los *Runners* ejecutan los *jobs* que definas
+- Los *jobs* se ejecutan en contenedores como docker
+- Los *jobs* se pueden ejecutar en los servidores de gitlab (pagando), o en tus propios servidores
+- El *deployment* de una aplicación lo puedes hacer en AWS, Google...
+
+> https://devopstales.github.io/home/introduction-to-gitlab-ci-cd/
+
+<!--
+Descrición:
+
+- Gitlab maneja el código fuente de tu aplicación o estructura
+- Cuando pasa algo (un commit, por ejemplo), entonces ejecuta una "pipeline", un conjunto de jobs
+- Estos jobs se ejecutan por los Runners en contenedores docker o máquinas virtuales
+- Puedes contratar runners en gitlab, o crear tu propio runner en tu empresa que ejecute los dockers en tu empresa
+-->
+
 ---
 
-Ejemplo en GitLab:
+![center](images/cicd/gitlab-cicd2.png)
+
+> https://bwgjoseph.com/how-to-setup-and-configure-your-own-gitlab-runner
+
+
+## Ejemplo: esta misma presentación
+
+Cada vez que modifico algo en esta presentación, hay una pipeline que automáticamente:
+
+- CI: compila el código Markdown a HTML
+- CD: publica el código HTML en la web
+
+https://github.com/Juanvvc/securecoding/tree/main/.github/workflows
+
+![bg left](images/cicd/presentacion-pipeline3.png)
+
+---
+
+Jobs ejecutados
+
+[![center w:30em](images/cicd/presentacion-pipeline.png)](https://github.com/Juanvvc/securecoding/actions/runs/9600917428)
+
+---
+
+Observa: la compilación se hace a través de una contenedor docker
+
+[![center w:30em](images/cicd/presentacion-pipeline2.png)](https://github.com/Juanvvc/securecoding/actions/runs/9600917428/job/26478269851)
+
+## Ejemplo en GitLab
 
 ```yaml
 stages:   # Dictionary
@@ -179,51 +319,79 @@ prod:
 
 ![center](images/cicd/gitlab-example2.png)
 
-
-## La biblia del CI/CD
-
-1. Prueba los comandos localmente antes de subirlos a la *pipeline* usando una imagen docker
-1. Asegúrate de que la ejecución de una *pipeline* lleva menos de 10 minutos
-1. Guarda la salida para referencia futura y análisis
-1. Considera si las *pipelines* deben interrumpirse si fallan
-
-
-# Ejemplos
-<!-- _class: lead -->
-
-Vamos a convertir [DevSecOps](04-devsecops.html) en comandos Docker
-
-## Ejemplo: bandit desde una imagen docker
-
-Ejemplo: [bandit](https://bandit.readthedocs.io/en/latest/) analiza errores comunes en Python
-
-```bash
-git clone https://github.com/NetSPI/django.nV ; cd django.nV
-docker run --rm -v $(pwd):/src --user $(id -u):$(id -g) cytopia/bandit -r /src -f json -o /src/b
-andit-output.json
-```
-
-La salida se guarda en el archivo `bandit-output.json`
-
 ## Ejemplo: integrando bandit en CI/CD
 
 ![bg right w:100%](images/cicd/gitlab-ejemplo1.png)
 
 1. Crea un nuevo proyecto en gitlab.com: New Project -> Import
-1. Importa desde URL: <https://gitlab.practical-devsecops.training/pdso/django.nv.git>
-1. Nombre: *securecoding-djangonv*
+1. Importa desde URL: <https://github.com/NetSPI/django.nV>
 1. Menú de la izquierda: Build -> Pipeline editor, o edita directamente el archivo `.gitlab-ci.yml`
 
 ---
+<!-- _class: two-columns -->
 
-Añade un nuevo *job* y commit:
+- Usa la pipeline que ya viene de ejemplo
+- "commit changes"
+- Build -> pipelines. Observa:
+  - Stages
+  - Ejecución
+  - Salida de cada job
+- Nota: el ejemplo de Gitlab incluye comentarios, leélos
 
 ```yaml
+stages:
+  - build
+  - test
+  - deploy
+
+build-job:
+  stage: build
+  script:
+    - echo "Compiling the co  de..."
+    - echo "Compile complete."
+
+unit-test-job:
+  stage: test 
+  script:
+    - echo "Running unit tests... This will take about 60 seconds."
+    - sleep 60
+    - echo "Code coverage is 90%"
+
+lint-test-job:
+  stage: test
+  script:
+    - echo "Linting code... This will take about 10 seconds."
+    - sleep 10
+    - echo "No lint issues found."
+
+deploy-job:
+  stage: deploy
+  environment: production
+  script:
+    - echo "Deploying application..."
+    - echo "Application successfully deployed."
+```
+
+---
+
+Sustituye `.gitlab-ci.yml` en Build -> Pipeline editor. Nota que el \\ significa que la línea debe continuar
+
+```yaml
+image: docker:20.10
+
+services:
+  - docker:dind
+
+stages:
+  - build
+  - test
+  - deploy
+
 sast:
   stage: build
   script:
     - docker pull hysnsec/bandit
-    - docker run --user $(id -u):$(id -g) -v $(pwd):/src --rm
+    - docker run --user $(id -u):$(id -g) -v $(pwd):/src --rm \\
     hysnsec/bandit -r /src -f json -o /src/bandit-output.json
   artifacts:
     paths: [bandit-output.json]
@@ -231,18 +399,25 @@ sast:
   allow_failure: true
 ```
 
-Busca la ejecución en el menú izquierdo, Build -> Pipelones
+Busca la ejecución en el menú izquierdo, Build -> Pipelines
 
 ---
 
-Más ejemplos: comprueba si hay secretos
+![](images/cicd/gitlab-example3.png)
+
+Observa los artefactos y que la pipeline ha fallado. `allow_failure: true` permite ejecutar otros jobs después, si los hubiese
+
+---
+
+Más ejemplos: comprueba si hay secretos con trufflehog. Nota que el \\ significa que la línea debe continuar
 
 ```yaml
 git-secrets:
   stage: build
   script:
-    - docker run --user $(id -u):$(id -g) -v $(pwd):/src --rm 
-    hysnsec/trufflehog --repo_path /src file:///src --json | tee trufflehog-output.json
+    - docker run --user $(id -u):$(id -g) -v $(pwd):/src --rm \\
+    hysnsec/trufflehog --repo_path /src file:///src --json \\
+    | tee trufflehog-output.json
   artifacts:
     paths: [trufflehog-output.json]
     when: always
@@ -272,11 +447,13 @@ dast-nmap:
 
 En el ejemplo anterior, fíjate en la variable: `PROD_SERVER`
 
-Puedes gestionar variables en Settings -> CI/CD Variables
+Puedes gestionar variables en Settings -> Variables
 
-![](images/gitlab-secrets.png)
+![](images/cicd/gitlab-secrets.png)
 
 ---
+
+Ejemplos: inspec
 
 ```yaml
 inspec:
@@ -311,6 +488,7 @@ Gestión de vulnerabilidades e informes de CI/CD
 
 ---
 
+Ejemplos: enviar los artefactos de los jobs anteriores a DefectDojo
 
 ```yaml
 sast:
