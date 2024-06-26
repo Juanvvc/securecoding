@@ -210,7 +210,7 @@ La salida se guarda en el archivo `bandit-output.json`
 ```bash
 git clone https://github.com/NetSPI/django.nV ; cd django.nV
 docker run --user $(id -u):$(id -g) -v $(pwd):/src --rm \
-    hysnsec/trufflehog --repo_path /src file:///src --json \
+    hysnsec/trufflehog filesystem --directory=/src --json \
     | tee trufflehog-output.json
 ```
 
@@ -376,11 +376,7 @@ deploy-job:
 
 ---
 
-<<<<<<< HEAD
-Sustituye `.gitlab-ci.yml` en Build -> Pipeline editor. Nota que el \\ significa que la línea debe continuar
-=======
-Sustituye `.gitlab-ci.yml` en Build -> Pipeline editor
->>>>>>> adc3f51c19250b8ba3e683eec64c5efa85823f41
+Sustituye `.gitlab-ci.yml` en Build -> Pipeline editor. Quita los caracteres `\\`, no cabía la línea entera en esta transparencia.
 
 ```yaml
 image: docker:20.10
@@ -406,15 +402,6 @@ sast:
 ```
 
 Busca la ejecución en el menú izquierdo, Build -> Pipelines
-<<<<<<< HEAD
-=======
-
----
-
-![](images/cicd/gitlab-example3.png)
-
-Observa los artefactos y que la pipeline ha fallado. `allow_failure: true` permite ejecutar otros jobs después, si los hubiese
->>>>>>> adc3f51c19250b8ba3e683eec64c5efa85823f41
 
 ---
 
@@ -424,14 +411,17 @@ Observa los artefactos y que la pipeline ha fallado. `allow_failure: true` permi
 
 ---
 
-Más ejemplos: comprueba si hay secretos con trufflehog. Nota que el \\ significa que la línea debe continuar
+Más ejemplos: comprueba si hay secretos con trufflehog. Quita los caracteres `\\`, no cabía la línea entera en esta transparencia.
 
 ```yaml
 git-secrets:
   stage: build
   script:
     - docker run --user $(id -u):$(id -g) -v $(pwd):/src --rm \\
-    hysnsec/trufflehog --repo_path /src file:///src --json \\
+    hysnsec/trufflehog hysnsec/trufflehog filesystem --directory=/src --json \\
+    | tee trufflehog-output.json
+    - docker run --user $(id -u):$(id -g) -v $(pwd):/src --rm \\
+    hysnsec/trufflehog hysnsec/trufflehog filesystem --directory=/src --json \\
     | tee trufflehog-output.json
   artifacts:
     paths: [trufflehog-output.json]
