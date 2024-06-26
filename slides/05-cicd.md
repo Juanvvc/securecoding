@@ -143,10 +143,11 @@ Tag for release|DOWNLOAD ARTIFACTS -> DEPLOY TO PRODUCTION
 
 ## Terminología
 
-- **Jobs**: comandos para ejecutar
-- **Stages**: pasos en los que se ejecutan los comandos. La pipeline puede intentar ejecutar todos los pasos, o parar si falla alguno
+- **Pipeline**: conjunto de etapas que se ejecutan cuando sucede algo en un proyecto. Por ejemplo, cuando se hace un "git push"
+- **Jobs**: comandos que hay que ejecutar. Por ejemplo: linters, analizadores estáticos...
+- **Stages**: etapa en las que se ejecuta un conjunto de *jobs*. En gitlab, todos los jobs de una etapa se ejecutan en paralelo. La ejecución puede pararse si falla algún *job* dentro de un *stage*.
 - **Runners**: máquinas que ejecutan los *jobs*. Generalmente son un servidor *docker* que ejecuta una imagen determinada
-- **Artifacts**: archivos opcionales que se generan en un *stage*. En nuestro caso, son los reportes de las herramientas de seguridad
+- **Artifacts**: archivos que se generan al final de un *job*. En nuestro caso, son los reportes de las herramientas de seguridad, o los archivos .exe que se pasan a la etapa siguiente.
 
 <!--
 
@@ -182,6 +183,7 @@ Los runners son máquinas virtuales que ejecutan los jobs. Gitlab/github ofrece 
 1. *Guarda la salida para referencia futura y análisis*
 1. *Considera si las *pipelines* deben interrumpirse si falla algún paso*
 
+> https://opensource.com/article/20/5/cicd-best-practices
 
 ## Ejemplo: bandit desde una imagen docker
 <!-- _class: cool-list -->
@@ -374,7 +376,11 @@ deploy-job:
 
 ---
 
+<<<<<<< HEAD
 Sustituye `.gitlab-ci.yml` en Build -> Pipeline editor. Nota que el \\ significa que la línea debe continuar
+=======
+Sustituye `.gitlab-ci.yml` en Build -> Pipeline editor
+>>>>>>> adc3f51c19250b8ba3e683eec64c5efa85823f41
 
 ```yaml
 image: docker:20.10
@@ -400,6 +406,15 @@ sast:
 ```
 
 Busca la ejecución en el menú izquierdo, Build -> Pipelines
+<<<<<<< HEAD
+=======
+
+---
+
+![](images/cicd/gitlab-example3.png)
+
+Observa los artefactos y que la pipeline ha fallado. `allow_failure: true` permite ejecutar otros jobs después, si los hubiese
+>>>>>>> adc3f51c19250b8ba3e683eec64c5efa85823f41
 
 ---
 
