@@ -21,9 +21,9 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 # Hoy hablamos de...
 <!-- _class: cool-list toc -->
 
-1. [DevOps](#3)
-1. [Etapas](#12)
-1. [Resumen y referencias](#33)
+1. [Desarrollo y Operaciones](#3)
+1. [Etapas DevOps](#12)
+1. [Resumen y referencias](#50)
 
 # Desarrollo y Operaciones
 <!-- _class: lead -->
@@ -149,7 +149,7 @@ No corrigen errores, sino que usan formatos estandarizados para el código
 - Corrige algunos errores básicos
 - Pueden integrase en tu entorno de desarrollo
 
-Ejemplos: [black](https://black.readthedocs.io/en/stable/), [Pylama](https://klen.github.io/pylama/), Flake8.
+Ejemplos: [black](https://black.readthedocs.io/en/stable/), [Pylama](https://klen.github.io/pylama/), [Flake8](https://flake8.pycqa.org/en/latest/), [Ruff](https://docs.astral.sh/ruff/)...
 
 ---
 
@@ -194,8 +194,7 @@ También pueden integrarse en tu entorno de desarrollo para que haga las comprob
 
 ![center](images/coding/code-linting.png)
 
-
-## Etapa 1: Build - Análisis estático de código SAST
+## Etapa 1: Build - Análisis estático de código (SAST)
 
 Análisis estático: *Static Application Security Testing*
 
@@ -231,6 +230,22 @@ bandit -r .
 Ejemplo: [SonarQube](https://www.sonarsource.com/products/sonarqube/downloads/)
 
 ![w:25em center](images/devops/ejemplo-sonarqube.png)
+
+## El fiasco CrowdStrike y los linters
+
+![center w:20em](images/coding/crowdstrike-fiasco.png)
+
+> https://twitter.com/Perpetualmaniac/status/1814376668095754753
+> https://www.nytimes.com/2024/07/19/business/microsoft-outage-cause-azure-crowdstrike.html
+
+<!-- El 19 de Julio de 2024, un programador olvidó comprobar si un puntero
+era NULL... en un driver de sistema como es CrowdStrike.
+
+El asunto dejó decenas de miles de PCs inservibles
+
+El error se podría haber evitado con herramientas de análisis
+de la calidad de código
+-->
 
 ## Etapa 1: Build - Auditoría de librerías
 <!-- _class: smaller-font -->

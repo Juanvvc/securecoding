@@ -418,10 +418,10 @@ git-secrets:
   stage: build
   script:
     - docker run --user $(id -u):$(id -g) -v $(pwd):/src --rm \\
-    hysnsec/trufflehog hysnsec/trufflehog filesystem --directory=/src --json \\
+    hysnsec/trufflehog filesystem --directory=/src --json \\
     | tee trufflehog-output.json
     - docker run --user $(id -u):$(id -g) -v $(pwd):/src --rm \\
-    hysnsec/trufflehog hysnsec/trufflehog filesystem --directory=/src --json \\
+    hysnsec/trufflehog filesystem --directory=/src --json \\
     | tee trufflehog-output.json
   artifacts:
     paths: [trufflehog-output.json]

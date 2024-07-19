@@ -26,7 +26,8 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 1. [¿Qué puede salir mal?](#28)
 1. [¿Qué podemos hacer para arreglarlo?](#45)
 1. [¿Hemos hecho un buen trabajo?](#57)
-1. [Referencias y ejercicios](#63)
+1. [Ejemplos de antiguos alumnos](#63)
+1. [Referencias y ejercicios](#71)
 
 # Threat Modeling - Modelo de amenazas
 <!-- _class: lead -->
@@ -533,6 +534,7 @@ https://mitre-attack.github.io/attack-navigator/#layerURL=https://center-for-thr
 
 - **Probabilidad** de que un ataque se lleve a cabo. Tiene en cuenta habilidad necesaria, motivo, oportunidad, facilidad de explotación...
 - **Impacto**. Cómo de malo sería que un ataque tuviese éxito. Confidencialidad, impacto en negocio...
+- El riesgo se calcula para cada amenaza individual, no por categoría
 - [Metodología de OWASP](https://owasp.org/www-community/OWASP_Risk_Rating_Methodology) y [Calculadora](https://www.owasp-risk-rating.com/)
 
 Riesgo = Probabilidad * Impacto
@@ -616,11 +618,15 @@ Aviso importante: los ejemplos de esta slide no son recomendaciones, son ejemplo
 
 ## Propósito del informe
 
-- Transparencia sobre amenazas existentes
-- Habilita la inversión en seguridad vs funcionalidad
-- Captura el contexto del resultado de la sesión de Threat Modeling
-- Documenta el trabajo hecho
-- El informe debería tratarse como algo confidencial
+- Reportar amenazas existentes
+- Ejecutivo: decidir sobre priorización de tareas
+- Documentar el trabajo hecho
+- Rápido de leer y entender:
+    - Usa tablas
+    - Usa nomenclatura estándar
+- Entender dónde estamos y hacia dónde vamos
+
+El informe debería tratarse como documento confidencial
 
 ## Herramientas
 
@@ -641,6 +647,45 @@ docker run --rm -it --user $(id -u):$(id -g) \\
 ```
 
 ![w:20em center](images/threatmod/threagile.png)
+
+# Ejemplos de antiguos alumnos
+<!-- _class: lead -->
+
+## Sistema de Incident Response en cloud
+
+![center](images/threatmod/ejemplo-ir1.png)
+
+<!-- Alumno: Jorge Barreto Olivos -->
+
+---
+
+![center](images/threatmod/ejemplo-ir2.png)
+
+## Creación de Pólizas Individuales de Salud
+
+![center w:30em](images/threatmod/ejemplo-polizas1.png)
+
+<!-- Alumno: Aldo Armesto Marcús -->
+
+## Sistema de facturación para empresa
+
+![center](images/threatmod/ejemplo-factura1.png)
+
+<!-- Alumno: ALEJANDRO REDIN -->
+
+---
+
+![center w:30em](images/threatmod/ejemplo-factura2.png)
+
+## Aplicación para control financiero
+
+![center](images/threatmod/ejemplo-financiero1.png)
+
+<!-- Alumno: JOHANN LEONARDO SOLANO TORRADO -->
+
+---
+
+![center](images/threatmod/ejemplo-financiero2.png)
 
 # Referencias y ejercicios
 <!-- _class: lead -->
