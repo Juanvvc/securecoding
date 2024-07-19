@@ -231,7 +231,7 @@ Ejemplo: [SonarQube](https://www.sonarsource.com/products/sonarqube/downloads/)
 
 ![w:25em center](images/devops/ejemplo-sonarqube.png)
 
-## El fiasco CrowdStrike y los linters
+## El fiasco CrowdStrike y SAST
 
 ![center w:20em](images/coding/crowdstrike-fiasco.png)
 
