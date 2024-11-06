@@ -23,7 +23,7 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 
 1. [Desarrollo y Operaciones](#3)
 1. [Etapas DevOps](#12)
-1. [Resumen y referencias](#50)
+1. [Resumen y referencias](#54)
 
 # Desarrollo y Operaciones
 <!-- _class: lead -->
@@ -249,7 +249,7 @@ El error se podría haber evitado con herramientas de análisis
 de la calidad de código
 -->
 
-## Etapa 1: Build - Auditoría de librerías
+## Análisis estático - auditoría de librerías
 <!-- _class: smaller-font -->
 
 - Estas herramientas comprueban en una base de datos si la librería usada tiene alguna vulnerabilidad conocida -> ¡No analizan la librería!
@@ -325,14 +325,55 @@ Ejemplos de librerías maliciosas:
 
 > https://twitter.com/feross/status/1672401333893365761
 
-## ¿Me he dejado alguna contraseña?
+## Análisis estático - secretos
 
-Escaneo de contraseñas:
+Errores comunes:
 
-- Basados en patrones/regex
-    - Muchos falsos positivos
-    - Reconocen errores comunes como poner la contraseña en la llamada a la función
+- Archivos de configuración que no deberían subirse a un repositorio
+- Secretos *hardcoded* en el código fuente
+
+![bg right:40% w:100%](images/devops/secrets-sourcecode1.png)
+
+> https://www.wiz.io/academy/secret-scanning#scanning-for-secrets-with-wiz-85
+
+
+<!--
+Comic: https://twitter.com/DZoneInc/status/1361420207793659904
+-->
+
+---
+
+Ejemplo: secretos en archivos de configuración
+
+![center](images/devops/secrets-configfile.png)
+
+<!-- Ejemplo de: > https://cybenari.com/2024/08/whats-the-worst-place-to-leave-your-secrets/
+ -->
+
+---
+
+Ejemplo: secretos en código fuente
+
+![center](images/devops/secrets-sourcecode2.png)
+
+<!-- Ejemplo de: > https://cybenari.com/2024/08/whats-the-worst-place-to-leave-your-secrets/
+ -->
+
+---
+
+Utiliza detectores de contraseñas/tokens de seguridad:
+
+- Basados en patrones/regex: reconocen errores comunes como poner la contraseña en un parámetro función, o variables llamadas `aws_token`
 - Basados en entropía: reconocen "el aspecto" de una contraseña
+
+Ten en cuenta que ambos métodos pueden tener falsos positivos
+
+
+---
+
+![w:20em center](images/devops/forgotten-tokens.png)
+
+> https://cybenari.com/2024/08/whats-the-worst-place-to-leave-your-secrets/
 
 ---
 <!-- _class: smaller-font -->
@@ -351,17 +392,24 @@ surch|yes|regex|no|yes|python|no|-|-
 Ejemplo: trufflehog
 
 ```bash
-$ wget https://github.com/trufflesecurity/trufflehog/releases/download/v3.28.0/trufflehog_3.28.0_linux_amd64.tar.gz
-$ tar -xvf trufflehog_3.28.0_linux_amd64.tar.gz trufflehog
+$ wget https://github.com/trufflesecurity/trufflehog/releases/download/v3.81.8/trufflehog_3.81.8_linux_amd64.tar.gz
+$ tar -xvf trufflehog_3.81.8_linux_amd64.tar.gz trufflehog
 $ chmod +x trufflehog
-$ ./trufflehog filesystem --directory=trufflehog
+$ ./trufflehog filesystem --directory=.
+$ ./trufflehog github --repo=https://github.com/dustin-decker/secretsandstuff
 ```
 
 Nota: esto busca contraseñas en el propio archivo de trufflehog, a ti te interesará buscarlas en tu código
 
 ![center](images/devops/trufflehog.png)
 
-<!-- Observa que trufflehog tiene diferentes detectores gitlab, token... -->
+<!-- Observa que trufflehog tiene diferentes detectores filesystem gitlab, token...
+
+trufflehog --help
+trufflehog filesystem --help
+trufflehog filesystem --directory=mydir
+
+-->
 
 ---
 
@@ -375,15 +423,17 @@ docker run --rm -v `pwd`:/source deepfenceio/deepfence_secret_scanner --local /s
 
 Con este ejemplo vemos también que podemos ejecutar algunas de las herramientas con docker. Veremos en la siguiente sesión que esto es muy deseable
 
-## GitHub
-<!-- _class: two-columns-->
+# Ejemplo: Github
 
-- Dependabot: análisis de librerías
-- Code scanning: SAST
-- Secret scanning: secretos
-- Ejemplo: https://github.com/Juanvvc/sMSD/security
+Servicios ofrecidos por Github en sus repositorios
 
-![center w:25em](images/devops/github-services.png)
+- *Dependabot*: análisis de librerías
+- *Code scanning*: SAST para errores comunes
+- *Secret scanning*: [patterns](https://docs.github.com/en/code-security/secret-scanning/introduction/supported-secret-scanning-patterns)
+
+Ejemplo: <https://github.com/Juanvvc/sMSD/security> (Nota: necesitas permisos)
+
+![bg right w:100%](images/devops/github-services.png)
 
 ## Etapa 2: Tests
 <!-- _class: smallest-font -->
