@@ -110,11 +110,94 @@ CrowdStrike es una empresa líder de EDRs: antivirus + análisis de comportamien
 
 Está instalado en todos los PCs de muchas compañías
 
-## SolarWinds
+El 19 de julio de 2024, una actualización de su EDR obligaba a los PCs a reiniciarse... pero impedía su encendido
 
-## Log4j
+> https://es.wired.com/articulos/caso-crowdstrike-microsoft-afecto-a-85-millones-de-equipos
+> https://cnnespanol.cnn.com/2024/07/19/que-paso-caida-mundial-microsoft-crowdstrike-trax/
+> https://www.computerweekly.com/feature/CrowdStrike-update-chaos-explained-What-you-need-to-know
 
-## OpenSSH
+---
+
+Explicación:
+
+- Si algo en el kernel de un OS falla, el sistema entero falla
+- Windows solo permite drivers firmados en su espacio de kernel
+- Microsoft probaba y firmaba las actualizaciones de CrowdStrike... pero no tan rápido como a CrodStrike le interesa
+- CrowdStrike Falcon tiene:
+    - Un driver que se carga en espacio de kernel al inicio de Windows
+    - Carga dinámica de configuración sin firmar: archivos SYS
+    - Actualización constante de archivos SYS
+- El 9 de julio de 2024, CrodStrike envió una actualización de los archivos SYS que no estaba suficientemente probada: error de acceso de memoria que impedía a Widows iniciarse
+- La única solución era que los técnicos accediesen presencial y manualmente a millones de PCs para borrar el archivo manualmente
+
+---
+
+Fíjate:
+
+- Había sistemas de seguridad en marcha:
+    - Firmado de drivers
+    - Actualizaciones constantes
+    - Separación entre espacio de kernel y usuario
+    - Actualizaciones constantes y automáticas
+- Pero las "malas prácticas" causaron el desastre:
+    - Un archivo que no fue probado
+    - Un código que leía más allá de donde tenía permitido
+
+Mira qué han hecho para impedir fallos similares en el futuro: [Resumen ejecutivo del Análisis de la Causa Raíz del Channel File 291](https://www.crowdstrike.com/falcon-content-update-remediation-and-guidance-hub/translated-resources/#spanish)
+
+## Log4j / Log4Shell
+
+En noviembde de 2021, Apache publicó la vulnerabilidad crítica [CVE-2021-44228](https://nvd.nist.gov/vuln/detail/CVE-2021-44228) que afectaba a su librería log4j. La vulnerabilidad permitía a un atacante ejecutar cualquier cosa en un servidor
+
+Log4j se utiliza para escribir logs de aplicación en pantalla, archivo, syslog, SIEM... Está incluida en multitud de proyectos y productos Java como una librería más
+
+La vulnerabilidad estuvo activa entre 2013 hasta que se detectó en 2021
+
+
+
+> https://www.ibm.com/es-es/topics/log4j
+> https://www.csoonline.com/article/571797/the-apache-log4j-vulnerabilities-a-timeline.html
+
+
+---
+
+Fíjate:
+
+- La vulnerabilidad podía afectar a tu código a través de una librería (log4j) que no has escrito tú, ni habrás auditado, ni eres responsable: no solo tienes que preocuparte de tus errores, también de errores de los demás
+- Es muy posible que varios softwares de un servidor en 2021 estuviese utilizando librerías log4j vulnerables
+- Resolución:
+    - auditoría de las librerías de terceros que usa nuestro código
+    - programas de gestión de vulnerabilidades
+    - sistemas de detección de ataques
+
+> https://www.microsoft.com/en-us/security/blog/2021/12/11/guidance-for-preventing-detecting-and-hunting-for-cve-2021-44228-log4j-2-exploitation/
+
+
+## XZ Utils backdoor
+
+En marzo de 2024, [se descubríó un código malicioso introducido por un atacante en la librería XZ](https://www.openwall.com/lists/oss-security/2024/03/29/4), básica en los sistemas Linux
+
+El "virus" no estaba el el código principal, sino que solo se introducía durante el testeo de la librería: estaba entre **los archivos de test**
+
+Afectaba a las personas que crean distribuciones de Linux: cuando probaban que la nueva librería funcionaba correctamente... infectaba el sistema
+
+Se decubrió porque una conexión SSH duraba unos milisegunos más de los esperado
+
+> https://techcommunity.microsoft.com/blog/vulnerability-management/microsoft-faq-and-guidance-for-xz-utils-backdoor/4101961
+> https://nvd.nist.gov/vuln/detail/CVE-2024-3094
+> https://pentest-tools.com/blog/xz-utils-backdoor-cve-2024-3094
+> https://ariadne.space/2024/04/02/the-xz-utils-backdoor-is-a-symptom-of-a-larger-problem/
+
+## Lecciones aprendidas
+
+- Diseña teniendo en cuenta la seguridad
+- Prueba tu código
+- Te vas a equivocar
+- Los demás se van a equivocar
+- Incluye controles automáticos en el proceso de desarrollo:
+    - De tu código
+    - De las librerías que utilizas
+    - En el despliegue y distribución
 
 # Conceptos generales
 <!-- _class: lead -->
