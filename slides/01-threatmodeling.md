@@ -687,6 +687,16 @@ docker run --rm -it --user $(id -u):$(id -g) \\
 
 ![center](images/threatmod/ejemplo-financiero2.png)
 
+## Seguridad "Por diseño"
+
+Caso de estudio: Mullvad VPN: https://mullvad.net/
+
+- Los usuarios solo se identifican con un número
+- No se guardan datos de pagos:
+    - Prepagos: se paga antes del servicio
+    - Sistemas de pago anónimos: bitcoin o incluso moneda real por correo
+    - No guardan logs (aunque esto lo dicen todos...)
+
 # Referencias y ejercicios
 <!-- _class: lead -->
 

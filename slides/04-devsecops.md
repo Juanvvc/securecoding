@@ -151,6 +151,8 @@ No corrigen errores, sino que usan formatos estandarizados para el código
 
 Ejemplos: [black](https://black.readthedocs.io/en/stable/), [Pylama](https://klen.github.io/pylama/), [Flake8](https://flake8.pycqa.org/en/latest/), [Ruff](https://docs.astral.sh/ruff/)...
 
+> https://twitter.com/svpino/status/1736037083276263563
+
 ---
 
 Ejemplo: black

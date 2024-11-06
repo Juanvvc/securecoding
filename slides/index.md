@@ -99,7 +99,24 @@ Presenta las actividades en formato PDF
 
 A pesar de ser una asignatura de "código seguro", estudiaremos el proceso de creación y gestión de una aplicación, no la programación de la aplicación en sí
 
-# Introducción
+# ¿Qué puede salir mal?
+<!-- _class: lead -->
+
+---
+
+![center w:15em Logotipo de Crodstrike](https://upload.wikimedia.org/wikipedia/commons/4/4f/CrowdStrike_logo.svg)
+
+CrowdStrike es una empresa líder de EDRs: antivirus + análisis de comportamiento + respuesta a incidentes + SIEM
+
+Está instalado en todos los PCs de muchas compañías
+
+## SolarWinds
+
+## Log4j
+
+## OpenSSH
+
+# Conceptos generales
 <!-- _class: lead -->
 
 ---
@@ -113,7 +130,7 @@ Estructura del curso:
 4. [Automatismos: DevSecOps](04-devsecops.html)
 5. [Operación: CI/CD](05-cicd.html)
 
-## Módelo clásico de desarollo
+## Módelo clásico de desarrollo
 
 ![center width:50em](images/devops/WaterFall-Model-Challenges-DevOps-Tutorial-Edureka-4.png)
 
@@ -179,15 +196,7 @@ Rank|ID|Name|Score|2020 Rank Change
 
 ## Continous Delivery
 
-![](images/docker-swamp.png)
-
-## Ejercicio de la sesión de hoy
-
-Utilizaremos docker en varias de las sesiones de la asignatura. Como ejercicio de hoy, instaladlo en vuestros PCs y probad que se ha instalado correctamente (Windows, Linux, Mac)
-
-- Instalación de docker en vuestros PCs
-- Ejecución de imagen "Hola mundo": https://hub.docker.com/_/hello-world/
-- Entrega: "pantallazo" de que se todo ha ejecutado correctamente
+![](images/containers/docker-swamp.png)
 
 ## ¡Gracias!
 <!-- _class: last-slide -->

@@ -225,6 +225,52 @@ Ejemplo:
 Los ejemplos de esta página son una buena introducción a las "reglas de oro" que se discuten en el resto de la sesión. Es muy recomendable visitar esa página durante la sesión, y los alumnos después de ella.
 -->
 
+## Bad Example: Javascript
+
+```javascript
+function authenticateUsers(username, password) {
+    var accounts = apiService.sql("SELECT * FROM users");
+    for(var i=0, i<accounts.length; i++) {
+        var account = account[i];
+        if(account.username === username && account.password === password) {
+            return true;
+        }
+        if ("true" === "true") {
+            return false;
+        }
+    }
+}
+$("#login").click(function () {
+    var username = $("#username").val();
+    var password = $("#password").val();
+    var authenticated = authenticatedUser(username, password);
+    if (authenticated === true) {
+        $.cookie('loggedin', 'yes', {expires: 1});
+    } else if (authenticated === false) {
+        $("error_message").show(LogIn Failed);
+    }
+    }
+});
+```
+
+> https://twitter.com/hot_girl_spring/status/1853430439022670236
+
+<!--
+This code snippet contains several issues that indicate a lack of experience, which is likely why it was shared with the caption, "I don't think the intern will last much longer." Here are some specific issues:
+
+Potential SQL Injection: The code uses apiService.sql("SELECT * FROM users") to retrieve user data. If apiService.sql doesn't implement SQL injection protection, this approach could expose the database to attacks. Typically, prepared statements or ORM (Object-Relational Mapping) tools are used to avoid this risk.
+
+Inefficient Authentication Logic: The authenticateUser function iterates through all user accounts in the database (for (var i = 0; i < accounts.length; i++)). In a real-world application, fetching all user records to find a single match is highly inefficient and poses security risks by unnecessarily loading all user data.
+
+Hardcoded Condition Always Returning False: At the end of authenticateUser, there's an if ("true" === "true") { return false; } condition, which always evaluates to true and will always return false, regardless of whether the user credentials are correct. This effectively prevents any user from logging in successfully, making the authentication function useless.
+
+Unsecure Cookie Storage: The code uses $.cookie('loggedin', 'yes', { expires: 1 }); to set a login cookie without any additional security configurations, such as HttpOnly or Secure flags. This makes the cookie vulnerable to client-side manipulation or interception in non-HTTPS contexts.
+
+Potential Incorrect Error Handling: The line $("error_message").show(LogIn Failed) appears to be missing proper syntax for displaying the error message. It should likely be $("#error_message").show("Login Failed");, where # selects the element by ID, and "Login Failed" should be wrapped in quotes.
+
+These issues are commonly made by beginners and can lead to performance problems and significant security vulnerabilities, which is likely why the post humorously suggests that "the intern won't last much longer."
+-->
+
 ## Referencias y resúmenes
 
 - In Defense of Clean Code: 100+ pieces of timeless advice from Uncle Bob : https://dev.to/thawkin3/in-defense-of-clean-code-100-pieces-of-timeless-advice-from-uncle-bob-5flk
