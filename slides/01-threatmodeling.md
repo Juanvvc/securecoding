@@ -22,12 +22,12 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 <!-- _class: cool-list toc -->
 
 1. [Threat Modeling - Modelo de amenazas](#3)
-1. [¿En qué estamos trabajando?](#13)
-1. [¿Qué puede salir mal?](#28)
-1. [¿Qué podemos hacer para arreglarlo?](#45)
-1. [¿Hemos hecho un buen trabajo?](#57)
-1. [Ejemplos de antiguos alumnos](#63)
-1. [Referencias y ejercicios](#71)
+1. [¿En qué estamos trabajando?](#12)
+1. [¿Qué puede salir mal?](#29)
+1. [¿Qué podemos hacer para arreglarlo?](#49)
+1. [¿Hemos hecho un buen trabajo?](#65)
+1. [Ejemplos de antiguos alumnos](#72)
+1. [Referencias y ejercicios](#80)
 
 # Threat Modeling - Modelo de amenazas
 <!-- _class: lead -->
@@ -52,33 +52,25 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 
 ![bg right:50%](images/threatmod/threatmodelling-comic.png)
 
-## Ciclo de vida del desarrollo
+## Ciclo de vida
 
-- Se modela de forma continua durante todo ciclo de vida del desarrollo de software.
-- Modelado inicial: fase de planificación y diseño para tener una vista general de lo que estamos construyendo.
-- Evolución: El modelo se va detallando para capturar más detalles de la aplicación
-- Aplicación: examinar, diagnosticar y tratar las amenazas encontradas.
+- Descripción del sistema
+- Identificación de amenazas
+- Mitigación
+- Validación
 
 ![bg left:40% w:90%](images/threatmod/ciclodevida.png)
 
-## Diseño seguro
+> https://learn.microsoft.com/en-us/archive/msdn-magazine/2009/january/security-briefs-getting-started-with-the-sdl-threat-modeling-tool
 
-- Identificación temprana de las amenazas
-- Prevención de vulnerabilidades
-- Análisis de código
-- Pruebas de seguridad
+## Ventajas del Threat Modeling
+
+- **Documentación** del sistema
+- **Identificación** temprana de las amenazas
+- **Priorización** de los riesgos más importantes
+- **Prevención** de vulnerabilidades
 
 ![bg left:40%](images/threatmod/securedesign.png)
-
-## Workflow, the agile way
-
-- Escoge una "historia" de tu aplicación
-- Dibuja un diagrama de datos/proceso
-- Aplica una metología de identificación de amenazas
-- Maneja las amenazas identificadas
-- Chequeo continuo
-
-> https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html
 
 ## Terminología
 
@@ -127,44 +119,43 @@ Fallos|El sistema no se comporta como se espera debido a algún defecto|Durante 
 
 ## Fases genéricas del análisis de amenazas
 
-- ¿En qué estamos trabajando?
-- ¿Qué puede salir mal?
-- ¿Qué haremos al respecto?
-- ¿Hemos hecho un buen trabajo? Es decir: ¿qué podemos mejorar?
+- ¿En qué estamos trabajando? Describe el escenario
+- ¿Qué puede salir mal? Determina las amenazas
+- ¿Qué haremos al respecto? Contramedidas y mitigación
+- ¿Hemos hecho un buen trabajo? Evalúa tu trabajo
 
 [![center w:90%](images/threatmod/tm-manifesto-large.svg)](https://www.threatmodelingmanifesto.org/)
 
+
 > https://www.threatmodelingmanifesto.org/
+> OWASP [Threat Modeling Process](https://owasp.org/www-community/Threat_Modeling_Process)
+> OWASP [Threat Modelling Cheatsheets](https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html)
+
+<!--
+
+Es muy recomendable que leas los dos primeros enlaces: proceso de modelado de amenazas
+
+Las preguntas es la terminología que se usa en el treat modeling manifesto, mientras que las explicaciones son las fases definidas en OWASP. Observa que en realidad son las mismas fases
+-->
 
 # ¿En qué estamos trabajando?
 <!-- _class: lead -->
 
+Describe el sistema
+
 # Paso 1: describe el sistema
+<!-- _class: with-success -->
 
-* **Ejemplo 1**: AMPS es un dispositivo médico que se lleva por la noche por los pacientes en riesgo de padecer un infarto cuando están en su vivienda. Registra medidas que los médicos pueden después analizar, pero no emite alertas
+- Describe el sistema:
+    - Con casos de uso. Pueden ser varios, tipo historia
+    - Con diagramas de flujo de datos
+    - Con diagramas de subsistemas y su relación entre ellos
+- Identifica:
+    - puntos de entrada para ver dónde un potencial atacante podría interactuar con la aplicación
+    - activos importantes de tu aplicación
+    - derechos de acceso que necesitará cada actor
 
-* **Ejemplo 2**: CodiMD es un editor colaborativo de informes para un grupo pequeño de trabajadores. Los informes incluyen datos confidenciales que no deben salir de las instalaciones de la compañía.
-
-## Ejemplo 1: AMPS
-
-Tecnología:
-
-- Dispositivo Bluetooth BLE en el tobillo
-- Aplicación en el teléfono móvil que envía datos al servidor
-- AMPSCS: servidor que recibe los datos
-    - API para el móvil
-    - *Backend*
-    - *Frontend* para doctores
-
-> https://www.mitre.org/sites/default/files/publications/Playbook-for-Threat-Modeling-Medical-Devices.pdf
-
-## Ejemplo 2: CodiMD
-
-Tecnología:
-
-- Trabajadores "en remoto" (*home office*)
-- Servidor central de informes en dependencias de la compañía
-- Sistema documental con informes finales que incluya búsquedasd
+Objetivo: descompón tu sistema, sus flujos de datos, los actores, los activos importantes, y cómo se relacionan entre sí
 
 ## Metodología
 
@@ -185,7 +176,28 @@ Tecnología:
 
 > https://github.com/adamshostack/DFD3/
 
-## Brainstorming
+## Ejemplo: Informes Periciales
+
+- **Nombre de aplicación**: informes periciales 1.0
+- **Descripción**: editor de texto para edición de informes periciales que permita edición simultánea de varios analistas,  y vista de "solo lectura" para abogados
+- **Usuarios**:
+    - Analistas, que trabajan en la oficina
+    - Revisores externos que trabajan en remoto (*home office*)
+    - Clientes finales, con acceso de solo lectura
+- **Dependencias impuestas**: SSO, VPN, código libre, control de tiempos
+
+---
+
+Preguntas para del modelado
+
+- ¿Cuáles son los puntos de entrada?
+- ¿Cuáles son las salidas del sistema?
+- ¿En qué podría estar interesado/a un/a atacante?
+- ¿Qué elementos son importantes?
+
+Dibuja todos los diagramas que veas necesario, nunca sobrarán
+
+## Ejemplo: Brainstorming
 
 > En blanco para poder dibujar
 
@@ -239,11 +251,20 @@ CodiMD:
     - Conexión entre apliación y base de datos
     - Conexión entre base de datos y sistema documental
 
--->
+--> 
 
-## Brainstorming (ejemplo)
+## Ejemplo: Brainstorming (sistema)
 
-![center w:30em](images/threatmod/brainstorming.png)
+![center](images/threatmod/informes.drawio.png)
+
+Descripción del sistema completo
+
+## Ejemplo: Brainstorming (detalle)
+
+![center](images/threatmod/informes2.drawio.png)
+
+Detalle del proceso de edición por un usuario
+
 
 ## Flujos de datos
 
@@ -274,21 +295,6 @@ CodiMD:
 
 Ejemplos de aplicación: https://github.com/OpenSecuritySummit/project-ASVS-User-Stories
 
-## Resumen
-
-- Dibuja los eventos que maneja el sistema
-- Dibuja los procesos involucrados
-- Peticiones y respuestas generadas
-- Identifica las fuentes de datos de peticiones respuestas
-- Foco en el/los componentes que se está/n modelando
-- Divide el diagrama si crece de forma compleja
-- Considera hacer el diagrama parte de la aplicación (repositorio de código). 
-
-¡Ojo a los datos sensibles!
-
-# ¿Qué puede salir mal?
-<!-- _class: lead -->
-
 ## ¿Qué le preocupa al usuario?
 <!-- _class: with-success -->
 
@@ -297,18 +303,19 @@ Ejemplos de aplicación: https://github.com/OpenSecuritySummit/project-ASVS-User
 
 En vez de añadir características a tu producto, identifica qué quiere realmente el usuario, sus preocupaciones, y dale soluciones
 
-## Identificación
+## Ejemplo: historias de informes periciales
 
-- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
-- [STRIDE](https://www.microsoft.com/en-us/security/blog/2007/09/11/stride-chart/)
-- Juegos de cartas: Cornucopia, Elevation of privilege
-- [Matriz de Mitre](https://attack.mitre.org/matrices/enterprise/)
-- [P.A.S.T.A.](https://threat-modeling.com/pasta-threat-modeling/)
-- [Mitre CAPEC](https://capec.mitre.org/)
-- [Magerit](https://administracionelectronica.gob.es/pae_Home/pae_Documentacion/pae_Metodolog/pae_Magerit.html)
-- [STRIPED](https://dl.acm.org/doi/10.1145/3538969.3538970)
-- [VAST Visual Agile Simple Threat Modeleling](https://threatmodeler.com/)
-- [Hybrid Threat Modeling Method HTMM](https://insights.sei.cmu.edu/documents/2308/2018_004_001_516627.pdf)
+- Como analista, quiero poder escribir un informe junto con otros analistas para poder acabar el menor tiempo posible, pero sin que repitamos trabajo
+- Como administrativo, quiero poder facturar el trabajo al cliente sabiendo cuántas horas hemos dedicado, sin que ningún analista haya inflado las horas
+- Como revisor, quiero poder decidir cuándo un informe está acabado, sin que nadie más pueda firmar digitalmente el documento
+- Como revisor, quiero poder acceder al sistema desde mi casa, sin que nadie pueda hacerse pasar por mí
+- Como cliente, quiero poder acceder a los informes, en confidencialidad
+- Como auditor, quiero saber a qué evidencias han accedido los analistas, sino que ningún actor pueda eliminar trazas de acceso
+
+# ¿Qué puede salir mal?
+<!-- _class: lead -->
+
+Determina las amenazas
 
 ## Debilidad
 
@@ -324,23 +331,41 @@ Ejemplos de debilidades en la base de datos [CWE, *Common Weakness Enumeration*]
 
 Una ocurrencia de una debilidad en el sofware que puede utilizar un atacante para acceder o modificar datos, interrumpir el servicio o realizar acciones incorrectas.
 
-Ejemplos en la base de adtos [CVE, *Common Vulnerabilities and Exposures*](https://cve.mitre.org/)
+Ejemplos en la base de datos [CVE, *Common Vulnerabilities and Exposures*](https://cve.mitre.org/)
 
 ![bg right](images/threatmod/cve-firefox.png)
+
+## Metodologías de identificación de amenazas
+
+- [Threat Modeling and Security by Design](https://threat-modeling.com/). Ideas generales
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
+- [STRIDE](https://www.microsoft.com/en-us/security/blog/2007/09/11/stride-chart/)
+- Juegos de cartas: Cornucopia, Elevation of privilege
+- [Matriz de Mitre](https://attack.mitre.org/matrices/enterprise/)
+- [P.A.S.T.A.](https://threat-modeling.com/pasta-threat-modeling/)
+- [Mitre CAPEC](https://capec.mitre.org/)
+- [Magerit](https://administracionelectronica.gob.es/pae_Home/pae_Documentacion/pae_Metodolog/pae_Magerit.html)
+- [STRIPED](https://dl.acm.org/doi/10.1145/3538969.3538970)
+- [VAST Visual Agile Simple Threat Modeleling](https://threatmodeler.com/)
+- [Hybrid Threat Modeling Method HTMM](https://insights.sei.cmu.edu/documents/2308/2018_004_001_516627.pdf)
+
+<!-- En esta sesión nos vamos a centrar en STRIDE, pero hay más metodologías! No hace falta centrarse solo en una, puedes usar varias a la vez -->
 
 ## STRIDE
 <!-- _class: smaller-font -->
 
-Desarrollada en Microsoft en 2009
-
 Amenaza|Servicio de seguridad|Ejemplo
 --|--|--
-Spoofing|Autenticación|Credencilaes robadas al doctor
-Tampering|Integridad|Datos falseados
-Repudiation|No repudio, logs, registros|El doctor alega que no recetó un medicamento
-Information Disclosure|Confidencialidad|Las datos se envían por un canal no cifrado
-Denial of Service|Availability|La aplicación deja de funcionar si hay conectados otros dispositivos Bluetooth
-Elevation of Priviledge|Authorization|Un paciente puede ver datos de otros pacientes
+*Spoofing*|Autenticación|Credenciales robadas al revisor
+*Tampering*|Integridad|Certificados robados, firma digital de los informes no fiable
+*Repudiation*|No repudio, logs, registros|Un analista alega haber trabajado en un proyecto un número desproporcionado de horas
+*Information Disclosure*|Confidencialidad|Los clientes pueden acceder a los informes de otros clientes
+*Denial of Service*|Availability|La aplicación deja de funcionar si más de dos analistas conectados a la vez a un informe
+*Elevation of Priviledge*|Authorization|Un analista puede firmar digitalmente un informe
+
+> [STRIDE Threat Modeling for Beginners - In 20 Minutes ](https://www.youtube.com/watch?v=rEnJYNkUde0) NetSec explained, 23 Oct 2023
+> [The STRIDE threat model with examples ](https://dr-knz.net/stride-threat-model-with-examples.html)
+> [The Ultimate List of STRIDE Threat Examples](https://threat-modeling.com/the-ultimate-list-of-stride-threat-examples/)
 
 ## STRIDE - Spoofing
 
@@ -390,6 +415,7 @@ Elevation of Priviledge|Authorization|Un paciente puede ver datos de otros pacie
     - Extracción de datos explotando una vulnerabilidad (memoria, base de datos, etc)
     - Ganando privilegios de administrador
 
+<!--
 ## Magerit
 
 <https://administracionelectronica.gob.es/pae_Home/pae_Documentacion/pae_Metodolog/pae_Magerit.html>
@@ -407,6 +433,7 @@ Elevation of Privilege: https://www.microsoft.com/en-gb/download/confirmation.as
 ![w:25em center](images/threatmod/cornucopia.png)
 
 OWASP Cornucopia: https://owasp.org/www-project-cornucopia/
+-->
 
 ## OWASP ASVS
 
@@ -422,7 +449,7 @@ Usos:
 - Como estándar: requisitos de verificación de seguridad de las aplicaciones en los contratos
 
 
-## Brainstorming
+## Brainstorming: "recupera tu cuenta" de Facebook
 <!-- _class: two-columns -->
 
 ![](images/threatmod/facebook.png)
@@ -436,18 +463,108 @@ Usos:
 
 > https://bandaancha.eu/articulos/asi-han-robando-cuentas-whatsapp-10754
 
+<!--
+
+Ejemplos:
+
+- Spoofing: ¿se puede hacer phishing de esta página?
+- Repudiation: "yo no he pedido un cambio de contraseña"
+- Information disclosure: identificar que alguien tiene cuenta en una página
+- Denial of service: pedir cambio de contraseña de otra persona sin su consentimiento "porque se ha olvidad la contraseña"
+- Elevación de privilegio: 
+
+-->
+
+## Árbol de amenazas
+
+Arriba los objetivos, vamos bajando identificando qué haría un atacante para alcanzarlos
+
+![center w:30em](images/threatmod/treattree.png)
+
+> https://www.totem.tech/small-business-cybersecurity-threat-modeling/
+> https://en.wikipedia.org/wiki/Attack_tree
+> https://www.schneier.com/academic/archives/1999/12/attack_trees.html
+> https://www.exploresec.com/attack-tree-example
+
+---
+
+Pero no todas las amenazas son iguales: **es necesario priorizar**
+
+![center w:30em](images/threatmod/thrattree2.png)
+
+> https://www.totem.tech/small-business-cybersecurity-threat-modeling/
+
+## Brainstorming: recupera tu cuenta
+<!-- _class: two-columns -->
+
+![](images/threatmod/facebook.png)
+
+1. Spoofing
+2. Tampering
+3. Repudiation
+4. Information Disclosure
+5. Denial of service
+6. Elevation of privilege
+
+> https://bandaancha.eu/articulos/asi-han-robando-cuentas-whatsapp-10754
+
+<!--
+
+Ejemplos:
+
+- Spoofing: ¿se puede hacer phishing de esta página?
+- Repudiation: "yo no he pedido un cambio de contraseña"
+- Information disclosure: identificar que alguien tiene cuenta en una página
+- Denial of service: pedir cambio de contraseña de otra persona sin su consentimiento "porque se ha olvidad la contraseña"
+- Elevación de privilegio: 
+
+-->
+
+## Brainstorming: Mullvad, seguridad por diseño
+<!-- _class: two-columns -->
+
+![h:15em](images/threatmod/mullvad.png)
+
+1. Spoofing
+2. Tampering
+3. Repudiation
+4. Information Disclosure
+5. Denial of service
+6. Elevation of privilege
+
+> https://mullvad.net/en/vpn
+
+<!--
+
+Un ejemplo poco usual
+
+- Spoofing: VPN, usuarios identificados solo con un número
+- Repudiation: no guardan información de usuario, ni siquiera facturación
+- Elevation of privilege: no hay tipos de usuarios
+
+- Los usuarios solo se identifican con un número
+- No se guardan datos de pagos:
+    - Prepagos: se paga antes del servicio
+    - Sistemas de pago anónimos: bitcoin o incluso moneda real por correo
+    - No guardan logs (aunque esto lo dicen todos...)
+
+
+-->
+
 
 # ¿Qué podemos hacer para arreglarlo?
 <!-- _class: lead -->
+
+Contramedidas y mitigaciones
 
 ## Análisis de riesgos
 <!-- _class: with-success -->
 
 Se puede hacer un análisis desde el punto de vista de...
 
-- Amenazas. Inicio: identificamos amenazas
-- Impacto. Inicio: identificamos nuestros recursos más valiosos
-- Vulnerabilidades. Inicio: identificamos vulnerabilidades
+- Amenazas: identificamos amenazas/actores
+- Impacto: identificamos nuestros recursos más valiosos
+- Vulnerabilidades: identificamos vulnerabilidades
 
 > https://csrc.nist.gov/publications/detail/sp/800-30/rev-1/final
 
@@ -456,6 +573,15 @@ Objetivo: priorizar los defectos encontrados durante las fases anteriores
 <!--
 Aunque hay otras metodologías, en esta clase nos vamos a centrar en el análisis de riesgos desde el punto de vista de amenanzas
 -->
+
+---
+
+![center w:30em](images/threatmod/threattree2.png)
+
+> https://www.totem.tech/small-business-cybersecurity-threat-modeling/
+
+
+
 
 ## Risk Rating Methodologies
 
@@ -498,6 +624,7 @@ Por ejemplo: el impacto de que se haya un terremoto en la sede de la compañía 
 - Matriz de Mitre
 - Experiencia
 
+<!--
 ---
 
 Inspiración: MITRE y la Kill Chain
@@ -509,6 +636,7 @@ Inspiración: MITRE y la Kill Chain
 La Kill Chain unificada
 
 ![center](https://upload.wikimedia.org/wikipedia/commons/c/c2/The_Unified_Kill_Chain.png)
+-->
 
 ---
 
@@ -539,6 +667,12 @@ https://mitre-attack.github.io/attack-navigator/#layerURL=https://center-for-thr
 
 Riesgo = Probabilidad * Impacto
 
+---
+
+![w:28em center](images/threatmod/riesgo-impacto.png)
+
+> Diagrama: https://owasp.org/www-community/Threat_Modeling_Process
+
 
 ---
 
@@ -550,8 +684,11 @@ Riesgo = Probabilidad * Impacto
 ---
 <!-- _class: with-success -->
 
-- Un riesgo es alto si es fácil de atacar y produce un impacto alto
-- Un riesgo es bajo cuando es complicado de atacar y el impacto es bajo
+- Un riesgo es alto si:
+    1. produce un impacto alto
+    2. es fácil de atacar
+        - Probabilidad de que suceda
+        - Conocimientos necesarios
 
 Riesgo = Probabilidad * Impacto
 
@@ -559,7 +696,22 @@ Riesgo = Probabilidad * Impacto
 
 > Magerit: https://administracionelectronica.gob.es/pae_Home/pae_Documentacion/pae_Metodolog/pae_Magerit.html
 
+---
+
+Fíjate en cuántos factores influyen en la evaluación de riesgo: facilidad de encontrar la vulnerabilidad, conocimientos necesarios, impacto que puede tener...
+
+![w:30em center](images/threatmod/owasp-calculator.png)
+
 ## Paso 5: ¿Qué hacemos con el riesgo?
+<!-- _class: cool-list -->
+
+1. *Evitar el riesgo*
+1. *Mitigar el riesgo*
+1. *Aceptar el riesgo*
+1. *Transferir el riesgo*
+1. *Ignorar el riesgo*
+
+---
 <!-- _class: with-info two-columns smaller-font -->
 
 - **Evitar el riesgo**: dejar de hacer algo. Ejemplos:
@@ -595,6 +747,8 @@ Aviso importante: los ejemplos de esta slide no son recomendaciones, son ejemplo
 # ¿Hemos hecho un buen trabajo?
 <!-- _class: lead -->
 
+Evalúa tu trabajo
+
 ## Metodología
 
 - Revisiones constantes
@@ -605,14 +759,16 @@ Aviso importante: los ejemplos de esta slide no son recomendaciones, son ejemplo
 - No te centres en problemas improbables
 - No te centres en problemas que se van a resolver sin duda
 
-## Informe
+## Informe: qué contiene
+<!-- _class: cool-list -->
 
-- Título
-- Componente/s afectados
-- Descripción de la amenaza
-- Evaluación de riesgo
-- Validación y mitigación
-- Referencias externas (si es aplicable)
+1. *Descripción del sistema*
+1. *Componente/s afectados*
+1. *Amenazas*
+1. *Priorizaciones: evaluación de riesgo*
+1. *Mitigaciones propuestas*
+
+Con todos los diagramas que hemos estado haciendo
 
 ![bg left w:90%](images/threatmod/informe.png)
 
@@ -633,6 +789,8 @@ El informe debería tratarse como documento confidencial
 - [Diagrams.net](https://app.diagrams.net/) More Diagrams -> Data Flow
 - [OWASP Threat Dragon](https://owasp.org/www-project-threat-dragon/)
 - [pyTM](https://github.com/izar/pytm): Threat Modeling as code. It can generate DFDs, sequence diagrams and reveal threats to your system
+- [Microsoft Threat Modeling Tool](https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool)
+- [Threagile](https://github.com/Threagile/threagile), que se verá en las siguientes *slides*
 
 ---
 
@@ -647,6 +805,38 @@ docker run --rm -it --user $(id -u):$(id -g) \\
 ```
 
 ![w:20em center](images/threatmod/threagile.png)
+
+---
+
+Describe el sistema en YAML
+
+```yaml
+Marketing CMS:
+    id: marketing-cms
+    #diagram_tweak_order: 0 # affects left to right positioning (only within a trust boundary)
+    description: CMS for the marketing content
+    type: process # values: external-entity, process, datastore
+    usage: business # values: business, devops
+    used_as_client_by_human: false
+    out_of_scope: false
+    justification_out_of_scope:
+    size: application # values: system, service, application, component
+    technology: cms # values: see help
+    tags:
+      - linux
+    internet: false
+    machine: container # values: physical, virtual, container, serverless
+    encryption: none # values: none, transparent, data-with-symmetric-shared-key...
+    owner: Company ABC
+    confidentiality: internal # values: public, internal, restricted, confidential, strictly-confidential
+    integrity: important # values: archive, operational, important, critical, mission-critical
+    availability: important # values: archive, operational, important, critical, mission-critical
+    justification_cia_rating: >
+      The correct configuration and reachability of the web server is mandatory for all customer usages of the portal.
+    multi_tenant: false
+```
+
+[Ejemplo completo](images/threatmod/threagile-example-model.yaml), - [Diagrama](images/threatmod/data-flow-diagram.png), - [Informe](images/threatmod/report.pdf)
 
 # Ejemplos de antiguos alumnos
 <!-- _class: lead -->
@@ -687,27 +877,18 @@ docker run --rm -it --user $(id -u):$(id -g) \\
 
 ![center](images/threatmod/ejemplo-financiero2.png)
 
-## Seguridad "Por diseño"
-
-Caso de estudio: Mullvad VPN: https://mullvad.net/
-
-- Los usuarios solo se identifican con un número
-- No se guardan datos de pagos:
-    - Prepagos: se paga antes del servicio
-    - Sistemas de pago anónimos: bitcoin o incluso moneda real por correo
-    - No guardan logs (aunque esto lo dicen todos...)
-
 # Referencias y ejercicios
 <!-- _class: lead -->
 
 ## Referencias
 
-- Manual: https://www.mitre.org/sites/default/files/publications/Playbook-for-Threat-Modeling-Medical-Devices.pdf
-- OWASP Threat Modelling: https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html
-- NIST: https://csrc.nist.gov/publications/detail/sp/800-30/rev-1/final
-- Elevation of Privilege: https://www.microsoft.com/en-gb/download/confirmation.aspx?id=20303
-- OWASP Cornucopia: https://owasp.org/www-project-cornucopia/
-- Magerit: https://administracionelectronica.gob.es/pae_Home/pae_Documentacion/pae_Metodolog/pae_Magerit.html
+- [Playbook for Threat Modeling Medical Devices](https://www.mitre.org/sites/default/files/publications/Playbook-for-Threat-Modeling-Medical-Devices.pdf): Mitre, aprende TM con un ejemplo complejo
+- OWASP [Threat Modelling Cheatsheets](https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html)
+- OWASP [Threat Modeling Process](https://owasp.org/www-community/Threat_Modeling_Process)
+- [Guide for Conducting Risk Assessments](https://csrc.nist.gov/pubs/sp/800/30/r1/final) NIST SP 800-30 Rev. 1. September 2012
+- Juego [*Elevation of Privilege*](https://www.microsoft.com/en-gb/download/confirmation.aspx?id=20303)
+- Juego [*OWASP Cornucopia*]( https://owasp.org/www-project-cornucopia/)
+- [MAGERIT v.3 : Metodología de Análisis y Gestión de Riesgos de los Sistemas de Información](https://administracionelectronica.gob.es/pae_Home/pae_Documentacion/pae_Metodolog/pae_Magerit.html)
 
 ## Ejercicio
 
@@ -721,7 +902,7 @@ El objetivo no es encontrar todos los problemas de seguridad de una aplicación,
 
 La extensión esperada del documento es unas 5 páginas
 
-Entrega en PDF
+**Entrega en PDF**
 
 # ¡Gracias!
 <!-- _class: last-slide --> 
