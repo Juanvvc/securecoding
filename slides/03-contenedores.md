@@ -158,6 +158,8 @@ Seguimos en:
 
 ![bg right w:90%](images/containers/Kubernetes-logo.png)
 
+> https://betterstack.com/community/guides/scaling-docker/docker-swarm-kubernetes/
+
 
 ---
 
@@ -175,6 +177,8 @@ Seguimos en:
 - Tecnología cambiante y nueva que necesita de nuevas habilidades
 
 > https://www.veritas.com/blogs/the-10-biggest-challenges-of-deploying-containers
+> https://www.sentinelone.com/cybersecurity-101/cloud-security/container-security-best-practices/
+> https://iterasec.com/blog/container-security-vulnerabilities/
 
 # Kubernetes
 <!-- _class: lead -->
