@@ -60,9 +60,25 @@ Ya vimos durante la sesión anterior qué es lo que hace en proyecto OWASP
 Entre sus guías, incluye el top ten de vulnerabilidades que debemos evitar en nuestro código
 -->
 
+---
+
+1. [Broken access control](https://owasp.org/Top10/A01_2021-Broken_Access_Control/): usuarios capaces de hacer cosas a las que no deberían estar autorizados. Defensa: denegación por defecto
+1. [Cryptographic failures](https://owasp.org/Top10/A02_2021-Cryptographic_Failures/): protección definiciente de los datos en tránsito y almacenados. Defensa: políticas de datos
+1. [Injection](https://owasp.org/Top10/A03_2021-Injection/): el usuario puede forzar la ejecución de comandos. Defensa: librerías especializadas, validación de entradas
+1. [Diseño inseguro](https://owasp.org/Top10/A04_2021-Insecure_Design/). Defensa: Threat Modeling.
+1. [Security Misconfiguration](https://owasp.org/Top10/A05_2021-Security_Misconfiguration/) Defensa: system hardening
+
+---
+
+6. [Vulnerable components](https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/): uso de librerías vulnerables. Defensa: auditorias
+1. [Identification failures](https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/). Atacantes entrando por fuerza bruta. Defensa: 2FA
+1. [Integrity Failures](https://owasp.org/Top10/A08_2021-Software_and_Data_Integrity_Failures/) No comprobar si los plugins son maliciosos. Defensa: firma digital
+1. [Monitoring Failures](https://owasp.org/Top10/A09_2021-Security_Logging_and_Monitoring_Failures/) No registrar las acciones de los usuarios. Defensa: sistemas de gestión de logs
+1. [Server-Side Request Forgery](https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/) Obligar al servidor a acceder a datos en su nombre. Defensa: validación de entrada
+
 ## Otros proyectos
 
-![bg left:50% w:100%](images/threadmod/owasp-projects.png)
+![bg left:50% w:100%](images/threatmod/owasp-projects.png)
 
 
 OWASP tiene otros proyectos
@@ -71,15 +87,9 @@ OWASP tiene otros proyectos
 - Checklist Mobile testing: https://owasp.org/www-project-mobile-security-testing-guide/
 - Top 10 en programación de dispositivos móviles <https://owasp.org/www-project-mobile-top-10/>
 
-## Ejemplo: Mobile Application Security
-
-![center w:25em](https://mas.owasp.org/assets/mas_checklist.png)
-
-> https://mas.owasp.org/
-
 ## Otras recomendaciones: SANS Top25
 
-![](images/threadmod/sans-25.png)
+![](images/threatmod/sans-25.png)
 
 https://www.sans.org/top25-software-errors/
 
@@ -135,10 +145,10 @@ https://cwe.mitre.org/top25/archive/2023/2023_top25_list.html
 
 ## Guías de estilo (linters)
 
-* Tienes que entender el código de otro para poder decidir si es seguro o no
-* En dos semanas, no entenderás tu propio código
-* Los lenguajes que dan mucha libertad pueden provocar que cada programador escriba de una manera
-* Todos los programadores del equipo deben seguir las mismas reglas
+- Tienes que entender el código de otro para poder decidir si es seguro o no
+- En dos semanas, no entenderás tu propio código
+- Los lenguajes que dan mucha libertad pueden provocar que cada programador escriba de una manera
+- Todos los programadores del equipo deben seguir las mismas reglas
 
 Ejemplos:
 
@@ -188,7 +198,7 @@ Ejemplo:
 
 ## Isolated compartments
 
-- Contenedores ue gestionen o impidan la comunicación entre componentes y la fuga de información y el control.
+- Contenedores que gestionen o impidan la comunicación entre componentes y la fuga de información y el control.
 - Restringe la comunicación autorizada entre componentes a rutas observables con interfaces definidas
 - Aislamiento de procesos y memoria, particiones de disco, virtualización, protecciones de software, zonas, puertas de enlace, firewalls, docker, kubernetes
 
@@ -248,7 +258,6 @@ $("#login").click(function () {
         $.cookie('loggedin', 'yes', {expires: 1});
     } else if (authenticated === false) {
         $("error_message").show(LogIn Failed);
-    }
     }
 });
 ```
