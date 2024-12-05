@@ -159,7 +159,7 @@ Ejemplo: black
 
 ```bash
 $ git clone https://github.com/NetSPI/django.nV ; cd django.nV
-$ bpython3 -m pip install black
+$ python3 -m pip install black
 $ python3 -m black taskManager/views.py
 $ git diff
 ```
@@ -299,8 +299,8 @@ pip-audit -r ./requirements.txt
 
 Ejemplo: `npm audit` (ya incluido con node)
 
-```
-https://github.com/SasanLabs/VulnerableApp-facade
+```bash
+git clone https://github.com/SasanLabs/VulnerableApp-facade
 cd VulnerableApp-facade/facade-app
 npm audit
 ```
