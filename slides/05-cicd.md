@@ -98,7 +98,7 @@ Podéis configurar el control de versiones (GitHub, GitLab...) para que ejecute 
 
 ---
 
-El CI/CD se estructura en "pipelines": "jobs" autoáticos que se ejecutan uno después de otro
+El CI/CD se estructura en "pipelines": "jobs" automáticos que se ejecutan uno después de otro
 
 ![center](images/cicd/steps.png)
 
@@ -194,8 +194,7 @@ Los runners son máquinas virtuales que ejecutan los jobs. Gitlab/github ofrece 
 
 ```bash
 git clone https://github.com/NetSPI/django.nV ; cd django.nV
-docker run --rm -v $(pwd):/src --user $(id -u):$(id -g) cytopia/bandit -r /src -f json -o /src/b
-andit-output.json
+docker run --rm -v $(pwd):/src --user $(id -u):$(id -g) cytopia/bandit -r /src -f json -o /src/bandit-output.json
 ```
 
 La salida se guarda en el archivo `bandit-output.json`
