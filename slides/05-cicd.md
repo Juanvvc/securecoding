@@ -75,11 +75,11 @@ Cada cambio en el código se testea y despliega en producción en minutos
 ## Ventajas del CI/CD
 <!-- _class: with-success -->
 
-- Reducir el tiempo de llevar una aplición en producción
+- Reducir el tiempo de llevar una aplicación a producción
 - No perder el tiempo en integración
-- Menos errors de código e integración
-- Mejor calidad general del sistema al permirir refactorización rápida
-- Llevar algo a producción es una deción de negocio y no técnica
+- Menos errores de código e integración
+- Mejor calidad general del sistema al permitir refactorización rápida
+- Llevar algo a producción es una decisión de negocio/marketing y no una decisión técnica
 
 Estamos siempre preparados para ir a producción
 
