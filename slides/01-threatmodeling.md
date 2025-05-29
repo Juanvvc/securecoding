@@ -22,12 +22,12 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 <!-- _class: cool-list toc -->
 
 1. [Threat Modeling - Modelo de amenazas](#3)
-1. [¿En qué estamos trabajando?](#12)
-1. [¿Qué puede salir mal?](#29)
+1. [¿En qué estamos trabajando?](#14)
+1. [¿Qué puede salir mal?](#32)
 1. [¿Qué podemos hacer para arreglarlo?](#49)
-1. [¿Hemos hecho un buen trabajo?](#65)
-1. [Ejemplos de antiguos alumnos](#72)
-1. [Referencias y ejercicios](#80)
+1. [¿Hemos hecho un buen trabajo?](#63)
+1. [Ejemplos de antiguos alumnos](#70)
+1. [Referencias y ejercicios](#78)
 
 # Threat Modeling - Modelo de amenazas
 <!-- _class: lead -->
@@ -35,14 +35,19 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 ## Modelado de Amenazas - Threat Modeling
 <!-- _class: with-info -->
 
-- Representación estructurada de toda la información que afecta a la seguridad de una aplicación
-- Proceso de capturar, organizar y analizar toda esta información
-- Lista ordenada por prioridad de mejoras, requisitos, diseño e implementación de la seguridad de la misma
-- Buscar puntos ciegos y plantearse las asunciones que hemos hecho del sistema
+- Proceso para identificar, evaluar y mitigar amenazas de seguridad.
+- Ayuda a anticipar vulnerabilidades antes de que ocurran.
+- Parte esencial del ciclo de vida de desarrollo seguro (SDLC).
+- Priorización de mejoras, requisitos, diseño e implementación de la seguridad de la misma
 
-*El modelado de amenazas es el brainstorming de un atacante*
+¿Qué tenemos, qué puede salir mal y qué hacemos para evitarlo?
 
-¿Qué puede salir mal y qué hacemos para evitarlo?
+## ¿Por qué es importante?
+
+- Reduce riesgos de seguridad antes de que se materialicen
+- Ahorra costos en correcciones tardías
+- Mejora la comprensión del sistema desde el punto de vista de seguridad
+- Facilita cumplimiento normativo
 
 ## Modelado de amenazas en una empresa
 
@@ -52,12 +57,11 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 
 ![bg right:50%](images/threatmod/threatmodelling-comic.png)
 
-## Ciclo de vida
+## ¿Cuándo hacerlo?
 
-- Descripción del sistema
-- Identificación de amenazas
-- Mitigación
-- Validación
+- Etapa temprana del diseño.
+- Cambios importantes en la arquitectura.
+- Introducción de nuevas funcionalidades.
 
 ![bg left:40% w:90%](images/threatmod/ciclodevida.png)
 
@@ -117,6 +121,15 @@ Fallos|El sistema no se comporta como se espera debido a algún defecto|Durante 
 
 > https://www.baeldung.com/cs/software-testing-defect-bug-error-and-failure
 
+## Proceso general
+
+1. **Definir alcance** del sistema
+2. **Crear un modelo** del sistema
+3. **Identificar amenazas** (ej: STRIDE)
+4. **Evaluar riesgos** (impacto vs. probabilidad)
+5. **Mitigar amenazas**
+6. **Documentar y revisar**
+
 ## Fases genéricas del análisis de amenazas
 
 - ¿En qué estamos trabajando? Describe el escenario
@@ -145,6 +158,12 @@ Describe el sistema
 
 # Paso 1: describe el sistema
 <!-- _class: with-success -->
+
+- ¿Qué estamos modelando?
+- ¿Qué activos son críticos?
+- ¿Qué actores interactúan con el sistema?
+
+---
 
 - Describe el sistema:
     - Con casos de uso. Pueden ser varios, tipo historia
@@ -336,28 +355,29 @@ Ejemplos en la base de datos [CVE, *Common Vulnerabilities and Exposures*](https
 ![bg right](images/threatmod/cve-firefox.png)
 
 ## Metodologías de identificación de amenazas
+<!-- _class: smaller-font with-info -->
 
+- [STRIDE](https://www.microsoft.com/en-us/security/blog/2007/09/11/stride-chart/)
+- [P.A.S.T.A.](https://threat-modeling.com/pasta-threat-modeling/)
 - [Threat Modeling and Security by Design](https://threat-modeling.com/). Ideas generales
 - [OWASP Top 10](https://owasp.org/www-project-top-ten/)
-- [STRIDE](https://www.microsoft.com/en-us/security/blog/2007/09/11/stride-chart/)
 - Juegos de cartas: Cornucopia, Elevation of privilege
 - [Matriz de Mitre](https://attack.mitre.org/matrices/enterprise/)
-- [P.A.S.T.A.](https://threat-modeling.com/pasta-threat-modeling/)
 - [Mitre CAPEC](https://capec.mitre.org/)
 - [Magerit](https://administracionelectronica.gob.es/pae_Home/pae_Documentacion/pae_Metodolog/pae_Magerit.html)
 - [STRIPED](https://dl.acm.org/doi/10.1145/3538969.3538970)
 - [VAST Visual Agile Simple Threat Modeleling](https://threatmodeler.com/)
 - [Hybrid Threat Modeling Method HTMM](https://insights.sei.cmu.edu/documents/2308/2018_004_001_516627.pdf)
 
-<!-- En esta sesión nos vamos a centrar en STRIDE, pero hay más metodologías! No hace falta centrarse solo en una, puedes usar varias a la vez -->
+En esta sesión nos vamos a centrar en STRIDE, pero hay más metodologías! No hace falta centrarse solo en una, puedes usar varias a la vez
 
 ## STRIDE
 <!-- _class: smaller-font -->
 
-Amenaza|Servicio de seguridad|Ejemplo
+Amenaza|Amenaza|Ejemplo
 --|--|--
-*Spoofing*|Autenticación|Credenciales robadas al revisor
-*Tampering*|Integridad|Certificados robados, firma digital de los informes no fiable
+*Spoofing*|Autenticación|Credenciales robadas, suplantación de identidad
+*Tampering*|Integridad|Modificación de datos de la BBDD
 *Repudiation*|No repudio, logs, registros|Un analista alega haber trabajado en un proyecto un número desproporcionado de horas
 *Information Disclosure*|Confidencialidad|Los clientes pueden acceder a los informes de otros clientes
 *Denial of Service*|Availability|La aplicación deja de funcionar si más de dos analistas conectados a la vez a un informe
@@ -879,6 +899,12 @@ Marketing CMS:
 
 # Referencias y ejercicios
 <!-- _class: lead -->
+
+## Resumen
+
+- El modelado de amenazas es clave en la seguridad proactiva
+- No es una actividad única: es un proceso continuo
+- Elegir la metodología que mejor se adapte a tu contexto
 
 ## Referencias
 
