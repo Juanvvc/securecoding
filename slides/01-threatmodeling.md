@@ -908,12 +908,11 @@ Marketing CMS:
 
 ## Referencias
 
+- [Threat Modeling](https://shostack.org/books/threat-modeling-book) Adam Shostack
 - [Playbook for Threat Modeling Medical Devices](https://www.mitre.org/sites/default/files/publications/Playbook-for-Threat-Modeling-Medical-Devices.pdf): Mitre, aprende TM con un ejemplo complejo
 - OWASP [Threat Modelling Cheatsheets](https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html)
 - OWASP [Threat Modeling Process](https://owasp.org/www-community/Threat_Modeling_Process)
 - [Guide for Conducting Risk Assessments](https://csrc.nist.gov/pubs/sp/800/30/r1/final) NIST SP 800-30 Rev. 1. September 2012
-- Juego [*Elevation of Privilege*](https://www.microsoft.com/en-gb/download/confirmation.aspx?id=20303)
-- Juego [*OWASP Cornucopia*]( https://owasp.org/www-project-cornucopia/)
 - [MAGERIT v.3 : Metodología de Análisis y Gestión de Riesgos de los Sistemas de Información](https://administracionelectronica.gob.es/pae_Home/pae_Documentacion/pae_Metodolog/pae_Magerit.html)
 
 ## Ejercicio
