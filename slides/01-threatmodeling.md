@@ -24,10 +24,10 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 1. [Threat Modeling - Modelo de amenazas](#3)
 1. [¿En qué estamos trabajando?](#14)
 1. [¿Qué puede salir mal?](#32)
-1. [¿Qué podemos hacer para arreglarlo?](#49)
-1. [¿Hemos hecho un buen trabajo?](#63)
-1. [Ejemplos de antiguos alumnos](#70)
-1. [Referencias y ejercicios](#78)
+1. [¿Qué podemos hacer para arreglarlo?](#48)
+1. [¿Hemos hecho un buen trabajo?](#62)
+1. [Ejemplos de antiguos alumnos](#69)
+1. [Referencias y ejercicios](#77)
 
 # Threat Modeling - Modelo de amenazas
 <!-- _class: lead -->
@@ -415,7 +415,7 @@ Amenaza|Amenaza|Ejemplo
 ## STRIDE – Information Disclosure
 
 - El atacante ve datos que no debería
-- ¿Cómo puedo aseurar que los usuarios sólo puedan ver los datos a los que están autorizados?
+- ¿Cómo puedo asegurar que los usuarios sólo puedan ver los datos a los que están autorizados?
     - Acceso a registros de otro usuario
     - Acceso al tráfico de red
     - Acceso a ciertos logs
@@ -459,7 +459,7 @@ OWASP Cornucopia: https://owasp.org/www-project-cornucopia/
 
 [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/www-project-application-security-verification-standard/) es:
 
-- Base para des controles técnicos de seguridad de las aplicaciones web
+- Base para controles técnicos de seguridad de las aplicaciones web
 - Lista de requisitos para un desarrollo seguro de aplicaciones web
 
 Usos:
@@ -468,32 +468,6 @@ Usos:
 - Como guía: qué incorporar a los controles de seguridad para satisfacer los requisitos
 - Como estándar: requisitos de verificación de seguridad de las aplicaciones en los contratos
 
-
-## Brainstorming: "recupera tu cuenta" de Facebook
-<!-- _class: two-columns -->
-
-![](images/threatmod/facebook.png)
-
-1. Spoofing
-2. Tampering
-3. Repudiation
-4. Information Disclosure
-5. Denial of service
-6. Elevation of privilege
-
-> https://bandaancha.eu/articulos/asi-han-robando-cuentas-whatsapp-10754
-
-<!--
-
-Ejemplos:
-
-- Spoofing: ¿se puede hacer phishing de esta página?
-- Repudiation: "yo no he pedido un cambio de contraseña"
-- Information disclosure: identificar que alguien tiene cuenta en una página
-- Denial of service: pedir cambio de contraseña de otra persona sin su consentimiento "porque se ha olvidad la contraseña"
-- Elevación de privilegio: 
-
--->
 
 ## Árbol de amenazas
 
@@ -856,7 +830,7 @@ Marketing CMS:
     multi_tenant: false
 ```
 
-[Ejemplo completo](images/threatmod/threagile-example-model.yaml), - [Diagrama](images/threatmod/data-flow-diagram.png), - [Informe](images/threatmod/report.pdf)
+[Ejemplo completo](images/threatmod/threagile/threagile-example-model.yaml), - [Diagrama](images/threatmod/threagile/data-flow-diagram.png), - [Informe](images/threatmod/threagile/report.pdf)
 
 # Ejemplos de antiguos alumnos
 <!-- _class: lead -->
