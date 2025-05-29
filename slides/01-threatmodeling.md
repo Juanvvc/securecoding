@@ -216,11 +216,11 @@ Preguntas para del modelado
 
 Dibuja todos los diagramas que veas necesario, nunca sobrarán
 
-## Ejemplo: Brainstorming
-
-> En blanco para poder dibujar
+---
 
 <!--
+
+Página en blanco para poder dibujar
 
 Ideas:
 
@@ -274,7 +274,7 @@ CodiMD:
 
 ## Ejemplo: Brainstorming (sistema)
 
-![center](images/threatmod/informes.drawio.png)
+![center w:25em](images/threatmod/informes.drawio.png)
 
 Descripción del sistema completo
 
