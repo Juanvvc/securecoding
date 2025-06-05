@@ -43,16 +43,18 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 
 ## OWASP: Top 10
 
-![center w:20em](https://owasp.org/assets/images/content/featured_project_t10.png)
+![center w:15em](https://owasp.org/assets/images/content/featured_project_t10.png)
 
 <https://owasp.org/www-project-top-ten/>
 
+La lista se actualizará durante 2025
+
 ---
 
-![center w:40em](https://owasp.org/www-project-top-ten/assets/images/mapping.png)
+![center w:35em](https://owasp.org/www-project-top-ten/assets/images/mapping.png)
 
-- [Real Life Examples of Web Vulnerabilities (OWASP Top 10)](https://www.horangi.com/blog/real-life-examples-of-web-vulnerabilities)
-- [https://www.techtarget.com/searchsecurity/news/252494362/10-of-the-biggest-cyber-attacks](https://www.techtarget.com/searchsecurity/news/252494362/10-of-the-biggest-cyber-attacks)
+- [Real Life Examples of Web Vulnerabilities (OWASP Top 10)](https://www.cyberdb.co/real-world-examples-for-owasp-top-10-vulnerabilities/)
+- [Fortinet Firewalls Hit with New Zero-Day Attack, Older Data Leak](https://www.rapid7.com/blog/post/2025/01/16/etr-fortinet-firewalls-hit-with-new-zero-day-attack-older-data-leak/)
 
 <!--
 Ya vimos durante la sesión anterior qué es lo que hace en proyecto OWASP
@@ -70,8 +72,8 @@ Entre sus guías, incluye el top ten de vulnerabilidades que debemos evitar en n
 
 ---
 
-6. [Vulnerable components](https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/): uso de librerías vulnerables. Defensa: auditorias
-1. [Identification failures](https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/). Atacantes entrando por fuerza bruta. Defensa: 2FA
+6. [Vulnerable components](https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/): uso de librerías vulnerables. Defensa: auditorías
+1. [Identification failures](https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/). Atacantes entrando por fuerza bruta. Ejemplo de defensa: 2FA
 1. [Integrity Failures](https://owasp.org/Top10/A08_2021-Software_and_Data_Integrity_Failures/) No comprobar si los plugins son maliciosos. Defensa: firma digital
 1. [Monitoring Failures](https://owasp.org/Top10/A09_2021-Security_Logging_and_Monitoring_Failures/) No registrar las acciones de los usuarios. Defensa: sistemas de gestión de logs
 1. [Server-Side Request Forgery](https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/) Obligar al servidor a acceder a datos en su nombre. Defensa: validación de entrada
@@ -89,28 +91,28 @@ OWASP tiene otros proyectos
 
 ## Otras recomendaciones: SANS Top25
 
-![](images/threatmod/sans-25.png)
+[![center w:30em](images/threatmod/sans-25.png)](https://www.sans.org/top25-software-errors/)
 
-https://www.sans.org/top25-software-errors/
+>https://www.sans.org/top25-software-errors/
 
 ## Otras recomendaciones: MITRE
 
-<!-- _class: smallest-font -->
+<!-- _class: smaller-font -->
 
-Rank|ID|Name|Score|2020 Rank Change
---|--|--|--|--
-[1]|CWE-787|	Out-of-bounds Write|	65.93|+1
-[2]|CWE-79|	Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')|	46.84|	-1
-[3]|CWE-125|	Out-of-bounds Read|	24.9|	+1
-[4]|CWE-20|	Improper Input Validation|	20.47|	-1
-[5]|CWE-78|	Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')|	19.55|	+5
-[6]|CWE-89|	Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')|	19.54	|0
-[7]|CWE-416|	Use After Free|	16.83|	+1
-[8]|CWE-22|	Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')|	14.69	|+4
-[9]|CWE-352|	Cross-Site Request Forgery (CSRF)|	14.46	|0
+Rank|ID|Name
+--|--|--
+[1]|CWE-79|	Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')|	65.93|+1
+[2]|CWE-787|	Out-of-bounds Write|	46.84|	-1
+[3]|CWE-89|	Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')|	24.9|	+1
+[4]|CWE-352|	Cross-Site Request Forgery (CSRF)|	20.47|	-1
+[5]|CWE-22|	Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')|	19.55|	+5
+[6]|CWE-125|	Out-of-bounds Read|	19.54	|0
+[7]|CWE-78|	Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')|	16.83|	+1
+[8]|CWE-416|	Use After Free|	14.69	|+4
+[9]|CWE-862|	Missing Authorization|	14.46	|0
 [10]|CWE-434|	Unrestricted Upload of File with Dangerous Type|	8.45|	+5
 
-https://cwe.mitre.org/top25/archive/2023/2023_top25_list.html
+> https://cwe.mitre.org/top25/archive/2024/2024_cwe_top25.html
 
 # Secure System Design Principles
 <!-- _class: lead -->
@@ -142,6 +144,10 @@ https://cwe.mitre.org/top25/archive/2023/2023_top25_list.html
 - CWE:
     - https://cwe.mitre.org/data/definitions/710.html
     - https://cwe.mitre.org/data/definitions/1006.html
+
+---
+
+![center h:20em](images/coding/validation-example.png)
 
 ## Guías de estilo (linters)
 
@@ -186,6 +192,10 @@ Ejemplo:
     - https://cwe.mitre.org/data/definitions/862.html
     - https://cwe.mitre.org/data/definitions/638.html
 
+---
+
+![center h:20em](images/coding/mediation-example.png)
+
 ## Open Design
 
 - La seguridad del sistema no debe depender de su secreto
@@ -195,6 +205,17 @@ Ejemplo:
 - CWE:
     - https://cwe.mitre.org/data/definitions/259.html
     - https://cwe.mitre.org/data/definitions/656.html
+
+---
+
+```python
+SECRET_PASSWORD = "SuperSecreta123".reverse()
+
+def autenticar(usuario, contrasena):
+    if usuario == "admin" and contrasena == SECRET_PASSWORD:
+        return True
+    return False
+```
 
 ## Isolated compartments
 
@@ -215,27 +236,6 @@ Ejemplo:
 - CWE:
     - https://cwe.mitre.org/data/definitions/269.html
     - https://cwe.mitre.org/data/definitions/250.html
-
-## Evidence Production
-
-- Registra las actividades del sistema
-- Deben existir controles suficientes para que se pueda hacer cumplir la responsabilidad de los usuarios y sistemas
-
-- CWE:
-    - https://cwe.mitre.org/data/definitions/778.html
-    - https://cwe.mitre.org/data/definitions/693.html
-
-
-## Aprende con malos ejemplos
-
-- [C# Bad Practices: Learn How to Make Good Code by Using Examples of Bad Code](https://www.codeproject.com/Articles/1083348/Csharp-Bad-Practices-Learn-How-to-Make-Good-Code-b)
-- [For every 10 likes this gets, I will ask ChatGPT to make this code more insecure](https://twitter.com/LiveOverflow/status/1729798452094128278)
-
-<!--
-Los ejemplos de esta página son una buena introducción a las "reglas de oro" que se discuten en el resto de la sesión. Es muy recomendable visitar esa página durante la sesión, y los alumnos después de ella.
--->
-
-## Bad Example: Javascript
 
 ```javascript
 function authenticateUsers(username, password) {
@@ -278,6 +278,25 @@ Unsecure Cookie Storage: The code uses $.cookie('loggedin', 'yes', { expires: 1 
 Potential Incorrect Error Handling: The line $("error_message").show(LogIn Failed) appears to be missing proper syntax for displaying the error message. It should likely be $("#error_message").show("Login Failed");, where # selects the element by ID, and "Login Failed" should be wrapped in quotes.
 
 These issues are commonly made by beginners and can lead to performance problems and significant security vulnerabilities, which is likely why the post humorously suggests that "the intern won't last much longer."
+-->
+
+## Evidence Production
+
+- Registra las actividades del sistema
+- Deben existir controles suficientes para que se pueda hacer cumplir la responsabilidad de los usuarios y sistemas
+
+- CWE:
+    - https://cwe.mitre.org/data/definitions/778.html
+    - https://cwe.mitre.org/data/definitions/693.html
+
+
+## Aprende con malos ejemplos
+
+- [C# Bad Practices: Learn How to Make Good Code by Using Examples of Bad Code](https://www.codeproject.com/Articles/1083348/Csharp-Bad-Practices-Learn-How-to-Make-Good-Code-b)
+- [For every 10 likes this gets, I will ask ChatGPT to make this code more insecure](https://twitter.com/LiveOverflow/status/1729798452094128278)
+
+<!--
+Los ejemplos de esta página son una buena introducción a las "reglas de oro" que se discuten en el resto de la sesión. Es muy recomendable visitar esa página durante la sesión, y los alumnos después de ella.
 -->
 
 ## Referencias y resúmenes
@@ -640,7 +659,13 @@ Ejemplo de auditoría de librerías, veremos más detalles en las siguientes ses
 npm audit
 ```
 
-## Cuidado con la inteligengia artificial
+---
+
+Pero... no te fies de nadie
+
+![center h=20em](images/coding/audit-fail.png)
+
+## Cuidado con la inteligencia artificial
 <!-- _class: with-warning -->
 
 Asistentes de código:
@@ -716,6 +741,7 @@ Problemas:
 * Código poco legible
 
 ---
+<!-- _class: smaller-font -->
 
 ```python
 from fastapi import FastAPI
@@ -723,7 +749,6 @@ import sqlite3
 import bcrypt
 
 app = FastAPI()
-
 
 class User:
     def __init__(self, name, password):
@@ -739,8 +764,7 @@ class User:
         sql = 'INSERT INTO users(name,password) VALUES(?,?)'
         cur = conn.cursor()
         cur.execute(sql, (self.name, self.hashed))
-        conn.commit()        
-
+        conn.commit()
 
 @app.get("/create")
 async def create(name, password):
