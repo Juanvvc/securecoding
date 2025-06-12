@@ -18,8 +18,6 @@ theme: marp-viu
 
 Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 
-<juan.vera@campusviu.es>
-
 # Hoy hablamos de...
 <!-- _class: cool-list toc -->
 
@@ -34,7 +32,7 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 
 ---
 
-![center](images/devops/digiwiseacademy-devops.jpeg)
+![center w:30em](images/devops/digiwiseacademy-devops.jpeg)
 
 
 ## Containers: máquinas de usar y tirar
@@ -163,11 +161,11 @@ Seguimos en:
 
 ---
 
-![](images/containers/docker-swamp.png)
+![center w:30em](images/containers/docker-swamp.png)
 
 ---
 
-![](images/containers/marathon.png)
+![center w:30em](images/containers/marathon.png)
 
 ## Seguridad
 
