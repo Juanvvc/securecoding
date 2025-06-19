@@ -230,7 +230,7 @@ Fíjate:
     - La víctima tiene que conectarse utilizando la opción `-A`
 - En resumen: severidad alta, pero explotabilidad difícil: impacto bajo
 
-![center w:30em](images/threatmod/cve-2023-38408.png)
+[![center w:30em](images/threatmod/cve-2023-38408.png)](https://www.cvedetails.com/cve/CVE-2023-38408)
 
 > https://www.cvedetails.com/cve/CVE-2023-38408
 
@@ -294,14 +294,13 @@ Solución: que desarrollo y operaciones trabajen juntos: DevOps
 
 ## Quality Assurance
 
- "Quality assurance" (QA) : conjunto de procesos diseñados para garantizar que el software cumple con ciertos estándares de calidad antes de ser entregado al usuario
+ "*Quality assurance*" (QA) : conjunto de procesos diseñados para garantizar que el software cumple con ciertos estándares de calidad antes de ser entregado al usuario
 
  1. **Prevención de errores**, no solo detección, desde etapas tempranas del desarrollo
  1. **Establecimiento de procesos y estándares**: desarrollar, documentar, probar y mantener los productos de software para asegurar calidad de forma consistente.
-    - Revisión de requisitos y documentación
+    - Estándares de codificación y pruebas comunes a todo el equipo
     - Revisión de código y diseño
-    - Estándares de codificación y pruebas
-    - Testing estático y dinámico
+    - Testeo estático y dinámico
     - Métricas de calidad
 
 ## Diseño: Modelado de amenazas

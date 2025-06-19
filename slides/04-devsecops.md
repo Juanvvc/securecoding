@@ -22,8 +22,8 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 <!-- _class: cool-list toc -->
 
 1. [Desarrollo y Operaciones](#3)
-1. [Etapas DevOps](#12)
-1. [Resumen y referencias](#54)
+1. [Etapas DevOps](#14)
+1. [Resumen y referencias](#58)
 
 # Desarrollo y Operaciones
 <!-- _class: lead -->
@@ -70,15 +70,18 @@ Cada cambio en el código se testea y despliega en producción en minutos
 
 ## Exigencias
 
-- Diseña el sistema de manera que admita versiones iterativas.
-- Métricas que ayuden a detectar problemas en tiempo real.
-- Desarrollo basado en tests para mantener siempre el código en un estado desplegable.
-- Monitoreo, registro y tolerancia a fallas por diseño.
-- Trabaja en pequeñas iteraciones. Por ejemplo, si desarrolla en ramas de características, no deberían vivir más de un día.
+- Diseña el sistema de manera que admita versiones iterativas
+- Trabaja en pequeñas iteraciones. Por ejemplo, si desarrolla en ramas de características, no deberían vivir más de un día
+- Desarrollo basado en tests para mantener siempre el código en un estado desplegable
+- Monitoreo, registro y tolerancia a fallas por diseño
 - Uso de entornos de prueba similares a los de producción
 - Si lo desarrollas, lo ejecutas. Los equipos de ingeniería autónomos deben ser responsables de la calidad y la estabilidad del software que construyen
-- Los clientes tienen que poder aceptar cambios contantes
-- El desarrollo Ci/CD puede ser más caro que el tradicional
+- Los clientes tienen que poder aceptar cambios constantes
+- El objetivo es llegar rápido al mercado: puede ser más caro que el sistema tradicional
+
+---
+
+![w:30em center](images/cicd/git-branches.png)
 
 ## Buenas prácticas
 
@@ -95,7 +98,18 @@ Y por supuesto, ¡introduce controles de seguridad en todo el proceso!
 
 ![center](images/devops/etapas.png)
 
-## DevOps: herramientas
+## Quality Assurance
+
+ "*Quality assurance*" (QA) : conjunto de procesos diseñados para garantizar que el software cumple con ciertos estándares de calidad antes de ser entregado al usuario
+
+ 1. **Prevención de errores**, no solo detección, desde etapas tempranas del desarrollo
+ 1. **Establecimiento de procesos y estándares**: desarrollar, documentar, probar y mantener los productos de software para asegurar calidad de forma consistente.
+    - Estándares de codificación y pruebas comunes a todo el equipo
+    - Revisión de código y diseño
+    - Testeo estático y dinámico
+    - Métricas de calidad
+
+## Herramientas
 
 - Repositorios de código (Github, Gitlab, Bitbucket, etc)
 - Infraestructura (Terraform, CloudFormation, etc)
@@ -155,7 +169,7 @@ Ejemplos: [black](https://black.readthedocs.io/en/stable/), [Pylama](https://kle
 
 ---
 
-Ejemplo: black
+Ejemplo de linter: black
 
 ```bash
 $ git clone https://github.com/NetSPI/django.nV ; cd django.nV
@@ -166,16 +180,19 @@ $ git diff
 
 ![center](images/devops/example-black.png)
 
+> Black usa una versión estricta de [PIP8](https://peps.python.org/pep-0008/) y admite poca configuración de manera premeditada.
+> https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html
+
 ---
 
-Ejempo: pylama
+Ejemplo de linter: pylama
 
 ```bash
-$ git clone https://github.com/NetSPI/django.nV ; cd django.nV
-$ python3 -m pip install pylama
-$ python3 -m pylama taskManager/views.py
-$ python3 -m pylama taskManager/views.py
+git clone https://github.com/NetSPI/django.nV ; cd django.nV
+python3 -m pip install pylama
+python3 -m pylama taskManager/views.py
 
+# Resultados
 taskManager/views.py:18:1 W0611 'codecs' imported but unused [pyflakes]
 taskManager/views.py:161:9 W0612 local variable 'proj' is assigned to but never used [pyflakes]
 taskManager/views.py:821:101 E501 line too long (151 > 100 characters) [pycodestyle]
@@ -184,26 +201,32 @@ taskManager/views.py:821:101 E501 line too long (151 > 100 characters) [pycodest
 Pueden ignorarse errores determinados:
 
 ```bash 
-$ python3 -m pylama -i E501 taskManager/views.py
+python3 -m pylama -i E501 taskManager/views.py
 
+# Resultados
 taskManager/views.py:18:1 W0611 'codecs' imported but unused [pyflakes]
 taskManager/views.py:161:9 W0612 local variable 'proj' is assigned to but never used [pyflakes]
 ```
+
+> Pylama también sigue el estilo [PIP8](https://peps.python.org/pep-0008/)
 
 ---
 
 También pueden integrarse en tu entorno de desarrollo para que haga las comprobaciones siempre:
 
-![center](images/coding/code-linting.png)
+![center w:20em](images/coding/code-linting.png)
 
 ## Etapa 1: Build - Análisis estático de código (SAST)
 
 Análisis estático: *Static Application Security Testing*
 
 - Análisis automático del código antes de compilarlo
-- Encuentra errores comunes: algoritmos que no deben usarse, estructuras que pueden crear un buffer overflow, variables usadas antes de asignarse...
+- Incluye:
+  - errores comunes: algoritmos que no deben usarse, estructuras que pueden crear un buffer overflow, variables usadas antes de asignarse...
+  - análisis de librerías
+  - uso inseguro de "secretos" como contraseñas
 - Puede tener falsos positivos
-- No encontrará errores en la lógica del código
+- No encontrará errores en **la lógica** del código como por ejemplo acceso a recursos sin la suficiente autorización
 
 ---
 
@@ -250,10 +273,10 @@ de la calidad de código
 -->
 
 ## Análisis estático - auditoría de librerías
-<!-- _class: smaller-font -->
+<!-- _class: two-columns -->
 
 - Estas herramientas comprueban en una base de datos si la librería usada tiene alguna vulnerabilidad conocida -> ¡No analizan la librería!
-- ¿Es posible actualizar la librería o asumimos el riesgo?
+- Decisión: ¿ss posible actualizar la librería o asumimos el riesgo?
 - No detectan vulnerabilidades automáticamente: se tiene que analizar periódicamente con bases de datos actualizadas
 
 
@@ -267,6 +290,25 @@ Java|OWASP dependency checker
 
 ---
 
+¿Por qué no querríamos actualizar una librerías que es vulnerable?
+
+- El trabajo necesario para actualizar a una versión superior puede ser mayor que el riesgo que crea la vulnerabilidad sobre tu aplicación
+- El imacto de la vulnerabilidad podría ser mínimo
+- La explotación de la vulnerabilidad podría ser muy difícil
+
+Recuerda: Riesgo = Probabilidad * Impacto
+
+[![center w:30em](images/threatmod/cve-2023-38408.png)](https://www.cvedetails.com/cve/CVE-2023-38408)
+
+
+> https://www.splunk.com/en_us/blog/learn/vulnerability-vs-threat-vs-risk.html
+
+<!--
+En el ejemplo, la cve-2023-38408 que es una vulnerabilidad crítica... con un impacto bajo
+-->
+
+---
+
 Ejemplo: [Safety](https://github.com/pyupio/safety) analiza librerías Python
 
 ```bash
@@ -275,13 +317,14 @@ python3 -m pip install safety
 python3 -m safety check -r requirements.txt --save-json safety-resuls.json
 ```
 
-![center](images/devops/ejemplo-safety.png)
+![center w:30em](images/devops/ejemplo-safety.png)
 
-<!--
-Fíjate: el comando simplemente examina el archivo de requisitos, no el código
+---
 
-Safety tiene una versión gratuita con vulnerabilidades >30 days, y otra de comercial con vulnerabilidades recientes
--->
+Fíjate:
+
+- *safety* simplemente examina el archivo de requisitos `requirements.txt`, no entra en el código
+- Safety tiene una versión gratuita con vulnerabilidades >30 days, y otra de comercial con vulnerabilidades recientes que también emite recomendaciones
 
 ---
 
@@ -327,10 +370,14 @@ Ejemplos de librerías maliciosas:
 
 ## Análisis estático - secretos
 
-Errores comunes:
+Tipos de secretos:
 
-- Archivos de configuración que no deberían subirse a un repositorio
-- Secretos *hardcoded* en el código fuente
+- Archivos de configuración interna que no deberían subirse a un repositorio
+- Contraseñas *hardcoded* en el código fuente que está público en GitHub
+- Subir la clave privada en vez de la pública
+- Claces de conexión a las APIs de otros servicios
+- Direcciones IPs de servicios en la intranet
+- ...
 
 ![bg right:40% w:100%](images/devops/secrets-sourcecode1.png)
 
@@ -360,6 +407,7 @@ Ejemplo: secretos en código fuente
  -->
 
 ---
+<!-- _class: with-warning -->
 
 Utiliza detectores de contraseñas/tokens de seguridad:
 
@@ -368,6 +416,8 @@ Utiliza detectores de contraseñas/tokens de seguridad:
 
 Ten en cuenta que ambos métodos pueden tener falsos positivos
 
+Recuerda que Git (github, gitlab...) guarda el histórico de un proyecto: una vez que se ha subido un archivo con un secreto, ya no puede eliminarse del histórico ni aunque cambies el archivo. Considera los secretos subidos a git como comprometidos que deben cambiarse inmediatamente.
+
 
 ---
 
@@ -375,7 +425,7 @@ Ten en cuenta que ambos métodos pueden tener falsos positivos
 
 > https://cybenari.com/2024/08/whats-the-worst-place-to-leave-your-secrets/
 
----
+## Comparación de herramientas para detección de secretos
 <!-- _class: smaller-font -->
 
 Tool|History|Regex/entropy|FP handling|Custom regex|Language|CI/CD|Comments
@@ -392,16 +442,19 @@ surch|yes|regex|no|yes|python|no|-|-
 Ejemplo: trufflehog
 
 ```bash
-$ wget https://github.com/trufflesecurity/trufflehog/releases/download/v3.81.8/trufflehog_3.81.8_linux_amd64.tar.gz
-$ tar -xvf trufflehog_3.81.8_linux_amd64.tar.gz trufflehog
-$ chmod +x trufflehog
-$ ./trufflehog filesystem --directory=.
-$ ./trufflehog github --repo=https://github.com/dustin-decker/secretsandstuff
+git clone https://github.com/dustin-decker/secretsandstuff
+wget https://github.com/trufflesecurity/trufflehog/releases/download/v3.81.8/trufflehog_3.81.8_linux_amd64.tar.gz
+tar -xvf trufflehog_3.81.8_linux_amd64.tar.gz trufflehog
+chmod +x trufflehog
+
+# Análisis local
+./trufflehog filesystem secretsandstuff
+
+# Análisis remoto
+./trufflehog github --repo=https://github.com/dustin-decker/secretsandstuff
 ```
 
-Nota: esto busca contraseñas en el propio archivo de trufflehog, a ti te interesará buscarlas en tu código
-
-![center](images/devops/trufflehog.png)
+![center w:15em](images/devops/trufflehog.png)
 
 <!-- Observa que trufflehog tiene diferentes detectores filesystem gitlab, token...
 
@@ -415,8 +468,9 @@ trufflehog filesystem --directory=mydir
 
 Ejemplo: deepfence
 
-```
-docker run --rm -v `pwd`:/source deepfenceio/deepfence_secret_scanner --local /source --output json
+```bash
+git clone https://github.com/dustin-decker/secretsandstuff
+docker run --rm -v $PWD/secretsandstuff:/source deepfenceio/deepfence_secret_scanner --local /source --output json
 ```
 
 ![center w:20em](images/devops/deepfence.png)
@@ -497,7 +551,7 @@ if __name__ == '__main__':
 ---
 
 - ¿Qué porcentaje del código cubren nuestros tests? Ejemplo: <https://coverage.readthedocs.io/en/7.5.3/>
-- ¿Qué portentaje de las amenazas detectadas durante el diseño cubren los tests?
+- ¿Qué porcentaje de las amenazas detectadas durante el diseño cubren los tests?
 - ¿Se testean todos los casos de uso de la aplicación?
 
 
