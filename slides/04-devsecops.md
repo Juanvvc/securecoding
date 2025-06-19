@@ -180,7 +180,7 @@ $ git diff
 
 ![center](images/devops/example-black.png)
 
-> Black usa una versión estricta de [PIP8](https://peps.python.org/pep-0008/) y admite poca configuración de manera premeditada.
+> Black usa una versión estricta de [PEP8](https://peps.python.org/pep-0008/) y admite poca configuración de manera premeditada.
 > https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html
 
 ---
@@ -208,7 +208,7 @@ taskManager/views.py:18:1 W0611 'codecs' imported but unused [pyflakes]
 taskManager/views.py:161:9 W0612 local variable 'proj' is assigned to but never used [pyflakes]
 ```
 
-> Pylama también sigue el estilo [PIP8](https://peps.python.org/pep-0008/)
+> Pylama también sigue el estilo [PEP8](https://peps.python.org/pep-0008/)
 
 ---
 
