@@ -27,7 +27,7 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 
 ---
 
-![center w:35em](images/cicd/git-branches.png)
+![center w:30em](images/cicd/git-branches.png)
 
 > https://alibaba-cloud.medium.com/how-to-select-a-git-branch-mode-1f8774a8bd94
 
