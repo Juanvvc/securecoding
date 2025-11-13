@@ -193,10 +193,9 @@ Fíjate:
 
 > https://www.microsoft.com/en-us/security/blog/2021/12/11/guidance-for-preventing-detecting-and-hunting-for-cve-2021-44228-log4j-2-exploitation/
 
-
 ## XZ Utils backdoor
 
-En marzo de 2024, [se descubríó un código malicioso introducido por un atacante en la librería XZ](https://www.openwall.com/lists/oss-security/2024/03/29/4), básica en los sistemas Linux
+En marzo de 2024, [se descubrió un código malicioso introducido por un atacante en la librería XZ](https://www.openwall.com/lists/oss-security/2024/03/29/4), básica en los sistemas Linux
 
 El "virus" no estaba el el código principal, sino que solo se introducía durante el testeo de la librería: estaba entre **los archivos de test**
 
@@ -217,7 +216,7 @@ Vulnerabilidad de ssh-agent que permite a un atacante ejecutar código en PC de 
 
 > https://nvd.nist.gov/vuln/detail/CVE-2023-38408
 > https://blog.qualys.com/vulnerabilities-threat-research/2023/07/19/cve-2023-38408-remote-code-execution-in-opensshs-forwarded-ssh-agent
-
+> Calculadora: https://www.first.org/cvss/calculator/3-1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H/E:F/RL:W/RC:C/MAC:H
 
 ---
 
