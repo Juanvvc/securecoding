@@ -24,10 +24,10 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 1. [Threat Modeling - Modelo de amenazas](#3)
 1. [¿En qué estamos trabajando?](#14)
 1. [¿Qué puede salir mal?](#32)
-1. [¿Qué podemos hacer para arreglarlo?](#48)
-1. [¿Hemos hecho un buen trabajo?](#62)
-1. [Ejemplos de antiguos alumnos](#69)
-1. [Referencias y ejercicios](#77)
+1. [¿Qué podemos hacer para arreglarlo?](#49)
+1. [¿Hemos hecho un buen trabajo?](#65)
+1. [Ejemplos de antiguos alumnos](#72)
+1. [Referencias y ejercicios](#80)
 
 # Threat Modeling - Modelo de amenazas
 <!-- _class: lead -->
@@ -163,16 +163,20 @@ Describe el sistema
 - ¿Qué activos son críticos?
 - ¿Qué actores interactúan con el sistema?
 
----
-
 - Describe el sistema:
     - Con casos de uso. Pueden ser varios, tipo historia
     - Con diagramas de flujo de datos
     - Con diagramas de subsistemas y su relación entre ellos
-- Identifica:
-    - puntos de entrada para ver dónde un potencial atacante podría interactuar con la aplicación
-    - activos importantes de tu aplicación
-    - derechos de acceso que necesitará cada actor
+
+---
+Identifica:
+
+- Puntos de entrada: interfaces, internet, APIs...
+- Actores y sus roles
+- Activos: Bases de datos, tipos de credenciales, servidores...
+- Dependencias (bajo control de otras personas): APIs externas, librerías...
+- puntos de entrada para ver dónde un potencial atacante podría interactuar con la aplicación
+- Zonas de confianza
 
 Objetivo: descompón tu sistema, sus flujos de datos, los actores, los activos importantes, y cómo se relacionan entre sí
 
@@ -216,7 +220,23 @@ Preguntas para del modelado
 
 Dibuja todos los diagramas que veas necesario, nunca sobrarán
 
----
+## Ejemplo: assets
+<!-- _class: smaller-font -->
+
+Tipo|Activo|Desripción
+--|--|--
+Actor|Analista|La persona que hace los análisis. Solo debería tener acceso a sus propios casos y sus evidencias
+Actor|Cliente|El externo que lee los análisis. No tiene permisos de escritura ni puede acceder a otros casos
+Actor|Administración|La persona que factura los trabajos. No tiene acceso a los casos
+Activo|Base de datos de evidencias|Evidencias digitales
+Activo|Intranet de la empresa|Protegida con VPN
+Activo|Zona de trabajo de informes|Informes en markdown
+
+> https://owasp.org/www-community/Threat_Modeling_Process#sample-scope-the-work
+
+## Ejemplo: Brainstorming (sistema)
+
+![center w:30em](images/threatmod/informes.drawio.png)
 
 <!--
 
@@ -267,23 +287,14 @@ CodiMD:
 - Gestión de trust boundaries
     - Gestión del endpoint de los trabajadores: ¿EDR?
     - VPN
-    - Conexión entre apliación y base de datos
+    - Conexión entre aplicación y base de datos
     - Conexión entre base de datos y sistema documental
 
 --> 
 
-## Ejemplo: Brainstorming (sistema)
+## Ejemplo: del proceso de edición por un usuario
 
-![center w:25em](images/threatmod/informes.drawio.png)
-
-Descripción del sistema completo
-
-## Ejemplo: Brainstorming (detalle)
-
-![center](images/threatmod/informes2.drawio.png)
-
-Detalle del proceso de edición por un usuario
-
+![center w:25em](images/threatmod/informes2.drawio.png)
 
 ## Flujos de datos
 
@@ -296,26 +307,21 @@ Detalle del proceso de edición por un usuario
 > https://en.wikipedia.org/wiki/Threat_model
 
 
-## Diagrama funcional
-
-![center w:25em](images/threatmod/diagramafunciona.png)
-
 ## Diagrama de estados
 
 ![center w:25em](images/threatmod/diagramaestados.png)
 
 ## Casos de uso
+<!-- _class: two-columns -->
 
 ![center w:20em](images/threatmod/Use_case_restaurant_model.svg)
+
+- Pueden ser también descripciones de texto
+- Asegúrate de que capturas toda la interacción entre actores
 
 ## Creación de historias
 
 "Como  **tipo-de-usario**, quiero **característica** para recibir **beneficio** pero también **indeseado**"
-
-Ejemplos de aplicación: https://github.com/OpenSecuritySummit/project-ASVS-User-Stories
-
-## ¿Qué le preocupa al usuario?
-<!-- _class: with-success -->
 
 - **BIEN**: Para añadir seguridad, implementaremos una pantalla de login
 * **MEJOR**: El usuario no quiere que otra persona acceda a sus fotos personales
@@ -455,6 +461,13 @@ Elevation of Privilege: https://www.microsoft.com/en-gb/download/confirmation.as
 OWASP Cornucopia: https://owasp.org/www-project-cornucopia/
 -->
 
+## Ejemplos
+
+- https://threat-modeling.com/the-ultimate-list-of-stride-threat-examples/
+- https://medium.com/@arielhacking/examples-of-stride-threats-for-payment-applications-87a0ad0c3a21
+- https://microsoft.github.io/code-with-engineering-playbook/security/threat-modelling/
+- https://microsoft.github.io/code-with-engineering-playbook/security/threat-modelling/
+
 ## OWASP ASVS
 
 [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/www-project-application-security-verification-standard/) es:
@@ -514,6 +527,23 @@ Ejemplos:
 
 -->
 
+---
+<!-- _class: smaller-font -->
+
+Tipo|¿Qué puede salir mal?
+--|--
+S|Phishing que pueda engañar a un usuario
+S|Autenticación inicial del usuario
+S|Le han robado la contraseña a un usuario
+T|Acceso a la base de datos de contraseña
+T|Borrado de cuentas con autenticación
+R|¿Quién ha cambiado la contraseña?
+I|Ataques a la web que puedan sacar parte de la base de datos
+I|Lista de usuarios de una aplicación
+D|Impedir que atacantes impidan que usuarios legítimos accedan
+E|El acceso está habilitado desde otras aplicaciones
+E|Admins tiene acceso a las contraseñas de los usuarios
+
 ## Brainstorming: Mullvad, seguridad por diseño
 <!-- _class: two-columns -->
 
@@ -527,6 +557,7 @@ Ejemplos:
 6. Elevation of privilege
 
 > https://mullvad.net/en/vpn
+> Es la que se usa en Firefox VPN
 
 <!--
 
@@ -544,6 +575,23 @@ Un ejemplo poco usual
 
 
 -->
+
+---
+<!-- _class: smaller-font -->
+
+Tipo|¿Qué puede salir mal?
+--|--
+S|Phishing que pueda engañar a un usuario
+S|Autenticación inicial del usuario
+S|Le han robado la contraseña a un usuario
+T|Robo de medios de pago
+T|Borrado de cuentas con autenticación
+R|¿Quién está usando el sistema?
+R|¿Uso del sistema sin pagar?
+I|Gobierno accediendo a datos de navegación
+I|Compañía accediendo a datos de navegación
+D|Bloqueo de comunicaciones por actividades ilegales
+E|Admins tiene acceso a las contraseñas de los usuarios
 
 
 # ¿Qué podemos hacer para arreglarlo?
@@ -696,6 +744,26 @@ Fíjate en cuántos factores influyen en la evaluación de riesgo: facilidad de 
 
 ![w:30em center](images/threatmod/owasp-calculator.png)
 
+## Ejemplo: ventana de login
+<!-- _class: smaller-font -->
+
+(puntuación 1-4)
+
+Tipo|¿Qué puede salir mal?|Prob.|Impacto|Riesgo
+--|--|--|--|--
+S|Phishing que pueda engañar a un usuario|4|3|12
+S|Autenticación inicial del usuario|2|2|4
+S|Le han robado la contraseña a un usuario|4|4|16
+T|Acceso a la base de datos de contraseña|2|4|8
+T|Borrado de cuentas con autenticación|2|4|8
+R|¿Quién ha cambiado la contraseña?|1|2|2
+I|Ataques a la web que puedan sacar parte de la base de datos|3|4|12
+I|Lista de usuarios de una aplicación|3|3|9
+D|Impedir que usuarios legítimos accedan|3|3|9
+E|El acceso está habilitado aún desde otras aplicaciones|3|4|12
+E|Admins tiene acceso a las contraseñas de los usuarios|1|4|4
+
+
 ## Paso 5: ¿Qué hacemos con el riesgo?
 <!-- _class: cool-list -->
 
@@ -737,6 +805,23 @@ Los riesgos no pueden eliminarse totalmente, pero pueden llevarse hasta niveles 
 Aviso importante: los ejemplos de esta slide no son recomendaciones, son ejemplos de decisiones que puedes tomar o no para tu aplicación. Fíjate que algunos son contradictorios entre sí
 -->
 
+
+## Ejemplo: ventana de login
+<!-- _class: smallest-font -->
+
+Tipo|¿Qué puede salir mal?|Prob.|Impacto|Riesgo|Mitigación
+--|--|--|--|--|--
+S|Phishing que pueda engañar a un usuario|4|3|12|Autenticación de servidor, avisos periódicos
+S|Autenticación inicial del usuario|2|2|4|Autenticación de cliente
+S|Le han robado la contraseña a un usuario|4|4|16|2FA, bloqueo de usuarios opcional
+T|Acceso a la base de datos de contraseña|2|4|8|Hardening del SO, Las contraseñas nunca se guardan en claro
+T|Borrado de cuentas con autenticación|2|4|8|Revisión de la lógica de la aplicación
+R|¿Quién ha cambiado la contraseña?|1|2|2|Gestión de logs
+I|Ataques a la web que puedan sacar parte de la base de datos|3|4|12|Pentesting, las contraseñas nunca se guardan en claro
+I|Lista de usuarios de una aplicación|3|3|9|No avisar si el usuario es inexistente
+D|Impedir que usuarios legítimos accedan|3|3|9|Timeout ante pruebas fallidas, bloqueo temporal de IP, 2FA
+E|El acceso está habilitado aún desde otras aplicaciones|3|4|12|Quitar acceso a tokens de seguridad
+E|Admins tiene acceso a las contraseñas de los usuarios|1|4|4|Las contraseñas nunca se guardan en claro
 
 # ¿Hemos hecho un buen trabajo?
 <!-- _class: lead -->
