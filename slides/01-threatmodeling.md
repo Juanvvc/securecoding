@@ -705,7 +705,7 @@ https://mitre-attack.github.io/attack-navigator/#layerURL=https://center-for-thr
 - **Probabilidad** de que un ataque se lleve a cabo. Tiene en cuenta habilidad necesaria, motivo, oportunidad, facilidad de explotación...
 - **Impacto**. Cómo de malo sería que un ataque tuviese éxito. Confidencialidad, impacto en negocio...
 - El riesgo se calcula para cada amenaza individual, no por categoría
-- [Metodología de OWASP](https://owasp.org/www-community/OWASP_Risk_Rating_Methodology) y [Calculadora](https://www.owasp-risk-rating.com/)
+- [Metodología de OWASP](https://owasp.org/www-community/OWASP_Risk_Rating_Methodology) y [Calculadora](https://beaglesecurity.com/owasp-risk-calculator)
 
 Riesgo = Probabilidad * Impacto
 
@@ -742,7 +742,9 @@ Riesgo = Probabilidad * Impacto
 
 Fíjate en cuántos factores influyen en la evaluación de riesgo: facilidad de encontrar la vulnerabilidad, conocimientos necesarios, impacto que puede tener...
 
-![w:30em center](images/threatmod/owasp-calculator.png)
+[![w:25em center](images/threatmod/owasp-calculator.png)](https://beaglesecurity.com/owasp-risk-calculator)
+
+> https://beaglesecurity.com/owasp-risk-calculator
 
 ## Ejemplo: ventana de login
 <!-- _class: smaller-font -->
@@ -976,15 +978,17 @@ Marketing CMS:
 
 ## Ejercicio
 
-- Escoge una sistema cualquiera de tu interés: una aplicación web con interfaz móvil, redes de drones, sistema médico como el que hemos visto en la sesión...
+- Escoge una sistema cualquiera de tu interés: una aplicación web con interfaz móvil, redes de drones, sistema de envío de datos médicos a un hospital... trata que sea un sistema "complejo" con varias zonas de confianza, actores, bases de datos...
 - Dibuja un modelo de la aplicación, identificando las zonas de confianza y los flujos de datos
 - Haz un análisis STRIDE de las amenazas que identifiques
-- Plantea mitigaciones para cada amenaza STRIDE que identifiques
 - Prioriza los riesgos encontrados
+- Plantea mitigaciones para cada amenaza STRIDE que identifiques
 
 El objetivo no es encontrar todos los problemas de seguridad de una aplicación, sinó aplicar los pasos modelado, análisis, mitigaciones, priorización.
 
-La extensión esperada del documento es unas 5 páginas
+La extensión esperada del documento es unas 5 páginas en PDF
+
+Se puede entregar hasta el día del examen
 
 **Entrega en PDF**
 
