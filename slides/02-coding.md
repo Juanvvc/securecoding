@@ -30,14 +30,14 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 # Hoy hablamos de...
 <!-- _class: cool-list toc -->
 
-1. [Mayores vulnerabilidades de código](#4)
+1. [Errores de código más comunes](#4)
 1. [Secure System Design Principles](#11)
 1. [Recomendaciones y ejemplos](#23)
 1. [Proyectos, librerías y dependencias](#36)
 1. [Ejemplos](#51)
 1. [Referencias](#61)
 
-# Mayores vulnerabilidades de código
+# Errores de código más comunes
 <!-- _class: lead -->
 
 
@@ -171,20 +171,7 @@ PEP8 es un ejemplo de reglas. Hay muchos más. Los linters los puedes encontrar 
 
 ![center h:20em](images/coding/validation-example.png)
 
-```python
-@app.route('/register', methods=['POST'])
-def register_user():
-    
-    username = request.form.get('username')
-    password = request.form.get('password')
-
-
-    insert_query = "INSERT INTO usuarios (nombre, edad) VALUES ({username}, {password})"
-
-
-    return redirect(url_for('registration_success'))
-```
-
+El bug no es obvio: si `file` es un path absoluto, ignora los paths anteriores: <https://docs.python.org/3/library/os.path.html>
 
 ## Secure by default
 
@@ -560,6 +547,7 @@ $output = exec($command);
 ![](images/coding/commandinjection.png)
 
 # Gestión de usuarios
+<!-- _class: lead -->
 
 ## Cosas a tener en cuenta
 
@@ -570,13 +558,9 @@ $output = exec($command);
 - Aprovecha los mecanismos que ya incluyen las librerías que uses
 
 ## Ejemplo inicial
+<!-- _class: smaller-font -->
 
 ```python
-from fastapi import FastAPI
-import sqlite3
-
-app = FastAPI()
-
 DB_CONFIG = {
     'user': 'tu_usuario_mysql',       # e.g., 'root'
     'password': 'tu_contraseña_mysql', # e.g., 'password123'
@@ -603,6 +587,7 @@ Problemas:
 	- <https://cwe.mitre.org/data/definitions/540.html>
 
 ---
+<!-- _class: smaller-font -->
 
 ```python
 DB_CONFIG = {
