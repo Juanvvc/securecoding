@@ -24,7 +24,7 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 
 # Como decíamos ayer...
 
-- El Threat Modeling permite identificar amenazas y tratarlas en el momento del diseño
+- El modelado de amenazas permite identificar amenazas y tratarlas en el momento del diseño
 - ¿Podemos mejorar la seguridad de una aplicación simplemente escribiendo buen código?
 
 # Hoy hablamos de...
@@ -45,9 +45,8 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 
 ![center w:15em](https://owasp.org/assets/images/content/featured_project_t10.png)
 
-<https://owasp.org/www-project-top-ten/>
+<https://owasp.org/Top10/2025/0x00_2025-Introduction/>
 
-La lista se actualizará durante 2025
 
 ---
 
@@ -135,20 +134,6 @@ Rank|ID|Name
 
 > https://es.wikipedia.org/wiki/Principio_KISS
 
-## Valida lo que dice el usuario
-
-- Verifica que todos los datos recibidos cumplan con las propiedades o tipos de datos esperados
-- Mucho cuidado con permitir entender las entradas de los usuarios como código
-- Top 10 de OWASP y SANS
-
-- CWE:
-    - https://cwe.mitre.org/data/definitions/710.html
-    - https://cwe.mitre.org/data/definitions/1006.html
-
----
-
-![center h:20em](images/coding/validation-example.png)
-
 ## Guías de estilo (linters)
 
 - Tienes que entender el código de otro para poder decidir si es seguro o no
@@ -167,6 +152,39 @@ Para forzar las mismas reglas en toda la empresa, puedes utilizar linters: no pe
 
 PEP8 es un ejemplo de reglas. Hay muchos más. Los linters los puedes encontrar para cada lenguaje. Ejemplos en Python: pylama, frake8. Ejemplos en Javascript: eslint
 -->
+
+---
+
+![center](images/coding/code-linting.png)
+
+## Valida lo que dice el usuario
+
+- Verifica que todos los datos recibidos cumplan con las propiedades o tipos de datos esperados
+- Mucho cuidado con permitir entender las entradas de los usuarios como código
+- Top 10 de OWASP y SANS
+
+- CWE:
+    - https://cwe.mitre.org/data/definitions/710.html
+    - https://cwe.mitre.org/data/definitions/1006.html
+
+---
+
+![center h:20em](images/coding/validation-example.png)
+
+```python
+@app.route('/register', methods=['POST'])
+def register_user():
+    
+    username = request.form.get('username')
+    password = request.form.get('password')
+
+
+    insert_query = "INSERT INTO usuarios (nombre, edad) VALUES ({username}, {password})"
+
+
+    return redirect(url_for('registration_success'))
+```
+
 
 ## Secure by default
 
@@ -236,6 +254,8 @@ def autenticar(usuario, contrasena):
 - CWE:
     - https://cwe.mitre.org/data/definitions/269.html
     - https://cwe.mitre.org/data/definitions/250.html
+
+---
 
 ```javascript
 function authenticateUsers(username, password) {
@@ -311,7 +331,7 @@ Los ejemplos de esta página son una buena introducción a las "reglas de oro" q
 
 - https://github.com/OWASP/DevGuide/blob/master/02-Design/01-Principles%20of%20Security%20Engineering.md
 
-# Recomendaciones y ejemplos
+# Recomendaciones y ejemplos en Python
 <!-- _class: lead -->
 
 ## Recomendaciones
@@ -415,6 +435,8 @@ print(clase['alumnos'])
 # Salida: ['María', 'Eva', 'Alberto', 'Jorge']
 ```
 
+- <https://cwe.mitre.org/data/definitions/502.html>
+
 ---
 
 ```python
@@ -434,7 +456,7 @@ Un ejemplo de esta vulnerabildad que nos tuvo varias semanas pegados a la pantal
 
 ## Loguea todo
 
-No uses `print()`, sino el módulo *logging* (Java: *log4j*)
+No uses `print()`, sinó el módulo *logging* (Java: *log4j*)
 
 ```python
 import logging
@@ -447,6 +469,8 @@ logger.info('Esto es un mensaje de error')
 
 Estas librerías especializadas permiten configurar la salida de log. Por ejemplo: errores consola y archivo, info solo a archivo, colores, incluir fechas...
 
+<https://cwe.mitre.org/data/definitions/778.html>
+
 > https://www.geeksforgeeks.org/logging-in-python/
 
 
@@ -454,9 +478,9 @@ Estas librerías especializadas permiten configurar la salida de log. Por ejempl
 Y los logs de aplicación puedes fácilmente centralizarlos en un SIEM
 -->
 
-## Pide permisos
+## Comprueba permisos
 
-Prefiero perdir perdón que permiso:
+Prefiero pedir perdón que permiso:
 
 ```python
 try:
@@ -466,8 +490,6 @@ except PermissionError:
     with file:
         return file.read()
 ```
-
----
 
 Mira antes de cruzar:
 
@@ -536,6 +558,237 @@ $output = exec($command);
 ```
 
 ![](images/coding/commandinjection.png)
+
+# Gestión de usuarios
+
+## Cosas a tener en cuenta
+
+- No guardes contraseñase en claro en la base de datos
+- No guardes la contraseña de conexión a la base de datos en el código
+- Comprueba si los usuarios tienen autorización para realizar las acciones
+- Equivocarse es fácil: escribe las cosas solo una vez y reutiliza código
+- Aprovecha los mecanismos que ya incluyen las librerías que uses
+
+## Ejemplo inicial
+
+```python
+from fastapi import FastAPI
+import sqlite3
+
+app = FastAPI()
+
+DB_CONFIG = {
+    'user': 'tu_usuario_mysql',       # e.g., 'root'
+    'password': 'tu_contraseña_mysql', # e.g., 'password123'
+    'host': '127.0.0.1',             # e.g., 'localhost'
+    'database': 'test_python_db'     # Un nombre de base de datos existente o que deseas crear
+}
+
+@app.get("/create")
+async def create(name, password):
+    conn = mysql.connector.connect(**DB_CONFIG)
+    sql = f'INSERT INTO users(name,password) VALUES("{name}","{password}")'
+    cur = conn.cursor()
+    cur.execute(sql)
+    conn.commit()
+    return {"message": f"I created user {name}"}
+```
+
+Problemas:
+
+- SQL injection: <https://cwe.mitre.org/data/definitions/89.html>
+- Los errores no se manejan: <https://cwe.mitre.org/data/definitions/200.html>
+- Contraseñas en claro en la base de datos:
+	- <https://cwe.mitre.org/data/definitions/798.html>
+	- <https://cwe.mitre.org/data/definitions/540.html>
+
+---
+
+```python
+DB_CONFIG = {
+    'user': 'tu_usuario_mysql',       # e.g., 'root'
+    'password': 'tu_contraseña_mysql', # e.g., 'password123'
+    'host': '127.0.0.1',             # e.g., 'localhost'
+    'database': 'test_python_db'     # Un nombre de base de datos existente o que deseas crear
+}
+
+@app.get("/create")
+async def create(name, password):
+    conn = mysql.connector.connect(**DB_CONFIG)
+    sql = 'INSERT INTO users(name,password) VALUES(?,?)'
+    hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+    cur = conn.cursor()
+    cur.execute(sql, (name, hashed))
+    conn.commit()
+    return {"message": f"I created user {name}"}
+```
+
+Problemas:
+
+- Los errores no se manejan: <https://cwe.mitre.org/data/definitions/200.html>
+- Conexión a la base de datos dentro del código:
+	- <https://cwe.mitre.org/data/definitions/798.html>
+	- <https://cwe.mitre.org/data/definitions/540.html>
+
+---
+<!-- _class: smaller-font -->
+
+```python
+from fastapi import FastAPI
+import sqlite3
+import bcrypt
+
+app = FastAPI()
+
+class User:
+    def __init__(self, name, password):
+        self.name = name
+        self.hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+    
+    def check(self, password):
+        return bcrypt.checkpw(password.encode, self.hashed)
+    
+    def create(self):
+        # TODO: check uniqueness
+        conn = sqlite3.connect('users.db')
+        sql = 'INSERT INTO users(name,password) VALUES(?,?)'
+        cur = conn.cursor()
+        cur.execute(sql, (self.name, self.hashed))
+        conn.commit()
+
+@app.get("/create")
+async def create(name, password):
+    user = User(name, password)
+    user.create()
+    return {"message": f"I created user {name}"}
+```
+
+Problemas:
+
+- No hay validación de entrada: <https://cwe.mitre.org/data/definitions/89.html>
+
+---
+
+```python
+@app.get("/create")
+async def create_user(
+        name: str = Query(max_length=50, default=None),
+        password: str = Query(min_length=3, max_length=50, default=0),
+        age: int = Path(title="The age of the new user", ge=18, default=0)):
+    user = User(name, password)
+    user.create()
+    return {"message": f"I created user {name}"}
+```
+
+- Problemas: cualquiera puede crear un nuevo usuario con un nombre ya usado: <https://cwe.mitre.org/data/definitions/306.html>
+
+---
+
+![](images/coding/server-autodocs.png)
+
+---
+
+```python
+def get_current_username(
+    credentials: Annotated[HTTPBasicCredentials, Depends(security)]
+):
+    current_username_bytes = credentials.username.encode("utf8")
+    correct_username_bytes = b"stanleyjobson"
+    is_correct_username = secrets.compare_digest(
+        current_username_bytes, correct_username_bytes
+    )
+    current_password_bytes = credentials.password.encode("utf8")
+    correct_password_bytes = b"swordfish"
+    is_correct_password = secrets.compare_digest(
+        current_password_bytes, correct_password_bytes
+    )
+    if not (is_correct_username and is_correct_password):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect email or password",
+            headers={"WWW-Authenticate": "Basic"},
+        )
+    return credentials.username
+```
+
+> https://fastapi.tiangolo.com/advanced/security/http-basic-auth/#__tabbed_3_1
+
+<!--
+---
+
+![center w:40em](images/coding/demos1.png)
+
+---
+
+![center w:25em](images/coding/demos2.png)
+
+-->
+
+
+
+## Gestión de usuarios logueados
+
+```python
+@app.route('/secret_page')
+def secret_page():
+    if g.user is None:
+            return redirect(url_for('login', next=request.url))
+    pass
+
+@app.route('/another_secret_page')
+def another_secret_page():
+    if g.user is None:
+            return redirect(url_for('login', next=request.url))
+    pass
+```
+
+---
+
+Uso de decoradores para escribir la lógica solo una vez:
+
+```python
+from functools import wraps
+from flask import g, request, redirect, url_for
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if g.user is None:
+            return redirect(url_for('login', next=request.url))
+        return f(*args, **kwargs)
+    return decorated_function
+
+@app.route('/secret_page')
+@login_required
+def secret_page():
+    pass
+
+@app.route('/another_secret_page')
+@login_required
+def another_secret_page():
+    pass
+```
+
+- <https://flask.palletsprojects.com/en/stable/patterns/viewdecorators/>
+
+## Contraseñas en archivos de configuración
+
+```python
+# settings.py
+import os
+from os.path import join, dirname
+from dotenv import load_dotenv
+
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
+SECRET_KEY = os.environ.get("SECRET_KEY")
+DATABASE_PASSWORD = os.environ.get("DATABASE_PASSWORD")
+```
+
+- Cuidado: estos archivos de configuración no deben estar en el control de versiones
+- Considera leer de memoria: `DATABASE_PASSWORD = os.environ.get("DATABASE_PASSWORD")`
+- Conexión a la base de datos dentro del código: <https://cwe.mitre.org/data/definitions/540.html>
 
 
 
@@ -681,160 +934,6 @@ ChatGPT propone código con SQL Injection y CoPilot mete vulnerabilidades
 > https://www.elladodelmal.com/2022/12/chatgpt-hace-codigo-con-sql-injection.html?m=1
 > https://www.elladodelmal.com/2022/09/copilot-y-su-codigo-inseguro-o-como-la.html
 
-
-# Ejemplos
-<!-- _class: lead -->
-
----
-
-![center](images/coding/code-linting.png)
-
----
-
-```python
-from fastapi import FastAPI
-import sqlite3
-
-app = FastAPI()
-
-
-@app.get("/create")
-async def create(name, password):
-    conn = sqlite3.connect('users.db')
-    sql = f'INSERT INTO users(name,password) VALUES("{name}","{password}")'
-    cur = conn.cursor()
-    cur.execute(sql)
-    conn.commit()
-    return {"message": f"I created user {name}"}
-```
-
-Problemas:
-
-* SQL injection
-* Los errores no se manejan
-* Contraseñas en claro
-
----
-
-```python
-from fastapi import FastAPI
-import sqlite3
-import bcrypt
-
-app = FastAPI()
-
-
-@app.get("/create")
-async def create(name, password):
-    conn = sqlite3.connect('users.db')
-    sql = 'INSERT INTO users(name,password) VALUES(?,?)'
-    hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
-    cur = conn.cursor()
-    cur.execute(sql, (name, hashed))
-    conn.commit()
-    return {"message": f"I created user {name}"}
-```
-
-Problemas:
-
-* Los errores no se manejan
-* Código poco legible
-
----
-<!-- _class: smaller-font -->
-
-```python
-from fastapi import FastAPI
-import sqlite3
-import bcrypt
-
-app = FastAPI()
-
-class User:
-    def __init__(self, name, password):
-        self.name = name
-        self.hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
-    
-    def check(self, password):
-        return bcrypt.checkpw(password.encode, self.hashed)
-    
-    def create(self):
-        # TODO: check uniqueness
-        conn = sqlite3.connect('users.db')
-        sql = 'INSERT INTO users(name,password) VALUES(?,?)'
-        cur = conn.cursor()
-        cur.execute(sql, (self.name, self.hashed))
-        conn.commit()
-
-@app.get("/create")
-async def create(name, password):
-    user = User(name, password)
-    user.create()
-    return {"message": f"I created user {name}"}
-```
-
-Problemas:
-
-- No hay validación de entrada
-
----
-
-```python
-@app.get("/create")
-async def create_user(
-        name: str = Query(max_length=50, default=None),
-        password: str = Query(min_length=3, max_length=50, default=0),
-        age: int = Path(title="The age of the new user", ge=18, default=0)):
-    user = User(name, password)
-    user.create()
-    return {"message": f"I created user {name}"}
-```
-
-- Ejecución: `uvicorn server05:app --reload`
-- Visita: `localhost:8000/help`
-- Problemas: cualquiera puede crear un nuevo usuario
-
----
-
-![](images/coding/server-autodocs.png)
-
----
-
-```python
-def get_current_username(
-    credentials: Annotated[HTTPBasicCredentials, Depends(security)]
-):
-    current_username_bytes = credentials.username.encode("utf8")
-    correct_username_bytes = b"stanleyjobson"
-    is_correct_username = secrets.compare_digest(
-        current_username_bytes, correct_username_bytes
-    )
-    current_password_bytes = credentials.password.encode("utf8")
-    correct_password_bytes = b"swordfish"
-    is_correct_password = secrets.compare_digest(
-        current_password_bytes, correct_password_bytes
-    )
-    if not (is_correct_username and is_correct_password):
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect email or password",
-            headers={"WWW-Authenticate": "Basic"},
-        )
-    return credentials.username
-```
-
-> https://fastapi.tiangolo.com/advanced/security/http-basic-auth/#__tabbed_3_1
-
-<!--
----
-
-![center w:40em](images/coding/demos1.png)
-
----
-
-![center w:25em](images/coding/demos2.png)
-
--->
 
 ## Referencias
 <!-- _class: lead -->
