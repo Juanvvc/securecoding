@@ -32,10 +32,10 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 
 1. [Errores de código más comunes](#4)
 1. [Secure System Design Principles](#11)
-1. [Recomendaciones y ejemplos](#23)
-1. [Proyectos, librerías y dependencias](#36)
-1. [Ejemplos](#51)
-1. [Referencias](#61)
+1. [Recomendaciones y ejemplos en Python](#29)
+1. [Gestión de usuarios](#40)
+1. [Proyectos, librerías y dependencias](#51)
+1. [Referencias](#67)
 
 # Errores de código más comunes
 <!-- _class: lead -->
