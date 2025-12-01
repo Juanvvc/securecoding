@@ -639,7 +639,7 @@ Aunque hay otras metodologías, en esta clase nos vamos a centrar en el análisi
 
 - Paso 1: Identificación del riesgo
 - Paso 2: Factores para estimar la Probabilidad: agentes y vulnerabilidades
-- Paso 3: Factores para estimar la Probabilidad: técnicos y negocio
+- Paso 3: Factores para estimar el Impacto: técnicos y negocio
 - Paso 4: Determinar la severidad del riesgo
 - Paso 5: ¿Qué hacemos?
 - Paso 6: Mejora el modelo de riesgos
