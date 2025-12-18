@@ -255,7 +255,7 @@ Descrición:
 
 ## Ejemplo: esta misma presentación
 
-Cada vez que modifico algo en esta presentación, hay una pipeline que automáticamente:
+Cada vez que modifico algo en esta presentación, hay una pipeline que automáticamente (2025):
 
 - CI: compila el código Markdown a HTML
 - CD: publica el código HTML en la web
