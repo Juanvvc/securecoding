@@ -123,11 +123,12 @@ Fallos|El sistema no se comporta como se espera debido a algún defecto|Durante 
 
 ## Proceso general
 
-1. **Definir alcance** del sistema
-2. **Crear un modelo** del sistema
+1. **Describir el objetivo** del sistema
+2. **Crear un modelo** del sistema, que identifique sus componentes
+3. **Identificar los componentes críticos**
 3. **Identificar amenazas** (ej: STRIDE)
-4. **Evaluar riesgos** (impacto vs. probabilidad)
-5. **Mitigar amenazas**
+4. **Evaluar riesgos priorizando amenazas** (impacto vs. probabilidad)
+5. **Proponer mitigaciones de las amenazas amenazas**
 6. **Documentar y revisar**
 
 ## Fases genéricas del análisis de amenazas
@@ -173,9 +174,9 @@ Identifica:
 
 - Puntos de entrada: interfaces, internet, APIs...
 - Actores y sus roles
-- Activos: Bases de datos, tipos de credenciales, servidores...
+- Activos: Bases de datos, credenciales, servidores...
 - Dependencias (bajo control de otras personas): APIs externas, librerías...
-- puntos de entrada para ver dónde un potencial atacante podría interactuar con la aplicación
+- Puntos de entrada para ver dónde un potencial atacante podría interactuar con la aplicación
 - Zonas de confianza
 
 Objetivo: descompón tu sistema, sus flujos de datos, los actores, los activos importantes, y cómo se relacionan entre sí
@@ -336,6 +337,20 @@ En vez de añadir características a tu producto, identifica qué quiere realmen
 - Como revisor, quiero poder acceder al sistema desde mi casa, sin que nadie pueda hacerse pasar por mí
 - Como cliente, quiero poder acceder a los informes, en confidencialidad
 - Como auditor, quiero saber a qué evidencias han accedido los analistas, sino que ningún actor pueda eliminar trazas de acceso
+
+## Uso de inteligencia artificial
+
+En el pasado, el modelado de amenazas se hacía mediante brainstorming de analistas expertos con diferentes técnicas para estimular la creatividad
+
+En la actualidad tenemos los sistemas de inteligencia artificial que son una estupenda ayuda a la hora de hacer modelado de amenazas
+
+En cualquier caso, las recomendaciones de un sistema de inteligencia artificial siempre deben ser validadas
+
+Si usas inteligencia artifical durante esta fase:
+
+- Describe el sistema
+- Describe los requisitos usando historias
+- Pide que se identifiquen los componentes principales del sistema y su relación entre ellos
 
 # ¿Qué puede salir mal?
 <!-- _class: lead -->
@@ -593,6 +608,13 @@ I|Compañía accediendo a datos de navegación
 D|Bloqueo de comunicaciones por actividades ilegales
 E|Admins tiene acceso a las contraseñas de los usuarios
 
+## Inteligencia artificial
+
+Si usas inteligencia artifical durante esta fase:
+
+- Pide que identifique amenazas usando alguna metodología (por ejemplo, STRIDE)
+- Pide al menos una amenaza por categoría STRIDE y no pidas demasiadas más: se pueden hacer iteraciones
+
 
 # ¿Qué podemos hacer para arreglarlo?
 <!-- _class: lead -->
@@ -824,6 +846,13 @@ I|Lista de usuarios de una aplicación|3|3|9|No avisar si el usuario es inexiste
 D|Impedir que usuarios legítimos accedan|3|3|9|Timeout ante pruebas fallidas, bloqueo temporal de IP, 2FA
 E|El acceso está habilitado aún desde otras aplicaciones|3|4|12|Quitar acceso a tokens de seguridad
 E|Admins tiene acceso a las contraseñas de los usuarios|1|4|4|Las contraseñas nunca se guardan en claro
+
+## Inteligencia artificial
+
+Si usas inteligencia artifical durante esta fase:
+
+- Pide que se priorice por criticidad y también por probabilidad de explotación
+- El resultado tiene que estar en forma de tabla
 
 # ¿Hemos hecho un buen trabajo?
 <!-- _class: lead -->
