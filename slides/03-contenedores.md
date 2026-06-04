@@ -102,6 +102,18 @@ Ejemplo: contenedores para:
 - Un contenedor puede estar desactualizado
 - Puede tener sus propios problemas de seguridad
 
+## Isolated compartments
+
+- Contenedores que gestionen o impidan la comunicación entre componentes y la fuga de información y el control.
+- Restringe la comunicación autorizada entre componentes a rutas observables con interfaces definidas
+- Aislamiento de procesos y memoria, particiones de disco, virtualización, protecciones de software, zonas, puertas de enlace, firewalls, docker, kubernetes
+
+- CWE:
+    - https://cwe.mitre.org/data/definitions/901.html
+    - https://cwe.mitre.org/data/definitions/653.html
+
+
+
 ## Terminología
 
 - **Imágenes**: "snapshot" de un sistema. Es el "estado inicial" de un contenedor

