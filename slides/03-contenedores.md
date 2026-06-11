@@ -13,7 +13,7 @@ theme: marp-viu
     the YAML header: section: | */
 </style>
 
-# Distribución de aplicaciones: contenedores y microservicios
+# Despliegue de aplicaciones: contenedores y microservicios
 <!-- _class: first-slide -->
 
 Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
@@ -22,10 +22,10 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 <!-- _class: cool-list toc -->
 
 1. [De aplicaciones a contenedores](#3)
-1. [Contenedores Docker](#13)
-1. [Orquestadores](#17)
-1. [Kubernetes](#23)
-1. [Referencias](#40)
+1. [Contenedores Docker](#15)
+1. [Orquestadores](#19)
+1. [Kubernetes](#25)
+1. [Referencias](#42)
 
 # De aplicaciones a contenedores
 <!-- _class: lead -->
@@ -33,6 +33,12 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 ---
 
 ![center w:30em](images/devops/digiwiseacademy-devops.jpeg)
+
+## Responsabilidad compartida en la nube
+
+![center w:30em](images/containers/responsabilidad.png)
+
+> https://learn.microsoft.com/es-es/azure/security/fundamentals/shared-responsibility
 
 
 ## Containers: máquinas de usar y tirar
@@ -57,12 +63,12 @@ Es como una máquina virtual... pero no
 
 - Comparado con VMs: más rápidos de empezar y acabar
 - Seguridad:
-    - Sistema aislado: solo ven la parte del sistema que les dejas ver
-    - Pueden conectarse entre ellos
-- Portabilidad: arregla "en mi PC funciona":
+    - Aislamiento: solo ven la parte del sistema que les dejas ver
+    - Aislamiento de dependecias
+- Reproductibilidad: arregla "en mi PC funciona":
     - Gestión de "snapshots"
     - Dependencias "autocontenidas"
-    - Fácil instalación y compartición
+    - *Fast onboarding*: `docker compose up`
 ---
 <!-- _class: with-success -->
 
@@ -72,7 +78,7 @@ Es como una máquina virtual... pero no
     - Gestión del ciclo de vida
 - Escalabilidad:
     - Pueden crearse y destruirse rápidamente
-    - PUeden conectarse entre ellos
+    - Pueden conectarse entre ellos
 - Tolerancia a fallos:
     - El gestor de contenedores detecta cuándo uno ha fallado y lo reinicia automáticamente
 
@@ -140,7 +146,7 @@ Seguimos en:
 
 ![center w:15em](images/containers/microservices.png)
 
-- Aplicaciones simples: docker-compose
+- Aplicaciones simples: `docker compose`
 - Aplicaciones complejas: Orquestadores
 
 # Orquestadores
@@ -148,13 +154,14 @@ Seguimos en:
 
 ## Orquestadores
 
-- Provisión y despliegue
-- Redundancia y escalado
-- Elasticidad
-- Redes
-- Balanceador de carga
-- Monitorización de salud
-- Gestión centralizado de configuración: compliance, auditability
+- Orquestación a escala: gestiona cientos o miles de contenedores distribuidos en múltiples máquinas
+- Auto-reparación (*self-healing*): si un contenedor muere, un nodo falla o un health check no responde, se reinicia o reubica automáticamente
+- Escalado horizontal automático: el número de réplicas crece o decrece según CPU, memoria o métricas personalizada
+- Service discovery y balanceo de carga integrados
+- Configuración declarativa: sescribes el estado deseado en YAML (réplicas, recursos, versiones)
+- Gestión de secretos y configuración:
+- Límites y garantías de recursos
+- Portabilidad entre clouds
 
 ## Más populares
 
@@ -293,7 +300,7 @@ spec:
 
 - Unidad mínima de trabajo
 - Puede contener uno o más contenedores
-- Similar a un solo docker-compose
+- Similar a un solo `docker-compose.yaml`
 
 ![bg left w:80%](images/containers/kubernetes-pod.png)
 
