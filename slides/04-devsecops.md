@@ -85,18 +85,23 @@ Cada cambio en el código se testea y despliega en producción en minutos
 
 ## Buenas prácticas
 
-- Trata la rama "*main*" como si pudiese desplegarse en cualquier momento
-- Cada fallo de tests es un bug
-- Mejora los tests
-- No uses ramas de desarrollo enormes
-- Automatiza todo el despliegue:
-    - Incluida la creación de infraestructura: terraform, ansible, kubernetes...
+- **Gestión de secretos**: evita hardcodear información sensible como contraseñas o claves de API. Utiliza soluciones como HashiCorp Vault para almacenarla de forma segura.
+- **Escaneo de vulnerabilidades periódico**: usa herramientas de análisis estático (SAST) y análisis de composición de software (SCA) para identificar vulnerabilidades en tu base de código, bloqueando código vulnerable durante los pushes.
+- **Firma de commits**: exige a los desarrolladores que firmen criptográficamente sus commits, garantizando la autenticidad de los cambios y previniendo modificaciones no autorizadas
+- **Gestión de dependencias**: [Software Bill of Materials (SBOM)](https://www.ibm.com/think/topics/sbom) para gobernar los componentes de código abierto y garantizar el cumplimiento de los estándares del sector.
+- **Harness** los entornos de desarrollo automatizados: planificación, controles y aprobaciones: https://www.anthropic.com/engineering/harness-design-long-running-apps
 
 ---
 
 Y por supuesto, ¡introduce controles de seguridad en todo el proceso!
 
 ![center](images/devops/etapas.png)
+
+---
+
+![w:30em center](https://github.com/Chachamaru127/claude-code-harness/raw/main/docs/images/readme/hero-operating-loop-en.png)
+
+> https://github.com/Chachamaru127/claude-code-harness
 
 ## Quality Assurance
 
@@ -119,9 +124,7 @@ Y por supuesto, ¡introduce controles de seguridad en todo el proceso!
 - Repositorio de artefactos (Nexus, Artifactory, Docker Hub,
 S3, etc)
 - Despliegue (Ansible, Puppet, Chef, etc)
-- Monitorización (NewRelic, AppDynamics, Sysdig, etc)
 - Logging (Splunk, ELK, etc)
-- Comunicación (Slack, HipChat, etc)
 
 # Etapas DevOps
 <!-- _class: lead -->
@@ -137,7 +140,7 @@ S3, etc)
 
 ---
 
-![center](images/devops/digiwiseacademy-devops.jpeg)
+![center w:30em](images/devops/digiwiseacademy-devops.jpeg)
 
 
 ## Etapa 1: Build
@@ -244,11 +247,30 @@ Ejemplo: [bandit](https://bandit.readthedocs.io/en/latest/) analiza errores comu
 
 ```bash
 git clone https://github.com/NetSPI/django.nV ; cd django.nV
-python3 -m pip install bandit
+
+python3 -m venv venv
+venv/bin/pip3 install bandit
+
 bandit -r .
 ```
 
-![w:30em center](images/devops/ejemplo-bandit.png)
+![w:25em center](images/devops/ejemplo-bandit.png)
+
+---
+
+Ejemplo: [semgrep](https://semgrep.dev/) analiza errores con inteligencia artificial. Tiene una interfaz gráfica (de pago)
+
+
+```bash
+git clone https://github.com/NetSPI/django.nV ; cd django.nV
+
+python3 -m venv venv
+venv/bin/pip3 install semgrep
+
+venv/bin/semgrep --config auto .
+```
+
+![w:25em center](images/devops/ejemplo-semgrep.png)
 
 ---
 
@@ -489,6 +511,18 @@ Ejemplo: <https://github.com/Juanvvc/sMSD/security> (Nota: necesitas permisos)
 
 ![bg right w:100%](images/devops/github-services.png)
 
+## Análisis estático en CLAUDE.md
+
+```markdown
+## Static Analysis Workflow
+After any code change, run:
+1. `ruff check .` — linting + import sorting
+2. `mypy .` — type checking
+3. `pylint src/` — deeper analysis (optional, slower)
+
+Fix all errors before proceeding. Do not suppress warnings without explaining why.
+```
+
 ## Etapa 2: Tests
 <!-- _class: smallest-font -->
 
@@ -559,6 +593,22 @@ if __name__ == '__main__':
 ---
 
 ![center](images/devops/Code-Based-Testing.png)
+
+## Tests unitatios en CLAUDE.md
+
+```markdown
+## Testing Requirements
+
+For every new function or method:
+1. Write unit tests **before** or **immediately after** implementation (no exceptions).
+2. Place tests in `tests/` mirroring the source structure (`src/foo/bar.py` → `tests/foo/test_bar.py`).
+3. Each test module must cover:
+   - Happy path with representative inputs
+   - Edge cases (empty input, nulls/None, boundary values)
+   - Expected exceptions (use `pytest.raises`)
+4. Run `pytest --tb=short` after writing tests and fix failures before moving on.
+5. Do not mark a task complete if coverage for the new function is below 90% (`pytest --cov`).
+```
 
 ## Etapa 4: Dynamic Application Security Testing DAST
 
