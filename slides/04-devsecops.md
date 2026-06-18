@@ -22,8 +22,8 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 <!-- _class: cool-list toc -->
 
 1. [Desarrollo y Operaciones](#3)
-1. [Etapas DevOps](#14)
-1. [Resumen y referencias](#58)
+1. [Etapas DevOps](#15)
+1. [Resumen y referencias](#62)
 
 # Desarrollo y Operaciones
 <!-- _class: lead -->
@@ -594,7 +594,7 @@ if __name__ == '__main__':
 
 ![center](images/devops/Code-Based-Testing.png)
 
-## Tests unitatios en CLAUDE.md
+## Tests unitarios en CLAUDE.md
 
 ```markdown
 ## Testing Requirements
@@ -780,21 +780,33 @@ end
 - Tools for testing: https://www.creativebloq.com/features/12-must-have-user-testing-tools
 - Courses: https://javarevisited.blogspot.com/2020/07/5-free-courses-to-learn-devops-in-2020.html
 
---- 
+---
 
 
-- https://docs.github.com/en/code-security/code-scanning
-- https://github.com/kaiiyer/awesome-vulnerable
-- https://github.com/appsecco/dvna
-- https://github.com/analysis-tools-dev/static-analysis#javascript
-- https://deepscan.io/pricing/
-- https://www.sonarsource.com/products/sonarlint/
-- https://github.com/designsecurity/progpilot
-- https://github.com/duo-labs/dlinto
-- https://snyk.io/learn/code-security-audit/
-- https://www.sonarsource.com/solutions/security/
-- https://www.codementor.io/learn-programming/performing-security-audit-for-your-code-the-basics
-- https://owasp.org/www-pdf-archive/OWASP_Code_Review_Guide_v2.pdf
+- [Find and fix code vulnerabilities](https://docs.github.com/en/code-security/code-scanning) GitHub docs
+- [Because Code Qualty Matters](https://analysis-tools.dev/), list static analysis tools and linters that can help you improve code quality.
+- [Code security auditing 101](https://snyk.io/articles/code-security-audit/) Jamie Smith
+- [Performing a Security Audit for your Code: The Basics](https://www.codementor.io/learn-programming/performing-security-audit-for-your-code-the-basics)
+- [OWASP Code Review](https://owasp.org/www-project-code-review-guide/) OWASP 2017
+
+---
+
+Secure agent harness and hardening:
+
+- [Skill Issue: Harness Engineering for Coding Agents](https://www.humanlayer.dev/blog/skill-issue-harness-engineering-for-coding-agents) Humanlayer, March 2026
+- [Agent Harness Engineering](https://addyosmani.com/blog/agent-harness-engineering/) Addy Osmani, April 2026
+- [AI Development Environment Hardening: A Security Framework for Teams](https://medium.com/@michael.hannecke/ai-development-environment-hardening-a-security-framework-for-teams-666c1b6caf2f) Michael Hannecke, January 2026
+- [Hardening Claude Code: A Security Review Framework and the Prompt That Does It For You](https://medium.com/@emergentcap/hardening-claude-code-a-security-review-framework-and-the-prompt-that-does-it-for-you-c546831f2cec) Tim McAllister, February 2026
+- [Harness design for long-running application development](https://www.anthropic.com/engineering/harness-design-long-running-apps) Anthropic, March 2026
+
+---
+
+Commercial tools, algunas tienen versiones gratuitas
+
+- [Deepskan](https://analysis-tools.dev/)
+- [SonarQube](https://www.sonarsource.com/products/sonarlint/)
+- [Semgrep, code security for builders](https://semgrep.dev/) 
+- [Black Duck](https://www.blackduck.com/)
 
 # ¡Gracias!
 <!-- _class: last-slide --> 
