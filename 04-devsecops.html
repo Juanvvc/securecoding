@@ -772,10 +772,10 @@ tar -xvf trufflehog_3.81.8_linux_amd64.tar.gz trufflehog
 <span class="hljs-built_in">chmod</span> +x trufflehog
 
 <span class="hljs-comment"># Análisis local</span>
-./trufflehog filesystem secretsandstuff
+./trufflehog --no-update filesystem secretsandstuff
 
 <span class="hljs-comment"># Análisis remoto</span>
-./trufflehog github --repo=https://github.com/dustin-decker/secretsandstuff
+./trufflehog --no-update github --repo=https://github.com/dustin-decker/secretsandstuff
 </code></pre>
 <p><img src="images/devops/trufflehog.png" alt="center" style="width:15em;" /></p>
 <footer><a href="index.html">Inicio</a></footer>
