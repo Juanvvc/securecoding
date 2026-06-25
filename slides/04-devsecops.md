@@ -470,10 +470,10 @@ tar -xvf trufflehog_3.81.8_linux_amd64.tar.gz trufflehog
 chmod +x trufflehog
 
 # Análisis local
-./trufflehog filesystem secretsandstuff
+./trufflehog --no-update filesystem secretsandstuff
 
 # Análisis remoto
-./trufflehog github --repo=https://github.com/dustin-decker/secretsandstuff
+./trufflehog --no-update github --repo=https://github.com/dustin-decker/secretsandstuff
 ```
 
 ![center w:15em](images/devops/trufflehog.png)

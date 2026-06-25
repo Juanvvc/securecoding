@@ -23,7 +23,7 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 
 1. [Continuous Integration / Continuous Delivery](#4)
 1. [Ejemplos de Pipelines](#15)
-1. [Resumen y referencias](#37)
+1. [Resumen y referencias](#40)
 
 ---
 
@@ -206,11 +206,16 @@ La salida se guarda en el archivo `bandit-output.json`
 
 [Recuerda](04-devsecops.html): trufflehog comprueba si te has dejado contraseñas o tokens de seguridad en el código
 
+Puede escanear carpetas, proyectos en git, imágenes docker...
+
 ```bash
 git clone https://github.com/NetSPI/django.nV ; cd django.nV
-docker run --user $(id -u):$(id -g) -v $(pwd):/src --rm \
-    hysnsec/trufflehog filesystem --directory=/src --json \
-    | tee trufflehog-output.json
+
+docker run --user $(id -u):$(id -g) -v $(pwd):/src --rm  
+   ghcr.io/trufflesecurity/trufflehog:latest --help
+
+docker run --user $(id -u):$(id -g) -v $(pwd):/src --rm  
+   ghcr.io/trufflesecurity/trufflehog:latest --no-update filesystem /src --json | tee trufflehog-output.json
 ```
 
 ---
@@ -417,10 +422,7 @@ git-secrets:
   stage: build
   script:
     - docker run --user $(id -u):$(id -g) -v $(pwd):/src --rm \\
-    hysnsec/trufflehog filesystem --directory=/src --json \\
-    | tee trufflehog-output.json
-    - docker run --user $(id -u):$(id -g) -v $(pwd):/src --rm \\
-    hysnsec/trufflehog filesystem --directory=/src --json \\
+    ghcr.io/trufflesecurity/trufflehog:latest --no-update filesystem /src --json \\
     | tee trufflehog-output.json
   artifacts:
     paths: [trufflehog-output.json]
@@ -480,6 +482,72 @@ inspec:
   artifacts:
     paths: [inspec-output.json]
     when: always
+```
+
+## Claude Review
+<!-- _class: with-warning -->
+Ejemplos de uso:
+
+- Gestiona issues automáticamente: añade en comentarios de la issue "@claude implement this feature based on the issue description"
+- Security review: "claude code audit \
+            --security \
+            --depth ${{ steps.depth.outputs.depth }} \
+            --fail-on critical"
+
+> https://code.claude.com/docs/en/code-review
+> https://code.claude.com/docs/en/gitlab-ci-cd
+> https://claude-world.com/articles/cicd-integration/#gitlab-cicd-integration
+
+Nota: actualmente, Claude Review solo está disponible para empresas
+
+
+---
+
+```yaml
+  # Stage 2: Claude review (only if quick checks pass)
+  claude-review:
+    needs: quick-checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Claude Code
+        run: npm install -g @anthropic/claude-code
+
+      - name: Code Review
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          claude code review \
+            --pr ${{ github.event.pull_request.number }} \
+            --checks quality,patterns,security \
+            --post-comments
+``` 
+
+---
+
+```yaml
+# Stage 3: Security audit (for labeled merge requests)
+  security-audit:
+    needs: quick-checks
+    if: contains(github.event.pull_request.labels.*.name, 'needs-security-review')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Claude Code
+        run: npm install -g @anthropic/claude-code
+
+      - name: Security Audit
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          claude code audit \
+            --security \
+            --model opus \
+            --fail-on critical,high
 ```
 
 ##  Defect Dojo
