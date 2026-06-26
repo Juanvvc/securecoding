@@ -10,11 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Checkout code
-        uses: actions/checkout@v2
-      
       - name: Checkout all the submodules
-        uses: actions/checkout@v2
+        uses: actions/checkout@v7
         with:
           submodules: recursive
 
@@ -36,6 +33,6 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release create "$GITHUB_REF_NAME" \
-            --title "$GITHUB_REF_NAME" \
-            --notes "Secure Coding slides, version $GITHUB_REF_NAME" \
+            --title "$GITHUB_REF_NAME presentación en PDF" \
+            --notes "Presentación en formato PDF de Secure Coding, version $GITHUB_REF_NAME" \
             "$GITHUB_REF_NAME-securecoding.zip"
