@@ -35,4 +35,4 @@ jobs:
           gh release create "$GITHUB_REF_NAME" \
             --title "$GITHUB_REF_NAME presentación en PDF" \
             --notes "Presentación en formato PDF de Secure Coding, version $GITHUB_REF_NAME" \
-            "$GITHUB_REF_NAME-securecoding.zip"
+            "release/$GITHUB_REF_NAME-securecoding.zip"
