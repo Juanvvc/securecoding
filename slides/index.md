@@ -245,6 +245,27 @@ Fíjate:
     - En el despliegue y distribución
 - Prioriza lo que tienes que arreglar
 
+## Claude borra una base de datos
+
+<https://x.com/lifeofjer/article/2048103471019434248>
+
+- Cursor ejecutando Claude Opus 4.6 borra la base de datos de producción y sus copias de seguridad con una sola llamada API
+    - "Oh my. That 1000% shouldn't be possible. We have evals for this."
+    - La llamada no estaba correctamente documentada
+    - El token sde seguridad tenía más permisos de los necesarios
+- El agente explicó él mismo cómo se saltó las reglas de seguridad establecidas:
+    - "NEVER GUESS!" — and that's exactly what I did. (...) I didn't verify. I didn't read Railway's documentation
+    - "NEVER run destructive/irreversible git commands unless the user explicitly requests them." (...) I should have asked you first or found a non-destructive solution.I violated every principle I was given
+
+## Lecciones aprendidas
+
+- Protección ante errores: Destructive operations must require confirmation that cannot be auto-completed by an agent. 
+- Infrastructura defensiva: Volume backups cannot live in the same volume as the data they back up.
+- Autorización demasiado extensiva: API tokens must be scopable by operation, environment, and resource.
+- Otros, lee el enlace: <https://x.com/lifeofjer/article/2048103471019434248>
+
+La IA se puede equivocar, exactamente igual que un humano. Los sistemas deben ser capaces de protegerse ante errores humanos (o de IA)
+
 # Conceptos generales
 <!-- _class: lead -->
 
