@@ -14,7 +14,10 @@ theme: marp-viu
 </style>
 
 # Código seguro y *quality assurance*
-<!-- _class: first-slide -->
+<!--
+_class: first-slide
+header: Presentación
+-->
 
 **Presentación**
 Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
@@ -101,7 +104,10 @@ Presenta las actividades en formato PDF
 A pesar de ser una asignatura de "código seguro", estudiaremos el proceso de creación y gestión de una aplicación, no la programación de la aplicación en sí
 
 # ¿Qué puede salir mal?
-<!-- _class: lead -->
+<!--
+_class: lead
+header: ¿Qué puede salir mal?
+-->
 
 Ejemplos del mundo real de cosas saliendo mal
 
@@ -201,7 +207,7 @@ El "virus" no estaba el el código principal, sino que solo se introducía duran
 
 Afectaba a las personas que crean distribuciones de Linux: cuando probaban que la nueva librería funcionaba correctamente... infectaba el sistema
 
-Se descubrió porque una conexión SSH duraba unos milisegunos más de los esperado
+Se descubrió porque una conexión SSH duraba unos milisegundos más de los esperado
 
 > https://techcommunity.microsoft.com/blog/vulnerability-management/microsoft-faq-and-guidance-for-xz-utils-backdoor/4101961
 > https://nvd.nist.gov/vuln/detail/CVE-2024-3094
@@ -233,18 +239,6 @@ Fíjate:
 
 > https://www.cvedetails.com/cve/CVE-2023-38408
 
-## Lecciones aprendidas
-
-- Diseña teniendo en cuenta la seguridad
-- Prueba tu código
-- Te vas a equivocar
-- Los demás se van a equivocar
-- Incluye controles automáticos en el proceso de desarrollo:
-    - De tu código
-    - De las librerías que utilizas
-    - En el despliegue y distribución
-- Prioriza lo que tienes que arreglar
-
 ## Claude borra una base de datos
 
 <https://x.com/lifeofjer/article/2048103471019434248>
@@ -257,17 +251,38 @@ Fíjate:
     - "NEVER GUESS!" — and that's exactly what I did. (...) I didn't verify. I didn't read Railway's documentation
     - "NEVER run destructive/irreversible git commands unless the user explicitly requests them." (...) I should have asked you first or found a non-destructive solution.I violated every principle I was given
 
-## Lecciones aprendidas
+---
+<!-- _class: with-info -->
+
+Fíjate:
 
 - Protección ante errores: Destructive operations must require confirmation that cannot be auto-completed by an agent. 
 - Infrastructura defensiva: Volume backups cannot live in the same volume as the data they back up.
 - Autorización demasiado extensiva: API tokens must be scopable by operation, environment, and resource.
-- Otros, lee el enlace: <https://x.com/lifeofjer/article/2048103471019434248>
 
-La IA se puede equivocar, exactamente igual que un humano. Los sistemas deben ser capaces de protegerse ante errores humanos (o de IA)
+La IA se puede equivocar, exactamente igual que un humano. Los sistemas deben ser capaces de protegerse ante errores humanos o de IA
+
+> Lee el enlace: <https://x.com/lifeofjer/article/2048103471019434248>
+
+
+## Lecciones aprendidas
+
+- Prueba tu código
+- Te vas a equivocar, tú o la IA
+- Los demás se van a equivocar
+- La IA se va a equivocar
+- Diseño defensivo: aunque algo falle, tiene que seguir funcionando
+- Incluye controles automáticos en el proceso de desarrollo:
+    - De tu código
+    - De las librerías que utilizas
+    - En el despliegue y distribución
+- Prioriza lo que tienes que arreglar
 
 # Conceptos generales
-<!-- _class: lead -->
+<!--
+_class: lead
+header: Conceptos generales
+-->
 
 ---
 <!-- _class: cool-list -->

@@ -22,15 +22,18 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 <!-- _class: cool-list toc -->
 
 1. [Threat Modeling - Modelo de amenazas](#3)
-1. [¿En qué estamos trabajando?](#14)
-1. [¿Qué puede salir mal?](#32)
-1. [¿Qué podemos hacer para arreglarlo?](#49)
+1. [¿En qué estamos trabajando?](#12)
+1. [¿Qué puede salir mal?](#29)
+1. [¿Qué podemos hacer para arreglarlo?](#45)
 1. [¿Hemos hecho un buen trabajo?](#65)
 1. [Ejemplos de antiguos alumnos](#72)
 1. [Referencias y ejercicios](#80)
 
 # Threat Modeling - Modelo de amenazas
-<!-- _class: lead -->
+<!--
+_class: lead
+header: Modelado de amenazas
+-->
 
 ## Modelado de Amenazas - Threat Modeling
 <!-- _class: with-info -->
@@ -42,32 +45,7 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 
 ¿Qué tenemos, qué puede salir mal y qué hacemos para evitarlo?
 
-## ¿Por qué es importante?
-
-- Reduce riesgos de seguridad antes de que se materialicen
-- Ahorra costos en correcciones tardías
-- Mejora la comprensión del sistema desde el punto de vista de seguridad
-- Facilita cumplimiento normativo
-
-## Modelado de amenazas en una empresa
-
-- Threat modeling: Servicio. Ingenieros y managers. 3 meses vista.
-- Risk management: Estrategia. Directores y VP. 1 año vista.
-- [Wardley Mapping](https://cynefin.io/wiki/Wardley_Mapping): Sistema. VP y niveles "C". 3 años vista.
-
-![bg right:50%](images/threatmod/threatmodelling-comic.png)
-
-## ¿Cuándo hacerlo?
-
-- Etapa temprana del diseño.
-- Cambios importantes en la arquitectura.
-- Introducción de nuevas funcionalidades.
-
-![bg left:40% w:90%](images/threatmod/ciclodevida.png)
-
-> https://learn.microsoft.com/en-us/archive/msdn-magazine/2009/january/security-briefs-getting-started-with-the-sdl-threat-modeling-tool
-
-## Ventajas del Threat Modeling
+## Objetivos del Modelado de Amenazas
 
 - **Documentación** del sistema
 - **Identificación** temprana de las amenazas
@@ -76,10 +54,31 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 
 ![bg left:40%](images/threatmod/securedesign.png)
 
+## Modelado de amenazas en una empresa
+
+- *Threat modeling*: Servicio. Ingenieros y managers. Horizonte: 3 meses vista.
+- *Risk management*: Estrategia. Directores y VP. Horizonte: 1 año vista.
+- [*Wardley Mapping*](https://cynefin.io/wiki/Wardley_Mapping): Sistema. VP y niveles "C". Horizonte: 3 años vista.
+
+![bg right:50%](images/threatmod/threatmodelling-comic.png)
+
+## ¿Cuándo hacer el modelado de amenazas?
+<!-- _class: with-info -->
+
+- En las etapas temprana del diseño.
+- Después de cambios importantes en la arquitectura
+- Cuando se introducen nuevas funcionalidades
+
+![bg left:40% w:90%](images/threatmod/ciclodevida.png)
+
+El modelado de amenazas es un proceso continuo
+
+> https://learn.microsoft.com/en-us/archive/msdn-magazine/2009/january/security-briefs-getting-started-with-the-sdl-threat-modeling-tool
+
 ## Terminología
 
 - *Threat* / **Amenaza**: cualquier circunstancia con el potencial de impactar una organización
-- *Vulnerability* / **Vulnerabilidad**: debilidad que un agente puede usar durante un ataque
+- *Vulnerability* / **Vulnerabilidad**: debilidad que un agente aprovecha durante un ataque
     - A tener en cuenta: facilidad de descubrimiento, explotación, publicidad, ¿es detectable?
 - *Asset* / **Recurso**: qué es lo que queremos proteger. Datos, prestigio...
 - *Agent* / **Actor**: individuo o grupo capaz de llevar a cabo una amenaza.
@@ -100,6 +99,7 @@ Las amenazas existen por sí solas, pero tiene que haber un agente capaz de expl
 
 ---
 
+- **Afectado** / *Affected*: nuestro sistema tiene una vulnerabilidad
 - **Impacto** / *Impact*: daño potencial que puede producir una amenaza
     - A tener en cuenta: confidencialidad, integridad, *availability*, *accountability*, existencia de logs...
     - Tipos: económico, de imagen, *non-compliance*, privacidad
@@ -115,31 +115,23 @@ Las amenazas existen por sí solas, pero tiene que haber un agente capaz de expl
 
 Término|Definición|Detección
 --|--|--
-Defecto/Bugs|Imperfección en el desarrollo del software. Un *bug* es como informalmente nos referimos a los defectos|Durante el desarrollo y el testeo
+Defecto/Bugs|Imperfección en el desarrollo del software. Pueden ser tanto *errores* como *fallos*|Durante el desarrollo y el testeo
 Errores|Defectos introducidos por los humanos al escribir el código|Durante el desarrollo, "fácil"
 Fallos|El sistema no se comporta como se espera debido a algún defecto|Durante el testeo, "difícil"
 
+![center w:20em](images/threatmod/defectos-fallos.png)
+
 > https://www.baeldung.com/cs/software-testing-defect-bug-error-and-failure
-
-## Proceso general
-
-1. **Describir el objetivo** del sistema
-2. **Crear un modelo** del sistema, que identifique sus componentes
-3. **Identificar los componentes críticos**
-3. **Identificar amenazas** (ej: STRIDE)
-4. **Evaluar riesgos priorizando amenazas** (impacto vs. probabilidad)
-5. **Proponer mitigaciones de las amenazas amenazas**
-6. **Documentar y revisar**
 
 ## Fases genéricas del análisis de amenazas
 
-- ¿En qué estamos trabajando? Describe el escenario
-- ¿Qué puede salir mal? Determina las amenazas
-- ¿Qué haremos al respecto? Contramedidas y mitigación
-- ¿Hemos hecho un buen trabajo? Evalúa tu trabajo
+[![center w:15em](images/threatmod/tm-manifesto-large.svg)](https://www.threatmodelingmanifesto.org/)
 
-[![center w:90%](images/threatmod/tm-manifesto-large.svg)](https://www.threatmodelingmanifesto.org/)
 
+- **¿En qué estamos trabajando?** Describe el escenario, identifica los compontentes críticos
+- **¿Qué puede salir mal?** Identifica las amenazas y sus riesgos
+- **¿Qué haremos al respecto?** Priorización, contramedidas y mitigación
+- **¿Hemos hecho un buen trabajo?** Evalúa tu trabajo
 
 > https://www.threatmodelingmanifesto.org/
 > OWASP [Threat Modeling Process](https://owasp.org/www-community/Threat_Modeling_Process)
@@ -153,31 +145,36 @@ Las preguntas es la terminología que se usa en el treat modeling manifesto, mie
 -->
 
 # ¿En qué estamos trabajando?
-<!-- _class: lead -->
+<!--
+_class: lead
+header: ¿En qué estamos trabajando?
+-->
 
 Describe el sistema
 
-# Paso 1: describe el sistema
-<!-- _class: with-success -->
+# Paso 1: ¿En qué estamos trabajando?
+
+Preguntas:
 
 - ¿Qué estamos modelando?
 - ¿Qué activos son críticos?
 - ¿Qué actores interactúan con el sistema?
 
-- Describe el sistema:
-    - Con casos de uso. Pueden ser varios, tipo historia
-    - Con diagramas de flujo de datos
-    - Con diagramas de subsistemas y su relación entre ellos
+Describe el sistema:
+
+- Con casos de uso. Pueden ser varios, tipo historia
+- Con diagramas de flujo de datos
+- Con diagramas de subsistemas y su relación entre ellos
 
 ---
+
 Identifica:
 
-- Puntos de entrada: interfaces, internet, APIs...
-- Actores y sus roles
-- Activos: Bases de datos, credenciales, servidores...
-- Dependencias (bajo control de otras personas): APIs externas, librerías...
-- Puntos de entrada para ver dónde un potencial atacante podría interactuar con la aplicación
-- Zonas de confianza
+- **Puntos de entrada**: interfaces, internet, APIs... que un potencial atacante podría interactuar con la aplicación
+- **Actores y sus roles**
+- **Activos**: Bases de datos, credenciales, servidores...
+- **Dependencias** (bajo control de otras personas): APIs externas, librerías...
+- **Zonas de confianza** (*trust zone*)
 
 Objetivo: descompón tu sistema, sus flujos de datos, los actores, los activos importantes, y cómo se relacionan entre sí
 
@@ -199,6 +196,13 @@ Objetivo: descompón tu sistema, sus flujos de datos, los actores, los activos i
 ![center w:30em](images/threatmod/diagramaflujo.png)
 
 > https://github.com/adamshostack/DFD3/
+
+## Zona de confianza
+
+- Región de un sistema en la que todos los componentes comparten el mismo nivel de confianza y están sujetos a los mismos controles de seguridad.
+- Todo lo que está dentro de una zona se considera igual de fiable: los datos, procesos y usuarios que hay en ella no necesitan autenticarse ni validarse entre sí
+- No son topología de red: un mismo host puede contener varias zonas, como un plugin en sandbox que se ejecuta dentro de un proceso de confianza, o un contenedor junto a un sidecar privilegiado. Dos servidores en centros de datos distintos pueden compartir una misma zona
+- Las diferencias de privilegio también crean fronteras. Un proceso en modo usuario que llama al kernel, o una cuenta de servicio con pocos privilegios que invoca un servicio con nivel SYSTEM, cruza una frontera aunque no intervenga ninguna red
 
 ## Ejemplo: Informes Periciales
 
@@ -237,7 +241,7 @@ Activo|Zona de trabajo de informes|Informes en markdown
 
 ## Ejemplo: Brainstorming (sistema)
 
-![center w:30em](images/threatmod/informes.drawio.png)
+![center w:28em](images/threatmod/informes.drawio.png)
 
 <!--
 
@@ -295,27 +299,22 @@ CodiMD:
 
 ## Ejemplo: del proceso de edición por un usuario
 
-![center w:25em](images/threatmod/informes2.drawio.png)
+![center w:22em](images/threatmod/informes2.drawio.png)
 
-## Flujos de datos
-
-![center w:20em](images/threatmod/flujosdedatosfig.png)
-
----
+## Diagrama de Flujo de datos
 
 ![center](https://upload.wikimedia.org/wikipedia/commons/9/98/Data_Flow_Diagram_-_Online_Banking_Application.jpg)
 
 > https://en.wikipedia.org/wiki/Threat_model
 
-
 ## Diagrama de estados
 
 ![center w:25em](images/threatmod/diagramaestados.png)
 
-## Casos de uso
+## Diagrama de casos de uso
 <!-- _class: two-columns -->
 
-![center w:20em](images/threatmod/Use_case_restaurant_model.svg)
+![center w:15em](images/threatmod/Use_case_restaurant_model.svg)
 
 - Pueden ser también descripciones de texto
 - Asegúrate de que capturas toda la interacción entre actores
@@ -352,8 +351,20 @@ Si usas inteligencia artifical durante esta fase:
 - Describe los requisitos usando historias
 - Pide que se identifiquen los componentes principales del sistema y su relación entre ellos
 
+<!--
+Prompts:
+
+Eres un ingeniero de software. Te han encargado el proyecto de una aplicación multiusuario online de gestión de contraseñas. Estamos ahora mismo en la fase de diseño
+
+Crea una lista con los componentes principales de esta aplicación
+
+-->
+
 # ¿Qué puede salir mal?
-<!-- _class: lead -->
+<!--
+_class: lead
+header: ¿Qué puede salir mal?
+-->
 
 Determina las amenazas
 
@@ -483,20 +494,6 @@ OWASP Cornucopia: https://owasp.org/www-project-cornucopia/
 - https://microsoft.github.io/code-with-engineering-playbook/security/threat-modelling/
 - https://microsoft.github.io/code-with-engineering-playbook/security/threat-modelling/
 
-## OWASP ASVS
-
-[OWASP Application Security Verification Standard (ASVS)](https://owasp.org/www-project-application-security-verification-standard/) es:
-
-- Base para controles técnicos de seguridad de las aplicaciones web
-- Lista de requisitos para un desarrollo seguro de aplicaciones web
-
-Usos:
-
-- Como métrica: grado de confianza que se puede depositar en sus aplicaciones web
-- Como guía: qué incorporar a los controles de seguridad para satisfacer los requisitos
-- Como estándar: requisitos de verificación de seguridad de las aplicaciones en los contratos
-
-
 ## Árbol de amenazas
 
 Arriba los objetivos, vamos bajando identificando qué haría un atacante para alcanzarlos
@@ -507,14 +504,6 @@ Arriba los objetivos, vamos bajando identificando qué haría un atacante para a
 > https://en.wikipedia.org/wiki/Attack_tree
 > https://www.schneier.com/academic/archives/1999/12/attack_trees.html
 > https://www.exploresec.com/attack-tree-example
-
----
-
-Pero no todas las amenazas son iguales: **es necesario priorizar**
-
-![center w:30em](images/threatmod/thrattree2.png)
-
-> https://www.totem.tech/small-business-cybersecurity-threat-modeling/
 
 ## Brainstorming: recupera tu cuenta
 <!-- _class: two-columns -->
@@ -615,9 +604,20 @@ Si usas inteligencia artifical durante esta fase:
 - Pide que identifique amenazas usando alguna metodología (por ejemplo, STRIDE)
 - Pide al menos una amenaza por categoría STRIDE y no pidas demasiadas más: se pueden hacer iteraciones
 
+<!--
+
+Haz un análisis de amenazas STRIDE. Lista al menos 3 amenazas para cada una de las categorías STRIDE
+
+Crea una tabla con el riesgo (probabilidad e impacto) de cada una de estas amenazas
+
+-->
+
 
 # ¿Qué podemos hacer para arreglarlo?
-<!-- _class: lead -->
+<!--
+_class: lead
+header: ¿Qué podemos hacer para arreglarlo?
+-->
 
 Contramedidas y mitigaciones
 
@@ -637,6 +637,14 @@ Objetivo: priorizar los defectos encontrados durante las fases anteriores
 <!--
 Aunque hay otras metodologías, en esta clase nos vamos a centrar en el análisis de riesgos desde el punto de vista de amenanzas
 -->
+
+---
+
+No todas las amenazas son iguales: **es necesario priorizar**
+
+![center w:30em](images/threatmod/thrattree2.png)
+
+> https://www.totem.tech/small-business-cybersecurity-threat-modeling/
 
 ---
 
@@ -855,7 +863,10 @@ Si usas inteligencia artifical durante esta fase:
 - El resultado tiene que estar en forma de tabla
 
 # ¿Hemos hecho un buen trabajo?
-<!-- _class: lead -->
+<!--
+_class: lead
+header: ¿Hemos hecho un buen trabajo?
+-->
 
 Evalúa tu trabajo
 
@@ -949,7 +960,10 @@ Marketing CMS:
 [Ejemplo completo](images/threatmod/threagile/threagile-example-model.yaml), - [Diagrama](images/threatmod/threagile/data-flow-diagram.png), - [Informe](images/threatmod/threagile/report.pdf)
 
 # Ejemplos de antiguos alumnos
-<!-- _class: lead -->
+<!--
+_class: lead
+header: Ejemplos
+-->
 
 ## Sistema de Incident Response en cloud
 
@@ -988,7 +1002,10 @@ Marketing CMS:
 ![center](images/threatmod/ejemplo-financiero2.png)
 
 # Referencias y ejercicios
-<!-- _class: lead -->
+<!--
+_class: lead
+header: Referencias
+-->
 
 ## Resumen
 
@@ -998,6 +1015,7 @@ Marketing CMS:
 
 ## Referencias
 
+- https://www.threatmodelingmanifesto.org/
 - [Threat Modeling](https://shostack.org/books/threat-modeling-book) Adam Shostack
 - [Playbook for Threat Modeling Medical Devices](https://www.mitre.org/sites/default/files/publications/Playbook-for-Threat-Modeling-Medical-Devices.pdf): Mitre, aprende TM con un ejemplo complejo
 - OWASP [Threat Modelling Cheatsheets](https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html)
