@@ -1,15 +1,14 @@
 ---
 title: "TM: Aplicación gestión de contraseñas"
-source: "https://claude.ai/chat/ef7f11d9-8cbd-41e4-bcb4-4d97b885ab8e"
 model: "claude-sonnet-5"
 exported: 2026-09-22
 ---
 
-# Human — Sep 21, 2026, 11:22 PM
+# Human
 
 Eres un ingeniero de software. Te han encargado el proyecto de una aplicación multiusuario online de gestión de contraseñas. Estamos ahora mismo en la fase de diseño.
 
-# Claude — Sep 21, 2026, 11:22 PM
+# Claude
 
 ¡Buena fase para sentar bases! Un gestor de contraseñas multiusuario online tiene un requisito que domina todo lo demás: el servidor nunca debe poder ver las contraseñas en claro (arquitectura zero-knowledge/zero-trust). Todo lo demás se diseña alrededor de esa restricción.
 
@@ -60,7 +59,7 @@ Si el servidor nunca conoce la master password (zero-knowledge puro), perder esa
 
 Con esas cuatro respuestas te preparo la arquitectura completa: derivación de claves (Argon2id habitualmente), esquema de cifrado (AES-256-GCM para las entradas, envelope encryption para compartición), modelo de datos, flujo de autenticación (algo tipo SRP o al menos evitar que el servidor vea ni siquiera un hash reutilizable de la master password), y APIs. ¿Empezamos por ahí?
 
-# Human — Sep 21, 2026, 11:28 PM
+# Human
 
 1. Modelo a amenaza: servidor comprometido
 2. Cada usuario tiene una bóveda individual
@@ -70,7 +69,7 @@ Con esas cuatro respuestas te preparo la arquitectura completa: derivación de c
 
 Crea una lista con los componentes principales de esta aplicación
 
-# Claude — Sep 21, 2026, 11:28 PM
+# Claude
 
 Con esas cuatro decisiones, esta es la lista de componentes principales, agrupados por dónde viven (cliente vs servidor) porque en zero-knowledge esa frontera es la más importante del diseño.
 
@@ -107,11 +106,11 @@ Con esas cuatro decisiones, esta es la lista de componentes principales, agrupad
 
 El punto que más cuidado va a requerir es el protocolo de autenticación (SRP vs esquema propio) porque es donde más gestores de contraseñas fallan — ahí es fácil acabar filtrando indirectamente información que permite un ataque offline contra la master password. ¿Quieres que profundicemos en esa pieza primero, o prefieres ver el modelo de datos completo (esquema de tablas) antes?
 
-# Human — Sep 21, 2026, 11:29 PM
+# Human
 
 Haz un análisis de amenazas STRIDE. Lista al menos 3 amenazas para cada una de las categorías STRIDE
 
-# Claude — Sep 21, 2026, 11:30 PM
+# Claude
 
 Análisis STRIDE aplicado a la arquitectura que hemos definido (zero-knowledge, bóvedas individuales, FastAPI + PostgreSQL, servidor comprometido como amenaza principal).
 
@@ -160,11 +159,11 @@ Análisis STRIDE aplicado a la arquitectura que hemos definido (zero-knowledge, 
 
 Los puntos que yo priorizaría dado tu modelo de amenaza (servidor comprometido) son: **Tampering #1 y #4** (AEAD + integridad del código cliente) y **Elevation of Privilege #1** (IDOR), porque son los que un servidor comprometido puede explotar más directamente incluso sin romper el cifrado. ¿Quieres que profundicemos en mitigaciones concretas para alguno de estos, o seguimos con el modelo de datos?
 
-# Human — Sep 21, 2026, 11:31 PM
+# Human
 
 Crea una tabla con el riesgo (probabilidad e impacto) de cada una de estas amenazas
 
-# Claude — Sep 21, 2026, 11:31 PM
+# Claude
 
 Aquí tienes la valoración de riesgo para las 24 amenazas identificadas, usando escala Alto/Medio/Bajo para probabilidad e impacto, y un riesgo resultante (combinación de ambos). La probabilidad está calibrada asumiendo tu modelo de amenaza específico (servidor comprometido) y la arquitectura zero-knowledge ya definida.
 
@@ -202,11 +201,11 @@ Nota sobre la calibración: en tu modelo de amenaza (servidor comprometido), var
 
 ¿Seguimos con mitigaciones concretas para los cinco de riesgo Alto, o prefieres primero cerrar el modelo de datos?
 
-# Human — Sep 21, 2026, 11:32 PM
+# Human
 
 Mitigaciones concretas para las cinco de riesgo alto
 
-# Claude — Sep 21, 2026, 11:32 PM
+# Claude
 
 ## S1 — Robo de token de sesión (XSS/malware)
 
@@ -292,11 +291,11 @@ Esta combinación (AEAD + AAD para T1, RLS + IDs no predecibles para E1) es la q
 
 ¿Seguimos con el modelo de datos completo, o prefieres que detalle el protocolo de autenticación (SRP vs esquema con verificador separado) que dejamos pendiente?
 
-# Human — Sep 22, 2026, 12:18 AM
+# Human
 
 Crea un diagrama draw.io con la arquitectura
 
-# Claude — Sep 22, 2026, 12:20 AM
+# Claude
 
 Voy a representarlo como tres bloques (cliente, servidor, base de datos), respetando la frontera zero-knowledge que hemos definido — es la que más importa que se vea clara en el diagrama.
 
