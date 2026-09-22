@@ -506,9 +506,8 @@ Arriba los objetivos, vamos bajando identificando qué haría un atacante para a
 > https://www.exploresec.com/attack-tree-example
 
 ## Brainstorming: recupera tu cuenta
-<!-- _class: two-columns -->
 
-![](images/threatmod/facebook.png)
+![bg left w:90%](images/threatmod/facebook.png)
 
 1. Spoofing
 2. Tampering
@@ -549,9 +548,8 @@ E|El acceso está habilitado desde otras aplicaciones
 E|Admins tiene acceso a las contraseñas de los usuarios
 
 ## Brainstorming: Mullvad, seguridad por diseño
-<!-- _class: two-columns -->
 
-![h:15em](images/threatmod/mullvad.png)
+![bg left w:50%](images/threatmod/mullvad.png)
 
 1. Spoofing
 2. Tampering
@@ -727,10 +725,7 @@ https://mitre-attack.github.io/attack-navigator/#layerURL=https://center-for-thr
 ![bg right w:100%](images/threatmod/mitre.png)
 
 ## Paso 4: Determinar la severidad del riesgo
-<!-- _class: with-success two-columns-->
-
-
-![center w:20em](images/threatmod/risk-calculation.png)
+<!-- _class: with-success -->
 
 - **Probabilidad** de que un ataque se lleve a cabo. Tiene en cuenta habilidad necesaria, motivo, oportunidad, facilidad de explotación...
 - **Impacto**. Cómo de malo sería que un ataque tuviese éxito. Confidencialidad, impacto en negocio...
@@ -764,7 +759,7 @@ Riesgo = Probabilidad * Impacto
 
 Riesgo = Probabilidad * Impacto
 
-![bg right w:90%](images/threatmod/evaluacionderiesgos.png)
+![bg right w:95%](images/threatmod/risk-calculation.png)
 
 > Magerit: https://administracionelectronica.gob.es/pae_Home/pae_Documentacion/pae_Metodolog/pae_Magerit.html
 
@@ -1022,6 +1017,13 @@ header: Referencias
 - OWASP [Threat Modeling Process](https://owasp.org/www-community/Threat_Modeling_Process)
 - [Guide for Conducting Risk Assessments](https://csrc.nist.gov/pubs/sp/800/30/r1/final) NIST SP 800-30 Rev. 1. September 2012
 - [MAGERIT v.3 : Metodología de Análisis y Gestión de Riesgos de los Sistemas de Información](https://administracionelectronica.gob.es/pae_Home/pae_Documentacion/pae_Metodolog/pae_Magerit.html)
+
+## Brainstormings con IA
+
+Ejemplos de brainstorming con IA:
+
+- Gemini: sensores de salud con envío de datos a hospital: <https://github.com/Juanvvc/securecoding/tree/main/ejercicios/threatmod/hospital-gemini.pdf>
+- Claude: gestor de contraseñas <https://github.com/Juanvvc/securecoding/tree/main/ejercicios/threatmod/passmanager-claude.md>
 
 ## Ejercicio
 
