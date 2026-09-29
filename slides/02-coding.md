@@ -34,7 +34,7 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 1. [Buenas prácticas](#12)
 1. [Gestión de usuarios](#20)
 1. [Proyectos, librerías y dependencias](#33)
-1. [VibeCoding with Artificial Intelligence](#47)
+1. [VibeCoding con Inteligencia Artificial](#47)
 1. [Referencias](#51)
 
 # Errores de código más comunes
@@ -43,14 +43,14 @@ Juan Vera del Campo - <juan.vera@professor.universidadviu.com>
 
 ## OWASP: Top 10
 
-![center w:15em](https://owasp.org/assets/images/content/featured_project_t10.png)
+![center e:30em](images/coding/owasp10.png)
 
 <https://owasp.org/Top10/2025/0x00_2025-Introduction/>
 
 
 ---
 
-![center w:35em](https://owasp.org/www-project-top-ten/assets/images/mapping.png)
+![center w:35em](images/coding/owasp-mapping.png)
 
 - [Real Life Examples of Web Vulnerabilities (OWASP Top 10)](https://www.cyberdb.co/real-world-examples-for-owasp-top-10-vulnerabilities/)
 - [Fortinet Firewalls Hit with New Zero-Day Attack, Older Data Leak](https://www.rapid7.com/blog/post/2025/01/16/etr-fortinet-firewalls-hit-with-new-zero-day-attack-older-data-leak/)
@@ -648,8 +648,21 @@ No te fies de nadie...
 
 ![center h=20em](images/coding/audit-fail.png)
 
-# VibeCoding with Artificial Inteligence
+# VibeCoding con Inteligencia Artificial
 <!-- _class: lead -->
+
+## Vibecoding
+
+- Los usuarios expresan sus ideas o problemas de manera conversacional en lugar de la sintaxis de programación tradicional.
+- Código generado por IA: Los grandes modelos de lenguaje se encargan del proceso de programación
+- Refinamiento iterativo: Los usuarios perfeccionan el código generado proporcionando comentarios a la IA, describiendo problemas o solicitando cambios hasta alcanzar la funcionalidad deseada
+- El *vibe coding* suele implicar aceptar el código sin comprender plenamente su implementación. Esto lo hace accesible para personas que no son programadoras, pero plantea dudas sobre la fiabilidad y la depuración de errores
+
+## Seguridad de los modelos creados con IA
+
+![center w:30em](images/coding/vibecoding.png)
+
+> https://baxbench.com/ (2026)
 
 ## Recomendaciones
 
@@ -673,6 +686,8 @@ No te fies de nadie...
     - Añade tests unitarios
     - Instrucciones de uso de control de versiones
     - Actualiza documentación
+
+> [ How to Create an App with AI & Vibe Coding (Complete Course)](https://www.youtube.com/watch?v=I8_k6EVtVOA)
 
 ---
 
